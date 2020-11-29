@@ -1,0 +1,83 @@
+{
+"Moonworks:CommonPower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
+},
+"Moonworks:RarePower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
+},
+        "Moonworks:PortablePuddingPower": {
+                "NAME": "Portable Pudding",
+                "DESCRIPTIONS": ["At the end of your turn, heal #b", " #yHP."]
+        },
+        "Moonworks:Heat300PercentPower": {
+                "NAME": "Heat 300%",
+                "DESCRIPTIONS": ["Remove all block the next #b", " time it is gained.", " times it is gained."]
+        },
+        "Moonworks:FreeCardPower": {
+                "NAME": "Refund Card",
+                "DESCRIPTIONS": ["The next #b", " card you play refunds it's cost.", " cards you play refunds it's cost."]
+        },
+        "Moonworks:RagingMadnessPower": {
+                "NAME": "Raging Madness",
+                "DESCRIPTIONS": ["Whenever you receive attack damage, gain #b", " #yStrength."]
+        },
+        "Moonworks:BlastingLightPower": {
+                "NAME": "Blasting Light",
+                "DESCRIPTIONS": ["At the start of it's turn, lose #b",
+                        " HP, then increase #yBlasting #yLight by #b1. The higher the blast, the more likely it is to wear off."]
+        },
+        "Moonworks:InvisibleBombPower": {
+                "NAME": "Invisible Bomb",
+                "DESCRIPTIONS": ["Detonates and deals #b",
+                        " damage within at most #b"," turns", " damage this turn."]
+        },
+        "Moonworks:TreasureThiefPower": {
+                "NAME": "Treasure Thief",
+                "DESCRIPTIONS": ["Draw one card the next #b",
+                        " time this enemy is damaged.", " times this enemy is damaged."]
+        },
+        "Moonworks:ReflectiveShellPower": {
+                "NAME": "Reflective Shell",
+                "DESCRIPTIONS": ["Prevent the next #b",
+                        " time you take damage. Gain #yVigor equal to the amount prevented.", " times you take damage. Gain #yVigor equal to the amount prevented."]
+        },
+        "Moonworks:SinkOrSwimPower": {
+                "NAME": "Sink Or Swim",
+                "DESCRIPTIONS": ["Increase your energy by #b",
+                        ".", ". Gain 1 Vulnerable, Weak, and Frail for the next #b", " turn.", " turns."]
+        },
+        "Moonworks:PlushieMasterPower": {
+                "NAME": "Plushie Mark",
+                "DESCRIPTIONS": ["Gain #b", " temporary HP and deal #b", " damage the next #b", " time you attack this enemy.", " times you attack this enemy."]
+        },
+        "Moonworks:OutOfAmmoPower": {
+                "NAME": "Out Of Ammo",
+                "DESCRIPTIONS": ["Whenever you have no cards in hand during your turn, draw #b", " card.", " cards."]
+        },
+        "Moonworks:MetallicMonocoquePower": {
+                "NAME": "Metallic Monocoque",
+                "DESCRIPTIONS": ["Take #b", " less direct damage. Take #b", " less indirect damage."]
+        },
+        "Moonworks:PoppoformationPower": {
+                "NAME": "Poppoformation",
+                "DESCRIPTIONS": ["Apply 1 Weak, Frail, or Vulnerable the next #b", " time this target intends to do an action. The effect is chosen based on the intent.", " times this target intends to do an action. The effect is chosen based on the intent."]
+        },
+        "Moonworks:BigBangBellPower": {
+                "NAME": "Big Bang Bell",
+                "DESCRIPTIONS": ["The next time this target does not intent to attack, deals #b", " damage. This damage increases every turn until it is activated."]
+        },
+        "Moonworks:WantedPower": {
+                "NAME": "Wanted",
+                "DESCRIPTIONS": ["This enemy will be the target of every action it doesn't make for #b", " turn.", " turns."]
+        },
+        "Moonworks:BlazingPower": {
+                "NAME": "Blazing!",
+                "DESCRIPTIONS": ["At the start of your turn, gain #b"," Strength and lose #b"," Dexterity."]
+        },
+        "Moonworks:NormaPower": {
+                "NAME": "Norma",
+                "DESCRIPTIONS": ["Norma levels provide buffs to various cards and stacks up to Norma 5."]
+        }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "NAMES": [
+      "keyword",
+      "keywords"
+    ],
+    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+  },
+  {
+    "PROPER_NAME": "Multiword Keyword",
+    "NAMES": [
+      "Multiword Keyword",
+      "multiword_keyword",
+      "multiword_keywords",
+      "multikey",
+      "multikeyword"
+    ],
+    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  },
+  {
+  "NAMES": [
+    "Gift",
+    "gift"
+  ],
+  "DESCRIPTION": "This card's effects are active while in your hand. A Gift may also have an On Play effect that triggers when the card is played normally."
+  },
+  {
+    "PROPER_NAME": "Blasting Light",
+    "NAMES": [
+      "Blasting Light",
+      "blasting_light",
+      "blast"
+    ],
+    "DESCRIPTION": "Blasted creatures lose HP at the start of their turn. Each turn, the blast worsens, but the worse the blast is the more likely it is to wear off."
+  },
+  {
+    "NAMES": [
+      "Trap",
+      "trap"
+    ],
+    "DESCRIPTION": "This card's effect ignores #yArtifact."
+  },
+  {
+    "PROPER_NAME": "Invisible Bomb",
+    "NAMES": [
+      "Invisible Bomb",
+      "invisible_bomb",
+      "invisible_bombs"
+    ],
+    "DESCRIPTION": "Detonates and damages all enemies within at most 3 turns."
+  },
+  {
+    "NAMES": [
+      "Reset",
+      "reset"
+    ],
+    "DESCRIPTION": "This card resets its conditional effect when played."
+  },
+  {
+    "NAMES": [
+      "Norma",
+      "norma"
+    ],
+    "DESCRIPTION": "Cards may have listed bonus effects at specific Norma levels."
+  },
+  {
+    "NAMES": [
+      "Fixed",
+      "fixed"
+    ],
+    "DESCRIPTION": "This card's effect is unaffected by powers."
+  },
+  {
+    "NAMES": [
+      "Transformative",
+      "transformative"
+    ],
+    "DESCRIPTION": "This card temporarily #yTransforms when drawn."
+  }
+]

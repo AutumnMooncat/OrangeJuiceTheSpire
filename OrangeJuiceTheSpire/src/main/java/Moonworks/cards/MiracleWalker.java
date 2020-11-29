@@ -16,11 +16,6 @@ import static Moonworks.OrangeJuiceMod.makeCardPath;
 public class MiracleWalker extends AbstractTransformativeCard {
 
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In-Progress Form At the start of your turn, play a TOUCH.
-     */
 
     // TEXT DECLARATION
 
@@ -40,18 +35,14 @@ public class MiracleWalker extends AbstractTransformativeCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = -2;
-    //private float duration = 0;
-    //private boolean done = false;
 
     // /STAT DECLARATION/
 
     public MiracleWalker() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        //this.exhaust = true;
-        //this.purgeOnUse = true;
-        //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
-
     }
+
+    //Transform when drawn. We can also transform under different circumstances if we want.
     @Override
     public void triggerWhenDrawn() {
         transformedThisTurn = false;
@@ -59,6 +50,7 @@ public class MiracleWalker extends AbstractTransformativeCard {
         super.triggerWhenDrawn();
     }
 
+    //The special feature of this card. It is transformative, but we also want it to always be a 0 cost when a new transformation happens.
     @Override
     public void reinitialize(AbstractCard card) {
         super.reinitialize(card);
@@ -66,7 +58,7 @@ public class MiracleWalker extends AbstractTransformativeCard {
         this.isCostModified = true;
     }
 
-
+    //If this card was generated, or otherwise failed to transform, fix this when we mouse over it.
     @Override
     public void hover() {
         try {
@@ -77,6 +69,7 @@ public class MiracleWalker extends AbstractTransformativeCard {
         super.hover();
     }
 
+    //Don't try to transform on hover if we are not expressly looking at it in our hand.
     private boolean isInHand() {
         for (AbstractCard card : AbstractDungeon.player.hand.group) {
             if (card == this) {
@@ -86,16 +79,18 @@ public class MiracleWalker extends AbstractTransformativeCard {
         return false;
     }
 
-    //Upgraded stats.
     @Override
     public void upgrade() {
+        //This should not normally happen in combat. If this card is generated in combat then it wont have a temp card yet, but we should still upgrade it.
+        //The out of combat version should still work fine though
         if(!transformedThisCombat) {
             if (!upgraded) {
                 upgradeName();
                 rawDescription = UPGRADE_DESCRIPTION;
-                //upgradeBaseCost(UPGRADE_COST);
                 initializeDescription();
             }
+        } else {
+            tempCard.upgrade();
         }
     }
 }

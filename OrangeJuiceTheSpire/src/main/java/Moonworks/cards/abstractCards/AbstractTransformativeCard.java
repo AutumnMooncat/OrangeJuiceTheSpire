@@ -41,6 +41,7 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
         this.transformedThisCombat = false;
 
     }
+
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
         tags.add("Transformative");

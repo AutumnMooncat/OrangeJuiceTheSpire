@@ -1,7 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.actions.CookingTimeAction;
-import Moonworks.cards.defaultcards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

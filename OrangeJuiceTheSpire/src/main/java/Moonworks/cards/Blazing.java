@@ -1,6 +1,6 @@
 package Moonworks.cards;
 
-import Moonworks.cards.defaultcards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.powers.BlazingPower;
 import basemod.helpers.BaseModCardTags;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

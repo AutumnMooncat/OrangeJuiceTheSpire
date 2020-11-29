@@ -1,6 +1,6 @@
 package Moonworks.cards;
 
-import Moonworks.cards.defaultcards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.SunderAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;

@@ -1,7 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.defaultcards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.SinkOrSwimPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

@@ -1,6 +1,6 @@
 package Moonworks.cards;
 
-import Moonworks.cards.defaultcards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

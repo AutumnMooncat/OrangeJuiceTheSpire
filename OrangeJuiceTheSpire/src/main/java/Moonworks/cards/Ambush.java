@@ -1,7 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.actions.AmbushAction;
-import Moonworks.cards.defaultcards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

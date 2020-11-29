@@ -1,7 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.defaultcards.AbstractTransformativeCard;
+import Moonworks.cards.abstractCards.AbstractTransformativeCard;
 import Moonworks.characters.TheStarBreaker;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

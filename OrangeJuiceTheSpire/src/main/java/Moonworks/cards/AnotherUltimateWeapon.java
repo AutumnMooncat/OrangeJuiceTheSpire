@@ -1,7 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.actions.AnotherUltimateWeaponAction;
-import Moonworks.cards.defaultcards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;

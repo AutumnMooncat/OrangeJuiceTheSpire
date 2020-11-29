@@ -1,4 +1,4 @@
-package Moonworks.cards.defaultcards;
+package Moonworks.cards.abstractCards;
 
 import Moonworks.powers.NormaPower;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

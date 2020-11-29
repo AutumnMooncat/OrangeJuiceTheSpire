@@ -2,7 +2,7 @@ package Moonworks.variables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import Moonworks.cards.defaultcards.AbstractDefaultCard;
+import Moonworks.cards.abstractCards.AbstractDefaultCard;
 
 import static Moonworks.OrangeJuiceMod.makeID;
 

@@ -1,4 +1,4 @@
-package Moonworks.cards.defaultcards;
+package Moonworks.cards.abstractCards;
 import basemod.abstracts.CustomCard;
 
 public abstract class AbstractDefaultCard extends CustomCard {

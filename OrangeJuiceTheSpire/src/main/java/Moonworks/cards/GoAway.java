@@ -1,6 +1,6 @@
 package Moonworks.cards;
 
-import Moonworks.cards.defaultcards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

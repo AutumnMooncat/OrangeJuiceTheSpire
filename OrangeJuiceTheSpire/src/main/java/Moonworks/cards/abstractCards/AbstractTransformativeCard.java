@@ -1,4 +1,4 @@
-package Moonworks.cards.defaultcards;
+package Moonworks.cards.abstractCards;
 
 import Moonworks.cards.CompletionReward;
 import basemod.BaseMod;

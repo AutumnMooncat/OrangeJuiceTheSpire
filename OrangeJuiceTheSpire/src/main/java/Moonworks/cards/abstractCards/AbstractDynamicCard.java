@@ -1,4 +1,4 @@
-package Moonworks.cards.defaultcards;
+package Moonworks.cards.abstractCards;
 
 import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 

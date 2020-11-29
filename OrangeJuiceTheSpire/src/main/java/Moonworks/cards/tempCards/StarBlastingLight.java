@@ -1,7 +1,7 @@
 package Moonworks.cards.tempCards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.defaultcards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BlastingLightPower;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;

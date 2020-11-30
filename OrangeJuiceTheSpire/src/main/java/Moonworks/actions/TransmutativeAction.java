@@ -22,17 +22,20 @@ public class TransmutativeAction extends AbstractGameAction {
     private final TransmutativeModifier cardMod;
     private final AbstractCard card;
 
-    public TransmutativeAction(TransmutativeModifier cardMod, AbstractCard card, boolean free) {
+    public TransmutativeAction(TransmutativeModifier cardMod, AbstractCard card) {
         this.actionType = ActionType.CARD_MANIPULATION;
-        this.duration = Settings.ACTION_DUR_FAST;
+        this.duration = Settings.ACTION_DUR_XFAST;
         this.card = card;
         this.cardMod = cardMod;
     }
 
     public void update() {
-        if (this.duration == Settings.ACTION_DUR_FAST){
-            //Don't let this card transform into Miracle Walker. The new MiracleWalker wont work.
-            AbstractCard tempCard = AbstractDungeon.returnTrulyRandomCardFromAvailable(new MiracleWalker());
+        if (this.duration == Settings.ACTION_DUR_XFAST){
+            //Don't let this card transform into a gift card. They pretty much never work
+            AbstractCard tempCard = null;
+            while (tempCard == null || tempCard.cost == -2) {
+                tempCard = AbstractDungeon.returnTrulyRandomCard().makeCopy();
+            }
             int index = AbstractDungeon.player.hand.group.indexOf(card);
             if(card.upgraded && tempCard.canUpgrade()) {
                 tempCard.upgrade();

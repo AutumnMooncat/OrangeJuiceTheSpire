@@ -25,13 +25,13 @@ public class TransmutativeModifier extends AbstractCardModifier {
 
     @Override
     public void onDrawn(AbstractCard card) {
-        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card, free));
+        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card));
         super.onDrawn(card);
     }
 
     @Override
     public void onRetained(AbstractCard card) {
-        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card, free));
+        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card));
         super.onRetained(card);
     }
 

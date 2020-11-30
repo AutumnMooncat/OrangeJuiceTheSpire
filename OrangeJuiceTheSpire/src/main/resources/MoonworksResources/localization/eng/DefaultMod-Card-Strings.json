@@ -307,7 +307,7 @@
   },
   "Moonworks:Poppoformation": {
     "NAME": "Poppoformation",
-    "DESCRIPTION": "NL The next !M! times each target makes an intent, apply Weak, Frail, or Vulnerable based on the intent."
+    "DESCRIPTION": "The next !M! times each target makes an intent, apply Weak, Frail, or Vulnerable based on the intent."
   },
   "Moonworks:PortablePudding": {
     "NAME": "Portable Pudding",

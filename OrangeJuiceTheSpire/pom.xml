@@ -5,15 +5,15 @@
     <!--The author name(s) as they appear in MTS and any other comments are in your ModTheSpire.json-->
     <groupId>moonworks</groupId>
     <artifactId>Moonworks</artifactId> <!--Keep a note of this one: this is the ID used in the "auto add cards" method-->
-    <name>Orange Juice The Spire</name>
+    <name>100% Spire Juice</name>
     <version>0.7.0</version>
     <description>Adds Star Breaker from 100% Orange Juice. \n\nIncluding 80+ cards and 0% original art!</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <SlayTheSpire.version>07-30-2020</SlayTheSpire.version>
-        <ModTheSpire.version>3.8.0</ModTheSpire.version>
+        <SlayTheSpire.version>11-29-2020</SlayTheSpire.version>
+        <ModTheSpire.version>3.18.0</ModTheSpire.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--CHANGE THIS TO YOUR STEAM INSTALLATION-->
         <Steam.path>D:\Steam\steamapps</Steam.path>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>basemod</groupId>
             <artifactId>basemod</artifactId>
-            <version>5.0.0</version>
+            <version>5.27.0</version>
             <scope>system</scope>
             <systemPath>${Steam.path}/workshop/content/646570/1605833019/BaseMod.jar</systemPath>
             <!--<systemPath>${basedir}/../lib/BaseMod.jar</systemPath>-->

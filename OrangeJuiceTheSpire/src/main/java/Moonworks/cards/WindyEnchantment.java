@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
@@ -53,7 +54,7 @@ public class WindyEnchantment extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, magicNumber)));
+        this.addToBot(new ApplyPowerAction(p, p, new EnergizedBluePower(p, magicNumber)));
         if (getNormaLevel() >= 1) {
             this.addToBot(new DrawCardAction(1));
         }

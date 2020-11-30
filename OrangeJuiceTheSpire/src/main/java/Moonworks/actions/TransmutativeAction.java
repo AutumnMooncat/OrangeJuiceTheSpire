@@ -32,7 +32,6 @@ public class TransmutativeAction extends AbstractGameAction {
         if (this.duration == Settings.ACTION_DUR_FAST){
             AbstractCard tempCard = AbstractDungeon.returnTrulyRandomCard().makeCopy();
             int index = AbstractDungeon.player.hand.group.indexOf(card);
-            tempCard.name += "?";
             if(card.upgraded && tempCard.canUpgrade()) {
                 tempCard.upgrade();
             }
@@ -44,6 +43,7 @@ public class TransmutativeAction extends AbstractGameAction {
                 cardMod.uses--;
             }
             if(cardMod.infinite || cardMod.uses > 0) {
+                tempCard.name += "?";
                 CardModifierManager.addModifier(tempCard, cardMod);
             }
             tempCard.current_x = card.current_x;

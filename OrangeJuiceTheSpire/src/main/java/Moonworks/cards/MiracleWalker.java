@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.actions.TransmutativeAction;
 import Moonworks.cardModifiers.TransmutativeModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.characters.TheStarBreaker;
@@ -45,7 +46,9 @@ public class MiracleWalker extends AbstractDynamicCard {
     }
 
     @Override
-    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {}
+    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
+        //Maybe add the action to transform if this card is ever generated and therefor not usable until we draw it?
+    }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {

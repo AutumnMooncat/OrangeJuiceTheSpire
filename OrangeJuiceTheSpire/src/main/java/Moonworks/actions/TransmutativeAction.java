@@ -6,6 +6,7 @@ package Moonworks.actions;//
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.TransmutativeModifier;
+import Moonworks.cards.MiracleWalker;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -30,7 +31,8 @@ public class TransmutativeAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST){
-            AbstractCard tempCard = AbstractDungeon.returnTrulyRandomCard().makeCopy();
+            //Don't let this card transform into Miracle Walker. The new MiracleWalker wont work.
+            AbstractCard tempCard = AbstractDungeon.returnTrulyRandomCardFromAvailable(new MiracleWalker());
             int index = AbstractDungeon.player.hand.group.indexOf(card);
             if(card.upgraded && tempCard.canUpgrade()) {
                 tempCard.upgrade();

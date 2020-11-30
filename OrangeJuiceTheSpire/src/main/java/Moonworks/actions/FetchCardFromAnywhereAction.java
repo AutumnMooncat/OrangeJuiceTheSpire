@@ -43,16 +43,19 @@ public class FetchCardFromAnywhereAction extends AbstractGameAction {
             if (amount <= 0) {
                 this.isDone = true;
             }
+            //This should be randomized so the player cant figure out the upcoming card order
             for (AbstractCard card : p.drawPile.group) {
                 allCards.addToRandomSpot(card);
                 map.put(card, p.drawPile);
             }
+            //These should not be randomized to help the player correctly pick a card from the discard or exhaust piles
+            //If they happened to have a duplicate card in the draw pile, they can now tell the difference hopefully
             for (AbstractCard card : p.discardPile.group) {
-                allCards.addToRandomSpot(card);
+                allCards.addToTop(card);
                 map.put(card, p.discardPile);
             }
             for (AbstractCard card : p.exhaustPile.group) {
-                allCards.addToRandomSpot(card);
+                allCards.addToTop(card);
                 map.put(card, p.exhaustPile);
             }
             if (allCards.isEmpty() || p.hand.size() == BaseMod.MAX_HAND_SIZE) {

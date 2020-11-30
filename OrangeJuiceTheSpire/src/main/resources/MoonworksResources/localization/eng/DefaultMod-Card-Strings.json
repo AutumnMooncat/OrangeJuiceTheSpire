@@ -347,7 +347,8 @@
   },
   "Moonworks:SealedMemories": {
     "NAME": "Sealed Memories",
-    "DESCRIPTION": "Retain. NL End your turn. NL Retain your hand and [E] this turn. NL Block is not removed at the start of your next turn."
+    "DESCRIPTION": "Retain. NL End your turn. NL Retain your hand and [E] this turn. NL Block is not removed at the start of your next turn.",
+    "UPGRADE_DESCRIPTION": "Innate. Retain. NL End your turn. NL Retain your hand and [E] this turn. NL Block is not removed at the start of your next turn."
   },
   "Moonworks:SelfDestruct": {
     "NAME": "Self Destruct",

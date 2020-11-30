@@ -6,8 +6,11 @@ import Moonworks.characters.TheStarBreaker;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.BlurPower;
+import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.powers.EquilibriumPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -26,6 +29,8 @@ public class SealedMemories extends AbstractDynamicCard {
 
     public static final String ID = OrangeJuiceMod.makeID(SealedMemories.class.getSimpleName());
     public static final String IMG = makeCardPath("SealedMemories.png");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -60,7 +65,7 @@ public class SealedMemories extends AbstractDynamicCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ApplyPowerAction(p, p, new BlurPower(p, this.magicNumber)));
         this.addToBot(new ApplyPowerAction(p, p, new EquilibriumPower(p, this.magicNumber)));
-        this.addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, EnergyPanel.totalCount-this.cost)));
+        this.addToBot(new ApplyPowerAction(p, p, new EnergizedBluePower(p, EnergyPanel.totalCount-this.cost)));
         this.addToBot(new PressEndTurnButtonAction());
     }
 
@@ -69,6 +74,8 @@ public class SealedMemories extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
+            this.isInnate = true;
+            rawDescription = UPGRADE_DESCRIPTION;
             upgradeBaseCost(UPGRADE_REDUCED_COST);
             initializeDescription();
         }

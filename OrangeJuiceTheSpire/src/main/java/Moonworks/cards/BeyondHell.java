@@ -57,7 +57,9 @@ public class BeyondHell extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int effect = ((p.maxHealth - p.currentHealth) / 5) * magicNumber;
-        this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, effect)));
+        if (effect > 0) {
+            this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, effect)));
+        }
     }
 
     //Upgraded stats.

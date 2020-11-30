@@ -1,5 +1,6 @@
 # Orange Juice the Spire
-###Aka 100% Spire Juice
+
+aka 100% Spire Juice.
 
 Made using StS-Default Mod Base.
 

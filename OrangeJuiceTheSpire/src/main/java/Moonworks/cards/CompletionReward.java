@@ -45,7 +45,7 @@ public class CompletionReward extends AbstractNormaAttentiveCard {
     public CompletionReward() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         //upgraded = true;
-        lastCount = AbstractDungeon.actionManager.cardsPlayedThisCombat.size();
+        //lastCount = AbstractDungeon.actionManager.cardsPlayedThisCombat.size(); //Buff: Card wont start at 0 damage if generated in combat
         this.baseDamage = AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - lastCount;//Damage is the number of cards played since the last time this card was played
         initializeDescription();
     }

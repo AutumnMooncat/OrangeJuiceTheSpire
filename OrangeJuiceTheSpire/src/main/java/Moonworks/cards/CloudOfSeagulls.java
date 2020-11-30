@@ -40,7 +40,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
-    private static final int DAMAGE = 7;
+    private static final int DAMAGE = 5;
     private static final int UPGRADE_PLUS_DAMAGE = 2;
     private static final int GULLS = 1;
 

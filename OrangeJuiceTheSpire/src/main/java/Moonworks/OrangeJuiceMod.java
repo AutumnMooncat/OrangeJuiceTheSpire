@@ -124,8 +124,8 @@ public class OrangeJuiceMod implements
     private static final String STARBREAKER_BUTTON = "MoonworksResources/images/charSelect/SBButton.png"; //
     //private static final String THE_DEFAULT_PORTRAIT = "MoonworksResources/images/charSelect/DefaultCharacterPortraitBG.png";
     private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8.png";
-    public static final String STARBREAKER_SHOULDER_1 = "MoonworksResources/images/char/defaultCharacter/shoulder.png"; //
-    public static final String STARBREAKER_SHOULDER_2 = "MoonworksResources/images/char/defaultCharacter/shoulder2.png";
+    public static final String STARBREAKER_SHOULDER_1 = "MoonworksResources/images/char/defaultCharacter/shoulderclean.png"; //
+    public static final String STARBREAKER_SHOULDER_2 = "MoonworksResources/images/char/defaultCharacter/shoulder2clean.png";
     public static final String STARBREAKER_CORPSE = "MoonworksResources/images/char/defaultCharacter/SBKOSmall.png"; //
     
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.

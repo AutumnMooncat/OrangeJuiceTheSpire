@@ -272,7 +272,7 @@ public class OrangeJuiceMod implements
     
     public static void initialize() {
         logger.info("========================= Initializing The Star Breaker. Hi. =========================");
-        OrangeJuiceMod defaultmod = new OrangeJuiceMod();
+        OrangeJuiceMod orangeJuiceMod = new OrangeJuiceMod();
         logger.info("========================= /The Star Breaker Initialized. Hello World./ =========================");
     }
     
@@ -337,7 +337,9 @@ public class OrangeJuiceMod implements
         // part of the game, simply don't include the dungeon ID
         // If you want to have a character-specific event, look at slimebound (CityRemoveEventPatch).
         // Essentially, you need to patch the game and say "if a player is not playing my character class, remove the event from the pool"
-        BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class, TheCity.ID);
+
+        //No events have been made yet, dont add the default event, that would be silly
+        //BaseMod.addEvent(IdentityCrisisEvent.ID, IdentityCrisisEvent.class, TheCity.ID);
         
         // =============== /EVENTS/ =================
         logger.info("Done loading badge Image and mod options");

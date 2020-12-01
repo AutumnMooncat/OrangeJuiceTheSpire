@@ -160,7 +160,7 @@ public class TheStarBreaker extends CustomPlayer {
 
         logger.info("Begin loading starter Deck Strings");
 
-        /* Main Deck
+        //* Main Deck
 
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
@@ -218,18 +218,7 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(RocketCannon.ID);
         //retVal.add(BigRocketCannon.ID);
         //retVal.add(AirStrike.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
-        retVal.add(MiracleWalker.ID);
+        //retVal.add(MiracleWalker.ID);
         //retVal.add(ImOnFire.ID);
         //retVal.add(IntelligenceOfficer.ID);
         //retVal.add(FullSpeedAlicianrone.ID);

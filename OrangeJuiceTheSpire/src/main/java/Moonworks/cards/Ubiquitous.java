@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThieveryPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-@AutoAdd.Ignore
+@AutoAdd.Ignore //This is a card for testing things, it shouldn't show up in game
 public class Ubiquitous extends AbstractDynamicCard {
 
     /*
@@ -56,7 +56,7 @@ public class Ubiquitous extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ThieveryPower(p, magicNumber)));
+        //Replace me for testing purposes
     }
 
     //Upgraded stats.

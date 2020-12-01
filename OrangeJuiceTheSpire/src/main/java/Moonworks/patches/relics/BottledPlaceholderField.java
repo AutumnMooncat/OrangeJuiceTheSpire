@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
  *
  *  https://github.com/kiooeht/ModTheSpire/wiki/SpirePatch
  */
-
+/*
 @SpirePatch(clz = AbstractCard.class, method = SpirePatch.CLASS)
 public class BottledPlaceholderField {
     public static SpireField<Boolean> inBottledPlaceholderField = new SpireField<>(() -> false);
@@ -28,4 +28,4 @@ public class BottledPlaceholderField {
         }
     }
 
-}
+}*/

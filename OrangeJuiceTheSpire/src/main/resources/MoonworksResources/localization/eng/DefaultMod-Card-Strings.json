@@ -161,7 +161,7 @@
   },
   "Moonworks:Dinner": {
     "NAME": "Dinner",
-    "DESCRIPTION": "Gain !M! Regen. NL Exhaust."
+    "DESCRIPTION": "All targets gain !M! Regen. NL Exhaust."
   },
   "Moonworks:EvilSpyWorkExecution": {
     "NAME": "Evil Spy Work Execution",

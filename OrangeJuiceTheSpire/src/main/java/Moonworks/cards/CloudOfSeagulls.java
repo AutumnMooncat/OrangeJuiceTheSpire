@@ -29,13 +29,14 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String SELF_DAMAGE_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[0];
     // /TEXT DECLARATION/
 
 
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.COMMON;
-    private static final CardTarget TARGET = enableSelfDamage ? CardTarget.ALL : CardTarget.ALL_ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
@@ -44,7 +45,6 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
     private static final int UPGRADE_PLUS_DAMAGE = 2;
     private static final int GULLS = 1;
 
-    private static final boolean selfDamage = enableSelfDamage;
     //private static final int UPGRADE_PLUS_DAMAGE = 1;
 
     //private static final AbstractCard card = new JonathanRush();
@@ -62,7 +62,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (selfDamage) {
+        if (enableSelfDamage || !upgraded) {
             int numTargets = 1;
             for (AbstractMonster abstractMonster : AbstractDungeon.getMonsters().monsters) {
                 if (!abstractMonster.isDeadOrEscaped()) {
@@ -94,7 +94,12 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
             upgradeName();
             cardsToPreview.upgrade();
             upgradeDamage(UPGRADE_PLUS_DAMAGE);
-            rawDescription = UPGRADE_DESCRIPTION;
+            if (!enableSelfDamage) {
+                target = CardTarget.ALL_ENEMY;
+                rawDescription = UPGRADE_DESCRIPTION;
+            } else {
+                rawDescription = SELF_DAMAGE_DESCRIPTION;
+            }
             //upgradeMagicNumber(UPGRADE_PLUS_HITS);
             initializeDescription();
         }

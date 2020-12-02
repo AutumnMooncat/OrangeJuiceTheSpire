@@ -308,7 +308,7 @@ public class OrangeJuiceMod implements
         ModPanel settingsPanel = new ModPanel();
         
         // Create the on/off button:
-        ModLabeledToggleButton enableNormalsButton = new ModLabeledToggleButton("Allow Cloud Of Seagulls to potentially hit the player. Default: false.",
+        ModLabeledToggleButton enableSelfDamageButton = new ModLabeledToggleButton("Allow Cloud Of Seagulls to still hit the player even when upgraded. Default: false.",
                 350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
                 enableSelfDamage, // Boolean it uses
                 settingsPanel, // The mod panel in which this button will be in
@@ -326,7 +326,7 @@ public class OrangeJuiceMod implements
             }
         });
         
-        settingsPanel.addUIElement(enableNormalsButton); // Add the button to the settings panel. Button is a go.
+        settingsPanel.addUIElement(enableSelfDamageButton); // Add the button to the settings panel. Button is a go.
         
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 

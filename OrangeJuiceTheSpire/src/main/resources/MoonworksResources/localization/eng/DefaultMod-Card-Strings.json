@@ -126,7 +126,8 @@
   "Moonworks:CloudOfSeagulls": {
     "NAME": "Cloud of Seagulls",
     "DESCRIPTION": "Deal !D! damage to a random target. NL Shuffle !M! Jonathan Rush into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Shuffle !M! Jonathan Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card."
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Shuffle !M! Jonathan Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
+    "EXTENDED_DESCRIPTION": ["Deal !D! damage to a random target. NL Shuffle !M! Jonathan Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card."]
   },
   "Moonworks:CompletionReward": {
     "NAME": "Completion Reward",

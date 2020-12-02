@@ -43,6 +43,12 @@ public class MeltingMemoriesAction extends AbstractGameAction {
 
         generatedCards = this.generateCardChoices();
 
+        if (upgrade || AbstractDungeon.player.hasPower("MasterRealityPower")) {
+            for (AbstractCard card : generatedCards) {
+                card.upgrade();
+            }
+        }
+
         if (this.duration == Settings.ACTION_DUR_FAST) {
             AbstractDungeon.cardRewardScreen.customCombatOpen(generatedCards, CardRewardScreen.TEXT[1], false);
         } else {
@@ -50,10 +56,7 @@ public class MeltingMemoriesAction extends AbstractGameAction {
                 if (AbstractDungeon.cardRewardScreen.discoveryCard != null) {
                     AbstractCard disCard = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
                     //AbstractCard disCard2 = AbstractDungeon.cardRewardScreen.discoveryCard.makeStatEquivalentCopy();
-                    if (upgrade || AbstractDungeon.player.hasPower("MasterRealityPower")) {
-                        disCard.upgrade();
-                        //disCard2.upgrade();
-                    }
+
 
                     disCard.setCostForTurn(0);
                     //disCard2.setCostForTurn(0);

@@ -43,8 +43,8 @@ public class FreeCardPower extends AbstractPower implements CloneablePowerInterf
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && this.amount > 0) {
-            this.addToTop(new GainEnergyAction(card.cost));
+        if (!card.purgeOnUse && this.amount > 0 && card.cost > 0 && card.costForTurn > 0 && !card.freeToPlayOnce) {
+            this.addToTop(new GainEnergyAction(Math.min(card.cost,card.costForTurn)));
             this.flash();
             --this.amount;
             if (this.amount == 0) {

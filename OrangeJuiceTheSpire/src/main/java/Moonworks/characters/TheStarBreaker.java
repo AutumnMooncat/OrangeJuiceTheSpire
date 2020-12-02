@@ -171,7 +171,7 @@ public class TheStarBreaker extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Ambush.ID);
-        retVal.add(LongDistanceShot.ID); //Not listed as a starter card. You can get more of these.
+        retVal.add(LongDistanceShot.ID);
 
         //*/
 

@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.IndiscriminateFireSupportAction;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.FreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

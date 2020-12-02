@@ -229,7 +229,7 @@
   },
   "Moonworks:IndiscriminateFireSupport": {
     "NAME": "Indiscriminate Fire",
-    "DESCRIPTION": "Deal !D! damage to ALL targets X times. NL Shuffle !M! Dazed into your draw pile. NL moonworks:Norma 2: Shuffle 1 less Dazed into your draw pile."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL Shuffle !M! Dazed into your draw pile. NL moonworks:Norma 2: Shuffle 1 less Dazed into your draw pile."
   },
   "Moonworks:IntelligenceOfficer": {
     "NAME": "Intelligence Officer",
@@ -405,11 +405,11 @@
   },
   "Moonworks:UnpaidWork": {
     "NAME": "Unpaid Work",
-    "DESCRIPTION": "The next card you play refunds it's cost. NL Exhaust."
+    "DESCRIPTION": "The next card you play which does not purge and costs more than 0 will refund it's cost. NL Exhaust."
   },
   "Moonworks:Wanted": {
     "NAME": "Wanted",
-    "DESCRIPTION": "This enemy will be the target of every action it doesn't make this turn. NL Exhaust."
+    "DESCRIPTION": "Apply !M! moonworks:Wanted. NL Exhaust."
   },
   "Moonworks:WeAreWaruda": {
     "NAME": "We Are Waruda",

@@ -76,5 +76,12 @@
       "transformative"
     ],
     "DESCRIPTION": "This card #yTransforms when drawn or retained."
+  },
+  {
+    "NAMES": [
+      "Wanted",
+      "wanted"
+    ],
+    "DESCRIPTION": "All attacks and card effects (except from itself) will target the Wanted enemy instead for #b# turns."
   }
 ]

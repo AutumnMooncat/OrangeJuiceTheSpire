@@ -33,6 +33,7 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
+    private static final int UPGRADE_COST = 0;
 
     private static final int CARDS = 2;
     private static final int UPGRADE_PLUS_CARDS = 1;
@@ -87,7 +88,8 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(UPGRADE_PLUS_CARDS);
+            //this.upgradeMagicNumber(UPGRADE_PLUS_CARDS);
+            this.upgradeBaseCost(UPGRADE_COST);
             this.initializeDescription();
         }
     }

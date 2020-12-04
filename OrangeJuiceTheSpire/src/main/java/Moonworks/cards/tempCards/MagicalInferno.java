@@ -3,6 +3,8 @@ package Moonworks.cards.tempCards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.characters.TheStarBreaker;
+import basemod.BaseMod;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,6 +12,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -52,8 +57,24 @@ public class MagicalInferno extends AbstractDynamicCard {
         this.purgeOnUse = true;
         this.isMultiDamage = true;
         this.setDisplayRarity(CardRarity.RARE);
+        setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
+    }
+    public List<String> getCardDescriptors() {
+        List<String> tags = new ArrayList<>();
+        tags.add("Special");
+        return tags;
     }
 
+    private static ArrayList<TooltipInfo> specialTooltip;
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        if (specialTooltip == null)
+        {
+            specialTooltip = new ArrayList<>();
+            specialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
+        }
+        return specialTooltip;
+    }
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

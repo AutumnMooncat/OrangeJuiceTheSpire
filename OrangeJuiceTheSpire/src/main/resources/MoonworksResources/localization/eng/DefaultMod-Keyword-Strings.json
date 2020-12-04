@@ -83,5 +83,12 @@
       "wanted"
     ],
     "DESCRIPTION": "All attacks and card effects (except from itself) will target the Wanted enemy instead for #b# turns."
+  },
+  {
+    "NAMES": [
+      "Special",
+      "Special"
+    ],
+    "DESCRIPTION": "This card can not be obtained from normal card-drops."
   }
 ]

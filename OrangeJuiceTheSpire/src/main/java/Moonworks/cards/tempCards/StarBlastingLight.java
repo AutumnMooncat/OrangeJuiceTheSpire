@@ -4,6 +4,8 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BlastingLightPower;
+import basemod.BaseMod;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -14,6 +16,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -62,8 +67,25 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
         this.purgeOnUse = true;
         this.setDisplayRarity(CardRarity.RARE);
         this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        setBackgroundTexture(OrangeJuiceMod.TEMP_SKILL_WHITE_ICE, OrangeJuiceMod.TEMP_SKILL_WHITE_ICE_PORTRAIT);
         //this.bannerColor = BANNER_COLOR_RARE.cpy();
         //this.imgFrameColor = IMG_FRAME_COLOR_RARE.cpy();
+    }
+    public List<String> getCardDescriptors() {
+        List<String> tags = new ArrayList<>();
+        tags.add("Special");
+        return tags;
+    }
+
+    private static ArrayList<TooltipInfo> specialTooltip;
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        if (specialTooltip == null)
+        {
+            specialTooltip = new ArrayList<>();
+            specialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
+        }
+        return specialTooltip;
     }
 
     // Actions the card should do.

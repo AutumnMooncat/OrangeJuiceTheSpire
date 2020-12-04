@@ -21,12 +21,12 @@ public class IntelligenceOfficerAction extends AbstractGameAction {
     public static final String[] TEXT;
     private final int block;
     private final int draw;
-    private final int damage;
+    private final int vigor;
 
-    public IntelligenceOfficerAction(int numCards, AbstractCreature target, int damage, int block, int draw) {
+    public IntelligenceOfficerAction(int numCards, AbstractCreature target, int vigor, int block, int draw) {
         this.amount = numCards;
         this.block = block;
-        this.damage = damage;
+        this.vigor = vigor;
         this.draw = draw;
         this.target = target;
         if (AbstractDungeon.player.hasRelic("GoldenEye")) {
@@ -74,7 +74,7 @@ public class IntelligenceOfficerAction extends AbstractGameAction {
                 for (AbstractCard card : tmpGroup.group) {
                     switch (card.type) {
                         case ATTACK:
-                            this.addToBot(new DamageAction(target, new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AttackEffect.BLUNT_LIGHT));
+                            this.addToBot(new DamageAction(target, new DamageInfo(AbstractDungeon.player, vigor, DamageInfo.DamageType.NORMAL), AttackEffect.BLUNT_LIGHT));
                             break;
                         case SKILL:
                             this.addToBot(new GainBlockAction(AbstractDungeon.player, block));

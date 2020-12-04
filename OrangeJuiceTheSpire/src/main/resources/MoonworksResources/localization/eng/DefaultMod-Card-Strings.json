@@ -234,7 +234,7 @@
   },
   "Moonworks:IntelligenceOfficer": {
     "NAME": "Intelligence Officer",
-    "DESCRIPTION": "Scry !M! then For Each... NL Attack: Deal !D! damage. NL Skill: Gain !B! Block. NL Power: Draw !Moonworks:SecondMagic! card."
+    "DESCRIPTION": "Scry !M! then For Each... NL Attack: Gain !Moonworks:SecondMagic! Vigor. NL Skill: Gain !B! Block. NL Power: Draw 1 card."
   },
   "Moonworks:JonathanRush": {
     "NAME": "Jonathan Rush",

@@ -28,8 +28,8 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
 
     private static final int COST = 2;
 
-    private static final int DAMAGE = 5;
-    private static final int UPGRADE_PLUS_DMG = 2;
+    private static final int VIGOR = 5;
+    private static final int UPGRADE_PLUS_VIGOR = 2;
 
     private static final int BLOCK = 5;
     private static final int UPGRADE_PLUS_BLOCK = 2;
@@ -44,10 +44,10 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
 
     public IntelligenceOfficer() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        damage = baseDamage = DAMAGE;
+        //damage = baseDamage = DAMAGE;
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = SCRY;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = CARDS;
+        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = VIGOR;
     }
     @Override
     public float getTitleFontSize() {
@@ -61,7 +61,7 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
         //AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
         //AbstractDungeon.actionManager.addToBottom(new DrawCardAction(magicNumber));
         //this.addToBot(new ScryAction(defaultSecondMagicNumber));
-        this.addToBot(new IntelligenceOfficerAction(magicNumber, m, damage, block, defaultSecondMagicNumber));
+        this.addToBot(new IntelligenceOfficerAction(magicNumber, m, defaultSecondMagicNumber, block, CARDS));
     }
 
     // Upgraded stats.

@@ -56,7 +56,7 @@ public class MagicalInferno extends AbstractDynamicCard {
         baseDamage = DAMAGE;
         this.purgeOnUse = true;
         this.isMultiDamage = true;
-        this.setDisplayRarity(CardRarity.RARE);
+        //this.setDisplayRarity(CardRarity.RARE);
         setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
     }
     public List<String> getCardDescriptors() {

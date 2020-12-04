@@ -61,7 +61,7 @@ public class EvilSpyWorkExecution extends AbstractNormaAttentiveCard {
         magicNumber = baseMagicNumber = DRAW;
         this.purgeOnUse = true;
         this.isMultiDamage = true;
-        this.setDisplayRarity(CardRarity.UNCOMMON);
+        //this.setDisplayRarity(CardRarity.UNCOMMON);
         setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
     }
     public List<String> getCardDescriptors() {

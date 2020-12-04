@@ -55,7 +55,7 @@ public class MagicalRevenge extends AbstractDynamicCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = HEAL_PERCENT;
         this.purgeOnUse = true;
-        this.setDisplayRarity(CardRarity.RARE);
+        //this.setDisplayRarity(CardRarity.RARE);
         setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
     }
     public List<String> getCardDescriptors() {

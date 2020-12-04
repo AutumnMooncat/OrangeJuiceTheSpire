@@ -55,7 +55,7 @@ public class AirStrike extends AbstractDynamicCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         baseDamage = DAMAGE;
         this.purgeOnUse = true;
-        this.setDisplayRarity(CardRarity.RARE);
+        //this.setDisplayRarity(CardRarity.RARE);
         this.isMultiDamage = true;
         setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
         //this.isInAutoplay = true;

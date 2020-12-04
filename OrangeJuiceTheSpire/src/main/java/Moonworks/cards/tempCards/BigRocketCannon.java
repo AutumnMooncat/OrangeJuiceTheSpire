@@ -58,7 +58,7 @@ public class BigRocketCannon extends AbstractDynamicCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.cardsToPreview = new AirStrike();
         baseDamage = DAMAGE;
-        this.setDisplayRarity(CardRarity.RARE);
+        //this.setDisplayRarity(CardRarity.RARE);
         this.purgeOnUse = true;
         setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
         //this.isMultiDamage = true; //Not using DamageAllEnemies Action

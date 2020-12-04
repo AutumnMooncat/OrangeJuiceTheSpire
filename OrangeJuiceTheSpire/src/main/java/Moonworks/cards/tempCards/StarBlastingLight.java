@@ -65,7 +65,7 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
         magicNumber = baseMagicNumber = MIN_HITS;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = MAX_HITS;
         this.purgeOnUse = true;
-        this.setDisplayRarity(CardRarity.RARE);
+        //this.setDisplayRarity(CardRarity.RARE);
         this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         setBackgroundTexture(OrangeJuiceMod.TEMP_SKILL_WHITE_ICE, OrangeJuiceMod.TEMP_SKILL_WHITE_ICE_PORTRAIT);
         //this.bannerColor = BANNER_COLOR_RARE.cpy();

@@ -56,7 +56,7 @@ public class MagicalMassacre extends AbstractDynamicCard {
         magicNumber = baseMagicNumber = PERCENT_DAMAGE;
         damageTypeForTurn = DamageInfo.DamageType.HP_LOSS;
         this.purgeOnUse = true;
-        this.setDisplayRarity(CardRarity.RARE);
+        //this.setDisplayRarity(CardRarity.RARE);
         setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
     }
     public List<String> getCardDescriptors() {

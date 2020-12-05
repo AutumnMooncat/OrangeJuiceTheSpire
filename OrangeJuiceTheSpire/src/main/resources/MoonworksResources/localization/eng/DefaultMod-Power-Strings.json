@@ -79,5 +79,9 @@
         "Moonworks:NormaPower": {
                 "NAME": "Norma",
                 "DESCRIPTIONS": ["Norma levels provide buffs to various cards and stacks up to Norma 5."]
+        },
+        "Moonworks:SteadyPower": {
+                "NAME": "Steady",
+                "DESCRIPTIONS": ["The next card you play which gains block gives #b"," more."]
         }
 }

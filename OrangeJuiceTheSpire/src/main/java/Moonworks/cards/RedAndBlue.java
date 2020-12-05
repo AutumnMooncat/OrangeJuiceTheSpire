@@ -3,16 +3,20 @@ package Moonworks.cards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.SteadyPower;
 import Moonworks.relics.BrokenBomb;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.potions.BlockPotion;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -58,7 +62,7 @@ public class RedAndBlue extends AbstractDynamicCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = EFFECT;
-        this.block = this.baseBlock = EFFECT;
+        //this.block = this.baseBlock = EFFECT;
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = RETAINS;
         this.selfRetain = true; //Let it retain N times?
         setBackgroundTexture(OrangeJuiceMod.GIFT_WHITE_ICE, OrangeJuiceMod.GIFT_WHITE_ICE_PORTRAIT);
@@ -91,8 +95,11 @@ public class RedAndBlue extends AbstractDynamicCard {
         this.selfRetain = true;
         rawDescription = DESCRIPTION;
         initializeDescription();
-        this.addToBot(new GainBlockAction(p, p, block));
+        //this.addToBot(new GainBlockAction(p, p, block));
+        this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
         this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
+        //this.addToBot(new ApplyPowerAction(p, p, new PlatedArmorPower(p, magicNumber))); // Just for testing
+        //this.addToBot(new ObtainPotionAction(new BlockPotion())); //Also just for testing
         /*
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber),magicNumber));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber),magicNumber));
@@ -116,7 +123,8 @@ public class RedAndBlue extends AbstractDynamicCard {
             rawDescription = DESCRIPTION;
         }
         initializeDescription();
-        this.addToBot(new GainBlockAction(p, p, block));
+        //this.addToBot(new GainBlockAction(p, p, block));
+        this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
         this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
         /*
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, magicNumber),magicNumber));

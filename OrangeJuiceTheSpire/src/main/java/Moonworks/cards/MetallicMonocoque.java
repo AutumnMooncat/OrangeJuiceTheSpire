@@ -39,7 +39,7 @@ public class MetallicMonocoque extends AbstractDynamicCard {
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 0;
+    private static final int COST = 1;
     //private static final int UPGRADE_COST = 2;
     private static final int DAMAGE_REDUCE = 1;
     private static final int UPGRADE_PLUS_DAMAGE_REDUCE = 1;

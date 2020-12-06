@@ -320,7 +320,7 @@
   },
   "Moonworks:RedAndBlue": {
     "NAME": "Red And Blue",
-    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Gain !B! Block and !M! Vigor. NL On Play: Discard.",
+    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Gain !M! moonworks:Steady and !M! Vigor. NL On Play: Discard.",
     "UPGRADE_DESCRIPTION": "Gain !M! moonworks:Steady and !M! Vigor. NL On Play: Discard.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },

@@ -29,7 +29,7 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
 
     public int getNormaLevel() {
         if(hasNormaPower()) {
-            return AbstractDungeon.player.getPower(NormaPower.POWER_ID).amount;
+            return getNormaPower().amount;
         }
         return 0;
     }

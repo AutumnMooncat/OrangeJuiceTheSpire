@@ -1,5 +1,6 @@
 package Moonworks.relics;
 
+import Moonworks.actions.NormaBreakAction;
 import Moonworks.powers.NormaPower;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
@@ -29,6 +30,7 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("Homemark.png"));
 
     private static final int COST = 120;
+    public static boolean broken = false;
 
     public Homemark() {
         super(ID, IMG, OUTLINE, RelicTier.COMMON, LandingSound.CLINK);
@@ -38,7 +40,7 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     @Override
     public void onRightClick() {// On right click
         if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
-            if (counter < 5 && AbstractDungeon.player.gold >= COST) {
+            if (!broken && counter < 5 && AbstractDungeon.player.gold >= COST) {
                 if(this.counter == -1){
                     this.counter = 0;
                 }
@@ -53,6 +55,16 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
                 }
             }
         }
+    }
+
+    public void breakHomemark() {
+        broken = true;
+        this.counter = 6;
+        this.description = this.getUpdatedDescription();
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        this.initializeTips();
+        beginPulse();
     }
 
     @Override
@@ -91,15 +103,23 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     @Override
     public void atBattleStartPreDraw() {
         stopPulse();
-        if (counter > 0) {
-            flash();
-            this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NormaPower(AbstractDungeon.player, counter)));
+        if(!broken) {
+            if (counter > 0) {
+                flash();
+                this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NormaPower(AbstractDungeon.player, counter)));
+            }
+        } else {
+            this.addToBot(new NormaBreakAction(AbstractDungeon.player, false));
         }
+
     }
 
     // Description
     @Override
     public String getUpdatedDescription() {
+        if (broken) {
+            return "What have you done?";
+        }
         return DESCRIPTIONS[0] + Math.max(0, counter) + DESCRIPTIONS[1] + COST + DESCRIPTIONS[2];
     }
 

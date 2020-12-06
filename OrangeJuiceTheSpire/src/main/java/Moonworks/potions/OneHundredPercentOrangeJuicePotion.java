@@ -1,7 +1,9 @@
 package Moonworks.potions;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.actions.NormaBreakAction;
 import Moonworks.powers.NormaPower;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 
 public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
 
@@ -21,6 +24,8 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
 
+    private boolean upgraded = false;
+
     public OneHundredPercentOrangeJuicePotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
         super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.BOTTLE, PotionColor.ENERGY);
@@ -29,7 +34,7 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
         potency = getPotency();
         
         // Initialize the Description
-        description = DESCRIPTIONS[0] + potency + DESCRIPTIONS[1];
+        description = DESCRIPTIONS[0];
         
        // Do you throw this potion at an enemy or do you just consume it.
         isThrown = false;
@@ -56,12 +61,13 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
     public void use(AbstractCreature target) {
         target = AbstractDungeon.player;
         // If you are in combat, gain strength and the "lose strength at the end of your turn" power, equal to the potency of this potion.
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new StrengthPower(target, potency), potency));
-            //AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(target, AbstractDungeon.player, new LoseStrengthPower(target, potency), potency));
-            this.addToBot(new ApplyPowerAction(target, target, new NormaPower(target, 5)));
-            this.addToBot(new GainEnergyAction(potency));
-        }
+        //if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            //this.addToBot(new VFXAction(target, new ScreenOnFireEffect(), 1.0F));
+            //for (int i = 0 ; i < 6 ; i++) {
+                //this.addToBot(new ApplyPowerAction(target, target, new NormaPower(target, 1)));
+            //}
+            this.addToBot(new NormaBreakAction(target, upgraded));
+        //}
     }
     
     @Override
@@ -72,13 +78,14 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-        return 2;
+        return 1;
     }
 
     public void upgradePotion()
     {
-      potency += 2;
-      tips.clear();
-      tips.add(new PowerTip(name, description));
+        upgraded = true;
+      //potency += 2;
+      //tips.clear();
+      //tips.add(new PowerTip(name, description));
     }
 }

@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +13,7 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class BeyondHell extends AbstractDynamicCard {
+public class BeyondHell extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -56,7 +57,8 @@ public class BeyondHell extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int effect = ((p.maxHealth - p.currentHealth) / 5) * magicNumber;
+        int divisor = getNormaLevel() >= 5 ? 3 : 5;
+        int effect = ((p.maxHealth - p.currentHealth) / divisor) * magicNumber;
         if (effect > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, effect)));
         }

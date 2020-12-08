@@ -90,5 +90,12 @@
       "Special"
     ],
     "DESCRIPTION": "This card can not be obtained from normal card-drops."
+  },
+  {
+    "NAMES": [
+      "Steady",
+      "steady"
+    ],
+    "DESCRIPTION": "Gain more block the next time a Block gaining card is played."
   }
 ]

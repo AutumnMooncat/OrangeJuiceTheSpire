@@ -1,17 +1,20 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.RegenerateMonsterPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class Dinner extends AbstractDynamicCard {
+public class Dinner extends AbstractNormaAttentiveCard {
 
     // TEXT DECLARATION
 
@@ -46,11 +49,18 @@ public class Dinner extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        int regenStacks = magicNumber;
         this.addToBot(new ApplyPowerAction(p, p, new RegenPower(p, magicNumber)));
         for(AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
             if(!aM.isDeadOrEscaped()) {
-                this.addToBot(new ApplyPowerAction(aM, p, new RegenPower(aM, magicNumber)));
+                regenStacks += magicNumber;
+                //Testing both of these
+                this.addToBot(new ApplyPowerAction(aM, p, new RegenerateMonsterPower(aM, magicNumber)));
+                //this.addToBot(new ApplyPowerAction(aM, p, new RegenPower(aM, magicNumber)));
             }
+        }
+        if (getNormaLevel() >= 4) {
+            this.addToBot(new GainBlockAction(p, regenStacks));
         }
 
     }

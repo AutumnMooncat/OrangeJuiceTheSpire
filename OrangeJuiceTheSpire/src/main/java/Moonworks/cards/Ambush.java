@@ -2,15 +2,18 @@ package Moonworks.cards;
 
 import Moonworks.actions.AmbushAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class Ambush extends AbstractDynamicCard {
+public class Ambush extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -51,6 +54,7 @@ public class Ambush extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        damageTypeForTurn = getNormaLevel() >= 3 ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
         this.addToBot(new AmbushAction(m, p, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
     }
 

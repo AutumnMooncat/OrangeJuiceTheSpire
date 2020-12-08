@@ -82,6 +82,6 @@
         },
         "Moonworks:SteadyPower": {
                 "NAME": "Steady",
-                "DESCRIPTIONS": ["The next card you play which gains block gives #b"," more."]
+                "DESCRIPTIONS": ["Gain #b"," more Block the next time you play a Block gaining card."]
         }
 }

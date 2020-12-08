@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -12,10 +13,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class ForcedRevival extends AbstractDynamicCard {
+public class ForcedRevival extends AbstractNormaAttentiveCard {
 
     // TEXT DECLARATION
 
@@ -57,10 +59,13 @@ public class ForcedRevival extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new HealAction(p, p, this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(this.defaultSecondMagicNumber));
-        AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(p, p, new VulnerablePower(p, this.defaultSecondMagicNumber, false), this.defaultSecondMagicNumber));
+        this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, this.defaultSecondMagicNumber, false)));
+        this.addToBot(new HealAction(p, p, this.magicNumber));
+        this.addToBot(new GainEnergyAction(this.defaultSecondMagicNumber));
+        if (getNormaLevel() >= 3) {
+            this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.defaultSecondMagicNumber, false)));
+            this.addToBot(new GainEnergyAction(this.defaultSecondMagicNumber));
+        }
 
     }
 

@@ -1,17 +1,19 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.DoubleDamagePower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class ImOnFire extends AbstractDynamicCard {
+public class ImOnFire extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -57,7 +59,14 @@ public class ImOnFire extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
+        if (getNormaLevel() >= 3) {
+            this.addToBot(new ApplyPowerAction(p, p, new DoubleDamagePower(p, 1, false)));
+            if (upgraded) {
+                this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, UPGRADE_PLUS_VIGOR)));
+            }
+        } else {
+            this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
+        }
         this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, defaultSecondMagicNumber, true)));
     }
 

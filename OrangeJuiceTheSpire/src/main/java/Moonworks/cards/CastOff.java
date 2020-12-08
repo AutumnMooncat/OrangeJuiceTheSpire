@@ -2,7 +2,9 @@ package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.SteadyPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,7 +15,7 @@ import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class CastOff extends AbstractDynamicCard {
+public class CastOff extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -56,6 +58,9 @@ public class CastOff extends AbstractDynamicCard {
         this.addToBot(new RemoveAllBlockAction(p, p));
         if (amount > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, amount)));
+        }
+        if (getNormaLevel() >= 2) {
+            this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, 5)));
         }
 
     }

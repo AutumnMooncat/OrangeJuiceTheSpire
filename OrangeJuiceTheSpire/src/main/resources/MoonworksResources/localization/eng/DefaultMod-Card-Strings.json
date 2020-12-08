@@ -64,7 +64,7 @@
   },
   "Moonworks:Ambush": {
     "NAME": "Ambush",
-    "DESCRIPTION": "Apply !M! Vulnerable. NL Then deal !D! damage."
+    "DESCRIPTION": "Apply !M! Vulnerable. NL Then deal !D! damage. NL moonworks:Norma 3: This attack ignores Block."
   },
   "Moonworks:AngelHand": {
     "NAME": "Angel Hand",
@@ -90,7 +90,7 @@
   },
   "Moonworks:BeyondHell": {
     "NAME": "Beyond Hell",
-    "DESCRIPTION": "Gain !M! Vigor for every 5 missing HP."
+    "DESCRIPTION": "Gain !M! Vigor for every 5 missing HP. NL moonworks:Norma 5: Gain Vigor for every 3 missing HP instead."
   },
   "Moonworks:BigBangBell": {
     "NAME": "Big Bang Bell",
@@ -121,7 +121,7 @@
   },
   "Moonworks:CastOff": {
     "NAME": "Cast Off",
-    "DESCRIPTION": "Lose all Block. NL Gain Vigor equal to the amount of Block lost. NL Exhaust."
+    "DESCRIPTION": "Lose all Block. NL Gain Vigor equal to the amount of Block lost. NL Exhaust. NL moonworks:Norma 2: Gain 5 moonworks:Steady."
   },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "Cloud of Seagulls",
@@ -154,7 +154,7 @@
   },
   "Moonworks:DeployBits": {
     "NAME": "Deploy Bits",
-    "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor."
+    "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor. NL moonworks:Norma 4: Distribution is now optimized instead of random."
   },
   "Moonworks:DevilHand": {
     "NAME": "Devil Hand",
@@ -162,7 +162,7 @@
   },
   "Moonworks:Dinner": {
     "NAME": "Dinner",
-    "DESCRIPTION": "All targets gain !M! Regen. NL Exhaust."
+    "DESCRIPTION": "All targets gain !M! Regen. NL Exhaust. NL moonworks:Norma 4: Gain Block equal to the amount of regen applied."
   },
   "Moonworks:EvilSpyWorkExecution": {
     "NAME": "Evil Spy Work Execution",
@@ -193,12 +193,12 @@
   },
   "Moonworks:ForcedRevival": {
     "NAME": "Forced Revival",
-    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:SecondMagic! Vulnerable. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:SecondMagic! Vulnerable. NL Exhaust."
+    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:SecondMagic! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:SecondMagic! Weak, but also twice the energy.",
+    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:SecondMagic! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:SecondMagic! Weak, but also twice the energy."
   },
   "Moonworks:FullSpeedAlicianrone": {
     "NAME": "Full Speed Alicianrone",
-    "DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional cards."
+    "DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional cards. NL moonworks:Norma 3: Deal damage to all targets instead"
   },
   "Moonworks:Gamble": {
     "NAME": "Gamble!",
@@ -217,8 +217,8 @@
   },
   "Moonworks:HolyNight": {
     "NAME": "Holy Night",
-    "DESCRIPTION": "At the start of your turn, draw !M! additional card.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, draw !M! additional card."
+    "DESCRIPTION": "At the start of your turn, draw !M! additional card. NL moonworks:Norma 3: If available, use an extra [E] to double the effect.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, draw !M! additional card. NL moonworks:Norma 3: If available, use an extra [E] to double the effect."
   },
   "Moonworks:ImmovableObject": {
     "NAME": "Immovable Object",
@@ -226,7 +226,7 @@
   },
   "Moonworks:ImOnFire": {
     "NAME": "I'm On Fire!",
-    "DESCRIPTION": "Gain !M! Vigor and !Moonworks:SecondMagic! Vulnerable."
+    "DESCRIPTION": "Gain !M! Vigor and !Moonworks:SecondMagic! Vulnerable. NL moonworks:Norma 3: 10 Vigor becomes Double Damage this turn."
   },
   "Moonworks:IndiscriminateFireSupport": {
     "NAME": "Indiscriminate Fire",
@@ -243,7 +243,8 @@
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "Long-Distance Shot",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL moonworks:Norma 2: Add a temporary copy of this card without this effect to your hand.",
+    "EXTENDED_DESCRIPTION": ["Ethereal. NL Deal !D! damage. NL Draw !M! card. NL Exhaust."]
   },
   "Moonworks:LuckyCharm": {
     "NAME": "Lucky Charm",

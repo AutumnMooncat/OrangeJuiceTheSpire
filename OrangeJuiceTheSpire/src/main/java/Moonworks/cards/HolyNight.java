@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -9,10 +10,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
 import com.megacrit.cardcrawl.powers.DrawPower;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class HolyNight extends AbstractDynamicCard {
+public class HolyNight extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -55,6 +57,14 @@ public class HolyNight extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ApplyPowerAction(p, p, new DrawPower(p, magicNumber)));
+        if (getNormaLevel() >= 3) {
+            if (this.freeToPlayOnce || EnergyPanel.totalCount >= 2) {
+                if (!this.freeToPlayOnce) {
+                    p.energy.use(1);
+                }
+                this.addToBot(new ApplyPowerAction(p, p, new DrawPower(p, magicNumber)));
+            }
+        }
     }
 
     //Upgraded stats.

@@ -54,12 +54,11 @@ public class Dinner extends AbstractNormaAttentiveCard {
         for(AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
             if(!aM.isDeadOrEscaped()) {
                 regenStacks += magicNumber;
-                //Testing both of these
-                this.addToBot(new ApplyPowerAction(aM, p, new RegenerateMonsterPower(aM, magicNumber)));
-                //this.addToBot(new ApplyPowerAction(aM, p, new RegenPower(aM, magicNumber)));
+                //Uses patches to fix regen not going away for monsters and proper description text
+                this.addToBot(new ApplyPowerAction(aM, p, new RegenPower(aM, magicNumber)));
             }
         }
-        if (getNormaLevel() >= 4) {
+        if (getNormaLevel() >= 2) {
             this.addToBot(new GainBlockAction(p, regenStacks));
         }
 

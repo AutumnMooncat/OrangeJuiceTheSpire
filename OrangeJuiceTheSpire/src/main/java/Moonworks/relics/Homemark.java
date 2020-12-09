@@ -29,7 +29,7 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("Homemark.png"));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("Homemark.png"));
 
-    private static final int COST = 12;
+    private static final int COST = 120;
     public static boolean broken = false;
 
     public Homemark() {

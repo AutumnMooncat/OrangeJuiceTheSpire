@@ -91,8 +91,8 @@ public class TheStarBreaker extends CustomPlayer {
             "MoonworksResources/images/char/defaultCharacter/orb/layer1.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer2.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer3.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer4m.png", //
-            "MoonworksResources/images/char/defaultCharacter/orb/layer5m.png", //
+            "MoonworksResources/images/char/defaultCharacter/orb/layer4star.png", //
+            "MoonworksResources/images/char/defaultCharacter/orb/layer5star.png", //
             "MoonworksResources/images/char/defaultCharacter/orb/layer6.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer1d.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer2d.png",
@@ -105,8 +105,8 @@ public class TheStarBreaker extends CustomPlayer {
     // =============== CHARACTER CLASS START =================
 
     public TheStarBreaker(String name, PlayerClass setClass) {
-        super(name, setClass, orbTextures,
-                "MoonworksResources/images/char/defaultCharacter/orb/vfxm.png", null, idleAnimation);
+        //super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxm.png", null, idleAnimation);
+        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", null, idleAnimation);
 
 
         // =============== TEXTURES, ENERGY, LOADOUT =================  

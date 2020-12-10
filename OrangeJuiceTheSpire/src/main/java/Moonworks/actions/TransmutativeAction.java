@@ -21,12 +21,14 @@ public class TransmutativeAction extends AbstractGameAction {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
     private final TransmutativeModifier cardMod;
     private final AbstractCard card;
+    private final boolean normaEffect;
 
-    public TransmutativeAction(TransmutativeModifier cardMod, AbstractCard card) {
+    public TransmutativeAction(TransmutativeModifier cardMod, AbstractCard card, boolean normaEffect) {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.card = card;
         this.cardMod = cardMod;
+        this.normaEffect = normaEffect;
     }
 
     public void update() {
@@ -40,15 +42,19 @@ public class TransmutativeAction extends AbstractGameAction {
             if(card.upgraded && tempCard.canUpgrade()) {
                 tempCard.upgrade();
             }
+            tempCard.name += "?";
             if(cardMod.free) {
                 tempCard.costForTurn = 0;
                 tempCard.isCostModifiedForTurn = true;
+            }
+            if(normaEffect && (tempCard.type == AbstractCard.CardType.ATTACK || tempCard.type == AbstractCard.CardType.SKILL)) {
+                tempCard.exhaust = false;
+                tempCard.isEthereal = false;
             }
             if(!cardMod.infinite) {
                 cardMod.uses--;
             }
             if(cardMod.infinite || cardMod.uses > 0) {
-                tempCard.name += "?";
                 CardModifierManager.addModifier(tempCard, cardMod);
             }
             tempCard.current_x = card.current_x;

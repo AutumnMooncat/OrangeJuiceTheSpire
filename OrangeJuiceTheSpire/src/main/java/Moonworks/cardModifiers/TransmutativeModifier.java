@@ -2,6 +2,7 @@ package Moonworks.cardModifiers;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.TransmutativeAction;
+import Moonworks.powers.NormaPower;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -16,6 +17,7 @@ public class TransmutativeModifier extends AbstractCardModifier {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
     public boolean infinite, free;
     public int uses;
+    public boolean normaEffect = false;
 
     public TransmutativeModifier(int uses, boolean free) {
         this.uses = uses;
@@ -25,13 +27,19 @@ public class TransmutativeModifier extends AbstractCardModifier {
 
     @Override
     public void onDrawn(AbstractCard card) {
-        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card));
+        if (AbstractDungeon.player.hasPower(NormaPower.POWER_ID)) {
+            normaEffect = AbstractDungeon.player.getPower(NormaPower.POWER_ID).amount >= 5;
+        }
+        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card, normaEffect));
         super.onDrawn(card);
     }
 
     @Override
     public void onRetained(AbstractCard card) {
-        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card));
+        if (AbstractDungeon.player.hasPower(NormaPower.POWER_ID)) {
+            normaEffect = AbstractDungeon.player.getPower(NormaPower.POWER_ID).amount >= 5;
+        }
+        AbstractDungeon.actionManager.addToTop(new TransmutativeAction(this, card, normaEffect));
         super.onRetained(card);
     }
 

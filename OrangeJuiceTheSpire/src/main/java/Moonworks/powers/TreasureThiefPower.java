@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
@@ -21,18 +22,21 @@ public class TreasureThiefPower extends AbstractPower implements CloneablePowerI
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public int count;
+    public boolean bonusDraw;
+    public boolean gotBonus = false;
 
     // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.
     // There's a fallback "missing texture" image, so the game shouldn't crash if you accidentally put a non-existent file.
     //private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
-    public TreasureThiefPower(final AbstractCreature owner, final int amount) {
+    public TreasureThiefPower(final AbstractCreature owner, final int amount, boolean bonusDraw) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
         this.amount = amount;
+        this.bonusDraw = bonusDraw;
         count = 0;
 
         type = PowerType.BUFF;
@@ -47,23 +51,20 @@ public class TreasureThiefPower extends AbstractPower implements CloneablePowerI
         updateDescription();
     }
 
-    /*
-    @Override //Works for intent block, but this is covered by the patch!
-    public void atEndOfRound() {
-        if(!this.owner.isDying && !this.owner.isDead && this.owner.currentBlock > 0) {
-            this.flash();
-            this.owner.loseBlock();
-            this.amount--;
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+    @Override
+    public void stackPower(int stackAmount) {
+        super.stackPower(stackAmount);
+        if(!bonusDraw && AbstractDungeon.player.hasPower(NormaPower.POWER_ID)) {
+            if(AbstractDungeon.player.getPower(NormaPower.POWER_ID).amount >= 3) {
+                this.bonusDraw = true;
             }
         }
-        super.atEndOfRound();
-    }*/
+    }
 
     @Override
     public void atStartOfTurn() {
         this.count = 0;
+        this.gotBonus = false;
         updateDescription();
         super.atStartOfTurn();
     }
@@ -72,9 +73,14 @@ public class TreasureThiefPower extends AbstractPower implements CloneablePowerI
     public int onAttacked(DamageInfo info, int damageAmount) {
         if(!this.owner.isDead) {
             if(count < amount){
+                int extra = 0;
                 this.flash();
                 this.count++;
-                this.addToBot(new DrawCardAction(1));
+                if (bonusDraw && !gotBonus) {
+                    extra = AbstractDungeon.cardRandomRng.random(0, 1);
+                    this.gotBonus = true;
+                }
+                this.addToBot(new DrawCardAction(1+extra));
             }
             updateDescription();
         }
@@ -93,6 +99,6 @@ public class TreasureThiefPower extends AbstractPower implements CloneablePowerI
 
     @Override
     public AbstractPower makeCopy() {
-        return new TreasureThiefPower(owner, amount);
+        return new TreasureThiefPower(owner, amount, bonusDraw);
     }
 }

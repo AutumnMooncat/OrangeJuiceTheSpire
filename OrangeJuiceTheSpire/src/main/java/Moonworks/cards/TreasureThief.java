@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.TreasureThiefPower;
 import basemod.BaseMod;
@@ -15,7 +16,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 //@AutoAdd.Ignore
-public class TreasureThief extends AbstractDynamicCard {
+public class TreasureThief extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -72,7 +73,8 @@ public class TreasureThief extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(m, p, new TreasureThiefPower(m, this.magicNumber)));
+        boolean bonus = getNormaLevel() >= 3;
+        this.addToBot(new ApplyPowerAction(m, p, new TreasureThiefPower(m, this.magicNumber, bonus)));
     }
 
     //Upgraded stats.

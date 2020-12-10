@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,7 +15,7 @@ import Moonworks.characters.TheStarBreaker;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class TacticalRetreat extends AbstractDynamicCard {
+public class TacticalRetreat extends AbstractNormaAttentiveCard {
 
     // TEXT DECLARATION
 
@@ -33,10 +34,10 @@ public class TacticalRetreat extends AbstractDynamicCard {
 
     private static final int COST = 2;
 
-    private static final int BLOCK = 12;
+    private static final int BLOCK = 10;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
-    private static final int NEXT_TURN_BLOCK = 8;
+    private static final int NEXT_TURN_BLOCK = 6;
     private static final int UPGRADE_NEXT_TURN_BLOCK = 2;
 
     private static final int ENERGY = 1;
@@ -53,8 +54,9 @@ public class TacticalRetreat extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, block));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnBlockPower(p, magicNumber), magicNumber));
+        int bonus = getNormaLevel() >= 2 ? 2: 0;
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, block+bonus));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnBlockPower(p, magicNumber+bonus), magicNumber+bonus));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedBluePower(p, defaultSecondMagicNumber)));
     }
 

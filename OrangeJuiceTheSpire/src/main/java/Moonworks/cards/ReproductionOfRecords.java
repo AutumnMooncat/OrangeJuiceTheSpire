@@ -3,15 +3,19 @@ package Moonworks.cards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ReproductionOfRecordsAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.defect.AggregateEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class ReproductionOfRecords extends AbstractDynamicCard {
+public class ReproductionOfRecords extends AbstractNormaAttentiveCard {
 
     // TEXT DECLARATION
 
@@ -52,6 +56,9 @@ public class ReproductionOfRecords extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ReproductionOfRecordsAction(magicNumber));
+        if (getNormaLevel() >= 4) {
+            this.addToBot(new GainEnergyAction(1));
+        }
         //See hologram, kinda
     }
 

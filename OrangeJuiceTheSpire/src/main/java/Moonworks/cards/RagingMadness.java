@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.powers.RagingMadnessPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,7 +13,7 @@ import Moonworks.characters.TheStarBreaker;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class RagingMadness extends AbstractDynamicCard {
+public class RagingMadness extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -38,6 +39,7 @@ public class RagingMadness extends AbstractDynamicCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 2;
+    private static final int UPGRADE_COST = 1;
 
     private static final int EFFECT = 1;
     private static final int UPGRADE_PLUS_EFFECT = 1;
@@ -56,7 +58,8 @@ public class RagingMadness extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new RagingMadnessPower(p, magicNumber)));
+        int bonus = getNormaLevel() >= 3 ? 1 : 0;
+        this.addToBot(new ApplyPowerAction(p, p, new RagingMadnessPower(p, magicNumber+bonus)));
     }
 
     //Upgraded stats.
@@ -64,8 +67,10 @@ public class RagingMadness extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //rawDescription = UPGRADE_DESCRIPTION;
-            upgradeMagicNumber(UPGRADE_PLUS_EFFECT);
+            this.isInnate = true;
+            rawDescription = UPGRADE_DESCRIPTION;
+            //upgradeMagicNumber(UPGRADE_PLUS_EFFECT);
+            //updateCost(UPGRADE_COST);
             initializeDescription();
         }
     }

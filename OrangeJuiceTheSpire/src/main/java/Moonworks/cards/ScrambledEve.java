@@ -2,7 +2,9 @@ package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.actions.common.ShuffleAction;
 import com.megacrit.cardcrawl.actions.unique.GamblingChipAction;
@@ -14,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class ScrambledEve extends AbstractDynamicCard {
+public class ScrambledEve extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -63,6 +65,10 @@ public class ScrambledEve extends AbstractDynamicCard {
         }
         if (!AbstractDungeon.player.hand.isEmpty()) {
             this.addToBot(new GamblingChipAction(AbstractDungeon.player, true));
+        }
+        int bonus = getNormaLevel() >= 3 ? 2 : getNormaLevel() >= 1 ? 1 : 0;
+        if (bonus > 0) {
+            this.addToBot(new DrawCardAction(bonus));
         }
     }
 

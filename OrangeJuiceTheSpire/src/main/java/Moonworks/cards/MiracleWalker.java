@@ -3,6 +3,7 @@ package Moonworks.cards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.TransmutativeModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class MiracleWalker extends AbstractDynamicCard {
+public class MiracleWalker extends AbstractNormaAttentiveCard {
 
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
@@ -41,6 +42,7 @@ public class MiracleWalker extends AbstractDynamicCard {
 
     public MiracleWalker() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        //Norma effect packaged into modifier/action
         CardModifierManager.addModifier(this, new TransmutativeModifier(-1, true));
     }
 

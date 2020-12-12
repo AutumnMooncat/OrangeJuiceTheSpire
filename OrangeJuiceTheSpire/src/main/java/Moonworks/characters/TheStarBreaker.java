@@ -88,17 +88,20 @@ public class TheStarBreaker extends CustomPlayer {
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
     public static final String[] orbTextures = {
-            "MoonworksResources/images/char/defaultCharacter/orb/layer1.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer2.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer3.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer1star3.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer2star.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer3star.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer4star.png", //
             "MoonworksResources/images/char/defaultCharacter/orb/layer5star.png", //
-            "MoonworksResources/images/char/defaultCharacter/orb/layer6.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer1d.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer2d.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer3d.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer4d.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer5d.png",};
+            "MoonworksResources/images/char/defaultCharacter/orb/layer6star.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer1star3d.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer2star.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer3star.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer4stard.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer5stard.png",};
+
+    //public static final float[] layerSpeeds = {-20.0F, 20.0F, -40.0F, 40.0F, 360.0F};
+    public static final float[] layerSpeeds = {-20.0F, 20.0F, -40.0F, 40.0F, 0.0F};
 
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
@@ -106,7 +109,7 @@ public class TheStarBreaker extends CustomPlayer {
 
     public TheStarBreaker(String name, PlayerClass setClass) {
         //super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxm.png", null, idleAnimation);
-        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", null, idleAnimation);
+        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", layerSpeeds, idleAnimation);
 
 
         // =============== TEXTURES, ENERGY, LOADOUT =================  

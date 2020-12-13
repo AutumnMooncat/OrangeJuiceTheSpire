@@ -104,10 +104,10 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     public void atBattleStartPreDraw() {
         stopPulse();
         if(!broken) {
-            if (counter > 0) {
+            //if (counter > 0) {
                 flash();
-                this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NormaPower(AbstractDungeon.player, counter)));
-            }
+                this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NormaPower(AbstractDungeon.player, Math.max(counter,0))));
+            //}
         } else {
             this.addToBot(new NormaBreakAction(AbstractDungeon.player, false));
         }

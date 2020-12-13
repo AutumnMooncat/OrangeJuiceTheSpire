@@ -61,14 +61,16 @@ public class ShieldCounter extends AbstractNormaAttentiveCard {
             AbstractDungeon.actionManager.addToBottom(new RemoveAllBlockAction(m, p));
         }
         // Thanks @Alchyr#3696, #modding-technical
-        int dmg = (int)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentDmg");
-        if ((boolean)ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg"))
-        {
-            dmg *= (int)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
+        if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
+            int dmg = (int)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentDmg");
+            if ((boolean)ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg"))
+            {
+                dmg *= (int)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
+            }
+            AbstractDungeon.actionManager.addToBottom(
+                    new DamageAction(m, new DamageInfo(p, dmg, damageTypeForTurn),
+                            AbstractGameAction.AttackEffect.SLASH_HEAVY));
         }
-        AbstractDungeon.actionManager.addToBottom(
-                new DamageAction(m, new DamageInfo(p, dmg, damageTypeForTurn),
-                        AbstractGameAction.AttackEffect.SLASH_HEAVY));
         if (getNormaLevel() >= 4) {
             this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, 1)));
         }

@@ -154,7 +154,7 @@
   },
   "Moonworks:DeployBits": {
     "NAME": "Deploy Bits",
-    "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor. NL moonworks:Norma 4: Distribution is now optimized instead of random."
+    "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor. NL moonworks:Norma 4: -3 Bits, but Bit distribution is now optimized."
   },
   "Moonworks:DevilHand": {
     "NAME": "Devil Hand",

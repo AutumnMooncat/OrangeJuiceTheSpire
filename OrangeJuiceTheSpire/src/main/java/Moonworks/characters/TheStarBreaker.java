@@ -88,17 +88,17 @@ public class TheStarBreaker extends CustomPlayer {
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
     public static final String[] orbTextures = {
-            "MoonworksResources/images/char/defaultCharacter/orb/layer1star3.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer1star4.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer2star.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer3star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer4star.png", //
-            "MoonworksResources/images/char/defaultCharacter/orb/layer5star.png", //
+            "MoonworksResources/images/char/defaultCharacter/orb/layer4star4.png", //
+            "MoonworksResources/images/char/defaultCharacter/orb/layer5star4.png", //
             "MoonworksResources/images/char/defaultCharacter/orb/layer6star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer1star3d.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer1star4d.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer2star.png",
             "MoonworksResources/images/char/defaultCharacter/orb/layer3star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer4stard.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer5stard.png",};
+            "MoonworksResources/images/char/defaultCharacter/orb/layer4star4d.png",
+            "MoonworksResources/images/char/defaultCharacter/orb/layer5star4d.png",};
 
     //public static final float[] layerSpeeds = {-20.0F, 20.0F, -40.0F, 40.0F, 360.0F};
     public static final float[] layerSpeeds = {-20.0F, 20.0F, -40.0F, 40.0F, 0.0F};

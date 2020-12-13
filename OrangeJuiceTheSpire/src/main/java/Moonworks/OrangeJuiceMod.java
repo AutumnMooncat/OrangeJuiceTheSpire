@@ -113,8 +113,10 @@ public class OrangeJuiceMod implements
     
     //private static final String ENERGY_ORB_WHITE_ICE = "MoonworksResources/images/512/card_orb.png"; //
     //private static final String CARD_ENERGY_ORB = "MoonworksResources/images/512/card_small_orb2.png"; //
-    private static final String ENERGY_ORB_WHITE_ICE = "MoonworksResources/images/512/card_orb_star.png"; //
-    private static final String CARD_ENERGY_ORB = "MoonworksResources/images/512/card_small_orb_star.png"; //
+    //private static final String ENERGY_ORB_WHITE_ICE = "MoonworksResources/images/512/card_orb_star.png"; //
+    //private static final String CARD_ENERGY_ORB = "MoonworksResources/images/512/card_small_orb_star.png"; //
+    private static final String ENERGY_ORB_WHITE_ICE = "MoonworksResources/images/512/card_orb3.png"; //
+    private static final String CARD_ENERGY_ORB = "MoonworksResources/images/512/card_small_orb_3.png"; //
     
     private static final String ATTACK_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_attack_coloured.png"; //
     public static final String TEMP_ATTACK_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_attack_coloured_temp.png"; //
@@ -124,7 +126,8 @@ public class OrangeJuiceMod implements
     public static final String TEMP_SKILL_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_skill_coloured_temp.png"; //
     private static final String POWER_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_power_coloured.png"; //
     //private static final String ENERGY_ORB_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/card_orb.png"; //
-    private static final String ENERGY_ORB_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/card_orb_star.png"; //
+    //private static final String ENERGY_ORB_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/card_orb_star.png"; //
+    private static final String ENERGY_ORB_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/card_orb3.png"; //
     
     // Character assets
     //private static final String THE_DEFAULT_BUTTON = "MoonworksResources/images/charSelect/DefaultCharacterButton.png";

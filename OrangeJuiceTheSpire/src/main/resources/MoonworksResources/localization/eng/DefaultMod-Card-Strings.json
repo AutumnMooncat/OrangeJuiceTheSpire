@@ -382,7 +382,7 @@
   },
   "Moonworks:Strike": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage. NL moonworks:Norma 2: +1 damage. NL moonworks:Norma 4: +2 damage."
+    "DESCRIPTION": "Deal !D! damage. NL moonworks:Norma 2: +1 base damage. NL moonworks:Norma 4: +2 bonus damage."
   },
   "Moonworks:SubspaceTunnel": {
     "NAME": "Subspace Tunnel",

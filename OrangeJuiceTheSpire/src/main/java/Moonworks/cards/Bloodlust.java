@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.relics.BrokenBomb;
+import Moonworks.relics.GoldenDie;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -101,7 +102,7 @@ public class Bloodlust extends AbstractNormaAttentiveCard {
     @Override
     public void triggerWhenDrawn() {
         AbstractPlayer p = AbstractDungeon.player;
-        boolean goldenDie = AbstractDungeon.player.hasRelic(BrokenBomb.ID);
+        boolean goldenDie = AbstractDungeon.player.hasRelic(GoldenDie.ID);
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = RETAINS + (goldenDie ? 1 : 0);
         this.selfRetain = true;
         this.dontTriggerOnUseCard = false;

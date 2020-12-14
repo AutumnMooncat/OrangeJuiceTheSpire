@@ -38,7 +38,7 @@ public class BlastingLoseHPAction extends AbstractGameAction {
                 if (this.target.currentHealth > 0) {
                     this.target.tint.color = Color.CHARTREUSE.cpy();
                     this.target.tint.changeColor(Color.WHITE.cpy());
-                    this.target.damage(new DamageInfo(this.source, this.amount, DamageInfo.DamageType.NORMAL));
+                    this.target.damage(new DamageInfo(this.source, this.amount, DamageInfo.DamageType.THORNS));
                 }
 
                 AbstractPower p = this.target.getPower(BlastingLightPower.POWER_ID);

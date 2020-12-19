@@ -35,8 +35,8 @@ public class AccelHyper extends AbstractDynamicCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 2;
-    private static final int UPGRADE_REDUCED_COST = 1;
+    private static final int COST = 1;
+    private static final int UPGRADE_REDUCED_COST = 0;
 
     // /STAT DECLARATION/
 

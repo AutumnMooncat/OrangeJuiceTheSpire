@@ -44,11 +44,25 @@ public class SakisCookie extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        if(getNormaLevel() >= 2) {
-            bonus = 2;
+        AbstractDungeon.actionManager.addToBottom(new HealAction(p, p, this.magicNumber));
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 2) {
+            this.magicNumber += 2;
+            this.isMagicNumberModified = true;
         }
-        AbstractDungeon.actionManager.addToBottom(new HealAction(p, p, this.magicNumber+bonus));
+        initializeDescription();
     }
 
     // Upgraded stats.

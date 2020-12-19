@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.variables.DefaultSecondMagicNumber;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -43,6 +44,9 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
     private static final int MULTIPLE = 2;
     private static final int UPGRADE_PLUS_MULTIPLE = 1;
 
+    private static final int DIVISOR = 5;
+    private static final int NORMA_DIVISOR = 3;
+
     // /STAT DECLARATION/
 
 
@@ -50,6 +54,7 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = MULTIPLE;
+        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = DIVISOR;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
     }
@@ -57,11 +62,32 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int divisor = getNormaLevel() >= 5 ? 3 : 5;
-        int effect = ((p.maxHealth - p.currentHealth) / divisor) * magicNumber;
+        int effect = ((p.maxHealth - p.currentHealth) / defaultSecondMagicNumber) * magicNumber;
         if (effect > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, effect)));
         }
+        DefaultSecondMagicNumber.revertColorDirection();
+    }
+
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
+        this.isDefaultSecondMagicNumberModified = false;
+        DefaultSecondMagicNumber.revertColorDirection();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
+        if (getNormaLevel() >= 5) {
+            this.defaultSecondMagicNumber = NORMA_DIVISOR;
+            this.isDefaultSecondMagicNumberModified = true;
+            DefaultSecondMagicNumber.invertColorDirection();
+        }
+        initializeDescription();
     }
 
     //Upgraded stats.

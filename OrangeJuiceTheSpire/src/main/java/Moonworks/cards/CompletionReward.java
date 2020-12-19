@@ -54,16 +54,8 @@ public class CompletionReward extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //logger.info("Use: last count: " + lastCount);
-        int bonus = 0;
-        switch (getNormaLevel()) {
-            case 5:
-            case 4:
-            case 3:
-            case 2: bonus += 3;
-            case 1:
-            default:
-        }
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage-1+bonus, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        //We have to -1 or else it counts the damage from this card being played as well
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage-1, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         if(upgraded) {
             lastCount = AbstractDungeon.actionManager.cardsPlayedThisCombat.size()/2;
         } else {
@@ -86,6 +78,10 @@ public class CompletionReward extends AbstractNormaAttentiveCard {
         //logger.info("Calc: last count: " + lastCount);
         this.baseDamage = AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - lastCount;
         super.calculateCardDamage(m);
+        if (getNormaLevel() >= 2) {
+            this.damage += 3;
+            this.isDamageModified = true;
+        }
         initializeDescription();
 
     }

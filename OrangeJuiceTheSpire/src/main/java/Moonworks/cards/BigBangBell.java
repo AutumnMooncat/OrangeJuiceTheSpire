@@ -62,12 +62,28 @@ public class BigBangBell extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        if(getNormaLevel() >= 3) {
-            bonus = 5;
-        }
-        this.addToBot(new ApplyPowerAction(m, p, new BigBangBellPower(m, p, this.magicNumber+bonus)));
+        this.addToBot(new ApplyPowerAction(m, p, new BigBangBellPower(m, p, this.magicNumber)));
     }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        this.magicNumber = this.baseMagicNumber;
+        if (getNormaLevel() >= 3) {
+            this.magicNumber += 5;
+            this.isMagicNumberModified = true;
+        }
+        initializeDescription();
+    }
+
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
         tags.add("Trap");

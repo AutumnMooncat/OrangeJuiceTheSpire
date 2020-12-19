@@ -48,26 +48,25 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = CARDS;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = NORMA_UP;
-        //this.exhaust = true;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //this.addToBot(new LoseHPAction(p, p, magicNumber));
-        switch (getNormaLevel()) {
-            case 5: this.addToBot(new DrawCardAction(magicNumber));
-            case 4: changeAfterUse = true;
-            case 3:
-            case 2:
-            case 1:
-            default:
-        }
         if (getNormaLevel() < 5) {
+            if (getNormaLevel() == 4) {
+                changeAfterUse = true;
+            }
             this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, defaultSecondMagicNumber),defaultSecondMagicNumber));
+        } else {
+            this.addToBot(new DrawCardAction(magicNumber));
+            this.exhaust = false;
         }
         if (changeAfterUse) {
-            this.exhaust = false;
+            //This needs to be in the Norma 5 spot, not Norma 4.
+            //this.exhaust = false;
             rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

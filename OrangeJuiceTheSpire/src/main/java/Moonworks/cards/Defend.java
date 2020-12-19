@@ -38,7 +38,6 @@ public class Defend extends AbstractNormaAttentiveCard {
     private static final int BLOCK = 5;
     private static final int UPGRADE_PLUS_BLOCK = 3;
 
-
     // /STAT DECLARATION/
 
 
@@ -51,15 +50,19 @@ public class Defend extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        switch (getNormaLevel()) {
-            case 5:
-            case 4:
-            case 3: block+= 1;
-            case 2:
-            case 1: block+= 1;
-            default:
-        }
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
+    }
+
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        int bonus = getNormaLevel() >= 3 ? 2 : getNormaLevel() >= 1 ? 1 : 0;
+        super.calculateCardDamage(m);
+        if (bonus > 0) {
+            this.block += bonus;
+            this.isBlockModified = true;
+        }
+        initializeDescription();
     }
 
     //Upgraded stats.

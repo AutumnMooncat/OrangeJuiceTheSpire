@@ -37,7 +37,7 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
 
     private static final int ARTIFACT = 1;
     private static final int UPGRADE_PLUS_ARTIFACT = 1;
-    private static final int BLOCK = 10;
+    private static final int BLOCK = 6;
 
     // /STAT DECLARATION/
 
@@ -51,13 +51,19 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        if (getNormaLevel() >= 1) {
-            bonus = 4;
-        }
-        this.addToBot(new GainBlockAction(p, block+bonus));
+        this.addToBot(new GainBlockAction(p, block));
         this.addToBot(new ApplyPowerAction(p, p, new ArtifactPower(p, magicNumber)));
 
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 1) {
+            this.block += 4;
+            this.isBlockModified = true;
+        }
+        initializeDescription();
     }
 
     // Upgraded stats.

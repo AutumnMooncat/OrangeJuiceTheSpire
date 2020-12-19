@@ -91,19 +91,10 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        switch (getNormaLevel()) {
-            case 5: bonus++;
-            case 4: bonus++;
-            case 3: bonus++;
-            case 2: bonus++;
-            case 1: bonus++;
-            default:
-        }
         TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, 2)];
         this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
         this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 1.0F));
-        int hits = AbstractDungeon.cardRandomRng.random(magicNumber+bonus, defaultSecondMagicNumber+bonus);
+        int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
         for (int i = 0 ; i < hits ; i++) {
             for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters){
                 if (!aM.isDeadOrEscaped()) {
@@ -111,6 +102,29 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
                 }
             }
         }
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
+        this.isDefaultSecondMagicNumberModified = false;
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        int bonus = getNormaLevel();
+        super.calculateCardDamage(m);
+        if (bonus > 0) {
+            this.magicNumber += bonus;
+            this.defaultSecondMagicNumber += bonus;
+            this.isMagicNumberModified = true;
+            this.isDefaultSecondMagicNumberModified = true;
+        }
+        initializeDescription();
     }
 
     //Upgraded stats.

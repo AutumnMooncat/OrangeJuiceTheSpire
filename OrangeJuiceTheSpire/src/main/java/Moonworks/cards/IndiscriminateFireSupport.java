@@ -5,6 +5,7 @@ import Moonworks.actions.IndiscriminateFireSupportAction;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.FreeCardPower;
+import Moonworks.variables.DefaultSecondMagicNumber;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -52,7 +53,7 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = DAZED;
+        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = DAZED;
         this.isMultiDamage = true;
         this.cardsToPreview = new Dazed();
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
@@ -66,15 +67,28 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int removeDazed = 0;
-        switch (getNormaLevel()) {
-            case 5:
-            case 4:
-            case 3:
-            case 2: removeDazed += 1;
-            default:
+        this.addToBot(new IndiscriminateFireSupportAction(p, multiDamage, damageTypeForTurn, defaultSecondMagicNumber, AbstractGameAction.AttackEffect.FIRE, freeToPlayOnce, energyOnUse));
+        DefaultSecondMagicNumber.revertColorDirection();
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
+        this.isDefaultSecondMagicNumberModified = false;
+        DefaultSecondMagicNumber.revertColorDirection();
+        initializeDescription();
+    }
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
+        if (getNormaLevel() >= 5) {
+            this.defaultSecondMagicNumber -= 1;
+            this.isDefaultSecondMagicNumberModified = true;
+            DefaultSecondMagicNumber.invertColorDirection();
         }
-        this.addToBot(new IndiscriminateFireSupportAction(p, multiDamage, damageTypeForTurn, magicNumber-removeDazed, AbstractGameAction.AttackEffect.FIRE, freeToPlayOnce, energyOnUse));
+        initializeDescription();
     }
 
     //Upgraded stats.
@@ -83,7 +97,7 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DAMAGE);
-            upgradeMagicNumber(UPGRADE_PLUS_DAZED);
+            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_DAZED);
             initializeDescription();
         }
     }

@@ -8,6 +8,7 @@ import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
@@ -59,16 +60,26 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        switch (getNormaLevel()) {
-            case 5:
-            case 4:
-            case 3:
-            case 2: bonus += 1;
-            case 1:
-            default:
+        this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, this.magicNumber)));
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    public void calculateCardDamage(AbstractMonster m) {
+        //logger.info("Calc: last count: " + lastCount);
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 2) {
+            this.magicNumber += 2;
+            this.isMagicNumberModified = true;
         }
-        this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, this.magicNumber+bonus)));
+        initializeDescription();
+
     }
 
     public List<String> getCardDescriptors() {

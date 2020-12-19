@@ -20,6 +20,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String NORMAL_DESCRIPTION = cardStrings.DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -33,26 +34,42 @@ public class NicePresent extends AbstractNormaAttentiveCard {
 
     private static final int COST = 0;
 
-    private static final int EFFECT = 1;
-    private static final int UPGRADE_PLUS_HEAL = 1;
+    private static final int DRAW = 1;
+    private static final int UPGRADE_PLUS_DRAW = 1;
 
     // /STAT DECLARATION/
 
     public NicePresent() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        magicNumber = baseMagicNumber = EFFECT;
+        magicNumber = baseMagicNumber = DRAW;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        if (getNormaLevel() >= 3) {
-            bonus = 1;
-        }
-        this.addToBot(new DrawCardAction(p, this.magicNumber+bonus));
-        this.addToBot(new DiscardAction(p, p, this.magicNumber+bonus, false));
+        this.addToBot(new DrawCardAction(p, this.magicNumber));
+        this.addToBot(new DiscardAction(p, p, this.magicNumber, false));
 
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        super.applyPowers();
+        if(!upgraded) rawDescription = NORMAL_DESCRIPTION;
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 3 ) {
+            this.magicNumber += 1;
+            this.isMagicNumberModified = true;
+            if(!upgraded) rawDescription = UPGRADE_DESCRIPTION;
+        }
+        initializeDescription();
     }
 
     // Upgraded stats.
@@ -60,7 +77,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeMagicNumber(UPGRADE_PLUS_HEAL);
+            this.upgradeMagicNumber(UPGRADE_PLUS_DRAW);
             rawDescription = UPGRADE_DESCRIPTION;
             this.initializeDescription();
         }

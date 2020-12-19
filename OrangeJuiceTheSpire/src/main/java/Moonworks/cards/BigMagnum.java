@@ -44,6 +44,7 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
 
         magicNumber = baseMagicNumber = HPLOSS;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = STR;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
@@ -51,15 +52,7 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new LoseHPAction(p, p, magicNumber));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new StrengthPower(p, defaultSecondMagicNumber),defaultSecondMagicNumber));
-        int vigor = 0;
-        switch (getNormaLevel()) {
-            case 5:
-            case 4:
-            case 3:
-            case 2: vigor += 3;
-            case 1: vigor += 2;
-            default:
-        }
+        int vigor = getNormaLevel() >= 2 ? 5 : getNormaLevel() >= 1 ? 2 : 0;
         if (vigor > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, vigor)));
         }

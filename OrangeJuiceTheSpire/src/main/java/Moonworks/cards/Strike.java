@@ -54,8 +54,6 @@ public class Strike extends AbstractNormaAttentiveCard {
     private static final int DAMAGE = 6;
     private static final int UPGRADE_PLUS_DMG = 3;
 
-    private int baseBaseDamage;
-
     // Hey want a second damage/magic/block/unique number??? Great!
     // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
     // that's how you get your own custom variable that you can use for anything you like.
@@ -65,11 +63,7 @@ public class Strike extends AbstractNormaAttentiveCard {
 
     public Strike() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-
-        // Aside from baseDamage/MagicNumber/Block there's also a few more.
-        // Just type this.base and let intelliJ auto complete for you, or, go read up AbstractCard
-
-        this.baseBaseDamage = this.baseDamage = this.damage = DAMAGE;
+        this.baseDamage = this.damage = DAMAGE;
         this.tags.add(CardTags.STARTER_STRIKE); //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.
         this.tags.add(CardTags.STRIKE);
     }
@@ -111,7 +105,6 @@ public class Strike extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            this.baseBaseDamage += UPGRADE_PLUS_DMG;
             initializeDescription();
         }
     }

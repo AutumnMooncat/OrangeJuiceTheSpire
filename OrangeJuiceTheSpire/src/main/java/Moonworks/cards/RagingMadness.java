@@ -58,8 +58,25 @@ public class RagingMadness extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = getNormaLevel() >= 3 ? 1 : 0;
-        this.addToBot(new ApplyPowerAction(p, p, new RagingMadnessPower(p, magicNumber+bonus)));
+        this.addToBot(new ApplyPowerAction(p, p, new RagingMadnessPower(p, magicNumber)));
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 3) {
+            this.magicNumber += 1;
+            this.isMagicNumberModified = true;
+        }
+        initializeDescription();
     }
 
     //Upgraded stats.

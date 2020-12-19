@@ -54,10 +54,30 @@ public class TacticalRetreat extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = getNormaLevel() >= 2 ? 2: 0;
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, block+bonus));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnBlockPower(p, magicNumber+bonus), magicNumber+bonus));
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, block));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnBlockPower(p, magicNumber), magicNumber));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedBluePower(p, defaultSecondMagicNumber)));
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        //Block properly reset by super call
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 2) {
+            this.block += 2;
+            this.magicNumber += 2;
+            this.isBlockModified = true;
+            this.isMagicNumberModified = true;
+        }
+        initializeDescription();
     }
 
     // Upgraded stats.

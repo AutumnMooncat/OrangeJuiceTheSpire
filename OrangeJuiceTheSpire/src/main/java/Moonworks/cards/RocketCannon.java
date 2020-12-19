@@ -34,6 +34,8 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
     private static final int DAMAGE = 7;
     private static final int UPGRADE_PLUS_DAMAGE = 3;
 
+    private static final int CARDS = 1;
+
     // /STAT DECLARATION/
 
     public RocketCannon() {
@@ -41,17 +43,32 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
         this.cardsToPreview = new BigRocketCannon();
         //this.cardsToPreview.cardsToPreview = new AirStrike(); // I tried, lol
         damage = baseDamage = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = CARDS;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        if (getNormaLevel() >= 1) {
-            bonus = 1;
-        }
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
-        this.addToBot(new MakeTempCardInDrawPileAction(this.cardsToPreview.makeStatEquivalentCopy(), 1+bonus, true, true));
+        this.addToBot(new MakeTempCardInDrawPileAction(this.cardsToPreview.makeStatEquivalentCopy(), magicNumber, true, true));
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 2) {
+            this.magicNumber += 1;
+            this.isMagicNumberModified = true;
+        }
+        initializeDescription();
     }
 
     // Upgraded stats.

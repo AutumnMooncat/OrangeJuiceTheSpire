@@ -44,21 +44,25 @@ public class Assault extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        switch (getNormaLevel()) {
-            case 5:
-            case 4:
-            case 3:
-            case 2: damage += 2;
-            case 1:
-            default:
-        }
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
+    //Stops powers from effecting the card
     @Override
-    public void applyPowers() {}
+    public void applyPowers() {
+        this.damage = this.baseDamage;
+        this.isDamageModified = false;
+        initializeDescription();
+    }
     @Override
-    public void calculateCardDamage(AbstractMonster m) {}
+    public void calculateCardDamage(AbstractMonster m) {
+        this.damage = this.baseDamage;
+        if (getNormaLevel() >= 2) {
+            this.damage += 2;
+            this.isDamageModified = true;
+        }
+        initializeDescription();
+    }
 
     // Upgraded stats.
     @Override

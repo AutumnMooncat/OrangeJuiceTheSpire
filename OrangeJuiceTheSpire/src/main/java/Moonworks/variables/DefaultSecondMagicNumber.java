@@ -1,14 +1,17 @@
 package Moonworks.variables;
 
 import basemod.abstracts.DynamicVariable;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import Moonworks.cards.abstractCards.AbstractDefaultCard;
+import com.megacrit.cardcrawl.core.Settings;
 
 import static Moonworks.OrangeJuiceMod.makeID;
 
 public class DefaultSecondMagicNumber extends DynamicVariable {
 
     //For in-depth comments, check the other variable(DefaultCustomVariable). It's nearly identical.
+    public static boolean invertColor = false;
 
     @Override
     public String key() {
@@ -37,5 +40,23 @@ public class DefaultSecondMagicNumber extends DynamicVariable {
     @Override
     public boolean upgraded(AbstractCard card) {
         return ((AbstractDefaultCard) card).upgradedDefaultSecondMagicNumber;
+    }
+
+    public static void invertColorDirection() {
+        invertColor = true;
+    }
+
+    public static void revertColorDirection() {
+        invertColor = false;
+    }
+
+    @Override
+    public Color getIncreasedValueColor() {
+        return invertColor ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
+    }
+
+    @Override
+    public Color getDecreasedValueColor() {
+        return invertColor ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR;
     }
 }

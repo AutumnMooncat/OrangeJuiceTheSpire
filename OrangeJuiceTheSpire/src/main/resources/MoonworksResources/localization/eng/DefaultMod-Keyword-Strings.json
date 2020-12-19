@@ -22,7 +22,7 @@
     "Gift",
     "gift"
   ],
-  "DESCRIPTION": "This card's effects are active while in your hand. A Gift may also have an On Play effect that triggers when the card is played normally."
+  "DESCRIPTION": "This card's primary effects are active while in your hand. A Gift may also have an additional effects with triggers."
   },
   {
     "PROPER_NAME": "Blasting Light",
@@ -97,5 +97,13 @@
       "steady"
     ],
     "DESCRIPTION": "Gain more block the next time a Block gaining card is played."
+  },
+  {
+    "PROPER_NAME": "Gift Uses",
+    "NAMES": [
+      "Gift Uses",
+      "gift_uses"
+    ],
+    "DESCRIPTION": "This card Retains while it has uses, and Exhausts when it is out. One use is consumed when this card is discarded, or retained."
   }
 ]

@@ -64,7 +64,7 @@
   },
   "Moonworks:Ambush": {
     "NAME": "Ambush",
-    "DESCRIPTION": "Apply !M! Vulnerable. NL Then deal !D! damage. NL moonworks:Norma 3: This attack ignores Block."
+    "DESCRIPTION": "Apply !M! Vulnerable. NL Then deal !D! damage. NL moonworks:Norma 3: This Attack ignores Block."
   },
   "Moonworks:AngelHand": {
     "NAME": "Angel Hand",
@@ -77,7 +77,7 @@
   },
   "Moonworks:Assault": {
     "NAME": "Assault",
-    "DESCRIPTION": "Deal !D! moonworks:Fixed damage. NL This attack ignores Block. NL moonworks:Norma 2: +2 damage."
+    "DESCRIPTION": "Deal !D! moonworks:Fixed damage. NL This Attack ignores Block. NL moonworks:Norma 2: +2 damage."
   },
   "Moonworks:AwakeningOfTalent": {
     "NAME": "Awakening Of Talent",
@@ -90,7 +90,7 @@
   },
   "Moonworks:BeyondHell": {
     "NAME": "Beyond Hell",
-    "DESCRIPTION": "Gain !M! Vigor for every 5 missing HP. NL moonworks:Norma 5: Gain Vigor for every 3 missing HP instead."
+    "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:SecondMagic! missing HP. NL moonworks:Norma 5: Gain Vigor for every 3 missing HP instead."
   },
   "Moonworks:BigBangBell": {
     "NAME": "Big Bang Bell",
@@ -98,7 +98,7 @@
   },
   "Moonworks:BigMagnum": {
     "NAME": "Big Magnum",
-    "DESCRIPTION": "Lose !M! HP. NL Gain !Moonworks:SecondMagic! Strength. NL moonworks:Norma 1: Gain 2 Vigor. NL moonworks:Norma 2: +3 Vigor."
+    "DESCRIPTION": "Lose !M! HP. NL Gain !Moonworks:SecondMagic! Strength. NL Exhaust. NL moonworks:Norma 1: Gain 2 Vigor. NL moonworks:Norma 2: +3 Vigor."
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "Big Rocket Cannon",
@@ -115,8 +115,8 @@
   },
   "Moonworks:Bloodlust": {
     "NAME": "Bloodlust",
-    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Take 4 damage. NL For each attack played, heal !M! HP. NL On Play: Discard. NL moonworks:Norma 2: -1 damage taken.",
-    "UPGRADE_DESCRIPTION": "Take 4 damage. NL For each attack played, heal !M! HP. NL On Play: Discard. NL moonworks:Norma 2: -1 damage taken.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Take 4 damage at the beginning of your turn, but for each Attack played heal !M! HP. NL On Play: Discard. NL moonworks:Norma 2: -1 damage taken.",
+    "UPGRADE_DESCRIPTION": "Your Bloodlust has subsided.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
   "Moonworks:CastOff": {
@@ -187,8 +187,8 @@
   },
   "Moonworks:Flamethrower": {
     "NAME": "Flamethrower",
-    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Upon playing a card, deal !D! moonworks:Fixed damage. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Upon playing a card, deal !D! moonworks:Fixed damage. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !D! moonworks:Fixed damage. NL On Play: Discard.",
+    "UPGRADE_DESCRIPTION": "Your Flamethrower is out of fuel.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
   "Moonworks:ForcedRevival": {
@@ -212,7 +212,7 @@
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
-    "DESCRIPTION": "Remove all Block the next time it is gained. NL moonworks:Norma 2: +1 stack.",
+    "DESCRIPTION": "Remove all Block the next time it is gained. NL moonworks:Norma 2: Remove all Block the next 2 times it is gained.",
     "EXTENDED_DESCRIPTION": ["Apply !M! Heat [#efc851]300%[] to the target."]
   },
   "Moonworks:HolyNight": {
@@ -222,7 +222,7 @@
   },
   "Moonworks:ImmovableObject": {
     "NAME": "Immovable Object",
-    "DESCRIPTION": "Gain !B! Block. NL Block is not removed, but you may not play any attack cards, for the next !M! turns. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. NL Block is not removed, but you may not play any Attack cards, for the next !M! turns. NL Exhaust."
   },
   "Moonworks:ImOnFire": {
     "NAME": "I'm On Fire!",
@@ -230,7 +230,7 @@
   },
   "Moonworks:IndiscriminateFireSupport": {
     "NAME": "Indiscriminate Fire",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL Shuffle !M! Dazed into your draw pile. NL moonworks:Norma 2: Shuffle 1 less Dazed into your draw pile."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL Shuffle !Moonworks:SecondMagic! Dazed into your draw pile. NL moonworks:Norma 2: Shuffle 1 less Dazed into your draw pile."
   },
   "Moonworks:IntelligenceOfficer": {
     "NAME": "Intelligence Officer",
@@ -248,8 +248,8 @@
   },
   "Moonworks:LuckyCharm": {
     "NAME": "Lucky Charm",
-    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Gain [E]. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Gain [E]. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain [E] at the beginning of your turn. NL On Play: Discard and use up to 3 [E] to regain moonworks:Gift_Uses.",
+    "UPGRADE_DESCRIPTION": "Your Lucky Charm has run out of luck.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
   "Moonworks:LulusLuckyEgg": {
@@ -280,8 +280,8 @@
   },
   "Moonworks:MiracleRedBeanIceCream": {
     "NAME": "Red Bean Ice Cream",
-    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Ethereal. NL Gain !M! Strength. NL Once exhausted, heal 5 HP. NL On Play: Exhaust.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Gain !M! Strength. NL Once exhausted, heal 5 HP. NL On Play: Exhaust.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! temporary Strength. NL On Play: Exhaust. NL On Exhaust: Heal 5 HP.",
+    "UPGRADE_DESCRIPTION": "You have eaten your Red Bean Ice Cream.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
   "Moonworks:MiracleWalker": {
@@ -305,7 +305,7 @@
   },
   "Moonworks:PlushieMaster": {
     "NAME": "Plushie Master",
-    "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! Plushie Marks to random enemies. NL Each mark provides 2 temporary HP and damage when attacked. NL moonworks:Norma 1: +1 damage. NL moonworks:Norma 2: +1 Temp HP."
+    "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! Plushie Marks to random enemies. NL Each mark provides 2 Temp HP and damage when attacked. NL moonworks:Norma 1: +1 damage. NL moonworks:Norma 2: +1 Temp HP."
   },
   "Moonworks:Poppoformation": {
     "NAME": "Poppoformation",
@@ -322,8 +322,8 @@
   },
   "Moonworks:RedAndBlue": {
     "NAME": "Red And Blue",
-    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Gain !M! moonworks:Steady and !M! Vigor. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Gain !M! moonworks:Steady and !M! Vigor. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! moonworks:Steady and !M! Vigor at the beginning of your turn. NL On Play: Discard.",
+    "UPGRADE_DESCRIPTION": "Red and Blue are taking a break.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
   "Moonworks:ReflectiveShell": {
@@ -337,7 +337,7 @@
   },
   "Moonworks:RocketCannon": {
     "NAME": "Rocket Cannon",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle Big Rocket Cannon into your draw pile. NL moonworks:Norma 1: Shuffle an additional card."
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! Big Rocket Cannon into your draw pile. NL moonworks:Norma 2: Shuffle an additional card."
   },
   "Moonworks:SakisCookie": {
     "NAME": "Saki's Cookie",
@@ -402,8 +402,8 @@
   },
   "Moonworks:UnluckyCharm": {
     "NAME": "Unlucky Charm",
-    "DESCRIPTION": "Retain !Moonworks:SecondMagic!. NL Ethereal. NL Lose 1 Dexterity. NL Once exhausted, Gain 2 Dexterity. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Ethereal. NL Lose 1 Dexterity. NL Once exhausted, Gain 2 Dexterity. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Lose 1 temporary Dexterity. NL On Play: Discard. NL On Exhaust: Gain 3 Dexterity.",
+    "UPGRADE_DESCRIPTION": "You are feeling a little luckier without this around.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
   "Moonworks:UnpaidWork": {

@@ -1,12 +1,8 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.relics.BrokenBomb;
-import Moonworks.relics.GoldenDie;
-import basemod.BaseMod;
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -19,12 +15,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class Bloodlust extends AbstractNormaAttentiveCard {
+public class Bloodlust extends AbstractGiftCard {
 
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
@@ -33,9 +26,6 @@ public class Bloodlust extends AbstractNormaAttentiveCard {
     public static final String ID = OrangeJuiceMod.makeID(Bloodlust.class.getSimpleName());
     public static final String IMG = makeCardPath("Bloodlust.png");
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final String SPENT_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     // /TEXT DECLARATION/
 
 
@@ -51,8 +41,8 @@ public class Bloodlust extends AbstractNormaAttentiveCard {
     private static final int UPGRADE_PLUS_DAMAGE = -1; //Maybe do this instead of healing more?
     private static final int HEAL = 2;
     //private static final int UPGRADE_PLUS_HEAL = 1;
-    private static final int RETAINS = 2;
-    private static final int UPGRADE_PLUS_RETAINS = 1; // Maybe this?
+    private static final int USES = 2;
+    private static final int UPGRADE_PLUS_USES = 1; // Maybe this?
 
     //private static final int UPGRADE_PLUS_RETAINS = 1;
 
@@ -61,77 +51,47 @@ public class Bloodlust extends AbstractNormaAttentiveCard {
 
     public Bloodlust() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = HEAL;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = RETAINS;
-        this.selfRetain = true; //Let it retain N times?
-        this.tags.add(CardTags.HEALING);
-        this.dontTriggerOnUseCard = true;
-        setBackgroundTexture(OrangeJuiceMod.GIFT_WHITE_ICE, OrangeJuiceMod.GIFT_WHITE_ICE_PORTRAIT);
-        //this.exhaust = true;
-        //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
+        this(USES, false);
 
     }
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Gift");
-        return tags;
-    }
-    private static ArrayList<TooltipInfo> GiftTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (GiftTooltip == null)
-        {
-            GiftTooltip = new ArrayList<>();
-            GiftTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Gift"), BaseMod.getKeywordDescription("moonworks:Gift")));
-        }
-        return GiftTooltip;
+
+    public Bloodlust(int currentUses, boolean checkedGolden) {
+
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, USES, currentUses, checkedGolden);
+        this.magicNumber = this.baseMagicNumber = HEAL;
+        this.tags.add(CardTags.HEALING);
+
     }
 
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
-        super.onPlayCard(c, m);
-        if(!dontTriggerOnUseCard) {
+        if(active) {
             AbstractPlayer p = AbstractDungeon.player;
             if(c.type == CardType.ATTACK) {
                 this.addToBot(new HealAction(p, p, magicNumber));
             }
         }
+        super.onPlayCard(c, m);
     }
 
     @Override
     public void triggerWhenDrawn() {
-        AbstractPlayer p = AbstractDungeon.player;
-        boolean goldenDie = AbstractDungeon.player.hasRelic(GoldenDie.ID);
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = RETAINS + (goldenDie ? 1 : 0);
-        this.selfRetain = true;
-        this.dontTriggerOnUseCard = false;
-        rawDescription = DESCRIPTION;
-        int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
-        this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-        initializeDescription();
+        super.triggerWhenDrawn();
+        if(active) {
+            AbstractPlayer p = AbstractDungeon.player;
+            int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
+            this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        }
     }
 
     @Override
     public void onRetained() {
-        AbstractPlayer p = AbstractDungeon.player;
-        this.dontTriggerOnUseCard = false;
-        this.defaultSecondMagicNumber--; this.defaultBaseSecondMagicNumber--;
-        if(this.defaultSecondMagicNumber <= 0){
-            this.selfRetain = false;
-            rawDescription = SPENT_DESCRIPTION;
-        } else {
-            this.selfRetain = true;
-            rawDescription = DESCRIPTION;
+        super.onRetained();
+        if(active) {
+            AbstractPlayer p = AbstractDungeon.player;
+            int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
+            this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         }
-        int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
-        this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
-        initializeDescription();
-    }
-
-    // Actions the card should do.
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
     }
 
     //Upgraded stats.
@@ -140,8 +100,13 @@ public class Bloodlust extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             //upgradeMagicNumber(UPGRADE_PLUS_HEAL);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_RETAINS);
+            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Bloodlust(defaultSecondMagicNumber, checkedGolden);
     }
 }

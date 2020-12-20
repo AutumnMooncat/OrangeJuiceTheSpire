@@ -117,7 +117,7 @@ public class OrangeJuiceMod implements
     //private static final String ENERGY_ORB_WHITE_ICE = "MoonworksResources/images/512/card_orb_star.png"; //
     //private static final String CARD_ENERGY_ORB = "MoonworksResources/images/512/card_small_orb_star.png"; //
     private static final String ENERGY_ORB_WHITE_ICE = "MoonworksResources/images/512/card_orb5.png"; //
-    private static final String CARD_ENERGY_ORB = "MoonworksResources/images/512/card_small_orb3.png"; //
+    private static final String CARD_ENERGY_ORB = "MoonworksResources/images/512/card_small_orb4.png"; //
     
     private static final String ATTACK_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_attack_coloured.png"; //
     public static final String TEMP_ATTACK_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_attack_coloured_temp.png"; //

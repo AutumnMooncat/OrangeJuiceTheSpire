@@ -37,8 +37,9 @@ public class UnluckyCharm extends AbstractGiftCard {
     private static final int COST = -2;
     private static final int EFFECT = -1;
     private static final int POSITIVE_EFFECT = 3;
+    private static final int UPGRADE_PLUS_POSITIVE_EFFECT = 1;
     private static final int USES = 2;
-    private static final int UPGRADE_PLUS_USES = -1;
+    //private static final int UPGRADE_PLUS_USES = -1;
 
     // /STAT DECLARATION/
 
@@ -88,7 +89,8 @@ public class UnluckyCharm extends AbstractGiftCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
+            //upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
+            upgradeMagicNumber(UPGRADE_PLUS_POSITIVE_EFFECT);
             initializeDescription();
         }
     }

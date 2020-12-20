@@ -42,16 +42,13 @@ public class PlushieMaster extends AbstractNormaAttentiveCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int MIN_HITS = 3;
-    private static final int UPGRADE_PLUS_MIN_HITS = 1;
+    private static final int HITS = 4;
+    private static final int UPGRADE_PLUS_HITS = 2;
 
-    private static final int MAX_HITS = 5;
-    private static final int UPGRADE_PLUS_MAX_HITS = 1;
-
-    private static final int TEMP_HP = 2;
-    private static final int DAMAGE = 2;
+    private static final int TEMP_HP = 3;
+    private static final int DAMAGE = 7;
     private static final int STACK_MULTIPLE = 1;
 
     // /STAT DECLARATION/
@@ -59,9 +56,8 @@ public class PlushieMaster extends AbstractNormaAttentiveCard {
 
     public PlushieMaster() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        magicNumber = baseMagicNumber = MIN_HITS;
+        magicNumber = baseMagicNumber = HITS;
         damage = baseDamage = DAMAGE;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = MAX_HITS;
         setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
     }
     public List<String> getCardDescriptors() {
@@ -84,20 +80,28 @@ public class PlushieMaster extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractMonster aM;
-        int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
-        int bonus1 = 0, bonus2 = 0;
-        switch (getNormaLevel()) {
-            case 5:
-            case 4:
-            case 3:
-            case 2: bonus2 = 1;
-            case 1: bonus1 = 1;
-            default:
-        }
-        for (int i = 0 ; i < hits ; i++) {
+        for (int i = 0 ; i < magicNumber ; i++) {
             aM = AbstractDungeon.getRandomMonster();
-            this.addToBot(new ApplyPowerAction(aM, p, new PlushieMasterPower(aM, p, STACK_MULTIPLE, TEMP_HP+bonus2, DAMAGE+bonus1)));
+            this.addToBot(new ApplyPowerAction(aM, p, new PlushieMasterPower(aM, p, STACK_MULTIPLE, TEMP_HP, DAMAGE)));
         }
+    }
+
+    @Override
+    public void applyPowers() {
+        this.magicNumber = this.baseMagicNumber;
+        this.isMagicNumberModified = false;
+        super.applyPowers();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if (getNormaLevel() >= 2) {
+            this.magicNumber += 2;
+            this.isMagicNumberModified = true;
+        }
+        initializeDescription();
     }
 
     //Upgraded stats.
@@ -106,8 +110,7 @@ public class PlushieMaster extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             //rawDescription = UPGRADE_DESCRIPTION;
-            upgradeMagicNumber(UPGRADE_PLUS_MIN_HITS);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_MAX_HITS);
+            upgradeMagicNumber(UPGRADE_PLUS_HITS);
             initializeDescription();
         }
     }

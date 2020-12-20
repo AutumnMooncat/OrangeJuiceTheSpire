@@ -38,8 +38,10 @@ public class PlushieMasterPower extends AbstractPower implements CloneablePowerI
         this.source = source;
         this.heal = heal;
         this.damage = damage;
-        type = PowerType.BUFF;
-        isTurnBased = false;
+        this.type = PowerType.BUFF;
+        this.priority = Integer.MAX_VALUE;
+        this.isTurnBased = false;
+        this.canGoNegative = false;
 
         // We load those txtures here.
         //this.loadRegion("retain");
@@ -66,24 +68,30 @@ public class PlushieMasterPower extends AbstractPower implements CloneablePowerI
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if(!this.owner.isDead) {
-            this.addToBot(new DamageAction(owner, new DamageInfo(source, damage*amount, DamageInfo.DamageType.NORMAL)));
-            this.addToBot(new AddTemporaryHPAction(source, source, heal*amount));
-
-            this.amount = 0;
+        if(!this.owner.isDead && this.amount > 0) {
+            if (damageAmount < this.damage) {
+                damageAmount = this.damage;
+                info.type = DamageInfo.DamageType.HP_LOSS;
+            } else {
+                this.addToBot(new AddTemporaryHPAction(source, source, this.heal));
+            }
+            this.amount--;
+            if (this.amount <= 0) {
+                this.amount = 0;
+                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            }
             updateDescription();
-            this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
         }
-        return super.onAttacked(info, damageAmount);
+        return damageAmount;
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
         if (amount == 1) {
-            description = DESCRIPTIONS[0] + heal + DESCRIPTIONS[1] + damage + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3];
+            description = DESCRIPTIONS[0] + heal + DESCRIPTIONS[1] + damage + DESCRIPTIONS[2];
         } else {
-            description = DESCRIPTIONS[0] + heal + DESCRIPTIONS[1] + damage + DESCRIPTIONS[2] + amount + DESCRIPTIONS[4];
+            description = DESCRIPTIONS[0] + heal + DESCRIPTIONS[1] + damage + DESCRIPTIONS[3] + amount + DESCRIPTIONS[4];
         }
     }
 

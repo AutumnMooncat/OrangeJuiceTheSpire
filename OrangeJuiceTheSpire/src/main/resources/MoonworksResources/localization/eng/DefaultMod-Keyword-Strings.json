@@ -106,4 +106,14 @@
     ],
     "DESCRIPTION": "This card Retains while it has uses, and Exhausts when it is out. One use is consumed when this card is discarded, or retained."
   }
+,
+  {
+    "PROPER_NAME": "Plushie Mark",
+    "NAMES": [
+      "Plushie Mark",
+      "plushie_mark",
+      "plushie_marks"
+    ],
+    "DESCRIPTION": "If a target with a mark is hit for... NL 6 or less damage: Raise the damage to 7 and ignore block. NL 7 or more damage: Gain 3 temporary HP. NL One mark then consumed."
+  }
 ]

@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -44,8 +46,8 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
     private static final int HITS = 1;
     //private static final int UPGRADE_PLUS_HITS = 4; //We need to either use 4X(5X) Hits without Str Multi
 
-    private static final int STRENGTH_MULTI = 4; //Or X Hits with 4(5) Str Multi
-    private static final int UPGRADE_PLUS_STRENGTH_MULTI = 2;
+    private static final int STRENGTH_MULTI = 3; //Or X Hits with 4(5) Str Multi
+    private static final int UPGRADE_PLUS_STRENGTH_MULTI = 1;
 
     // /STAT DECLARATION/
 
@@ -72,9 +74,15 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
     }
 
     public void applyPowers() {
-        AbstractPower strength = AbstractDungeon.player.getPower("Strength");
+        AbstractPower strength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
+        AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
+        int vigorAmount = 0;
         if (strength != null) {
             strength.amount *= this.defaultSecondMagicNumber;
+        }
+        if (vigor != null) {
+            vigorAmount = vigor.amount;
+            vigor.amount = 0;
         }
 
         super.applyPowers();
@@ -82,13 +90,22 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         if (strength != null) {
             strength.amount /= this.defaultSecondMagicNumber;
         }
+        if (vigor != null) {
+            vigor.amount = vigorAmount;
+        }
 
     }
 
     public void calculateCardDamage(AbstractMonster m) {
-        AbstractPower strength = AbstractDungeon.player.getPower("Strength");
+        AbstractPower strength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
+        AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
+        int vigorAmount = 0;
         if (strength != null) {
             strength.amount *= this.defaultSecondMagicNumber;
+        }
+        if (vigor != null) {
+            vigorAmount = vigor.amount;
+            vigor.amount = 0;
         }
 
         super.calculateCardDamage(m);
@@ -96,7 +113,9 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         if (strength != null) {
             strength.amount /= this.defaultSecondMagicNumber;
         }
-
+        if (vigor != null) {
+            vigor.amount = vigorAmount;
+        }
     }
 
     //Upgraded stats.

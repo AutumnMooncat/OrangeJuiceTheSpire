@@ -33,10 +33,6 @@ public class Flamethrower extends AbstractGiftCard {
     public static final String ID = OrangeJuiceMod.makeID(Flamethrower.class.getSimpleName());
     public static final String IMG = makeCardPath("Flamethrower.png");
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String DESCRIPTION = cardStrings.DESCRIPTION;
-    public static final String SPENT_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-
     // /TEXT DECLARATION/
 
 

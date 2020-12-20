@@ -54,7 +54,7 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = MULTIPLE;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = DIVISOR;
+        this.invertedNumber = this.baseInvertedNumber = DIVISOR;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
     }
@@ -62,30 +62,27 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int effect = ((p.maxHealth - p.currentHealth) / defaultSecondMagicNumber) * magicNumber;
+        int effect = ((p.maxHealth - p.currentHealth) / invertedNumber) * magicNumber;
         if (effect > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, effect)));
         }
-        DefaultSecondMagicNumber.revertColorDirection();
     }
 
 
     @Override
     public void applyPowers() {
         super.applyPowers();
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
-        this.isDefaultSecondMagicNumberModified = false;
-        DefaultSecondMagicNumber.revertColorDirection();
+        this.invertedNumber = this.baseInvertedNumber;
+        this.isInvertedNumberModified = false;
         initializeDescription();
     }
 
     @Override
     public void calculateCardDamage(AbstractMonster m) {
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
+        this.invertedNumber = this.baseInvertedNumber;
         if (getNormaLevel() >= 5) {
-            this.defaultSecondMagicNumber = NORMA_DIVISOR;
-            this.isDefaultSecondMagicNumberModified = true;
-            DefaultSecondMagicNumber.invertColorDirection();
+            this.invertedNumber = NORMA_DIVISOR;
+            this.isInvertedNumberModified = true;
         }
         initializeDescription();
     }

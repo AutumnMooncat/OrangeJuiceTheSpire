@@ -2,6 +2,8 @@ package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.variables.DefaultSecondMagicNumber;
+import basemod.devcommands.energy.Energy;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -51,7 +53,7 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
 
         magicNumber = baseMagicNumber = HEAL;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = ENERGY;
+        invertedNumber = baseInvertedNumber = ENERGY;
         exhaust = true;
         this.tags.add(CardTags.HEALING);
     }
@@ -59,12 +61,12 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, this.defaultSecondMagicNumber, false)));
+        this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, this.invertedNumber, false)));
         this.addToBot(new HealAction(p, p, this.magicNumber));
-        this.addToBot(new GainEnergyAction(this.defaultSecondMagicNumber));
+        this.addToBot(new GainEnergyAction(this.invertedNumber));
         if (getNormaLevel() >= 3) {
-            this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.defaultSecondMagicNumber, false)));
-            this.addToBot(new GainEnergyAction(this.defaultSecondMagicNumber));
+            this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.invertedNumber, false)));
+            this.addToBot(new GainEnergyAction(this.invertedNumber));
         }
 
     }
@@ -76,7 +78,7 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
             this.upgradeName();
             rawDescription = UPGRADE_DESCRIPTION;
             this.upgradeMagicNumber(UPGRADE_PLUS_HEAL);
-            this.upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_ENERGY);
+            this.upgradeInvertedNumber(UPGRADE_PLUS_ENERGY);
             this.initializeDescription();
         }
     }

@@ -53,7 +53,7 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = DAZED;
+        invertedNumber = baseInvertedNumber = DAZED;
         this.isMultiDamage = true;
         this.cardsToPreview = new Dazed();
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
@@ -67,26 +67,23 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new IndiscriminateFireSupportAction(p, multiDamage, damageTypeForTurn, defaultSecondMagicNumber, AbstractGameAction.AttackEffect.FIRE, freeToPlayOnce, energyOnUse));
-        DefaultSecondMagicNumber.revertColorDirection();
+        this.addToBot(new IndiscriminateFireSupportAction(p, multiDamage, damageTypeForTurn, invertedNumber, AbstractGameAction.AttackEffect.FIRE, freeToPlayOnce, energyOnUse));
     }
 
     @Override
     public void applyPowers() {
         super.applyPowers();
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
-        this.isDefaultSecondMagicNumberModified = false;
-        DefaultSecondMagicNumber.revertColorDirection();
+        this.invertedNumber = this.baseInvertedNumber;
+        this.isInvertedNumberModified = false;
         initializeDescription();
     }
     @Override
     public void calculateCardDamage(AbstractMonster m) {
         super.calculateCardDamage(m);
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
+        this.invertedNumber = this.baseInvertedNumber;
         if (getNormaLevel() >= 5) {
-            this.defaultSecondMagicNumber -= 1;
-            this.isDefaultSecondMagicNumberModified = true;
-            DefaultSecondMagicNumber.invertColorDirection();
+            this.invertedNumber -= 1;
+            this.isInvertedNumberModified = true;
         }
         initializeDescription();
     }
@@ -97,7 +94,7 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DAMAGE);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_DAZED);
+            //upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_DAZED);
             initializeDescription();
         }
     }

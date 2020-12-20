@@ -82,7 +82,7 @@
       "Wanted",
       "wanted"
     ],
-    "DESCRIPTION": "This turn, all attacks and card effects (except from itself) will target the Wanted enemy instead."
+    "DESCRIPTION": "This turn, the Wanted enemy becomes the target of all attacks and negative effects, with one exception; the Wanted enemy will not attack or debuff itself."
   },
   {
     "NAMES": [

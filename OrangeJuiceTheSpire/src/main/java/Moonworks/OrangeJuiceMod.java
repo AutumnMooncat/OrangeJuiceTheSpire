@@ -1,6 +1,7 @@
 package Moonworks;
 
 import Moonworks.relics.*;
+import Moonworks.variables.DefaultInvertedNumber;
 import basemod.*;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
@@ -425,6 +426,7 @@ public class OrangeJuiceMod implements
         // Add the Custom Dynamic variables
         BaseMod.addDynamicVariable(new DefaultCustomVariable());
         BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
+        BaseMod.addDynamicVariable(new DefaultInvertedNumber());
         
         logger.info("Adding cards");
         // Add the cards

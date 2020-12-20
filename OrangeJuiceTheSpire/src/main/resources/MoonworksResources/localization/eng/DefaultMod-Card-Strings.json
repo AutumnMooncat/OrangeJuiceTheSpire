@@ -90,7 +90,7 @@
   },
   "Moonworks:BeyondHell": {
     "NAME": "Beyond Hell",
-    "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:SecondMagic! missing HP. NL moonworks:Norma 5: Gain Vigor for every 3 missing HP instead."
+    "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:InvertedNumber! missing HP. NL moonworks:Norma 5: Gain Vigor for every 3 missing HP instead."
   },
   "Moonworks:BigBangBell": {
     "NAME": "Big Bang Bell",
@@ -175,7 +175,7 @@
   },
   "Moonworks:ExtendedPhotonRifle": {
     "NAME": "Extended Photon Rifle",
-    "DESCRIPTION": "Deal !D! damage X times. Strength is !Moonworks:SecondMagic! times more effective for this card."
+    "DESCRIPTION": "Deal !D! damage X times. Strength is !Moonworks:SecondMagic! times more effective for this card. NL Vigor has no effect on this card."
   },
   "Moonworks:FinalBattle": {
     "NAME": "Final Battle",
@@ -193,8 +193,8 @@
   },
   "Moonworks:ForcedRevival": {
     "NAME": "Forced Revival",
-    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:SecondMagic! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:SecondMagic! Weak, but also twice the energy.",
-    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:SecondMagic! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:SecondMagic! Weak, but also twice the energy."
+    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:InvertedNumber! Weak, but also twice the energy.",
+    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:InvertedNumber! Weak, but also twice the energy."
   },
   "Moonworks:FullSpeedAlicianrone": {
     "NAME": "Full Speed Alicianrone",
@@ -230,7 +230,7 @@
   },
   "Moonworks:IndiscriminateFireSupport": {
     "NAME": "Indiscriminate Fire",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL Shuffle !Moonworks:SecondMagic! Dazed into your draw pile. NL moonworks:Norma 2: Shuffle 1 less Dazed into your draw pile."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL Shuffle !Moonworks:InvertedNumber! Dazed into your draw pile. NL moonworks:Norma 2: Shuffle 1 less Dazed into your draw pile."
   },
   "Moonworks:IntelligenceOfficer": {
     "NAME": "Intelligence Officer",
@@ -296,8 +296,7 @@
   },
   "Moonworks:NicePresent": {
     "NAME": "Nice Present",
-    "DESCRIPTION": "Draw !M! card. NL Discard !M! card. NL moonworks:Norma 3: +1 draw and discard.",
-    "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Discard !M! cards. NL moonworks:Norma 3: +1 draw and discard."
+    "DESCRIPTION": "Draw !M! cards. NL Increase this card's cost by 1, up to a maximum of !Moonworks:SecondMagic!. NL moonworks:Norma 3: +1 draw."
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "Out Of Ammo",
@@ -322,7 +321,7 @@
   },
   "Moonworks:RedAndBlue": {
     "NAME": "Red And Blue",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! moonworks:Steady and !M! Vigor at the beginning of your turn. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! Vigor and !M! moonworks:Steady at the beginning of your turn. NL On Play: Discard.",
     "UPGRADE_DESCRIPTION": "Red and Blue are taking a break.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
@@ -420,8 +419,8 @@
   },
   "Moonworks:WindyEnchantment": {
     "NAME": "Windy Enchantment",
-    "DESCRIPTION": "Next turn, NL gain [E] [E]. NL moonworks:Norma 1: Draw 1 card.",
-    "UPGRADE_DESCRIPTION": "Next turn, NL gain [E] [E] [E]. NL moonworks:Norma 1: Draw 1 card."
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Next turn, draw !M! additional card. NL On Play: Discard.",
+    "UPGRADE_DESCRIPTION": "Your tailwind has diminished."
   },
   "Moonworks:x16BigRocket": {
     "NAME": "Big Rocket",

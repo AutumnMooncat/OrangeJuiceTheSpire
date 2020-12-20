@@ -47,7 +47,7 @@
       "invisible_bomb",
       "invisible_bombs"
     ],
-    "DESCRIPTION": "Detonates and damages all enemies within at most 3 turns."
+    "DESCRIPTION": "Detonates and damages it's target within at most 3 turns."
   },
   {
     "NAMES": [

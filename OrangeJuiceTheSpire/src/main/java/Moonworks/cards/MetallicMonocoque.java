@@ -62,9 +62,9 @@ public class MetallicMonocoque extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         boolean updateSecondValue = p.hasPower(MetallicMonocoquePower.POWER_ID);
-        this.addToBot(new ApplyPowerAction(p, p, new MetallicMonocoquePower(p, magicNumber, defaultSecondMagicNumber)));
+        this.addToBot(new ApplyPowerAction(p, p, new MetallicMonocoquePower(p, defaultSecondMagicNumber, magicNumber)));
         if (updateSecondValue) {
-            this.addToBot(new UpdateSecondValueAction(p, p, (TwoAmountPower)p.getPower(MetallicMonocoquePower.POWER_ID), defaultSecondMagicNumber));
+            this.addToBot(new UpdateSecondValueAction(p, p, (TwoAmountPower)p.getPower(MetallicMonocoquePower.POWER_ID), magicNumber));
         }
     }
 

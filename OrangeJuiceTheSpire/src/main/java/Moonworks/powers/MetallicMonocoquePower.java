@@ -24,11 +24,11 @@ public class MetallicMonocoquePower extends TwoAmountPower implements CloneableP
     //private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
-    public MetallicMonocoquePower(final AbstractCreature owner, final int amount, final int thornAmount) {
+    public MetallicMonocoquePower(final AbstractCreature owner, final int thornAmount, final int amount) {
         name = NAME;
         ID = POWER_ID;
-        this.amount = amount;
-        this.amount2 = thornAmount;
+        this.amount2 = amount;
+        this.amount = thornAmount;
 
         this.owner = owner;
         //this.amount = amount;
@@ -50,9 +50,9 @@ public class MetallicMonocoquePower extends TwoAmountPower implements CloneableP
         if(damageAmount > 0) {
             this.flash();
             if (info.type == DamageInfo.DamageType.NORMAL) {
-                damageAmount -= amount;
-            } else {
                 damageAmount -= amount2;
+            } else {
+                damageAmount -= amount;
             }
         }
         return super.onAttackedToChangeDamage(info, damageAmount);
@@ -66,7 +66,7 @@ public class MetallicMonocoquePower extends TwoAmountPower implements CloneableP
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + amount2 + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + amount2 + DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
     }
 
     @Override

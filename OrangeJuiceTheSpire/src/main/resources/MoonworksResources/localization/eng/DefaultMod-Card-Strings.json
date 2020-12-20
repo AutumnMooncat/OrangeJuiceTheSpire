@@ -56,7 +56,8 @@
   },
   "Moonworks:AccelHyper": {
     "NAME": "Accel Hyper",
-    "DESCRIPTION": "This turn, your next Attack and Skill are played twice."
+    "DESCRIPTION": "This turn, your next Attack and Skill are played twice. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "This turn, your next Attack and Skill are played twice."
   },
   "Moonworks:AirStrike": {
     "NAME": "Air Strike",
@@ -305,7 +306,7 @@
   },
   "Moonworks:PlushieMaster": {
     "NAME": "Plushie Master",
-    "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! Plushie Marks to random enemies. NL Each mark provides 2 Temp HP and damage when attacked. NL moonworks:Norma 1: +1 damage. NL moonworks:Norma 2: +1 Temp HP."
+    "DESCRIPTION": "Apply !M! moonworks:Plushie_Marks to random enemies. NL moonworks:Norma 2: +2 Marks."
   },
   "Moonworks:Poppoformation": {
     "NAME": "Poppoformation",

@@ -98,7 +98,8 @@
   },
   "Moonworks:BigMagnum": {
     "NAME": "Big Magnum",
-    "DESCRIPTION": "Lose !M! HP. NL Gain !Moonworks:SecondMagic! Strength. NL Exhaust. NL moonworks:Norma 1: Gain 2 Vigor. NL moonworks:Norma 2: +3 Vigor."
+    "DESCRIPTION": "Lose !Moonworks:InvertedNumber! HP. NL Gain !M! Vigor. NL Gain !Moonworks:SecondMagic! Strength. NL Exhaust. NL moonworks:Norma X: +X Strength.",
+    "EXTENDED_DESCRIPTION": ["Bigger Magnum","Biggest Magnum"]
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "Big Rocket Cannon",

@@ -3,12 +3,16 @@ package Moonworks.cards;
 import Moonworks.actions.AmbushAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
@@ -55,7 +59,20 @@ public class Ambush extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         damageTypeForTurn = getNormaLevel() >= 3 ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
-        this.addToBot(new AmbushAction(m, p, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
+        this.addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false)));
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        //Removed Action in favor of performing a check in calculate card damage
+        //this.addToBot(new AmbushAction(m, p, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+        if(m != null && !m.hasPower("Vulnerable") && !m.hasPower("Artifact")){
+            this.damage *= AbstractDungeon.player.hasRelic("Paper Frog") ? 1.75F : 1.5F;
+        }
+        this.isDamageModified = this.damage != this.baseDamage;
+        initializeDescription();
     }
 
     //Upgraded stats.

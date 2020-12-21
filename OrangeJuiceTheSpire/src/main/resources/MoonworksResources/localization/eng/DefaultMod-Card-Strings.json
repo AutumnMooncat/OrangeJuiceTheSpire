@@ -117,7 +117,7 @@
   },
   "Moonworks:Bloodlust": {
     "NAME": "Bloodlust",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Take 4 damage at the beginning of your turn, but for each Attack played heal !M! HP. NL On Play: Discard. NL moonworks:Norma 2: -1 damage taken.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Take 4 damage at the beginning of your turn, but for each Attack played heal !M! HP. NL On Play: Discard.",
     "UPGRADE_DESCRIPTION": "Your Bloodlust has subsided.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
@@ -189,7 +189,7 @@
   },
   "Moonworks:Flamethrower": {
     "NAME": "Flamethrower",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !D! moonworks:Fixed damage. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !D! moonworks:Fixed damage to an enemy. NL On Play: Discard.",
     "UPGRADE_DESCRIPTION": "Your Flamethrower is out of fuel.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },

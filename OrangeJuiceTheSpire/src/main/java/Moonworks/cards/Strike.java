@@ -92,9 +92,7 @@ public class Strike extends AbstractNormaAttentiveCard {
         if (bonus > 0) {
             this.damage += bonus;
         }
-        if (bonus > 0 || baseBonus > 0) {
-            this.isDamageModified = true;
-        }
+        this.isDamageModified = this.damage != this.baseDamage;
         initializeDescription();
         this.baseDamage -= baseBonus;
     }

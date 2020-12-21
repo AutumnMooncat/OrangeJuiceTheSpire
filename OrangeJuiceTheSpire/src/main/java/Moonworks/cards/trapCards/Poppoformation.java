@@ -1,33 +1,35 @@
-package Moonworks.cards;
+package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.TreasureThiefPower;
+import Moonworks.powers.PoppoformationPower;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-//@AutoAdd.Ignore
-public class TreasureThief extends AbstractNormaAttentiveCard {
 
-    /*
-     * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
-     *
-     * In-Progress Form At the start of your turn, play a TOUCH.
-     */
+public class Poppoformation extends AbstractDynamicCard {
 
     // TEXT DECLARATION
+    public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
-    public static final String ID = OrangeJuiceMod.makeID(TreasureThief.class.getSimpleName());
-    public static final String IMG = makeCardPath("TreasureThief.png");
+    public static final String ID = OrangeJuiceMod.makeID(Poppoformation.class.getSimpleName());
+    public static final String IMG = makeCardPath("Poppoformation.png");
+
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    //public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -35,24 +37,21 @@ public class TreasureThief extends AbstractNormaAttentiveCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
-    private static final int UPGRADE_REDUCED_COST = 0;
-    private static final int STACKS = 1;
+    private static final int STACKS = 2;
+    private static final int UPGRADE_PLUS_STACKS = 1;
 
     // /STAT DECLARATION/
 
 
-    public TreasureThief() {
-
+    public Poppoformation() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = STACKS;
+        magicNumber = baseMagicNumber = STACKS;
         setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
-        this.exhaust = true; //Maybe?
-
     }
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
@@ -73,8 +72,12 @@ public class TreasureThief extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        boolean bonus = getNormaLevel() >= 3;
-        this.addToBot(new ApplyPowerAction(m, p, new TreasureThiefPower(m, this.magicNumber, bonus)));
+        for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
+            if (!aM.isDeadOrEscaped()) {
+                this.addToBot(new ApplyPowerAction(aM, p, new PoppoformationPower(aM, p, magicNumber)));
+                //logger.info("Applied Poppo to " + aM.toString());
+            }
+        }
     }
 
     //Upgraded stats.
@@ -82,7 +85,8 @@ public class TreasureThief extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_REDUCED_COST);
+            //rawDescription = UPGRADE_DESCRIPTION;
+            upgradeMagicNumber(UPGRADE_PLUS_STACKS);
             initializeDescription();
         }
     }

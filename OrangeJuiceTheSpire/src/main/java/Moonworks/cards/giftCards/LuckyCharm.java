@@ -1,24 +1,15 @@
-package Moonworks.cards;
+package Moonworks.cards.giftCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.relics.GoldenDie;
-import basemod.BaseMod;
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -73,8 +64,8 @@ public class LuckyCharm extends AbstractGiftCard {
     }
 
     @Override
-    public void atTurnStart() {
-        super.atTurnStart();
+    public void atTurnStartPreDraw() {
+        super.atTurnStartPreDraw();
         if (active) {
             this.addToBot(new GainEnergyAction(magicNumber));
         }

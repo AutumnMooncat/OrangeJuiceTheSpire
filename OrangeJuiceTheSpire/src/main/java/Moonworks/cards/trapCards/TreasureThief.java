@@ -1,9 +1,9 @@
-package Moonworks.cards;
+package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.BigBangBellPower;
+import Moonworks.powers.TreasureThiefPower;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-import static Moonworks.OrangeJuiceMod.makeID;
-
 //@AutoAdd.Ignore
-public class BigBangBell extends AbstractNormaAttentiveCard {
+public class TreasureThief extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -27,8 +25,8 @@ public class BigBangBell extends AbstractNormaAttentiveCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = makeID(BigBangBell.class.getSimpleName());
-    public static final String IMG = makeCardPath("BigBangBell.png");
+    public static final String ID = OrangeJuiceMod.makeID(TreasureThief.class.getSimpleName());
+    public static final String IMG = makeCardPath("TreasureThief.png");
 
     // /TEXT DECLARATION/
 
@@ -41,55 +39,25 @@ public class BigBangBell extends AbstractNormaAttentiveCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
-    //private static final int UPGRADE_REDUCED_COST = 1;
-    private static final int STACKS = 10;
-    private static final int UPGRADE_PLUS_STACKS = 5;
+    private static final int UPGRADE_REDUCED_COST = 0;
+    private static final int STACKS = 1;
 
     // /STAT DECLARATION/
 
 
-    public BigBangBell() {
+    public TreasureThief() {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = STACKS;
         setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
-        //this.retain = true;
-        //this.exhaust = true;
-        //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
+        this.exhaust = true; //Maybe?
 
     }
-
-    // Actions the card should do.
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(m, p, new BigBangBellPower(m, p, this.magicNumber)));
-    }
-
-    @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) {
-        super.calculateCardDamage(mo);
-        this.magicNumber = this.baseMagicNumber;
-        if (getNormaLevel() >= 3) {
-            this.magicNumber += 5;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
-    }
-
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
         tags.add("Trap");
         return tags;
     }
-
     private static ArrayList<TooltipInfo> TrapTooltip;
     @Override
     public List<TooltipInfo> getCustomTooltipsTop() {
@@ -100,13 +68,20 @@ public class BigBangBell extends AbstractNormaAttentiveCard {
         }
         return TrapTooltip;
     }
+
+    // Actions the card should do.
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        boolean bonus = getNormaLevel() >= 3;
+        this.addToBot(new ApplyPowerAction(m, p, new TreasureThiefPower(m, this.magicNumber, bonus)));
+    }
+
     //Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //upgradeBaseCost(UPGRADE_REDUCED_COST);
-            upgradeMagicNumber(UPGRADE_PLUS_STACKS);
+            upgradeBaseCost(UPGRADE_REDUCED_COST);
             initializeDescription();
         }
     }

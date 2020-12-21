@@ -1,4 +1,4 @@
-package Moonworks.cards;
+package Moonworks.cards.giftCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
@@ -8,9 +8,7 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -85,8 +83,8 @@ public class Bloodlust extends AbstractGiftCard {
     }
 
     @Override
-    public void onRetained() {
-        super.onRetained();
+    public void atTurnStartPreDraw() {
+        super.atTurnStartPreDraw();
         if(active) {
             AbstractPlayer p = AbstractDungeon.player;
             int lessDamage = getNormaLevel() >= 2 ? 1 : 0;

@@ -1,22 +1,23 @@
-package Moonworks.cards;
+package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.Heat300PercentPower;
+import Moonworks.powers.BigBangBellPower;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
+import static Moonworks.OrangeJuiceMod.makeID;
+
 //@AutoAdd.Ignore
-public class Heat300Percent extends AbstractNormaAttentiveCard {
+public class BigBangBell extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -26,8 +27,8 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = OrangeJuiceMod.makeID(Heat300Percent.class.getSimpleName());
-    public static final String IMG = makeCardPath("Heat300Percent.png");
+    public static final String ID = makeID(BigBangBell.class.getSimpleName());
+    public static final String IMG = makeCardPath("BigBangBell.png");
 
     // /TEXT DECLARATION/
 
@@ -40,13 +41,14 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
-    private static final int UPGRADE_REDUCED_COST = 0;
-    private static final int STACKS = 1;
+    //private static final int UPGRADE_REDUCED_COST = 1;
+    private static final int STACKS = 10;
+    private static final int UPGRADE_PLUS_STACKS = 5;
 
     // /STAT DECLARATION/
 
 
-    public Heat300Percent() {
+    public BigBangBell() {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = STACKS;
@@ -60,7 +62,7 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, this.magicNumber)));
+        this.addToBot(new ApplyPowerAction(m, p, new BigBangBellPower(m, p, this.magicNumber)));
     }
 
     @Override
@@ -71,15 +73,15 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
         initializeDescription();
     }
 
-    public void calculateCardDamage(AbstractMonster m) {
-        //logger.info("Calc: last count: " + lastCount);
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 2) {
-            this.magicNumber += 2;
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        this.magicNumber = this.baseMagicNumber;
+        if (getNormaLevel() >= 3) {
+            this.magicNumber += 5;
             this.isMagicNumberModified = true;
         }
         initializeDescription();
-
     }
 
     public List<String> getCardDescriptors() {
@@ -87,6 +89,7 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
         tags.add("Trap");
         return tags;
     }
+
     private static ArrayList<TooltipInfo> TrapTooltip;
     @Override
     public List<TooltipInfo> getCustomTooltipsTop() {
@@ -97,13 +100,13 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
         }
         return TrapTooltip;
     }
-
     //Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(UPGRADE_REDUCED_COST);
+            //upgradeBaseCost(UPGRADE_REDUCED_COST);
+            upgradeMagicNumber(UPGRADE_PLUS_STACKS);
             initializeDescription();
         }
     }

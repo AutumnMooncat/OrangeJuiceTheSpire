@@ -1,26 +1,18 @@
-package Moonworks.cards;
+package Moonworks.cards.giftCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.relics.GoldenDie;
-import basemod.BaseMod;
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -65,6 +57,7 @@ public class Flamethrower extends AbstractGiftCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, USES, currentUses, checkedGolden);
         this.magicNumber = this.baseMagicNumber = EFFECT;
         this.damage = this.baseDamage = DAMAGE;
+        this.damageType = DamageInfo.DamageType.THORNS;
 
     }
 

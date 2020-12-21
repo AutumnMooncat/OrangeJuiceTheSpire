@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.powers.TemporaryStrengthPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -61,17 +62,11 @@ public class BindingChains extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(!decayed) {
-            this.addToBot(new ApplyPowerAction(m, p, new StrengthPower(m, -magicNumber), -magicNumber));
-            if (m != null && !m.hasPower("Artifact")) {
-                this.addToBot(new ApplyPowerAction(m, p, new GainStrengthPower(m, magicNumber), magicNumber));
-            }
+            this.addToBot(new ApplyPowerAction(m, p, new TemporaryStrengthPower(m, -magicNumber)));
             for (AbstractMonster aM: AbstractDungeon.getMonsters().monsters)
             {
                 if (aM != m) {
-                    this.addToBot(new ApplyPowerAction(aM, p, new StrengthPower(aM, -magicNumber/2), -magicNumber/2));
-                    if (m != null && !m.hasPower("Artifact")) {
-                        this.addToBot(new ApplyPowerAction(aM, p, new GainStrengthPower(aM, magicNumber/2), magicNumber/2));
-                    }
+                    this.addToBot(new ApplyPowerAction(aM, p, new TemporaryStrengthPower(aM, -magicNumber/2)));
                 }
             }
             degrade();

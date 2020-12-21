@@ -83,5 +83,13 @@
         "Moonworks:SteadyPower": {
                 "NAME": "Steady",
                 "DESCRIPTIONS": ["Gain #b"," more Block the next time you play a Block gaining card."]
+        },
+        "Moonworks:TemporaryStrengthPower": {
+                "NAME": "Temp Strength",
+                "DESCRIPTIONS": ["This turn, increases attack damage by #b", "This turn, decreases attack damage by #b", "."]
+        },
+        "Moonworks:TemporaryDexterityPower": {
+                "NAME": "Temp Dexterity",
+                "DESCRIPTIONS": ["This turn, increased #yBlock gained from cards by #b" ,"This turn, decreases #yBlock gained from cards by #b", "."]
         }
 }

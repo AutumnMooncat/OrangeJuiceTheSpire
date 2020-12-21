@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.powers.TemporaryDexterityPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -72,8 +73,7 @@ public class LulusLuckyEgg extends AbstractDynamicCard {
                 this.addToBot(new DrawCardAction(magicNumber));
                 break;
             case 3: //Buff 2 or 3 stacks of temp dex
-                this.addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber), magicNumber));
-                this.addToBot(new ApplyPowerAction(p, p, new LoseDexterityPower(p, magicNumber), magicNumber));
+                this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, magicNumber)));
                 break;
         }
         this.addToBot(new GainBlockAction(p, p, block)); //Do our block action. If case 2 happened, this will be higher than the default 5

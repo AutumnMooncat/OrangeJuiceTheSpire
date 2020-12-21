@@ -134,7 +134,8 @@ public class OrangeJuiceMod implements
     //private static final String THE_DEFAULT_BUTTON = "MoonworksResources/images/charSelect/DefaultCharacterButton.png";
     private static final String STARBREAKER_BUTTON = "MoonworksResources/images/charSelect/SBButton.png"; //
     //private static final String THE_DEFAULT_PORTRAIT = "MoonworksResources/images/charSelect/DefaultCharacterPortraitBG.png";
-    private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8.png";
+    //private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8.png";
+    private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8bg.png";
     public static final String STARBREAKER_SHOULDER_1 = "MoonworksResources/images/char/defaultCharacter/shoulderclean.png"; //
     public static final String STARBREAKER_SHOULDER_2 = "MoonworksResources/images/char/defaultCharacter/shoulder2clean.png";
     public static final String STARBREAKER_CORPSE = "MoonworksResources/images/char/defaultCharacter/SBKOSmall.png"; //

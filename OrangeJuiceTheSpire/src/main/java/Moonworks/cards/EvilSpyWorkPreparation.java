@@ -53,6 +53,7 @@ public class EvilSpyWorkPreparation extends AbstractDynamicCard {
     // Upgraded stats.
     @Override
     public void upgrade() {
+        //Expressly dont upgrade ESWE, just upgrade the amount we get
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeMagicNumber(UPGRADE_PLUS_AMOUNT);

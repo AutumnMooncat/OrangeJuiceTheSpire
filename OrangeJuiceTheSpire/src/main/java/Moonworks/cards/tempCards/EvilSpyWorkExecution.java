@@ -96,6 +96,8 @@ public class EvilSpyWorkExecution extends AbstractNormaAttentiveCard {
     //Upgraded stats.
     @Override
     public void upgrade() {
+        //We shouldnt ever get the upgraded version from ESWP, since it expressly upgrades count, not adding upgraded versions of this card.
+        //Nevertheless if the player manually upgrades these cards somehow, they will be in for a treat, as they are much more powerful.
         if (!upgraded) {
             upgradeName();
             rawDescription = UPGRADE_DESCRIPTION;

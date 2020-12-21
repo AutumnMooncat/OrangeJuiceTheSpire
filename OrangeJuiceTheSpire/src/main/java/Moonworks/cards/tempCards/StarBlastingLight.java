@@ -98,7 +98,7 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
         for (int i = 0 ; i < hits ; i++) {
             for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters){
                 if (!aM.isDeadOrEscaped()) {
-                    this.addToBot(new ApplyPowerAction(aM, p, new BlastingLightPower(aM, 1)));
+                    this.addToBot(new ApplyPowerAction(aM, p, new BlastingLightPower(aM, 1), 1, true));
                 }
             }
         }

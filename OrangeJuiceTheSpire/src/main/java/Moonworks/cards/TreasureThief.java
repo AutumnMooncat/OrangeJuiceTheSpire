@@ -51,7 +51,7 @@ public class TreasureThief extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = STACKS;
         setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
-        //this.exhaust = true; //Maybe?
+        this.exhaust = true; //Maybe?
 
     }
     public List<String> getCardDescriptors() {

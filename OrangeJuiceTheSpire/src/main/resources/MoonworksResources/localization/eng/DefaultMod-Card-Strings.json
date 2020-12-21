@@ -395,7 +395,7 @@
   },
   "Moonworks:TreasureThief": {
     "NAME": "Treasure Thief",
-    "DESCRIPTION": "Once per turn, the next time you damage this target, draw !M! card. NL moonworks:Norma 3: One per turn, there is a 50% chance to draw +1 card."
+    "DESCRIPTION": "Once per turn, the next time you damage this target, draw !M! card. NL Exhaust. NL moonworks:Norma 3: One per turn, there is a 50% chance to draw +1 card."
   },
   "Moonworks:Ubiquitous": {
     "NAME": "Ubiquitous",

@@ -6,14 +6,14 @@
     <groupId>moonworks</groupId>
     <artifactId>Moonworks</artifactId> <!--Keep a note of this one: this is the ID used in the "auto add cards" method-->
     <name>100% Spire Juice</name>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <description>Adds Star Breaker from 100% Orange Juice. \n\nIncluding 80+ cards and 0% original art!</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <SlayTheSpire.version>12-13-2020</SlayTheSpire.version>
-        <ModTheSpire.version>3.18.1</ModTheSpire.version>
+        <ModTheSpire.version>3.18.2</ModTheSpire.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--CHANGE THIS TO YOUR STEAM INSTALLATION-->
         <Steam.path>D:\Steam\steamapps</Steam.path>

@@ -1,6 +1,8 @@
 package Moonworks.characters;
 
 import Moonworks.cards.*;
+import Moonworks.cards.giftCards.*;
+import Moonworks.cards.trapCards.*;
 import Moonworks.relics.*;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
@@ -11,6 +13,7 @@ import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.SadisticNature;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -19,6 +22,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.powers.SadisticPower;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -180,6 +184,32 @@ public class TheStarBreaker extends CustomPlayer {
 
         //* Testing Cards
 
+        /*Gift Cards
+
+        retVal.add(Bloodlust.ID);
+        retVal.add(Flamethrower.ID);
+        retVal.add(LuckyCharm.ID);
+        retVal.add(MiracleRedBeanIceCream.ID);
+        retVal.add(RedAndBlue.ID);
+        retVal.add(UnluckyCharm.ID);
+        retVal.add(WindyEnchantment.ID);
+
+        //*/
+
+        /*Trap Cards
+
+        retVal.add(BigBangBell.ID);
+        retVal.add(Heat300Percent.ID);
+        retVal.add(PlushieMaster.ID);
+        retVal.add(Poppoformation.ID);
+        retVal.add(StarBlastingFuse.ID);
+        retVal.add(TreasureThief.ID);
+        retVal.add(Wanted.ID);
+
+        //*/
+
+        //Normal Cards
+
         //retVal.add(Accelerator.ID);
         //retVal.add(AccelHyper.ID);
         //retVal.add(AirStrike.ID);
@@ -189,12 +219,10 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(AwakeningOfTalent.ID);
         //retVal.add(BackdoorTrade.ID);
         //retVal.add(BeyondHell.ID);
-        //retVal.add(BigBangBell.ID);
         //retVal.add(BigMagnum.ID);
         //retVal.add(BigRocketCannon.ID);
         //retVal.add(BindingChains.ID);
         //retVal.add(Blazing.ID);
-        //retVal.add(Bloodlust.ID);
         //retVal.add(CastOff.ID);
         //retVal.add(CloudOfSeagulls.ID);
         //retVal.add(CompletionReward.ID);
@@ -208,35 +236,28 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(ExtendedPhotonRifle.ID);
         //retVal.add(FinalBattle.ID);
         //retVal.add(FinalSurgery.ID);
-        //retVal.add(Flamethrower.ID);
         //retVal.add(ForcedRevival.ID);
         //retVal.add(FullSpeedAlicianrone.ID);
         //retVal.add(Gamble.ID);
         //retVal.add(GoAway.ID);
-        //retVal.add(Heat300Percent.ID);
         //retVal.add(HolyNight.ID);
         //retVal.add(ImmovableObject.ID);
         //retVal.add(ImOnFire.ID);
         //retVal.add(IndiscriminateFireSupport.ID);
         //retVal.add(IntelligenceOfficer.ID);
         //retVal.add(JonathanRush.ID);
-        //retVal.add(LuckyCharm.ID);
         //retVal.add(LulusLuckyEgg.ID);
         //retVal.add(MagicalInferno.ID);
         //retVal.add(MagicalMassacre.ID);
         //retVal.add(MagicalRevenge.ID);
         //retVal.add(MeltingMemories.ID);
         //retVal.add(MetallicMonocoque.ID);
-        //retVal.add(MiracleRedBeanIceCream.ID);
         //retVal.add(MiracleWalker.ID);
         //retVal.add(MixPhenomenon.ID);
         //retVal.add(NicePresent.ID);
         //retVal.add(OutOfAmmo.ID);
-        //retVal.add(PlushieMaster.ID);
-        //retVal.add(Poppoformation.ID);
         //retVal.add(PortablePudding.ID);
         //retVal.add(RagingMadness.ID);
-        //retVal.add(RedAndBlue.ID);
         //retVal.add(ReflectiveShell.ID);
         //retVal.add(ReproductionOfRecords.ID);
         //retVal.add(RocketCannon.ID);
@@ -246,17 +267,12 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(SelfDestruct.ID);
         //retVal.add(ShieldCounter.ID);
         //retVal.add(SinkOrSwim.ID);
-        //retVal.add(StarBlastingFuse.ID);
         //retVal.add(StiffCrystal.ID);
         //retVal.add(SubspaceTunnel.ID);
         //retVal.add(TacticalRetreat.ID);
-        //retVal.add(TreasureThief.ID);
         //retVal.add(Ubiquitous.ID);
-        //retVal.add(UnluckyCharm.ID);
         //retVal.add(UnpaidWork.ID);
-        //retVal.add(Wanted.ID);
         //retVal.add(WeAreWaruda.ID);
-        //retVal.add(WindyEnchantment.ID);
         //retVal.add(x16BigRocket.ID);
 
         //*/

@@ -2,6 +2,7 @@ package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.WantedPower;
 import basemod.BaseMod;
@@ -15,7 +16,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 //@AutoAdd.Ignore
-public class Wanted extends AbstractDynamicCard {
+public class Wanted extends AbstractTrapCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -49,8 +50,7 @@ public class Wanted extends AbstractDynamicCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = STACKS;
-        this.exhaust = true; //This has to exhaust to not be super OP. It isnt exhausting currently for testing
-        setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
+        this.exhaust = true; //This has to exhaust to not be super OP.
 
     }
     public List<String> getCardDescriptors() {

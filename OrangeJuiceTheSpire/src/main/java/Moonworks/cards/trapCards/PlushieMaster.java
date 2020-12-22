@@ -2,6 +2,7 @@ package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.PlushieMasterPower;
 import basemod.BaseMod;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class PlushieMaster extends AbstractNormaAttentiveCard {
+public class PlushieMaster extends AbstractTrapCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -60,22 +61,6 @@ public class PlushieMaster extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = HITS;
         damage = baseDamage = DAMAGE;
-        setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
-    }
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Trap");
-        return tags;
-    }
-    private static ArrayList<TooltipInfo> TrapTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (TrapTooltip == null)
-        {
-            TrapTooltip = new ArrayList<>();
-            TrapTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Trap"), BaseMod.getKeywordDescription("moonworks:Trap")));
-        }
-        return TrapTooltip;
     }
 
     // Actions the card should do.

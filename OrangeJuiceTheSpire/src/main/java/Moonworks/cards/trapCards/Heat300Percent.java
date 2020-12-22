@@ -2,6 +2,7 @@ package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.Heat300PercentPower;
 import basemod.BaseMod;
@@ -15,7 +16,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 //@AutoAdd.Ignore
-public class Heat300Percent extends AbstractNormaAttentiveCard {
+public class Heat300Percent extends AbstractTrapCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -49,10 +50,8 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = STACKS;
-        setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
         //this.retain = true;
         //this.exhaust = true;
-        //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
     }
 
@@ -79,22 +78,6 @@ public class Heat300Percent extends AbstractNormaAttentiveCard {
         }
         initializeDescription();
 
-    }
-
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Trap");
-        return tags;
-    }
-    private static ArrayList<TooltipInfo> TrapTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (TrapTooltip == null)
-        {
-            TrapTooltip = new ArrayList<>();
-            TrapTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Trap"), BaseMod.getKeywordDescription("moonworks:Trap")));
-        }
-        return TrapTooltip;
     }
 
     //Upgraded stats.

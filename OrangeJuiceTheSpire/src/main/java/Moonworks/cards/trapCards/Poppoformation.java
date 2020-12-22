@@ -2,6 +2,7 @@ package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.PoppoformationPower;
 import basemod.BaseMod;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class Poppoformation extends AbstractDynamicCard {
+public class Poppoformation extends AbstractTrapCard {
 
     // TEXT DECLARATION
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
@@ -51,22 +52,6 @@ public class Poppoformation extends AbstractDynamicCard {
     public Poppoformation() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         magicNumber = baseMagicNumber = STACKS;
-        setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
-    }
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Trap");
-        return tags;
-    }
-    private static ArrayList<TooltipInfo> TrapTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (TrapTooltip == null)
-        {
-            TrapTooltip = new ArrayList<>();
-            TrapTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Trap"), BaseMod.getKeywordDescription("moonworks:Trap")));
-        }
-        return TrapTooltip;
     }
 
     // Actions the card should do.

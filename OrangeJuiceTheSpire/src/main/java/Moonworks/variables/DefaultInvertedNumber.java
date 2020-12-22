@@ -23,7 +23,6 @@ public class DefaultInvertedNumber extends DynamicVariable {
     @Override
     public boolean isModified(AbstractCard card) {
         return ((AbstractDefaultCard) card).isInvertedNumberModified;
-
     }
 
     @Override

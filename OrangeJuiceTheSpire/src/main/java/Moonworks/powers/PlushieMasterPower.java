@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PlushieMasterPower extends AbstractPower implements CloneablePowerInterface {
+public class PlushieMasterPower extends AbstractTrapPower implements CloneablePowerInterface {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
     public AbstractCreature source;

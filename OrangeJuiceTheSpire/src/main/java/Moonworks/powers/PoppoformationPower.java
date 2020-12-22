@@ -10,7 +10,7 @@ import Moonworks.OrangeJuiceMod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PoppoformationPower extends AbstractPower implements CloneablePowerInterface {
+public class PoppoformationPower extends AbstractTrapPower implements CloneablePowerInterface {
 
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 

@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class InvisibleBombPower extends AbstractPower implements CloneablePowerInterface {
+public class InvisibleBombPower extends AbstractTrapPower implements CloneablePowerInterface {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
     public AbstractCreature source;

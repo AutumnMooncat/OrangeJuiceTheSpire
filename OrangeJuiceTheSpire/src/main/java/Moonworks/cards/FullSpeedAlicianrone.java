@@ -42,7 +42,7 @@ public class FullSpeedAlicianrone extends AbstractNormaAttentiveCard {
     private static final int DAMAGE = 8;
     private static final int UPGRADE_PLUS_DMG = 3;
     private static final int DRAW = 2;
-    private static final int UPGRADE_PLUS_DRAW = 1;
+    //private static final int UPGRADE_PLUS_DRAW = 1;
 
     // /STAT DECLARATION/
 
@@ -75,7 +75,7 @@ public class FullSpeedAlicianrone extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPGRADE_PLUS_DMG);
-            upgradeMagicNumber(UPGRADE_PLUS_DRAW);
+            //upgradeMagicNumber(UPGRADE_PLUS_DRAW);
             initializeDescription();
         }
     }

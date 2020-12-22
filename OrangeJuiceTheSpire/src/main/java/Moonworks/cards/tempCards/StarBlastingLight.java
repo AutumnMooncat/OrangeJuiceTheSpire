@@ -9,12 +9,16 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 
 import java.util.ArrayList;
@@ -95,11 +99,15 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
         this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
         this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 1.0F));
         int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
-        for (int i = 0 ; i < hits ; i++) {
-            for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters){
-                if (!aM.isDeadOrEscaped()) {
-                    this.addToBot(new ApplyPowerAction(aM, p, new BlastingLightPower(aM, 1), 1, true));
-                }
+        for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
+            AbstractPower pow = aM.getPower(ArtifactPower.POWER_ID);
+            int artifactAmount = 0;
+            if (pow != null) {
+                artifactAmount = pow.amount;
+                this.addToTop(new ReducePowerAction(aM, p, pow, hits));
+            }
+            if (hits > artifactAmount) {
+                this.addToBot(new ApplyPowerAction(aM, p, new BlastingLightPower(aM, hits-artifactAmount), hits-artifactAmount, true));
             }
         }
     }

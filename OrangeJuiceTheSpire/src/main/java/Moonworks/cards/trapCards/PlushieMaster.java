@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -79,10 +81,13 @@ public class PlushieMaster extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractMonster aM;
+        Map<AbstractMonster, Integer> map = new HashMap<>();
         for (int i = 0 ; i < magicNumber ; i++) {
-            aM = AbstractDungeon.getRandomMonster();
-            this.addToBot(new ApplyPowerAction(aM, p, new PlushieMasterPower(aM, p, STACK_MULTIPLE, TEMP_HP, DAMAGE)));
+            AbstractMonster aM = AbstractDungeon.getRandomMonster();
+            map.put(aM, map.getOrDefault(aM, 0)+1);
+        }
+        for (AbstractMonster aM : map.keySet()) {
+            this.addToBot(new ApplyPowerAction(aM, p, new PlushieMasterPower(aM, p, map.get(aM), TEMP_HP, DAMAGE)));
         }
     }
 

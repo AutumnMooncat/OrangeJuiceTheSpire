@@ -52,8 +52,8 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
     public IndiscriminateFireSupport() {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        damage = baseDamage = DAMAGE;
-        invertedNumber = baseInvertedNumber = DAZED;
+        this.damage = this.baseDamage = DAMAGE;
+        this.invertedNumber = this.baseInvertedNumber = DAZED;
         this.isMultiDamage = true;
         this.cardsToPreview = new Dazed();
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.

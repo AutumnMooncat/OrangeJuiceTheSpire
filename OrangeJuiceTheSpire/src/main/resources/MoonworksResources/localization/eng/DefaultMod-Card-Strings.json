@@ -413,7 +413,8 @@
   },
   "Moonworks:Wanted": {
     "NAME": "Wanted",
-    "DESCRIPTION": "Apply !M! moonworks:Wanted. NL Exhaust."
+    "DESCRIPTION": "Apply !M! moonworks:Wanted. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Apply !M! moonworks:Wanted. NL Exhaust."
   },
   "Moonworks:WeAreWaruda": {
     "NAME": "We Are Waruda",

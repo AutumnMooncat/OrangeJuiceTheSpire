@@ -9,6 +9,8 @@ import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
@@ -28,6 +30,9 @@ public class Wanted extends AbstractTrapCard {
 
     public static final String ID = OrangeJuiceMod.makeID(Wanted.class.getSimpleName());
     public static final String IMG = makeCardPath("Wanted.png");
+
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -53,22 +58,6 @@ public class Wanted extends AbstractTrapCard {
         this.exhaust = true; //This has to exhaust to not be super OP.
 
     }
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Trap");
-        return tags;
-    }
-    private static ArrayList<TooltipInfo> TrapTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (TrapTooltip == null)
-        {
-            TrapTooltip = new ArrayList<>();
-            //TrapTooltip.add(new TooltipInfo("Trap", "This card's effect ignores Artifact."));
-            TrapTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Trap"), BaseMod.getKeywordDescription("moonworks:Trap")));
-        }
-        return TrapTooltip;
-    }
 
     // Actions the card should do.
     @Override
@@ -80,8 +69,10 @@ public class Wanted extends AbstractTrapCard {
     @Override
     public void upgrade() {
         if (!upgraded) {
+            this.retain = true;
+            rawDescription = UPGRADE_DESCRIPTION;
             upgradeName();
-            upgradeBaseCost(UPGRADE_REDUCED_COST);
+            //upgradeBaseCost(UPGRADE_REDUCED_COST);
             initializeDescription();
         }
     }

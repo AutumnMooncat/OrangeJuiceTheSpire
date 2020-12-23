@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +13,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BarricadePower;
+import com.megacrit.cardcrawl.powers.BufferPower;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"
@@ -92,9 +96,9 @@ public class Strike extends AbstractNormaAttentiveCard {
         if (bonus > 0) {
             this.damage += bonus;
         }
+        this.baseDamage -= baseBonus;
         this.isDamageModified = this.damage != this.baseDamage;
         initializeDescription();
-        this.baseDamage -= baseBonus;
     }
 
     // Upgraded stats.

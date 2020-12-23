@@ -10,8 +10,12 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -51,7 +55,7 @@ public class FullSpeedAlicianrone extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
-        this.isMultiDamage = true;
+        //this.isMultiDamage = true;
     }
     @Override
     public float getTitleFontSize() {
@@ -65,8 +69,24 @@ public class FullSpeedAlicianrone extends AbstractNormaAttentiveCard {
             this.addToBot(new DamageAllEnemiesAction(p, multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
         } else {
             this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            //Time for some hacks
+            /* See if this works, lol
+            int index = AbstractDungeon.getMonsters().monsters.indexOf(m);
+            this.addToBot(new DamageAction(m, new DamageInfo(p, multiDamage[index], damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            //*/
         }
         this.addToBot(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, magicNumber)));
+    }
+
+    @Override
+    public void applyPowers() {
+        this.target = getNormaLevel() >= 3 ? CardTarget.ALL_ENEMY : CardTarget.ENEMY;
+        super.applyPowers();
+    }
+
+    public void calculateCardDamage(AbstractMonster m) {
+        this.isMultiDamage = getNormaLevel() >= 3;
+        super.calculateCardDamage(m);
     }
 
     //Upgraded stats.

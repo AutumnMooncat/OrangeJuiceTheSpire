@@ -33,7 +33,7 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     public static boolean broken = false;
 
     public Homemark() {
-        super(ID, IMG, OUTLINE, RelicTier.COMMON, LandingSound.CLINK);
+        super(ID, IMG, OUTLINE, RelicTier.STARTER, LandingSound.CLINK);
     }
 
 

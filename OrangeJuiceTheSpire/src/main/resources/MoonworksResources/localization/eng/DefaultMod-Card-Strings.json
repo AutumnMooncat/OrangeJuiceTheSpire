@@ -403,7 +403,7 @@
   },
   "Moonworks:UnluckyCharm": {
     "NAME": "Unlucky Charm",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Lose 1 temporary Dexterity. NL On Play: Discard. NL On Exhaust: Gain 4 Dexterity.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Lose !Moonworks:InvertedNumber! temporary Dexterity. NL On Play: Discard. NL On Exhaust: Gain !M! Dexterity.",
     "UPGRADE_DESCRIPTION": "You are feeling a little luckier without this around.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },

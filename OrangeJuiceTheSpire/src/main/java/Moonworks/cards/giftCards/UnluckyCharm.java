@@ -34,7 +34,7 @@ public class UnluckyCharm extends AbstractGiftCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = -2;
-    private static final int EFFECT = -1;
+    private static final int NEGATIVE_EFFECT = 1;
     private static final int POSITIVE_EFFECT = 3;
     private static final int UPGRADE_PLUS_POSITIVE_EFFECT = 1;
     private static final int USES = 2;
@@ -51,7 +51,8 @@ public class UnluckyCharm extends AbstractGiftCard {
     public UnluckyCharm(int currentUses, boolean checkedGolden) {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, USES, currentUses, checkedGolden, true);
-        this.magicNumber = this.baseMagicNumber = EFFECT;
+        this.magicNumber = this.baseMagicNumber = POSITIVE_EFFECT;
+        this.invertedNumber = this.baseInvertedNumber = NEGATIVE_EFFECT;
 
     }
 
@@ -59,7 +60,7 @@ public class UnluckyCharm extends AbstractGiftCard {
     public void triggerOnExhaust() {
         super.triggerOnExhaust();
         AbstractPlayer p = AbstractDungeon.player;
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, POSITIVE_EFFECT),POSITIVE_EFFECT));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber),magicNumber));
     }
 
     @Override
@@ -67,7 +68,7 @@ public class UnluckyCharm extends AbstractGiftCard {
         super.triggerWhenDrawn();
         if(active){
             AbstractPlayer p = AbstractDungeon.player;
-            this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, magicNumber)));
+            this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, -invertedNumber)));
         }
     }
 
@@ -76,7 +77,7 @@ public class UnluckyCharm extends AbstractGiftCard {
         super.atTurnStartPreDraw();
         if(active) {
             AbstractPlayer p = AbstractDungeon.player;
-            this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, magicNumber)));
+            this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, -invertedNumber)));
         }
     }
 

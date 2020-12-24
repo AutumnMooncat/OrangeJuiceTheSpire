@@ -26,9 +26,6 @@ public class SBBomb extends CustomRelic {
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("SBBomb.png"));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("SBBomb.png"));
 
-    private static final AbstractCard CARD = new StarBlastingLight();
-
-
     public SBBomb() {
         super(ID, IMG, OUTLINE, RelicTier.BOSS, LandingSound.HEAVY);
         this.counter = 0;
@@ -38,6 +35,7 @@ public class SBBomb extends CustomRelic {
         //if (card.type == AbstractCard.CardType.SKILL) {
             ++this.counter;
             if (this.counter == 12) {
+                AbstractCard starBlastingLight = new StarBlastingLight();
                 this.counter = 0;
                 this.flash();
                 this.pulse = false;
@@ -45,12 +43,12 @@ public class SBBomb extends CustomRelic {
                 AbstractDungeon.actionManager.addToBottom(new TalkAction(true, DESCRIPTIONS[1], 4.0f, 2.0f));
                 AbstractDungeon.player.hand.refreshHandLayout();
                 if (AbstractDungeon.player.hasPower("MasterRealityPower")) {
-                    CARD.upgrade();
+                    starBlastingLight.upgrade();
                 }
                 if (AbstractDungeon.player.hand.size() < 10) {
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(CARD.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(starBlastingLight.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
                 } else {
-                    AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(CARD.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F, false, false));
+                    AbstractDungeon.effectList.add(new ShowCardAndAddToDrawPileEffect(starBlastingLight.makeStatEquivalentCopy(), (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F, false, false));
                 }
             } else if (this.counter == 11) {
                 this.beginPulse();

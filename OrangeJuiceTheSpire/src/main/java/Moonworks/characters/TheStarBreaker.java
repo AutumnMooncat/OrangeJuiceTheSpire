@@ -1,19 +1,19 @@
 package Moonworks.characters;
 
+import Moonworks.CustomAnimationListener;
+import Moonworks.CustomSpriterAnimation;
 import Moonworks.cards.*;
 import Moonworks.cards.giftCards.*;
-import Moonworks.cards.trapCards.*;
 import Moonworks.relics.*;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.math.MathUtils;
-import com.esotericsoftware.spine.AnimationState;
+import com.brashmonkey.spriter.Player;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.SadisticNature;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.powers.SadisticPower;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -80,10 +80,10 @@ public class TheStarBreaker extends CustomPlayer {
     private static final String[] TEXT = characterStrings.TEXT;
 
     //private static final String defaultAnim = "MoonworksResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml";
-    private static final String animSet = "MoonworksResources/images/char/defaultCharacter/Spriter/StarbreakerStuff.scml";
+    private static final String ANIM_FILE = "MoonworksResources/images/char/defaultCharacter/Spriter/StarbreakerStuff2.scml";
 
     //private static final SpriterAnimation defaultAnimation = new SpriterAnimation(defaultAnim);
-    private static final SpriterAnimation idleAnimation = new SpriterAnimation(animSet);
+    private static final CustomSpriterAnimation ANIM_SET = new CustomSpriterAnimation(ANIM_FILE);
 
 
     // =============== /STRINGS/ =================
@@ -113,7 +113,10 @@ public class TheStarBreaker extends CustomPlayer {
 
     public TheStarBreaker(String name, PlayerClass setClass) {
         //super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxm.png", null, idleAnimation);
-        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", layerSpeeds, idleAnimation);
+        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", layerSpeeds, ANIM_SET);
+
+        Player.PlayerListener listener = new CustomAnimationListener(this);
+        ((CustomSpriterAnimation)this.animation).myPlayer.addListener(listener);
 
 
         // =============== TEXTURES, ENERGY, LOADOUT =================  
@@ -130,12 +133,11 @@ public class TheStarBreaker extends CustomPlayer {
 
         // =============== ANIMATIONS =================  
 
-        loadAnimation(
-                THE_DEFAULT_SKELETON_ATLAS,
-                THE_DEFAULT_SKELETON_JSON,
-                1.0f);
+        /*
+        loadAnimation(THE_DEFAULT_SKELETON_ATLAS, THE_DEFAULT_SKELETON_JSON, 1.0f);
         AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
         e.setTime(e.getEndTime() * MathUtils.random());
+        */
 
         // =============== /ANIMATIONS/ =================
 
@@ -246,6 +248,7 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(IndiscriminateFireSupport.ID);
         //retVal.add(IntelligenceOfficer.ID);
         //retVal.add(JonathanRush.ID);
+        //retVal.add(LeapThroughSpaceMarking.ID);
         //retVal.add(LulusLuckyEgg.ID);
         //retVal.add(MagicalInferno.ID);
         //retVal.add(MagicalMassacre.ID);
@@ -408,13 +411,46 @@ public class TheStarBreaker extends CustomPlayer {
         return TEXT[2];
     }
 
-    /* //Trying to learn how to animate the character
-    @Override
+
     public void useCard(AbstractCard c, AbstractMonster monster, int energyOnUse) {
-        //logger.info("Played Card?");
-        //this.animation = defaultAnimation;
         super.useCard(c, monster, energyOnUse);
-        //logger.info(idleAnimation.myPlayer.getBaseAnimation().toString());
-        //this.animation = idleAnimation;
-    }*/
+        switch (c.type) {
+            case ATTACK:
+                playAnimation("attack");
+                break;
+            case SKILL:
+                playAnimation("skill");
+                //This can be compressed into default, but will stay like this for if I make more animations
+                break;
+            case POWER:
+                playAnimation("happy");
+                break;
+            case STATUS:
+            case CURSE:
+            default:
+                playAnimation("skill");
+                break;
+        }
+    }
+
+    public void damage(DamageInfo info) {
+        super.damage(info);
+        if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
+            playAnimation("hurt");
+        }
+
+    }
+
+    public void playAnimation(String name) {
+        ((CustomSpriterAnimation)this.animation).myPlayer.setAnimation(name);
+    }
+
+    public void resetToIdleAnimation() {
+        playAnimation("idle");
+    }
+
+    public void playDeathAnimation() {
+        playAnimation("ko");
+    }
+
 }

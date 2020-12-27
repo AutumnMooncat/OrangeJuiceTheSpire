@@ -1,18 +1,17 @@
-package Moonworks.cards;
+package Moonworks.cards.cutCards;
 
+import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.powers.PortablePuddingPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import Moonworks.characters.TheStarBreaker;
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import Moonworks.OrangeJuiceMod;
-import Moonworks.characters.TheStarBreaker;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-
-public class PortablePudding extends AbstractDynamicCard {
+@AutoAdd.Ignore //This is a card for testing things, it shouldn't show up in game
+public class Ubiquitous extends AbstractDynamicCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -22,8 +21,8 @@ public class PortablePudding extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 
-    public static final String ID = OrangeJuiceMod.makeID(PortablePudding.class.getSimpleName());
-    public static final String IMG = makeCardPath("PortablePudding.png");
+    public static final String ID = OrangeJuiceMod.makeID(Ubiquitous.class.getSimpleName());
+    public static final String IMG = makeCardPath("Ubiquitous.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
@@ -37,26 +36,24 @@ public class PortablePudding extends AbstractDynamicCard {
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 2;
-
-    private static final int REGEN = 1;
-    private static final int UPGRADE_PLUS_REGEN = 1;
+    private static final int COST = 1;
+    private static final int THIEF = 5;
+    private static final int UPGRADE_REDUCED_COST = 0;
 
     // /STAT DECLARATION/
 
 
-    public PortablePudding() {
+    public Ubiquitous() {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        magicNumber = baseMagicNumber = REGEN;
-        //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
+        magicNumber = baseMagicNumber = THIEF;
 
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new PortablePuddingPower(p, magicNumber)));
+        //Replace me for testing purposes
     }
 
     //Upgraded stats.
@@ -64,8 +61,7 @@ public class PortablePudding extends AbstractDynamicCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //upgradeBaseCost(UPGRADE_REDUCED_COST);
-            upgradeMagicNumber(UPGRADE_PLUS_REGEN);
+            upgradeBaseCost(UPGRADE_REDUCED_COST);
             initializeDescription();
         }
     }

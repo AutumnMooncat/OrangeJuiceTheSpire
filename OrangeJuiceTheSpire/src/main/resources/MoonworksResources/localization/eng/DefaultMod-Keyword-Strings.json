@@ -96,7 +96,7 @@
       "Steady",
       "steady"
     ],
-    "DESCRIPTION": "Gain more block the next time a Block gaining card is played."
+    "DESCRIPTION": "Gain more Block the next time a Block gaining card is played."
   },
   {
     "PROPER_NAME": "Gift Uses",
@@ -104,9 +104,8 @@
       "Gift Uses",
       "gift_uses"
     ],
-    "DESCRIPTION": "This card Retains while it has uses, and Exhausts when it is out. One use is consumed when this card is discarded, or retained."
-  }
-,
+    "DESCRIPTION": "This card Retains while it has uses, and immediately Exhausts when it is out. One use is consumed when this card's primary effect triggers."
+  },
   {
     "PROPER_NAME": "Plushie Mark",
     "NAMES": [
@@ -115,5 +114,57 @@
       "plushie_marks"
     ],
     "DESCRIPTION": "If a target with a mark is hit for... NL 6 or less damage: Raise the damage to 7 and ignore block. NL 7 or more damage: Gain 3 temporary HP. NL One mark then consumed."
+  },
+  {
+    "NAMES": [
+      "Divergence",
+      "divergence",
+      "diverging",
+      "diverge"
+    ],
+    "DESCRIPTION": "Divergence from the main timeline results in things not going back exactly the way you remembered them. NL Attempting to Leap with #rhigh Divergence may result in #rpermanent #runwanted #reffects."
+  },
+  {
+    "NAMES": [
+      "Degraded",
+      "degraded"
+    ],
+    "DESCRIPTION": "This card's base damage and block values are #rreduced by up to #r3 each time it is drawn. The base values will not reduce lower than #b1."
+  },
+  {
+    "NAMES": [
+      "Fragile",
+      "fragile"
+    ],
+    "DESCRIPTION": "This card has a #r1 #rin #r3 chance of #rautomatically #rexhausting when drawn."
+  },
+  {
+    "NAMES": [
+      "Voiding",
+      "voiding"
+    ],
+    "DESCRIPTION": "Lose #b1 energy when you draw this card."
+  },
+  {
+    "NAMES": [
+      "Reduced",
+      "reduced"
+    ],
+    "DESCRIPTION": "This card's base values are lowered by 1."
+  },
+  {
+    "NAMES": [
+      "Withering",
+      "withering"
+    ],
+    "DESCRIPTION": "This card immediately exhausts, regardless of where it is."
+  },
+  {
+    "PROPER_NAME": "Temporal Anchor",
+    "NAMES": [
+      "Temporal Anchor",
+      "temporal_anchor"
+    ],
+    "DESCRIPTION": "Your #yTemporal #yAnchor allows you to rewind your #gpersonal #gstate to when it was created. All other entities are #gunaffected. NL A #yTemporal #yAnchor will undergo #rDivergence the longer you take between creating it and rewinding to it."
   }
 ]

@@ -69,7 +69,7 @@
   },
   "Moonworks:AngelHand": {
     "NAME": "Angel Hand",
-    "DESCRIPTION": "Retain. NL Gain !B! Block. NL On retain, transform this card into Devil Hand."
+    "DESCRIPTION": "Retain. NL Gain !B! Block. NL On retain, this card changes into *Devil *Hand."
   },
   "Moonworks:AnotherUltimateWeapon": {
     "NAME": "Another Ultimate Weapon",
@@ -104,7 +104,7 @@
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "Big Rocket Cannon",
-    "DESCRIPTION": "Deal !D! damage and half that to ALL OTHER enemies. NL Shuffle Air [#FFF6E2]Strike into your draw pile. NL Purge."
+    "DESCRIPTION": "Deal !D! damage and half that to ALL OTHER enemies. NL Shuffle *Air *Strike into your [#FFF6E2]draw pile. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "Binding Chains",
@@ -127,9 +127,9 @@
   },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "Cloud of Seagulls",
-    "DESCRIPTION": "Deal !D! damage to a random target. NL Shuffle !M! Jonathan Rush into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Shuffle !M! Jonathan Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
-    "EXTENDED_DESCRIPTION": ["Deal !D! damage to a random target. NL Shuffle !M! Jonathan Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card."]
+    "DESCRIPTION": "Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Shuffle !M! *Jonathan *Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
+    "EXTENDED_DESCRIPTION": ["Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card."]
   },
   "Moonworks:CompletionReward": {
     "NAME": "Completion Reward",
@@ -160,11 +160,22 @@
   },
   "Moonworks:DevilHand": {
     "NAME": "Devil Hand",
-    "DESCRIPTION": "Retain. NL Deal !D! damage. NL On retain, transform this card into Angel Hand."
+    "DESCRIPTION": "Retain. NL Deal !D! damage. NL On retain, this card changes into *Angel *Hand."
   },
   "Moonworks:Dinner": {
     "NAME": "Dinner",
     "DESCRIPTION": "Apply !M! Regen to ALL targets. NL Exhaust. NL moonworks:Norma 4: Gain Block equal to the amount of regen applied."
+  },
+  "Moonworks:EvilMastermind": {
+    "NAME": "Evil Mastermind",
+    "DESCRIPTION": "Play the *effect of all your other *Trap cards on random enemies.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Play the *effect of all your other *Trap cards on random enemies.",
+    "EXTENDED_DESCRIPTION":
+    ["Innate. NL ",
+      " NL Exhaust.",
+      "Play the *effect of the following *Traps on random enemies: ",
+      " NL Plus *",
+      " more."]
   },
   "Moonworks:EvilSpyWorkExecution": {
     "NAME": "Evil Spy Work Execution",
@@ -173,7 +184,7 @@
   },
   "Moonworks:EvilSpyWorkPreparation": {
     "NAME": "Evil Spy Work Preparation",
-    "DESCRIPTION": "Shuffle !M! Evil Spy Work Execution into your draw pile."
+    "DESCRIPTION": "Shuffle !M! *Evil *Spy *Work *Execution into your draw pile."
   },
   "Moonworks:ExtendedPhotonRifle": {
     "NAME": "Extended Photon Rifle",
@@ -240,8 +251,17 @@
   },
   "Moonworks:JonathanRush": {
     "NAME": "Jonathan Rush",
-    "DESCRIPTION": "Autoplay. NL Deal !D! Damage to a random enemy. NL Increase the damage of ALL Jonathan Rush cards this combat by !M!.",
-    "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! Damage to a random enemy. NL Increase the damage of ALL Jonathan Rush cards this combat by !M!."
+    "DESCRIPTION": "Autoplay. NL Deal !D! Damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!.",
+    "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! Damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!."
+  },
+  "Moonworks:LeapThroughSpace": {
+    "NAME": "Leap Through Space",
+    "DESCRIPTION": "Create a moonworks:Temporal_Anchor with a moonworks:Divergence of !M!. NL Add 1 *Leap *Through *Time to the bottom of your draw pile."
+  },
+  "Moonworks:LeapThroughTime": {
+    "NAME": "Leap Through Time",
+    "DESCRIPTION": "Rewind your personal timeline to when your moonworks:Temporal_Anchor was created. NL Each turn, moonworks:Divergence increases by !M! until this card is played.",
+    "EXTENDED_DESCRIPTION": ["Wherever I end up, I know what to do.", "Leaping!", "Where are you taking me to?"]
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "Long-Distance Shot",
@@ -302,7 +322,7 @@
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "Out Of Ammo",
-    "DESCRIPTION": "Whenever you have either no cards, or only moonworks:Gift cards, in your hand during your turn, draw a card."
+    "DESCRIPTION": "Whenever you have either no cards, or only moonworks:Gift and unplayable *Status cards, in your hand during your turn, draw a card."
   },
   "Moonworks:PlushieMaster": {
     "NAME": "Plushie Master",
@@ -338,7 +358,7 @@
   },
   "Moonworks:RocketCannon": {
     "NAME": "Rocket Cannon",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! Big Rocket Cannon into your draw pile. NL moonworks:Norma 2: Shuffle an additional card."
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Big *Rocket *Cannon into your draw pile. NL moonworks:Norma 2: Shuffle an additional card."
   },
   "Moonworks:SakisCookie": {
     "NAME": "Saki's Cookie",
@@ -403,13 +423,13 @@
   },
   "Moonworks:UnluckyCharm": {
     "NAME": "Unlucky Charm",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Lose !Moonworks:InvertedNumber! temporary Dexterity. NL On Play: Discard. NL On Exhaust: Gain !M! Dexterity.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Lose !Moonworks:InvertedNumber! temporary Dexterity. NL On Exhaust: Gain !M! Dexterity. NL This card can not be discarded by playing it.",
     "UPGRADE_DESCRIPTION": "You are feeling a little luckier without this around.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
   "Moonworks:UnpaidWork": {
     "NAME": "Unpaid Work",
-    "DESCRIPTION": "The next card you play which does not purge and costs more than 0 will refund it's cost. NL Exhaust."
+    "DESCRIPTION": "The next card you play which does not [#FFF6E2]purge and costs more than 0 will [#FFF6E2]refund it's cost. NL Exhaust."
   },
   "Moonworks:Wanted": {
     "NAME": "Wanted",
@@ -422,7 +442,7 @@
   },
   "Moonworks:WindyEnchantment": {
     "NAME": "Windy Enchantment",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Next turn, draw !M! additional card. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Draw !M! additional card. NL On Play: Discard.",
     "UPGRADE_DESCRIPTION": "Your tailwind has diminished."
   },
   "Moonworks:x16BigRocket": {

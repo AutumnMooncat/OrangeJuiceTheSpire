@@ -67,5 +67,12 @@
     "DESCRIPTIONS": [
       "Start every combat at #yNorma #b",". Right click when out of combat to spend #b"," #yGold to permanently raise this effect, up to a maximum of #b5."
     ]
+  },
+  "Moonworks:WarpPanel": {
+    "NAME": "Warp Panel",
+    "FLAVOR": "What a lucky roll!",
+    "DESCRIPTIONS": [
+      "#rDivergence will no longer stack higher than 80."
+    ]
   }
 }

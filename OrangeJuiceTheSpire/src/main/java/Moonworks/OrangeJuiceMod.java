@@ -398,6 +398,7 @@ public class OrangeJuiceMod implements
         BaseMod.addRelicToCustomPool(new LittleGull(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
         BaseMod.addRelicToCustomPool(new GoldenDie(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
         BaseMod.addRelicToCustomPool(new Homemark(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new WarpPanel(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
         //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
@@ -409,6 +410,7 @@ public class OrangeJuiceMod implements
         UnlockTracker.markRelicAsSeen(LittleGull.ID);
         UnlockTracker.markRelicAsSeen(GoldenDie.ID);
         UnlockTracker.markRelicAsSeen(Homemark.ID);
+        UnlockTracker.markRelicAsSeen(WarpPanel.ID);
         logger.info("Done adding relics!");
     }
     

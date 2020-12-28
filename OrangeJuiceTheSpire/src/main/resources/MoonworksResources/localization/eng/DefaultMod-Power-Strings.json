@@ -70,7 +70,7 @@
         },
         "Moonworks:WantedPower": {
                 "NAME": "Wanted",
-                "DESCRIPTIONS": ["This enemy will be the target of every negative action it doesn't make for #b", " turn.", " turns."]
+                "DESCRIPTIONS": ["This enemy will be the target of every negative action for #b", " turn.", " turns."]
         },
         "Moonworks:BlazingPower": {
                 "NAME": "Blazing!",

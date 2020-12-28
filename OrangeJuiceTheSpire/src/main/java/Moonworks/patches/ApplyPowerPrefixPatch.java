@@ -36,7 +36,7 @@ public class ApplyPowerPrefixPatch
     {
         if(powerToApply[0].type == AbstractPower.PowerType.DEBUFF) { //If the power is a debuff
             for(AbstractMonster aM : AbstractDungeon.getMonsters().monsters) { //Look through monster list
-                if(aM != source[0] && aM.hasPower(WantedPower.POWER_ID) && !aM.isDeadOrEscaped()) { //does one have this power?
+                if(/*aM != source[0] &&*/ aM.hasPower(WantedPower.POWER_ID) && !aM.isDeadOrEscaped()) { //does one have this power?
                     target[0] = aM; //new target is that monster
                     break;
                 }

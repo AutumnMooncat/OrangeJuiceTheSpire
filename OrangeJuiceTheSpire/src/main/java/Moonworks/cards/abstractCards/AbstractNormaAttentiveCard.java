@@ -35,6 +35,7 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
     }
 
     public boolean hasNormaPower() {
+        if (AbstractDungeon.player == null) return false;
         return AbstractDungeon.player.hasPower(NormaPower.POWER_ID);
     }
 

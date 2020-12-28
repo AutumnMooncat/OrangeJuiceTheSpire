@@ -75,11 +75,14 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
 
     @Override
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
-        super.renderAmount(sb, x, y , c);
         if (broken) {
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, new Color(1.0F, 0.0F, 0.0F, 1.0F));
+        } else {
+            super.renderAmount(sb, x, y , c);
+            if (this.amount == 0) {
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, new Color(0.0F, 1.0F, 0.0F, 1.0F));
+            }
         }
-
     }
     private void applyBrokenEffects() {
         this.addToBot(new VFXAction(owner, new ScreenOnFireEffect(), 1.0F));

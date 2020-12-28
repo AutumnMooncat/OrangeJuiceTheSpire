@@ -81,6 +81,7 @@ public class FullSpeedAlicianrone extends AbstractNormaAttentiveCard {
     @Override
     public void applyPowers() {
         this.target = getNormaLevel() >= 3 ? CardTarget.ALL_ENEMY : CardTarget.ENEMY;
+        this.isMultiDamage = getNormaLevel() >= 3;
         super.applyPowers();
     }
 

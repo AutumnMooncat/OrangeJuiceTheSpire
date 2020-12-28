@@ -4,9 +4,9 @@ import Moonworks.CustomAnimationListener;
 import Moonworks.CustomSpriterAnimation;
 import Moonworks.cards.*;
 import Moonworks.cards.giftCards.*;
+import Moonworks.cards.trapCards.*;
 import Moonworks.relics.*;
 import basemod.abstracts.CustomPlayer;
-import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.brashmonkey.spriter.Player;
@@ -83,7 +83,9 @@ public class TheStarBreaker extends CustomPlayer {
     private static final String ANIM_FILE = "MoonworksResources/images/char/defaultCharacter/Spriter/StarbreakerStuff2.scml";
 
     //private static final SpriterAnimation defaultAnimation = new SpriterAnimation(defaultAnim);
-    private static final CustomSpriterAnimation ANIM_SET = new CustomSpriterAnimation(ANIM_FILE);
+
+    //Use a new Animation rather than the same one so we dont spawn in the dead animation if we lose a run and dtart a new one, lml
+    //private static final CustomSpriterAnimation ANIM_SET = new CustomSpriterAnimation(ANIM_FILE);
 
 
     // =============== /STRINGS/ =================
@@ -113,7 +115,7 @@ public class TheStarBreaker extends CustomPlayer {
 
     public TheStarBreaker(String name, PlayerClass setClass) {
         //super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxm.png", null, idleAnimation);
-        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", layerSpeeds, ANIM_SET);
+        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", layerSpeeds, new CustomSpriterAnimation(ANIM_FILE));
 
         Player.PlayerListener listener = new CustomAnimationListener(this);
         ((CustomSpriterAnimation)this.animation).myPlayer.addListener(listener);
@@ -186,21 +188,23 @@ public class TheStarBreaker extends CustomPlayer {
 
         //* Testing Cards
 
-        /*Gift Cards
+        //*Gift Cards
 
-        retVal.add(Bloodlust.ID);
-        retVal.add(Flamethrower.ID);
-        retVal.add(LuckyCharm.ID);
-        retVal.add(MiracleRedBeanIceCream.ID);
-        retVal.add(RedAndBlue.ID);
-        retVal.add(UnluckyCharm.ID);
-        retVal.add(WindyEnchantment.ID);
+        //retVal.add(Bloodlust.ID);
+        //retVal.add(Flamethrower.ID);
+        //retVal.add(LuckyCharm.ID);
+        //retVal.add(MiracleRedBeanIceCream.ID);
+        //retVal.add(RedAndBlue.ID);
+        //retVal.add(UnluckyCharm.ID);
+        //retVal.add(WindyEnchantment.ID);
 
         //*/
 
         /*Trap Cards
 
         retVal.add(BigBangBell.ID);
+        retVal.add(EvilMastermind.ID);
+        retVal.add(GoAway.ID);
         retVal.add(Heat300Percent.ID);
         retVal.add(PlushieMaster.ID);
         retVal.add(Poppoformation.ID);
@@ -241,14 +245,13 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(ForcedRevival.ID);
         //retVal.add(FullSpeedAlicianrone.ID);
         //retVal.add(Gamble.ID);
-        //retVal.add(GoAway.ID);
         //retVal.add(HolyNight.ID);
         //retVal.add(ImmovableObject.ID);
         //retVal.add(ImOnFire.ID);
         //retVal.add(IndiscriminateFireSupport.ID);
         //retVal.add(IntelligenceOfficer.ID);
         //retVal.add(JonathanRush.ID);
-        //retVal.add(LeapThroughSpaceMarking.ID);
+        //retVal.add(LeapThroughSpace.ID);
         //retVal.add(LulusLuckyEgg.ID);
         //retVal.add(MagicalInferno.ID);
         //retVal.add(MagicalMassacre.ID);
@@ -438,17 +441,24 @@ public class TheStarBreaker extends CustomPlayer {
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
             playAnimation("hurt");
         }
-
     }
 
     public void playAnimation(String name) {
         ((CustomSpriterAnimation)this.animation).myPlayer.setAnimation(name);
     }
 
+    public void stopAnimation() {
+        CustomSpriterAnimation anim = (CustomSpriterAnimation) this.animation;
+        int time = anim.myPlayer.getAnimation().length;
+        anim.myPlayer.setTime(time);
+        anim.myPlayer.speed = 0;
+    }
+
     public void resetToIdleAnimation() {
         playAnimation("idle");
     }
 
+    @Override
     public void playDeathAnimation() {
         playAnimation("ko");
     }

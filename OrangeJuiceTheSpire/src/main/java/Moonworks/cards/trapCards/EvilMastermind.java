@@ -58,7 +58,7 @@ public class EvilMastermind extends AbstractTrapCard {
         if (AbstractDungeon.player != null) {
             findTrapCards();
         }
-        upgrade(); // for testing
+        //upgrade(); // for testing
         initializeDescription();
     }
 

@@ -64,6 +64,7 @@ public class RedAndBlue extends AbstractGiftCard {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
+            this.applyEffect();
         }
     }
 
@@ -74,6 +75,7 @@ public class RedAndBlue extends AbstractGiftCard {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
+            this.applyEffect();
         }
     }
 

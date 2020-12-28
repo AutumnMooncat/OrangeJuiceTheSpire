@@ -60,6 +60,7 @@ public class WindyEnchantment extends AbstractGiftCard {
         if(active){
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new DrawCardAction(INITIAL_DRAW));
+            this.applyEffect();
             //this.addToBot(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, magicNumber)));
         }
     }
@@ -70,6 +71,7 @@ public class WindyEnchantment extends AbstractGiftCard {
         if(active) {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new DrawCardAction(magicNumber));
+            this.applyEffect();
         }
     }
 

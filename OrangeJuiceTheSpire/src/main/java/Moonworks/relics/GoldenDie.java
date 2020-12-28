@@ -27,28 +27,7 @@ public class GoldenDie extends CustomRelic {
         super(ID, IMG, OUTLINE, RelicTier.SHOP, LandingSound.FLAT);
     }
 
-    // Flash at the start of Battle.
-    /*@Override
-    public void atBattleStartPreDraw() {
-        flash();
-    }*/
-
-    @Override
-    public void onCardDraw(AbstractCard drawnCard) {
-        super.onCardDraw(drawnCard);
-    }
-
-    /*// Gain 1 energy on equip.
-    @Override
-    public void onEquip() {
-        AbstractDungeon.player.energy.energyMaster += 1;
-    }
-
-    // Lose 1 energy on unequip.
-    @Override
-    public void onUnequip() {
-        AbstractDungeon.player.energy.energyMaster -= 1;
-    }*/
+    // All functionality for this is handled in AbstractGiftCard
 
     // Description
     @Override

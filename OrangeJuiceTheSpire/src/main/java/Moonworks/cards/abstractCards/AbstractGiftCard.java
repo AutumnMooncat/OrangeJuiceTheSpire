@@ -2,6 +2,7 @@ package Moonworks.cards.abstractCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.CheckGoldenAction;
+import Moonworks.actions.WitherExhaustImmediatelyAction;
 import Moonworks.powers.NormaPower;
 import Moonworks.relics.GoldenDie;
 import basemod.BaseMod;
@@ -22,13 +23,13 @@ import java.util.List;
 public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
-    private final String description;
-    private final String spentDescription;
+    protected final String description;
+    protected final String spentDescription;
     private static ArrayList<TooltipInfo> GiftTooltip;
     protected boolean active;
     public boolean checkedGolden;
     public final boolean ignoreGolden;
-    public static final int GOLDEN_BUFF = 2;
+    public static final float GOLDEN_BUFF = 1.5F;
 
     public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
                             final CardTarget target, final int uses, final int currentUses) {
@@ -92,12 +93,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     @Override
     public void triggerWhenDrawn() {
         checkGolden(); //This will be the main way we check for the buff
-        /*logger.info("Card drawn, checking golden? " + !checkedGolden);
-        if (!ignoreGolden && !checkedGolden) {
-            this.addToTop(new CheckGoldenAction(this));
-        }*/
-        //modifyUses(-1); //Dont consume here
-        this.active = defaultSecondMagicNumber >= 1;
+        this.active = defaultSecondMagicNumber >= 1; //In case we've pulled from exhaust, only set active with uses
         initializeDescription();
         super.triggerWhenDrawn();
     }
@@ -105,72 +101,58 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     @Override
     public void onMoveToDiscard() {
         checkGolden(); //This will happen if the card is generated or transformed, and then we play it to discard it
-        /*logger.info("Card discarded, checking golden? " + !checkedGolden);
-        if (!ignoreGolden && !checkedGolden) {
-            this.addToTop(new CheckGoldenAction(this));
-        }*/
-        if (this.active) { //Bug testing, uses were being consumed in the discard pile at end of turn.
-            modifyUses(-1); //consume 1 use
-        }
-        this.active = false;
+        this.active = false; //Cant be active if it isnt in our hand
         super.onMoveToDiscard();
     }
 
     @Override
     public void moveToDiscardPile() {
+        checkGolden(); //May as well check both cases
+        this.active = false;
         super.moveToDiscardPile();
     }
 
     @Override
     public void onRetained() {
         checkGolden(); //This will happen if the card is generated or transformed, and then not played to discard it
-        /*logger.info("Card retained, checking golden? " + !checkedGolden);
-        if (!ignoreGolden && !checkedGolden) {
-            this.addToTop(new CheckGoldenAction(this));
-        }*/
-        this.active = defaultSecondMagicNumber >= 1;
-        modifyUses(-1); //consume 1 use
+        this.active = defaultSecondMagicNumber >= 1; //If we retained it, make sure it still has uses. This can happen if a card force retains an empty gift
         super.onRetained();
     }
 
     @Override
     public void triggerOnExhaust() {
-        this.active = false;
-        modifyUses(-1); //Since we want to exhaust if the card has only 1 use (used for the turn then exhausted), decay to 0 for the exhaust pile
+        this.active = false; //Obviously it shouldn't be active in the exhaust pile
         super.triggerOnExhaust();
     }
 
     public void modifyUses(int uses) {
         this.defaultSecondMagicNumber += uses;
-        if(this.defaultSecondMagicNumber <= 1){
-            this.selfRetain = false;
-            this.isEthereal = true;
-            this.exhaust = true;
-            //Don't go below 0
-            this.defaultSecondMagicNumber = Math.max(defaultSecondMagicNumber, 0);
-            if(this.defaultSecondMagicNumber == 0) {
-                rawDescription = spentDescription;
-            }
-        } else {
-            this.selfRetain = true;
-            this.isEthereal = false;
-            this.exhaust = false;
-            //We can be allowed to go above max charges
-            //this.defaultSecondMagicNumber = Math.min(defaultSecondMagicNumber, defaultBaseSecondMagicNumber);
-            rawDescription = description;
-        }
         if (defaultSecondMagicNumber != defaultBaseSecondMagicNumber) {
             this.isDefaultSecondMagicNumberModified = true;
         }
-        initializeDescription();
+        boolean hasUses = defaultSecondMagicNumber > 0;
+        this.selfRetain = hasUses; //Retain while we have uses
+        this.exhaust = !hasUses; //Exhaust and Ethereal if we dont
+        this.isEthereal = !hasUses;
+        if (!hasUses) { //If we hit 0, or below 0 somehow, exhaust immediately
+            this.active = false; //Card cant be active when it has no uses
+            this.rawDescription = this.spentDescription;
+            initializeDescription(); //Initialize before we move to exhaust
+            this.addToTop(new WitherExhaustImmediatelyAction(this)); //Hijack this wither code I wrote before, lol
+        } else {
+            //We dont set active is true here, since it might not be in our hand, and shouldnt be active if it isnt
+            this.rawDescription = this.description;
+            initializeDescription();
+        }
     }
 
     public void checkGolden() {
         if (!ignoreGolden && !checkedGolden) {
             boolean goldenDie = AbstractDungeon.player.hasRelic(GoldenDie.ID);
-            this.defaultSecondMagicNumber += (goldenDie ? GOLDEN_BUFF : 0);
+            this.defaultSecondMagicNumber *= (goldenDie ? GOLDEN_BUFF : 1);
             //this.defaultBaseSecondMagicNumber += (goldenDie ? GOLDEN_BUFF : 0);
             if (goldenDie) {
+                AbstractDungeon.player.getRelic(GoldenDie.ID).flash();
                 this.isDefaultSecondMagicNumberModified = true;
             }
             checkedGolden = true;
@@ -180,10 +162,19 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        /*if (this.defaultSecondMagicNumber == 1) { //If we play the card on it's last use, we want it to exhaust, not discard.
-            this.exhaust = true; //This is now handled in modifyUses
-        }*/
         initializeDescription();
+    }
+
+    public void applyEffect() { //If we need additional effects, they can be defined on a card by card basis, and simply call this to know to decrement the uses
+        //Maybe make the card flash or something nifty?
+        this.flash();
+        modifyUses(-1); //Reduce our uses by 1 each time the effect happens
+        initializeDescription();
+    }
+
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return super.canUse(p, m);
     }
 
     public static ArrayList<AbstractGiftCard> getExhaustedGifts() {

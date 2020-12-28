@@ -63,6 +63,7 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
         if(active) {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new TemporaryStrengthPower(p, magicNumber)));
+            this.applyEffect();
         }
     }
 
@@ -82,14 +83,17 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
         if(active) {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new TemporaryStrengthPower(p, magicNumber)));
+            this.applyEffect();
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.defaultSecondMagicNumber = 0;
-        super.use(p, m);
         this.exhaust = true;
+        this.active = false; //Card cant be active when it has no uses
+        this.rawDescription = this.spentDescription;
+        super.use(p, m); //This will handle our update description
     }
 
     //Upgraded stats.

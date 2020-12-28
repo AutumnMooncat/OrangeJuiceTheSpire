@@ -38,7 +38,7 @@ public class LuckyCharm extends AbstractGiftCard {
     private static final int USES = 3;
     private static final int UPGRADE_PLUS_USES = 1;
 
-    private static final int MAX_RECHARGE = 3;
+    private static final int MAX_RECHARGE = 3; //You cant recharge more than this at once
 
 
     // /STAT DECLARATION/
@@ -60,6 +60,7 @@ public class LuckyCharm extends AbstractGiftCard {
         super.triggerWhenDrawn();
         if(active) {
             this.addToBot(new GainEnergyAction(magicNumber));
+            this.applyEffect();
         }
     }
 
@@ -68,6 +69,7 @@ public class LuckyCharm extends AbstractGiftCard {
         super.atTurnStartPreDraw();
         if (active) {
             this.addToBot(new GainEnergyAction(magicNumber));
+            this.applyEffect();
         }
     }
 

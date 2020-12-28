@@ -73,7 +73,7 @@ public class Heat300Percent extends AbstractTrapCard {
         //logger.info("Calc: last count: " + lastCount);
         super.calculateCardDamage(m);
         if (getNormaLevel() >= 2) {
-            this.magicNumber += 2;
+            this.magicNumber += 1;
             this.isMagicNumberModified = true;
         }
         initializeDescription();

@@ -36,10 +36,10 @@ public class Flamethrower extends AbstractGiftCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = -2;
-    private static final int EFFECT = 2;
+    //private static final int EFFECT = 2;
 
-    private static final int USES = 3;
-    private static final int UPGRADE_PLUS_USES = 1;
+    private static final int USES = 12;
+    private static final int UPGRADE_PLUS_USES = 6;
 
     private static final int DAMAGE = 2;
     private static final int UPGRADE_PLUS_DAMAGE = 1;
@@ -55,7 +55,6 @@ public class Flamethrower extends AbstractGiftCard {
     public Flamethrower(int currentUses, boolean checkedGolden) {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, USES, currentUses, checkedGolden);
-        this.magicNumber = this.baseMagicNumber = EFFECT;
         this.damage = this.baseDamage = DAMAGE;
         this.damageType = DamageInfo.DamageType.THORNS;
 
@@ -65,13 +64,14 @@ public class Flamethrower extends AbstractGiftCard {
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
         super.onPlayCard(c, m);
-        if(active) {
+        if(active && c != this) { //Dont activate when playing itself
             AbstractPlayer p = AbstractDungeon.player;
             if(m != null) {
                 this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
             } else {
                 this.addToBot(new DamageRandomEnemyAction(new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
             }
+            this.applyEffect();
         }
     }
 

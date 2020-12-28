@@ -1,17 +1,21 @@
-package Moonworks.cards;
+package Moonworks.cards.trapCards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class GoAway extends AbstractDynamicCard {
+public class GoAway extends AbstractTrapCard {
 
     // TEXT DECLARATION
 
@@ -40,7 +44,6 @@ public class GoAway extends AbstractDynamicCard {
 
     public GoAway() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-
         magicNumber = baseMagicNumber = STUN;
         exhaust = true;
         isEthereal = true;
@@ -50,7 +53,9 @@ public class GoAway extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new StunMonsterAction(m, p, magicNumber));
+        StunMonsterPower stun = new StunMonsterPower(m, magicNumber);
+        stun.type = AbstractPower.PowerType.BUFF; //Hows that for a hack?
+        this.addToBot(new ApplyPowerAction(m, p, stun, magicNumber));
 
     }
 

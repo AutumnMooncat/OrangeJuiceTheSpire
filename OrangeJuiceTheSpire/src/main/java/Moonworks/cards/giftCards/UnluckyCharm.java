@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +38,7 @@ public class UnluckyCharm extends AbstractGiftCard {
     private static final int NEGATIVE_EFFECT = 1;
     private static final int POSITIVE_EFFECT = 3;
     private static final int UPGRADE_PLUS_POSITIVE_EFFECT = 1;
-    private static final int USES = 2;
+    private static final int USES = 3;
     //private static final int UPGRADE_PLUS_USES = -1;
 
     // /STAT DECLARATION/
@@ -69,7 +70,13 @@ public class UnluckyCharm extends AbstractGiftCard {
         if(active){
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, -invertedNumber)));
+            this.applyEffect();
         }
+    }
+
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return false;
     }
 
     @Override
@@ -78,6 +85,7 @@ public class UnluckyCharm extends AbstractGiftCard {
         if(active) {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, -invertedNumber)));
+            this.applyEffect();
         }
     }
 

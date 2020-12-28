@@ -36,11 +36,11 @@ public class Bloodlust extends AbstractGiftCard {
 
     private static final int COST = -2;
     private static final int DAMAGE = 4;
-    private static final int UPGRADE_PLUS_DAMAGE = -1; //Maybe do this instead of healing more?
+    //private static final int UPGRADE_PLUS_DAMAGE = -1; //Maybe do this instead of healing more?
     private static final int HEAL = 2;
     //private static final int UPGRADE_PLUS_HEAL = 1;
-    private static final int USES = 2;
-    private static final int UPGRADE_PLUS_USES = 1; // Maybe this?
+    private static final int USES = 7;
+    private static final int UPGRADE_PLUS_USES = 3; // Maybe this?
 
     //private static final int UPGRADE_PLUS_RETAINS = 1;
 
@@ -67,6 +67,7 @@ public class Bloodlust extends AbstractGiftCard {
             AbstractPlayer p = AbstractDungeon.player;
             if(c.type == CardType.ATTACK) {
                 this.addToBot(new HealAction(p, p, magicNumber));
+                this.applyEffect();
             }
         }
         super.onPlayCard(c, m);
@@ -76,9 +77,7 @@ public class Bloodlust extends AbstractGiftCard {
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
         if(active) {
-            AbstractPlayer p = AbstractDungeon.player;
-            int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
-            this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+            this.applyDamageEffect();
         }
     }
 
@@ -86,10 +85,15 @@ public class Bloodlust extends AbstractGiftCard {
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
         if(active) {
-            AbstractPlayer p = AbstractDungeon.player;
-            int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
-            this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+            this.applyDamageEffect();
         }
+    }
+
+    public void applyDamageEffect() {
+        AbstractPlayer p = AbstractDungeon.player;
+        int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
+        this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        //Dont use a use here. This will result in us being able to hold this Gift as long as we want, but get a limited number of heals
     }
 
     //Upgraded stats.

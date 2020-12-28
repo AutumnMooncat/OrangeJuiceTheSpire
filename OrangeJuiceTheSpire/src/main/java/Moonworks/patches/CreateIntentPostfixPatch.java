@@ -41,6 +41,26 @@ public class CreateIntentPostfixPatch
             if (p.amount == 0) {
                 AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(p.owner, p.owner, PoppoformationPower.POWER_ID));
             }
+            if(!p.owner.isDeadOrEscaped() && (p.owner instanceof AbstractMonster)) {
+                //This should work for custom intents
+                boolean isAttack = (((AbstractMonster)p.owner).getIntentBaseDmg() >= 0 && currentIntent != AbstractMonster.Intent.STUN);
+                //I dont know if there is a more intellegent way to do this. This will not work for custom intents
+                boolean isBlock = (
+                        currentIntent == AbstractMonster.Intent.DEFEND ||
+                        currentIntent == AbstractMonster.Intent.DEFEND_BUFF ||
+                        currentIntent == AbstractMonster.Intent.DEFEND_DEBUFF ||
+                        currentIntent == AbstractMonster.Intent.ATTACK_DEFEND);
+                if (isAttack) {
+                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new WeakPower(p.owner, 1, false)));
+                }
+                if (isBlock) {
+                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new FrailPower(p.owner, 1, false)));
+                }
+                if (!isAttack && !isBlock) {
+                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new VulnerablePower(p.owner, 1, false)));
+                }
+            }
+            /*
             switch (currentIntent) {
                 case ATTACK:
                 case ATTACK_BUFF:
@@ -59,7 +79,7 @@ public class CreateIntentPostfixPatch
                 default:
                     __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new VulnerablePower(p.owner, 1, false)));
                     break;
-            }
+            }*/
 
         }
 
@@ -68,6 +88,18 @@ public class CreateIntentPostfixPatch
             AbstractPower p = __instance.getPower(BigBangBellPower.POWER_ID);
             AbstractMonster.Intent currentIntent = __instance.intent;
             p.flash();
+            //If they arent dead, and it is a monster, and the monster is attacking
+            if(!p.owner.isDeadOrEscaped() && (p.owner instanceof AbstractMonster)) {
+                //Detonate if we stun them
+                if (((AbstractMonster)p.owner).getIntentBaseDmg() >= 0 && currentIntent != AbstractMonster.Intent.STUN) {
+                    p.amount *= 1.5F;
+                    p.updateDescription();
+                } else {
+                    __instance.addToBot(new DamageAction(__instance, new DamageInfo(AbstractDungeon.player, p.amount, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
+                    AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(p.owner, p.owner, BigBangBellPower.POWER_ID));
+                }
+            }
+            /*
             switch (currentIntent) {
                 case ATTACK:
                 case ATTACK_BUFF:
@@ -80,7 +112,7 @@ public class CreateIntentPostfixPatch
                     __instance.addToBot(new DamageAction(__instance, new DamageInfo(AbstractDungeon.player, p.amount, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
                     AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(p.owner, p.owner, BigBangBellPower.POWER_ID));
                     break;
-            }
+            }*/
         }
         return SpireReturn.Continue(); //This allows you to either return early, change the value returned, or just continue like this.
     }

@@ -21,6 +21,7 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String NORMAL_DESCRIPTION = cardStrings.DESCRIPTION;
 
     // /TEXT DECLARATION/
 
@@ -40,8 +41,6 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
 
     private static final int NORMA_UP = 1;
 
-    private boolean changeAfterUse = false;
-
     // /STAT DECLARATION/
 
     public BackdoorTrade() {
@@ -56,30 +55,24 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         //this.addToBot(new LoseHPAction(p, p, magicNumber));
         if (getNormaLevel() < 5) {
-            if (getNormaLevel() == 4) {
-                changeAfterUse = true;
-            }
             this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, defaultSecondMagicNumber),defaultSecondMagicNumber));
         } else {
             this.addToBot(new DrawCardAction(magicNumber));
-            this.exhaust = false;
         }
-        if (changeAfterUse) {
-            //This needs to be in the Norma 5 spot, not Norma 4.
-            //this.exhaust = false;
-            rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
+        this.initializeDescription();
     }
 
     @Override
-    public void triggerWhenDrawn() {
-        super.triggerWhenDrawn();
-        if (getNormaLevel() >= 5) {
-            this.exhaust = false;
-            rawDescription = UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
+    public void applyPowers() {
+        this.initializeDescription();
+        super.applyPowers();
+    }
+
+    @Override
+    public void initializeDescription() {
+        this.exhaust = getNormaLevel() >= 5;
+        rawDescription = getNormaLevel() >= 5 ? UPGRADE_DESCRIPTION : NORMAL_DESCRIPTION;
+        super.initializeDescription();
     }
 
     // Upgraded stats.

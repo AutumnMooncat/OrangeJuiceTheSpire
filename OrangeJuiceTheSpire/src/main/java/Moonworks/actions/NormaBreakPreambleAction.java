@@ -26,8 +26,8 @@ public class NormaBreakPreambleAction extends AbstractGameAction {
 
     public void update() {
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            this.addToTop(new VFXAction(target, new ScreenOnFireEffect(), 1.0F));
-            for (int i = 0 ; i < 6 ; i++) {
+            this.addToTop(new VFXAction(target, new ScreenOnFireEffect(), 0.0F));
+            for (int i = 0 ; i < 20 ; i++) {
                 this.addToTop(new ApplyPowerAction(target, target, new NormaPower(target, 1)));
             }
         }

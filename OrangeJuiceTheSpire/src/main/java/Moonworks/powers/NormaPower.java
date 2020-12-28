@@ -147,6 +147,6 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
 
     @Override
     public AbstractPower makeCopy() {
-        return new NormaPower(owner, amount);
+        return new NormaPower(owner, amount, broken);
     }
 }

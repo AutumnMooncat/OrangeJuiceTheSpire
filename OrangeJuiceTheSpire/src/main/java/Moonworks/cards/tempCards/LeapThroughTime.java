@@ -12,6 +12,8 @@ import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -21,6 +23,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -32,6 +35,7 @@ import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -260,94 +264,110 @@ public class LeapThroughTime extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        //Add some Talk Text for flavour
-        TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, 2)];
-        this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
-
-        // Play some VFX/SFX as well
-        CardCrawlGame.sound.playA("POWER_ENTANGLED", -0.65F);
-        CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
-        CardCrawlGame.sound.play("HEART_BEAT", 0.05F);
-        AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.GOLD, true));
-        AbstractDungeon.topLevelEffectsQueue.add(new TimeWarpTurnEndEffect());
-        this.addToBot(new VFXAction(p, new IntenseZoomEffect((float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F, false), 0.5F));
-
         //----------This needs to be put in an action for goodness' sake---------//
 
-        //First grab the amount of Divergence we have, as this will effect how well things recover
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            public void update() {
+                //First, grab our values and clear all the data
+                TemporalAnchorPower anchor = (TemporalAnchorPower) p.getPower(TemporalAnchorPower.POWER_ID);
+                anchorExists = anchor != null; //Store this, as we can use it later for extra stuff if we lost our anchor somehow
+                divergenceStacks = anchorExists ? anchor.amount2 : 100; //If we somehow lost our Anchor, the end result will be as bad as possible, even if we have WarpPanel
+                divergenceTier =
+                        divergenceStacks <= LeapThroughSpace.DIVERGENCET0LIMIT ? 0 :
+                                divergenceStacks <= LeapThroughSpace.DIVERGENCET1LIMIT ? 1 :
+                                        divergenceStacks <= LeapThroughSpace.DIVERGENCET2LIMIT ? 2 : 3;
 
-        TemporalAnchorPower anchor = (TemporalAnchorPower) p.getPower(TemporalAnchorPower.POWER_ID);
-        this.anchorExists = anchor != null; //Store this, as we can use it later for extra stuff if we lost our anchor somehow
-        this.divergenceStacks = this.anchorExists ? anchor.amount2 : 100; //If we somehow lost our Anchor, the end result will be as bad as possible, even if we have WarpPanel
-        this.divergenceTier =
-                this.divergenceStacks <= LeapThroughSpace.DIVERGENCET0LIMIT ? 0 :
-                this.divergenceStacks <= LeapThroughSpace.DIVERGENCET1LIMIT ? 1 :
-                this.divergenceStacks <= LeapThroughSpace.DIVERGENCET2LIMIT ? 2 : 3;
+                //Clear all the arraylists
 
-        //Clear all the arraylists
+                AbstractDungeon.player.powers.clear(); //Do this first and reload it last
+                AbstractDungeon.player.hand.group.clear();
+                AbstractDungeon.player.drawPile.group.clear();
+                AbstractDungeon.player.discardPile.group.clear();
+                AbstractDungeon.player.exhaustPile.group.clear();
+                AbstractDungeon.player.potions.clear();
+                AbstractDungeon.player.orbs.clear();
 
-        AbstractDungeon.player.powers.clear(); //Do this first and reload it last
-        AbstractDungeon.player.hand.group.clear();
-        AbstractDungeon.player.drawPile.group.clear();
-        AbstractDungeon.player.discardPile.group.clear();
-        AbstractDungeon.player.exhaustPile.group.clear();
-        AbstractDungeon.player.potions.clear();
-        AbstractDungeon.player.orbs.clear();
-
-        //Reload everything. Also, mess stuff up here with high divergence, lol
-
-        // At T2(T3), lose 1(2) to 2(8) max hp, to no less than 1
-        AbstractDungeon.player.maxHealth = Math.max(1, this.maxHP - Math.max(0, this.divergenceTier -1) * AbstractDungeon.cardRandomRng.random(1, 4));
-        // At T1 and up, lose 2-6 current hp times the tier, to no less than 1
-        AbstractDungeon.player.currentHealth = Math.max(1, Math.min(this.currentHP - this.divergenceTier * AbstractDungeon.cardRandomRng.random(2, 6), AbstractDungeon.player.maxHealth));
-        // Not currently messing with orb slots
-        AbstractDungeon.player.maxOrbs = this.maxOrbs;
-        // At T1 and up, lose 2-5 block times the tier, to no less than 0
-        AbstractDungeon.player.currentBlock = Math.max(0, this.currentBlock - (AbstractDungeon.cardRandomRng.random(2, 5) * this.divergenceTier * AbstractDungeon.cardRandomRng.random(0, 1)));
-        // Update the HP bar to the correct amount once weve changed the values
-        AbstractDungeon.player.healthBarUpdatedEvent();
-        // At T1 and up, lost up to your tier in energy
-        EnergyPanel.totalCount = Math.max(0, this.currentEnergy - AbstractDungeon.cardRandomRng.random(0, this.divergenceTier));
-        // Not currently messing with max energy, or even saving it
-
-        //For each card in your hand, draw pile, etc.
-        for (AbstractCard c : this.handCards) {
-            //Make sure we arent ignoring it, a bit redundant
-            if (c != cardToIgnore) {
-                //Randomly add a corrupted modifier, then add it to your actual hand, draw pile, etc.
-                randomlyAddCardModifier(c);
-                AbstractDungeon.player.hand.addToHand(c);
+                this.isDone = true;
             }
-        }
-        for (AbstractCard c : this.drawCards) {
-            if (c != cardToIgnore) {
-                randomlyAddCardModifier(c);
-                AbstractDungeon.player.drawPile.addToHand(c);
+        });
+
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            public void update() {
+                //Add some Talk Text for flavour
+                TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, 2)];
+                this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
+
+                // Play some VFX/SFX as well
+                CardCrawlGame.sound.playA("POWER_ENTANGLED", -0.65F);
+                CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
+                CardCrawlGame.sound.play("HEART_BEAT", 0.05F);
+                AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.GOLD, true));
+                AbstractDungeon.topLevelEffectsQueue.add(new TimeWarpTurnEndEffect());
+                this.addToBot(new VFXAction(p, new IntenseZoomEffect((float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F, false), 0.25F));
+                this.isDone = true;
             }
-        }
-        for (AbstractCard c : this.discardCards) {
-            if (c != cardToIgnore) {
-                randomlyAddCardModifier(c);
-                AbstractDungeon.player.discardPile.addToHand(c);
+        });
+
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            public void update() {
+                //Reload everything. Also, mess stuff up here with high divergence, lol
+
+                // At T2(T3), lose 1(2) to 2(8) max hp, to no less than 1
+                AbstractDungeon.player.maxHealth = Math.max(1, maxHP - Math.max(0, divergenceTier -1) * AbstractDungeon.cardRandomRng.random(1, 4));
+                // At T1 and up, lose 2-6 current hp times the tier, to no less than 1
+                AbstractDungeon.player.currentHealth = Math.max(1, Math.min(currentHP - divergenceTier * AbstractDungeon.cardRandomRng.random(2, 6), AbstractDungeon.player.maxHealth));
+                // Not currently messing with orb slots
+                AbstractDungeon.player.maxOrbs = maxOrbs;
+                // At T1 and up, lose 2-5 block times the tier, to no less than 0
+                AbstractDungeon.player.currentBlock = Math.max(0, currentBlock - (AbstractDungeon.cardRandomRng.random(2, 5) * divergenceTier * AbstractDungeon.cardRandomRng.random(0, 1)));
+                // Update the HP bar to the correct amount once weve changed the values
+                AbstractDungeon.player.healthBarUpdatedEvent();
+                // At T1 and up, lost up to your tier in energy
+                EnergyPanel.totalCount = Math.max(0, currentEnergy - AbstractDungeon.cardRandomRng.random(0, divergenceTier));
+                // Not currently messing with max energy, or even saving it
+
+                //For each card in your hand, draw pile, etc.
+                for (AbstractCard c : handCards) {
+                    //Make sure we arent ignoring it, a bit redundant
+                    if (c != cardToIgnore) {
+                        //Randomly add a corrupted modifier, then add it to your actual hand, draw pile, etc.
+                        randomlyAddCardModifier(c);
+                        AbstractDungeon.player.hand.addToHand(c);
+                    }
+                }
+                for (AbstractCard c : drawCards) {
+                    if (c != cardToIgnore) {
+                        randomlyAddCardModifier(c);
+                        AbstractDungeon.player.drawPile.addToHand(c);
+                    }
+                }
+                for (AbstractCard c : discardCards) {
+                    if (c != cardToIgnore) {
+                        randomlyAddCardModifier(c);
+                        AbstractDungeon.player.discardPile.addToHand(c);
+                    }
+                }
+                for (AbstractCard c : exhaustCards) {
+                    if (c != cardToIgnore) {
+                        randomlyAddCardModifier(c);
+                        AbstractDungeon.player.exhaustPile.addToHand(c);
+                    }
+                }
+                //Not currently messing with orbs
+                AbstractDungeon.player.orbs.addAll(orbList);
+                //Not currently messing with potions
+                AbstractDungeon.player.potions.addAll(potionList);
+                //Mess around with the powers randomly
+                //AbstractDungeon.player.powers.addAll(this.powerList);
+                //Load the powers last, we really dont want to proc any on X effects from the powers
+                for (AbstractPower pow : powerList) {
+                    randomlyMessUpPower(pow);
+                    AbstractDungeon.player.powers.add(pow);
+                }
+
+                this.isDone = true;
             }
-        }
-        for (AbstractCard c : this.exhaustCards) {
-            if (c != cardToIgnore) {
-                randomlyAddCardModifier(c);
-                AbstractDungeon.player.exhaustPile.addToHand(c);
-            }
-        }
-        //Not currently messing with orbs
-        AbstractDungeon.player.orbs.addAll(this.orbList);
-        //Not currently messing with potions
-        AbstractDungeon.player.potions.addAll(this.potionList);
-        //Mess around with the powers randomly
-        //AbstractDungeon.player.powers.addAll(this.powerList);
-        //Load the powers last, we really dont want to proc any on X effects from the powers
-        for (AbstractPower pow : this.powerList) {
-            randomlyMessUpPower(pow);
-            AbstractDungeon.player.powers.add(pow);
-        }
+        });
 
         // If you were insane and allowed yourself to reach max divergence, there is a 25% chance you pick up a WarpPanel relic
         if (divergenceTier == 3 && !spawnedRelic && !AbstractDungeon.player.hasRelic(WarpPanel.ID) && AbstractDungeon.cardRandomRng.random(0, 3) == 0) {

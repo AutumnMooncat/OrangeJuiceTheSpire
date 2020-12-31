@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -71,7 +72,7 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
 
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if(!this.owner.isDead) {
+        if(!this.owner.isDeadOrEscaped()) {
             if(count < amount){
                 int extra = 0;
                 this.flash();
@@ -80,7 +81,12 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
                     extra = AbstractDungeon.cardRandomRng.random(0, 1);
                     this.gotBonus = true;
                 }
-                this.addToBot(new DrawCardAction(1+extra));
+                //If the target takes damage while it isnt the players turn (thorns, etc.) gain next turn draw power instead of an actual card
+                if (AbstractDungeon.actionManager.turnHasEnded) {
+                    this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, 1)));
+                } else {
+                    this.addToBot(new DrawCardAction(1+extra));
+                }
             }
             updateDescription();
         }

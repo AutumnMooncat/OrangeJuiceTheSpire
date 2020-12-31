@@ -1,5 +1,6 @@
 package Moonworks.patches;
 
+import Moonworks.OrangeJuiceMod;
 import Moonworks.powers.WantedPower;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -26,7 +27,7 @@ public class DamageActionPrefixPatch {
             if (__instance.source != null) {
                 AbstractCreature newTarget = __instance.target;
                 for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
-                    if (aM != __instance.source && aM.hasPower(WantedPower.POWER_ID) && !aM.isDeadOrEscaped()) {
+                    if ((OrangeJuiceMod.enableStrongerWantedEffect || aM != __instance.source) && aM.hasPower(WantedPower.POWER_ID) && !aM.isDeadOrEscaped()) {
                         newTarget = aM;
                         break; //No need to continue, just hit the first target. We can make an arraylist later if there ar more than 1 target.
                     }
@@ -65,7 +66,7 @@ public class DamageActionPrefixPatch {
             if (__instance.source != null) { //if source isnt null
                 AbstractCreature newTarget = __instance.target; //get the old target
                 for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) { //look through all monster...
-                    if (aM != __instance.source && aM.hasPower(WantedPower.POWER_ID) && !aM.isDeadOrEscaped()) { //for the right power
+                    if ((OrangeJuiceMod.enableStrongerWantedEffect || aM != __instance.source) && aM.hasPower(WantedPower.POWER_ID) && !aM.isDeadOrEscaped()) { //for the right power
                         newTarget = aM; //If you find it, thats our new target
                         break; //No need to continue, just hit the first target. We can make an arraylist later if there ar more than 1 target.
                     }

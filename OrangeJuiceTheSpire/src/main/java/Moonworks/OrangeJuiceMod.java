@@ -78,6 +78,8 @@ public class OrangeJuiceMod implements
     public static Properties theStarBreakerDefaultSettings = new Properties();
     public static final String ENABLE_SELFDAMAGE_SETTING = "enableSelfDamage";
     public static boolean enableSelfDamage = false; // The boolean we'll be setting on/off (true/false)
+    public static final String FIVE_STAR_WANTED_SETTING = "enableStrongerWantedEffect";
+    public static boolean enableStrongerWantedEffect = false;
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "The Star Breaker";
@@ -226,11 +228,23 @@ public class OrangeJuiceMod implements
         // This loads the mod settings.
         // The actual mod Button is added below in receivePostInitialize()
         theStarBreakerDefaultSettings.setProperty(ENABLE_SELFDAMAGE_SETTING, "FALSE"); // This is the default setting. It's actually set...
+        //theStarBreakerDefaultSettings.setProperty(FIVE_STAR_WANTED_SETTING, "FALSE");
         try {
             SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings); // ...right here
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
             enableSelfDamage = config.getBool(ENABLE_SELFDAMAGE_SETTING);
+            //enableStrongerWantedEffect = config.getBool(FIVE_STAR_WANTED_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        theStarBreakerDefaultSettings.setProperty(FIVE_STAR_WANTED_SETTING, "FALSE");
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            enableStrongerWantedEffect = config.getBool(FIVE_STAR_WANTED_SETTING);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -337,8 +351,26 @@ public class OrangeJuiceMod implements
                 e.printStackTrace();
             }
         });
+        ModLabeledToggleButton enableStrongerWantedButton = new ModLabeledToggleButton("Wanted enemies will hurt themselves in addition to the original effects. Default: false.",
+                350.0f, 740.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                enableStrongerWantedEffect, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    enableStrongerWantedEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setBool(FIVE_STAR_WANTED_SETTING, enableStrongerWantedEffect);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
         
         settingsPanel.addUIElement(enableSelfDamageButton); // Add the button to the settings panel. Button is a go.
+        settingsPanel.addUIElement(enableStrongerWantedButton); // Add the button to the settings panel. Button is a go.
         
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
@@ -462,7 +494,6 @@ public class OrangeJuiceMod implements
     
     @Override
     public void receiveEditStrings() {
-        logger.info("You seeing this?");
         logger.info("Beginning to edit strings for mod with ID: " + getModID());
         
         // CardStrings
@@ -493,7 +524,7 @@ public class OrangeJuiceMod implements
         BaseMod.loadCustomStringsFile(OrbStrings.class,
                 getModID() + "Resources/localization/eng/DefaultMod-Orb-Strings.json");
         
-        logger.info("Done edittting strings");
+        logger.info("Done editting strings");
     }
     
     // ================ /LOAD THE TEXT/ ===================

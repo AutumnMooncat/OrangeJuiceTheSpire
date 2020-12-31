@@ -82,7 +82,7 @@
       "Wanted",
       "wanted"
     ],
-    "DESCRIPTION": "This turn, the Wanted enemy becomes the target of all attacks and negative effects."
+    "DESCRIPTION": "This turn, the Wanted enemy becomes the target of all attacks and negative effects. NL The Wanted enemy will not injure itself by default."
   },
   {
     "NAMES": [

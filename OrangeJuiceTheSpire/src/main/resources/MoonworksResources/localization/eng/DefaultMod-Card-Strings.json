@@ -318,7 +318,8 @@
   },
   "Moonworks:NicePresent": {
     "NAME": "Nice Present",
-    "DESCRIPTION": "Draw !M! cards. NL Increase this card's cost by 1, up to a maximum of !Moonworks:SecondMagic!. NL moonworks:Norma 3: +1 draw."
+    "DESCRIPTION": "Draw !M! card. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played. NL moonworks:Norma 3: +1 draw.",
+    "EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Increase this card's draw power by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played. NL moonworks:Norma 3: +1 draw."]
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "Out Of Ammo",
@@ -442,7 +443,7 @@
   },
   "Moonworks:WindyEnchantment": {
     "NAME": "Windy Enchantment",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Draw !M! additional card. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Draw !M! card. NL On Play: Discard.",
     "UPGRADE_DESCRIPTION": "Your tailwind has diminished."
   },
   "Moonworks:x16BigRocket": {

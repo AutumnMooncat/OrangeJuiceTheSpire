@@ -319,7 +319,7 @@
   "Moonworks:NicePresent": {
     "NAME": "Nice Present",
     "DESCRIPTION": "Draw !M! card. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played. NL moonworks:Norma 3: +1 draw.",
-    "EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Increase this card's draw power by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played. NL moonworks:Norma 3: +1 draw."]
+    "EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played. NL moonworks:Norma 3: +1 draw."]
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "Out Of Ammo",

@@ -1,14 +1,15 @@
 package Moonworks.cards;
 
+import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ModifyCostThisCombatAction;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
-import com.megacrit.cardcrawl.actions.common.*;
+import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import Moonworks.OrangeJuiceMod;
-import Moonworks.characters.TheStarBreaker;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -19,6 +20,9 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     public static final String ID = OrangeJuiceMod.makeID(NicePresent.class.getSimpleName());
     public static final String IMG = makeCardPath("NicePresent.png");
 
+    public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
+    public static final String SINGLEDRAWNAME = cardStrings.DESCRIPTION;
+    public static final String MULTIDRAWNAME = cardStrings.EXTENDED_DESCRIPTION[0];
     // /TEXT DECLARATION/
 
 
@@ -31,7 +35,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
 
     private static final int COST = 0;
 
-    private static final int DRAW = 2;
+    private static final int DRAW = 1;
     private static final int INCREASE_COST = 1;
     private static final int MAX_COST = 3;
     private static final int UPGRADE_MAX_COST = -1;
@@ -48,9 +52,14 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DrawCardAction(p, this.magicNumber));
-        if(this.cost < this.defaultSecondMagicNumber) {
-            this.addToBot(new ModifyCostThisCombatAction(this, INCREASE_COST));
-        }
+        //if (AbstractDungeon.cardRandomRng.random(0, 1) == 1) {
+            this.baseMagicNumber++;
+            this.magicNumber = this.baseMagicNumber;
+            if(this.cost < this.defaultSecondMagicNumber) {
+                this.addToBot(new ModifyCostThisCombatAction(this, INCREASE_COST));
+            }
+            initializeDescription();
+        //}
     }
 
     @Override
@@ -69,6 +78,16 @@ public class NicePresent extends AbstractNormaAttentiveCard {
             this.isMagicNumberModified = true;
         }
         initializeDescription();
+    }
+
+    @Override
+    public void initializeDescription() {
+        if (this.magicNumber > 1) {
+            this.rawDescription = MULTIDRAWNAME;
+        } else {
+            this.rawDescription = SINGLEDRAWNAME;
+        }
+        super.initializeDescription();
     }
 
     // Upgraded stats.

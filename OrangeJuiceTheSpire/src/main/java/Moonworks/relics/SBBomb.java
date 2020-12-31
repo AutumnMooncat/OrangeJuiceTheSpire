@@ -69,6 +69,7 @@ public class SBBomb extends CustomRelic {
     @Override //Should replace default relic. Thanks kiooeht#3584 10/25/2020, #modding-technical
     public void obtain() {
         if (AbstractDungeon.player.hasRelic(BrokenBomb.ID)) {
+            this.counter = AbstractDungeon.player.getRelic(BrokenBomb.ID).counter;
             for (int i = 0; i < AbstractDungeon.player.relics.size(); ++i) {
                 if (AbstractDungeon.player.relics.get(i).relicId.equals(BrokenBomb.ID)) {
                     instantObtain(AbstractDungeon.player, i, true);

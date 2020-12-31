@@ -69,7 +69,7 @@ public class Wanted extends AbstractTrapCard {
     @Override
     public void upgrade() {
         if (!upgraded) {
-            this.retain = true;
+            this.selfRetain = true;
             rawDescription = UPGRADE_DESCRIPTION;
             upgradeName();
             //upgradeBaseCost(UPGRADE_REDUCED_COST);

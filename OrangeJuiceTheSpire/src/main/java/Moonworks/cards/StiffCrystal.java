@@ -39,10 +39,12 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
     private static final int UPGRADE_PLUS_ARTIFACT = 1;
     private static final int BLOCK = 6;
 
+    private static final Integer[] NORMA_LEVELS = {1};
+
     // /STAT DECLARATION/
 
     public StiffCrystal() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = ARTIFACT;
         block = baseBlock = BLOCK;
         this.exhaust = true;
@@ -57,13 +59,9 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
     }
 
     @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 1) {
-            this.block += 4;
-            this.isBlockModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyBlock(4, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     // Upgraded stats.

@@ -1,6 +1,7 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -127,12 +129,23 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
     @Override
     public void stackPower(int stackAmount) {
         if(!broken) {
+            boolean flashCards = amount < 4; //IF we are already at Norma 5, we dont want to flash the cards when we increase
             super.stackPower(stackAmount);
             if (amount > 5) {
                 amount = 5;
             }
             name = NAME + " " + amount;
             updateDescription();
+
+            if(flashCards){
+                for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                    if (c instanceof AbstractNormaAttentiveCard) {
+                        if (((AbstractNormaAttentiveCard) c).normaLevels.contains(amount) || ((AbstractNormaAttentiveCard) c).normaLevels.contains(-1)){
+                            c.flash(Color.GREEN);
+                        }
+                    }
+                }
+            }
         }
     }
 

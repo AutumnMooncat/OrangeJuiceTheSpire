@@ -45,11 +45,13 @@ public class ImOnFire extends AbstractNormaAttentiveCard {
     private static final int VULNERABLE = 1;
     //private static final int UPGRADE_PLUS_VULNERABLE = 1;
 
+    private static final Integer[] NORMA_LEVELS = {4};
+
     // /STAT DECLARATION/
 
 
     public ImOnFire() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
         this.magicNumber = this.baseMagicNumber = VIGOR;
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = VULNERABLE;
@@ -59,15 +61,19 @@ public class ImOnFire extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (getNormaLevel() >= 3) {
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new ApplyPowerAction(p, p, new DoubleDamagePower(p, 1, false)));
-            if (upgraded) {
-                this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, UPGRADE_PLUS_VIGOR)));
-            }
-        } else {
+        }
+        if (magicNumber > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
         }
         this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, defaultSecondMagicNumber, true)));
+    }
+
+    @Override
+    public void applyNormaEffects() {
+        modifyMagicNumber(-10, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

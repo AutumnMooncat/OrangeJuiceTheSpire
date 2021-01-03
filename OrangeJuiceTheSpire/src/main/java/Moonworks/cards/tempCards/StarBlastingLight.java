@@ -2,6 +2,7 @@ package Moonworks.cards.tempCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BlastingLightPower;
 import basemod.BaseMod;
@@ -26,7 +27,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class StarBlastingLight extends AbstractNormaAttentiveCard {
+public class StarBlastingLight extends AbstractTempCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -60,42 +61,26 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
     private static final int MAX_HITS = 5;
     private static final int UPGRADE_PLUS_MAX_HITS = 2;
 
+    private static final Integer[] NORMA_LEVELS = {-1};
+
     // /STAT DECLARATION/
 
 
     public StarBlastingLight() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, TARGET, NORMA_LEVELS);
         //damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = MIN_HITS;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = MAX_HITS;
-        this.purgeOnUse = true;
         //this.setDisplayRarity(CardRarity.RARE);
         this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
-        setBackgroundTexture(OrangeJuiceMod.TEMP_SKILL_WHITE_ICE, OrangeJuiceMod.TEMP_SKILL_WHITE_ICE_PORTRAIT);
         //this.bannerColor = BANNER_COLOR_RARE.cpy();
         //this.imgFrameColor = IMG_FRAME_COLOR_RARE.cpy();
-    }
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Special");
-        return tags;
-    }
-
-    private static ArrayList<TooltipInfo> specialTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (specialTooltip == null)
-        {
-            specialTooltip = new ArrayList<>();
-            specialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
-        }
-        return specialTooltip;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, 2)];
+        TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(1, 3)];
         this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
         this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 1.0F));
         int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
@@ -113,26 +98,10 @@ public class StarBlastingLight extends AbstractNormaAttentiveCard {
     }
 
     @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
-        this.isDefaultSecondMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        int bonus = getNormaLevel();
-        super.calculateCardDamage(m);
-        if (bonus > 0) {
-            this.magicNumber += bonus;
-            this.defaultSecondMagicNumber += bonus;
-            this.isMagicNumberModified = true;
-            this.isDefaultSecondMagicNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyMagicNumber(getNormaLevel(), NORMA_LEVELS[0]); // normaX effect
+        modifySecondMagic(getNormaLevel(), NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

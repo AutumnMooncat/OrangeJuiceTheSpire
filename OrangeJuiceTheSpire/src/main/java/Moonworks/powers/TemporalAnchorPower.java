@@ -23,10 +23,10 @@ public class TemporalAnchorPower extends TwoAmountPower implements CloneablePowe
     private final int baseNumerator;
 
 
-    private final Color greenColor = Color.GREEN;
-    private final Color yellowColor = Color.YELLOW;
-    private final Color redColor = Color.RED;
-    private final Color darkRedColor = Color.MAROON;
+    private final Color greenColor = Color.GREEN.cpy();
+    private final Color yellowColor = Color.YELLOW.cpy();
+    private final Color redColor = Color.RED.cpy();
+    private final Color darkRedColor = Color.MAROON.cpy();
 
 
     // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.

@@ -1,7 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.tempCards.LeapThroughTime;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.TemporalAnchorPower;
@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class LeapThroughSpace extends AbstractNormaAttentiveCard {
+public class LeapThroughSpace extends AbstractDynamicCard {
 
     // TEXT DECLARATION
 

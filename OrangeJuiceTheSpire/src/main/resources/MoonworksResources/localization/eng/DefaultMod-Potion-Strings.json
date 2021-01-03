@@ -1,6 +1,7 @@
 {
 "Moonworks:OneHundredPercentOrangeJuicePotion": {
         "NAME": "100% Orange Juice",
-        "DESCRIPTIONS": ["Achieve Norma #r6. Receive #gincredible #gpower that you #rcannot #rsafely #rcontain."]
+        "DESCRIPTIONS": ["Achieve Norma #r6. Receive #gincredible #gpower that you #rcannot #rsafely #rcontain.",
+                         "Achieve Norma #r6 #rpermanently. Receive #gincredible #gpower that you #rcannot #rsafely #rcontain."]
 }
 }

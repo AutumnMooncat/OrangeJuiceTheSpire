@@ -24,8 +24,8 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String NAME = cardStrings.NAME;
-    public static final String UPGRADE1NAME = cardStrings.EXTENDED_DESCRIPTION[0];
-    public static final String UPGRADE2NAME = cardStrings.EXTENDED_DESCRIPTION[1];
+    public static final String UPGRADE1NAME = cardStrings.EXTENDED_DESCRIPTION[1];
+    public static final String UPGRADE2NAME = cardStrings.EXTENDED_DESCRIPTION[2];
 
     // /TEXT DECLARATION/
 
@@ -48,10 +48,12 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
     private static final int STR = 0;
     private static final int UPGRADE_PLUS_STR = 1;
 
+    private static final Integer[] NORMA_LEVELS = {-1};
+
     // /STAT DECLARATION/
 
     public BigMagnum() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         invertedNumber = baseInvertedNumber = HPLOSS;
         magicNumber = baseMagicNumber = VIGOR;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = STR;
@@ -80,6 +82,12 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber + getNormaLevel();
         this.isDefaultSecondMagicNumberModified = getNormaLevel() != 0;
         initializeDescription();
+    }
+
+    @Override
+    public void applyNormaEffects() {
+        modifySecondMagic(getNormaLevel(), NORMA_LEVELS[0]); // normaX
+        super.applyNormaEffects();
     }
 
     @Override

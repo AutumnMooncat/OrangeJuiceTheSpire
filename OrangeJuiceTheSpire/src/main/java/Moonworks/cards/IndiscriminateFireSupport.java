@@ -46,12 +46,14 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
     private static final int DAZED = 2;
     private static final int UPGRADE_PLUS_DAZED = 1;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
 
     public IndiscriminateFireSupport() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.damage = this.baseDamage = DAMAGE;
         this.invertedNumber = this.baseInvertedNumber = DAZED;
         this.isMultiDamage = true;
@@ -71,21 +73,9 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
     }
 
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        this.invertedNumber = this.baseInvertedNumber;
-        this.isInvertedNumberModified = false;
-        initializeDescription();
-    }
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-        this.invertedNumber = this.baseInvertedNumber;
-        if (getNormaLevel() >= 2) {
-            this.invertedNumber -= 1;
-            this.isInvertedNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyInvertedNumber(-1, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

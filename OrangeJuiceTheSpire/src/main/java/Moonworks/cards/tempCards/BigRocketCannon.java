@@ -2,6 +2,8 @@ package Moonworks.cards.tempCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractTempCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
@@ -20,7 +22,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class BigRocketCannon extends AbstractDynamicCard {
+public class BigRocketCannon extends AbstractTempCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -55,30 +57,12 @@ public class BigRocketCannon extends AbstractDynamicCard {
 
 
     public BigRocketCannon() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, TARGET);
         this.cardsToPreview = new AirStrike();
         baseDamage = DAMAGE;
         //this.setDisplayRarity(CardRarity.RARE);
-        this.purgeOnUse = true;
-        setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
         //this.isMultiDamage = true; //Not using DamageAllEnemies Action
         //this.isInAutoplay = true;
-    }
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Special");
-        return tags;
-    }
-
-    private static ArrayList<TooltipInfo> specialTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (specialTooltip == null)
-        {
-            specialTooltip = new ArrayList<>();
-            specialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
-        }
-        return specialTooltip;
     }
 
     // Actions the card should do.

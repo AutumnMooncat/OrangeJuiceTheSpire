@@ -28,8 +28,8 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
     public static final String IMG = makeCardPath("CloudOfSeagulls.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    public static final String SELF_DAMAGE_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[0];
+    //public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String SELF_DAMAGE_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[1];
     // /TEXT DECLARATION/
 
 
@@ -49,11 +49,13 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
 
     //private static final AbstractCard card = new JonathanRush();
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
 
     public CloudOfSeagulls() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.cardsToPreview = new JonathanRush();
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = GULLS;
@@ -96,9 +98,8 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
             upgradeDamage(UPGRADE_PLUS_DAMAGE);
             if (!enableSelfDamage) {
                 target = CardTarget.ALL_ENEMY;
-                rawDescription = UPGRADE_DESCRIPTION;
             } else {
-                rawDescription = SELF_DAMAGE_DESCRIPTION;
+                UPGRADE_DESCRIPTION = SELF_DAMAGE_DESCRIPTION;
             }
             //upgradeMagicNumber(UPGRADE_PLUS_HITS);
             initializeDescription();

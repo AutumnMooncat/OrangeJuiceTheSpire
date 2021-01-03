@@ -44,12 +44,14 @@ public class RagingMadness extends AbstractNormaAttentiveCard {
     private static final int EFFECT = 1;
     private static final int UPGRADE_PLUS_EFFECT = 1;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
 
     public RagingMadness() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = EFFECT;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
@@ -62,21 +64,9 @@ public class RagingMadness extends AbstractNormaAttentiveCard {
     }
 
     @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 3) {
-            this.magicNumber += 1;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyMagicNumber(1, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.
@@ -85,7 +75,6 @@ public class RagingMadness extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             this.isInnate = true;
-            rawDescription = UPGRADE_DESCRIPTION;
             //upgradeMagicNumber(UPGRADE_PLUS_EFFECT);
             //updateCost(UPGRADE_COST);
             initializeDescription();

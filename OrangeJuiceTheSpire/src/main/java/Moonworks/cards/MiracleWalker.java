@@ -38,11 +38,13 @@ public class MiracleWalker extends AbstractNormaAttentiveCard {
 
     private static final int COST = -2;
 
+    private static final Integer[] NORMA_LEVELS = {5};
+
     // /STAT DECLARATION/
 
     public MiracleWalker() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        //Norma effect packaged into modifier/action
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
+        //Norma 5 effect packaged into modifier/action
         CardModifierManager.addModifier(this, new TransmutativeModifier(-1, true));
     }
 
@@ -59,7 +61,6 @@ public class MiracleWalker extends AbstractNormaAttentiveCard {
     @Override
     public void upgrade() {
         upgradeName();
-        rawDescription = UPGRADE_DESCRIPTION;
         initializeDescription();
     }
 }

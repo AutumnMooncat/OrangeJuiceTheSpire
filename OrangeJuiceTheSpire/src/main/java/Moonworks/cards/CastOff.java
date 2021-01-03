@@ -43,11 +43,13 @@ public class CastOff extends AbstractNormaAttentiveCard {
     private static final int COST = 1;
     private static final int UPGRADE_COST = 0;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
 
     public CastOff() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.exhaust = true;
     }
 
@@ -59,7 +61,7 @@ public class CastOff extends AbstractNormaAttentiveCard {
         if (amount > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, amount)));
         }
-        if (getNormaLevel() >= 2) {
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, 5)));
         }
 

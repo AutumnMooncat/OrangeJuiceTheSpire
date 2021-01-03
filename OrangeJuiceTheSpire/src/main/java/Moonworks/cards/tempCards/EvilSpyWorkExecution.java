@@ -2,6 +2,7 @@ package Moonworks.cards.tempCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.characters.TheStarBreaker;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
@@ -19,7 +20,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class EvilSpyWorkExecution extends AbstractNormaAttentiveCard {
+public class EvilSpyWorkExecution extends AbstractTempCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -55,30 +56,12 @@ public class EvilSpyWorkExecution extends AbstractNormaAttentiveCard {
 
 
     public EvilSpyWorkExecution() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, TARGET);
         AutoplayField.autoplay.set(this, true);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
-        this.purgeOnUse = true;
         this.isMultiDamage = true;
         //this.setDisplayRarity(CardRarity.UNCOMMON);
-        setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
-    }
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Special");
-        return tags;
-    }
-
-    private static ArrayList<TooltipInfo> specialTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (specialTooltip == null)
-        {
-            specialTooltip = new ArrayList<>();
-            specialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
-        }
-        return specialTooltip;
     }
 
     @Override

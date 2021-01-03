@@ -4,6 +4,8 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.CorruptedModifier;
 import Moonworks.cards.LeapThroughSpace;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.abstractCards.AbstractTempCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.TemporalAnchorPower;
 import Moonworks.relics.WarpPanel;
@@ -43,7 +45,7 @@ import java.util.UUID;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class LeapThroughTime extends AbstractNormaAttentiveCard {
+public class LeapThroughTime extends AbstractTempCard {
 
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
     /*
@@ -119,13 +121,11 @@ public class LeapThroughTime extends AbstractNormaAttentiveCard {
 
 
     public LeapThroughTime(AbstractCard cardToIgnore, boolean previewOnly) {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, TARGET);
         //AutoplayField.autoplay.set(this, true);
-        this.purgeOnUse = true;
         this.previewOnly = previewOnly;
         this.magicNumber = this.baseMagicNumber = INITIAL_PERCENT;
         this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
-        setBackgroundTexture(OrangeJuiceMod.TEMP_SKILL_WHITE_ICE, OrangeJuiceMod.TEMP_SKILL_WHITE_ICE_PORTRAIT);
 
         if(AbstractDungeon.player != null && !previewOnly) {
             saveData(cardToIgnore);
@@ -233,23 +233,6 @@ public class LeapThroughTime extends AbstractNormaAttentiveCard {
         this.potionList.addAll(AbstractDungeon.player.potions);
         this.orbList.addAll(AbstractDungeon.player.orbs);
         this.maxOrbs = AbstractDungeon.player.maxOrbs;
-    }
-
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add("Special");
-        return tags;
-    }
-
-    private static ArrayList<TooltipInfo> specialTooltip;
-    @Override
-    public List<TooltipInfo> getCustomTooltipsTop() {
-        if (specialTooltip == null)
-        {
-            specialTooltip = new ArrayList<>();
-            specialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
-        }
-        return specialTooltip;
     }
 
     @Override

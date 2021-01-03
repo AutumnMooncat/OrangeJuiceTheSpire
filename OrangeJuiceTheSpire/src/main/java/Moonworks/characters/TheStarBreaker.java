@@ -84,7 +84,7 @@ public class TheStarBreaker extends CustomPlayer {
 
     //private static final SpriterAnimation defaultAnimation = new SpriterAnimation(defaultAnim);
 
-    //Use a new Animation rather than the same one so we dont spawn in the dead animation if we lose a run and dtart a new one, lml
+    //Use a new Animation rather than the same one so we dont spawn in the dead animation if we lose a run and start a new one, lml
     //private static final CustomSpriterAnimation ANIM_SET = new CustomSpriterAnimation(ANIM_FILE);
 
 
@@ -200,17 +200,17 @@ public class TheStarBreaker extends CustomPlayer {
 
         //*/
 
-        /*Trap Cards
+        //*Trap Cards
 
-        retVal.add(BigBangBell.ID);
-        retVal.add(EvilMastermind.ID);
-        retVal.add(GoAway.ID);
-        retVal.add(Heat300Percent.ID);
-        retVal.add(PlushieMaster.ID);
-        retVal.add(Poppoformation.ID);
-        retVal.add(StarBlastingFuse.ID);
-        retVal.add(TreasureThief.ID);
-        retVal.add(Wanted.ID);
+        //retVal.add(BigBangBell.ID);
+        //retVal.add(EvilMastermind.ID);
+        //retVal.add(GoAway.ID);
+        //retVal.add(Heat300Percent.ID);
+        //retVal.add(PlushieMaster.ID);
+        //retVal.add(Poppoformation.ID);
+        //retVal.add(StarBlastingFuse.ID);
+        //retVal.add(TreasureThief.ID);
+        //retVal.add(Wanted.ID);
 
         //*/
 

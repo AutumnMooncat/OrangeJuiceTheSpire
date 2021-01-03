@@ -33,10 +33,12 @@ public class Assault extends AbstractNormaAttentiveCard {
     private static final int DAMAGE = 7;
     private static final int UPGRADE_PLUS_DAMAGE = 2;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
     public Assault() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         damage = baseDamage = DAMAGE;
         damageType = damageTypeForTurn = DamageInfo.DamageType.HP_LOSS;
     }
@@ -50,18 +52,18 @@ public class Assault extends AbstractNormaAttentiveCard {
     //Stops powers from effecting the card
     @Override
     public void applyPowers() {
-        this.damage = this.baseDamage;
-        this.isDamageModified = false;
+        applyNormaEffects();
         initializeDescription();
     }
     @Override
     public void calculateCardDamage(AbstractMonster m) {
-        this.damage = this.baseDamage;
-        if (getNormaLevel() >= 2) {
-            this.damage += 2;
-            this.isDamageModified = true;
-        }
         initializeDescription();
+    }
+
+    @Override
+    public void applyNormaEffects() {
+        modifyDamage(2, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     // Upgraded stats.

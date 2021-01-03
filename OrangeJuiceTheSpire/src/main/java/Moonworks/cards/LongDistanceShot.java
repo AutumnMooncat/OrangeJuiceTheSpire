@@ -37,7 +37,7 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
     public static final String IMG = makeCardPath("LongDistanceShot.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String COPY_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[0];
+    public static final String COPY_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[1];
 
     // /TEXT DECLARATION/
 
@@ -54,6 +54,8 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
     private static final int UPGRADE_PLUS_DMG = 2;
     private static final int DRAW = 1;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     public boolean copy;
 
     // /STAT DECLARATION/
@@ -64,7 +66,7 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
     }
 
     public LongDistanceShot(boolean copy) {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
         this.copy = copy;
@@ -81,7 +83,7 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         this.addToBot(new DrawCardAction(magicNumber));
-        if (getNormaLevel() >= 2 && p.hand.size() < BaseMod.MAX_HAND_SIZE && !isEthereal) {
+        if (getNormaLevel() >= NORMA_LEVELS[0] && p.hand.size() < BaseMod.MAX_HAND_SIZE && !isEthereal) {
             AbstractCard lds = new LongDistanceShot(true);
             if (upgraded) {
                 lds.upgrade();

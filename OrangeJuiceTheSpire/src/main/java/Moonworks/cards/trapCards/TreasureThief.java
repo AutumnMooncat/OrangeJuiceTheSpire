@@ -10,6 +10,7 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,12 +44,14 @@ public class TreasureThief extends AbstractTrapCard {
     private static final int UPGRADE_REDUCED_COST = 0;
     private static final int STACKS = 1;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
 
     public TreasureThief() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = STACKS;
         this.exhaust = true; //Maybe?
 
@@ -57,8 +60,8 @@ public class TreasureThief extends AbstractTrapCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        boolean bonus = getNormaLevel() >= 3;
-        this.addToBot(new ApplyPowerAction(m, p, new TreasureThiefPower(m, this.magicNumber, bonus)));
+        boolean bonusDrawAttempt = getNormaLevel() >= NORMA_LEVELS[0];
+        this.addToBot(new ApplyPowerAction(m, p, new TreasureThiefPower(m, this.magicNumber, bonusDrawAttempt)));
     }
 
     //Upgraded stats.

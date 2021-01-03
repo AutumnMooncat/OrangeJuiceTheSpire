@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.NormaPower;
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -20,7 +21,7 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     public static final String IMG = makeCardPath("BackdoorTrade.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String NORMA5DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[1];
     public static final String NORMAL_DESCRIPTION = cardStrings.DESCRIPTION;
 
     // /TEXT DECLARATION/
@@ -41,10 +42,12 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
 
     private static final int NORMA_UP = 1;
 
+    private static final Integer[] NORMA_LEVELS = {5};
+
     // /STAT DECLARATION/
 
     public BackdoorTrade() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = CARDS;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = NORMA_UP;
         this.exhaust = true;
@@ -54,7 +57,7 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //this.addToBot(new LoseHPAction(p, p, magicNumber));
-        if (getNormaLevel() < 5) {
+        if (getNormaLevel() < NORMA_LEVELS[0]) {
             this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, defaultSecondMagicNumber),defaultSecondMagicNumber));
         } else {
             this.addToBot(new DrawCardAction(magicNumber));
@@ -70,9 +73,33 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
 
     @Override
     public void initializeDescription() {
-        this.exhaust = getNormaLevel() >= 5;
-        rawDescription = getNormaLevel() >= 5 ? UPGRADE_DESCRIPTION : NORMAL_DESCRIPTION;
+        this.exhaust = getNormaLevel() < NORMA_LEVELS[0];
+        DESCRIPTION = getNormaLevel() >= NORMA_LEVELS[0] ? NORMA5DESCRIPTION : NORMAL_DESCRIPTION;
         super.initializeDescription();
+    }
+
+    @Override
+    public void applyNormaDescriptions(){
+        StringBuilder sb = new StringBuilder();
+        boolean passedCheck, normaX;
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
+            DESCRIPTION = "";
+        }
+        sb.append(DESCRIPTION);
+        if(normaLevels != null && normaLevels.size() > 0) {
+            for (int i = 0 ; i < normaLevels.size() ; i++) {
+                normaX = normaLevels.get(i) == -1;
+                passedCheck = getNormaLevel() >= (normaX ? 1 : normaLevels.get(i)); //Could also use absolute value here, but thats less intuitive to read
+                if (getNormaLevel() < NORMA_LEVELS[0]) sb.append(" NL ");
+                sb.append(passedCheck ? upgradeGreen : "*");
+                sb.append(BaseMod.getKeywordTitle("moonworks:Norma")).append(" ");
+                sb.append(passedCheck ? upgradeGreen : "*");
+                sb.append(normaX ? "X" : normaLevels.get(i));
+                sb.append(": ");
+                if (getNormaLevel() < NORMA_LEVELS[0]) sb.append(EXTENDED_DESCRIPTION[i]); else sb.append(EXTENDED_DESCRIPTION[1]);
+            }
+        }
+        rawDescription = sb.toString();
     }
 
     // Upgraded stats.

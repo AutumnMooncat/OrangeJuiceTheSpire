@@ -46,12 +46,14 @@ public class BigBangBell extends AbstractTrapCard {
     private static final int STACKS = 10;
     private static final int UPGRADE_PLUS_STACKS = 5;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
 
     public BigBangBell() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = STACKS;
         //this.retain = true;
         //this.exhaust = true;
@@ -65,22 +67,9 @@ public class BigBangBell extends AbstractTrapCard {
     }
 
     @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) {
-        super.calculateCardDamage(mo);
-        this.magicNumber = this.baseMagicNumber;
-        if (getNormaLevel() >= 3) {
-            this.magicNumber += 5;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyMagicNumber(5, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

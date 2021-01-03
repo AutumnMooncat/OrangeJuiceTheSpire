@@ -42,10 +42,12 @@ public class AwakeningOfTalent extends AbstractNormaAttentiveCard {
 
     private static final int ENERGY = 1;
 
+    private static final Integer[] NORMA_LEVELS = {4};
+
     // /STAT DECLARATION/
 
     public AwakeningOfTalent() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         damage = baseDamage = DAMAGE;
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = CARDS;
@@ -62,8 +64,8 @@ public class AwakeningOfTalent extends AbstractNormaAttentiveCard {
         AbstractDungeon.actionManager.addToBottom(new SunderAction(m, new DamageInfo(p, damage, damageTypeForTurn),defaultSecondMagicNumber));
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
         AbstractDungeon.actionManager.addToBottom(new DrawCardAction(magicNumber));
-        if (getNormaLevel() >= 4) {
-           this.addToBot(new GainEnergyAction(1));
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
+           this.addToBot(new GainEnergyAction(defaultSecondMagicNumber));
         }
     }
 

@@ -46,11 +46,13 @@ public class ShieldCounter extends AbstractNormaAttentiveCard {
     private static final int COST = 2;
     private static final int DAMAGE = 0;
 
+    private static final Integer[] NORMA_LEVELS = {4};
+
     // /STAT DECLARATION/
 
 
     public ShieldCounter() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         baseDamage = DAMAGE;
     }
 
@@ -71,7 +73,7 @@ public class ShieldCounter extends AbstractNormaAttentiveCard {
                     new DamageAction(m, new DamageInfo(p, dmg, damageTypeForTurn),
                             AbstractGameAction.AttackEffect.SLASH_HEAVY));
         }
-        if (getNormaLevel() >= 4) {
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, 1)));
         }
 

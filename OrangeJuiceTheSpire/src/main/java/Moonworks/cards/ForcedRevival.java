@@ -47,10 +47,12 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
     private static final int ENERGY = 1;
     private static final int UPGRADE_PLUS_ENERGY = 1;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
     public ForcedRevival() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
 
         magicNumber = baseMagicNumber = HEAL;
         invertedNumber = baseInvertedNumber = ENERGY;
@@ -64,7 +66,7 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
         this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, this.invertedNumber, false)));
         this.addToBot(new HealAction(p, p, this.magicNumber));
         this.addToBot(new GainEnergyAction(this.invertedNumber));
-        if (getNormaLevel() >= 3) {
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.invertedNumber, false)));
             this.addToBot(new GainEnergyAction(this.invertedNumber));
         }
@@ -76,7 +78,6 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
             this.upgradeMagicNumber(UPGRADE_PLUS_HEAL);
             this.upgradeInvertedNumber(UPGRADE_PLUS_ENERGY);
             this.initializeDescription();

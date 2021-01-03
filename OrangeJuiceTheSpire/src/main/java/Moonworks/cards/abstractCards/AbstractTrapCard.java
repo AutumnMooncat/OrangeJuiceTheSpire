@@ -14,13 +14,18 @@ public abstract class AbstractTrapCard extends AbstractNormaAttentiveCard {
     private static ArrayList<TooltipInfo> TrapTooltip;
 
     public AbstractTrapCard(String id, String img, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target) {
-        super(id, img, cost, type, color, rarity, target);
+        this(id, img, cost, type, color, rarity, target, null);
+    }
+
+    public AbstractTrapCard(String id, String img, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target, Integer[] normaLevels) {
+        super(id, img, cost, type, color, rarity, target, normaLevels);
         setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
     }
 
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add("Trap");
+        tags.add(BaseMod.getKeywordTitle("moonworks:Trap"));
+        tags.addAll(super.getCardDescriptors());
         return tags;
     }
 

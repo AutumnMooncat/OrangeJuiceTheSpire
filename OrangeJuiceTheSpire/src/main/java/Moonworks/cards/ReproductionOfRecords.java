@@ -39,10 +39,12 @@ public class ReproductionOfRecords extends AbstractNormaAttentiveCard {
 
     private static final int CARDS = 2;
 
+    private static final Integer[] NORMA_LEVELS = {4};
+
     // /STAT DECLARATION/
 
     public ReproductionOfRecords() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = CARDS;
         exhaust = true;
     }
@@ -56,7 +58,7 @@ public class ReproductionOfRecords extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ReproductionOfRecordsAction(magicNumber));
-        if (getNormaLevel() >= 4) {
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new GainEnergyAction(1));
         }
         //See hologram, kinda

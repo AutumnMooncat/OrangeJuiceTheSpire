@@ -45,14 +45,15 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
     private static final int UPGRADE_PLUS_MULTIPLE = 1;
 
     private static final int DIVISOR = 5;
-    private static final int NORMA_DIVISOR = 3;
+    private static final int NORMA_DIVISOR = -2;
 
+    private static final Integer[] NORMA_LEVELS = {5};
     // /STAT DECLARATION/
 
 
     public BeyondHell() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = MULTIPLE;
         this.invertedNumber = this.baseInvertedNumber = DIVISOR;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
@@ -62,29 +63,22 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int effect = ((p.maxHealth - p.currentHealth) / invertedNumber) * magicNumber;
+        int effect;
+        if (invertedNumber == magicNumber) { //Avoid odd rounding issues if the divisor and multiplicand are equal
+            effect = (p.maxHealth - p.currentHealth);
+        } else {
+            effect = ((p.maxHealth - p.currentHealth) / invertedNumber) * magicNumber;
+        }
+
         if (effect > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, effect)));
         }
     }
 
-
     @Override
-    public void applyPowers() {
-        super.applyPowers();
-        this.invertedNumber = this.baseInvertedNumber;
-        this.isInvertedNumberModified = false;
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        this.invertedNumber = this.baseInvertedNumber;
-        if (getNormaLevel() >= 5) {
-            this.invertedNumber = NORMA_DIVISOR;
-            this.isInvertedNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyInvertedNumber(NORMA_DIVISOR, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

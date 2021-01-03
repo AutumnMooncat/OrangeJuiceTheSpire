@@ -42,10 +42,12 @@ public class TacticalRetreat extends AbstractNormaAttentiveCard {
 
     private static final int ENERGY = 1;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
     public TacticalRetreat() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = NEXT_TURN_BLOCK;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = ENERGY;
@@ -60,24 +62,10 @@ public class TacticalRetreat extends AbstractNormaAttentiveCard {
     }
 
     @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        //Block properly reset by super call
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 2) {
-            this.block += 2;
-            this.magicNumber += 2;
-            this.isBlockModified = true;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyBlock(2, NORMA_LEVELS[0]);
+        modifyMagicNumber(2, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     // Upgraded stats.

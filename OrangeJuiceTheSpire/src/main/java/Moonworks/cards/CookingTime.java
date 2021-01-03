@@ -32,10 +32,12 @@ public class CookingTime extends AbstractNormaAttentiveCard {
     private static final int HEAL = 3;
     private static final int UPGRADE_PLUS_HEAL = 2;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
     public CookingTime() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = HEAL;
         this.tags.add(CardTags.HEALING);
         this.exhaust = true;
@@ -44,11 +46,13 @@ public class CookingTime extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bonus = 0;
-        if (getNormaLevel() >= 3) {
-            bonus = 3;
-        }
-        this.addToBot(new CookingTimeAction(p, m, magicNumber+bonus, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        this.addToBot(new CookingTimeAction(p, m, magicNumber, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+    }
+
+    @Override
+    public void applyNormaEffects() {
+        modifyMagicNumber(3, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     // Upgraded stats.

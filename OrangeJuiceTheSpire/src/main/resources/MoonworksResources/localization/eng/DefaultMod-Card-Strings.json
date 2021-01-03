@@ -65,7 +65,8 @@
   },
   "Moonworks:Ambush": {
     "NAME": "Ambush",
-    "DESCRIPTION": "Apply !M! Vulnerable. NL Then deal !D! damage. NL moonworks:Norma 3: This Attack ignores Block."
+    "DESCRIPTION": "Apply !M! Vulnerable. NL Then deal !D! damage.",
+    "EXTENDED_DESCRIPTION": ["This Attack ignores Block."]
   },
   "Moonworks:AngelHand": {
     "NAME": "Angel Hand",
@@ -78,33 +79,37 @@
   },
   "Moonworks:Assault": {
     "NAME": "Assault",
-    "DESCRIPTION": "Deal !D! moonworks:Fixed damage. NL This Attack ignores Block. NL moonworks:Norma 2: +2 damage."
+    "DESCRIPTION": "Deal !D! moonworks:Fixed damage. NL This Attack ignores Block.",
+    "EXTENDED_DESCRIPTION": ["+2 damage."]
   },
   "Moonworks:AwakeningOfTalent": {
     "NAME": "Awakening Of Talent",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw !M! card. NL If this kills an enemy, gain [E]. NL moonworks:Norma 4: Gain [E]."
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Draw !M! card. NL If this kills an enemy, gain [E].",
+    "EXTENDED_DESCRIPTION": ["Gain [E]."]
   },
   "Moonworks:BackdoorTrade": {
     "NAME": "Backdoor Trade",
-    "DESCRIPTION": "Raise your moonworks:Norma level by !Moonworks:SecondMagic!. NL Exhaust. NL moonworks:Norma 5: Don't exhaust. Draw !M! cards.",
-    "UPGRADE_DESCRIPTION": "Draw !M! cards."
+    "DESCRIPTION": "Raise your *Norma level by !Moonworks:SecondMagic!. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Don't exhaust, draw !M! cards.","Draw !M! cards."]
   },
   "Moonworks:BeyondHell": {
     "NAME": "Beyond Hell",
-    "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:InvertedNumber! missing HP. NL moonworks:Norma 5: Gain Vigor for every 3 missing HP instead."
+    "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:InvertedNumber! missing HP.",
+    "EXTENDED_DESCRIPTION": ["Gain Vigor for every 3 missing HP instead."]
   },
   "Moonworks:BigBangBell": {
     "NAME": "Big Bang Bell",
-    "DESCRIPTION": "The next time this target does not intend to attack, deal !M! damage. NL This damage exponentially increases every turn. NL moonworks:Norma 3: +5 base damage."
+    "DESCRIPTION": "The next time this target does not intend to attack, deal !M! damage. NL This damage exponentially increases every turn.",
+    "EXTENDED_DESCRIPTION": ["+5 base damage."]
   },
   "Moonworks:BigMagnum": {
     "NAME": "Big Magnum",
-    "DESCRIPTION": "Lose !Moonworks:InvertedNumber! HP. NL Gain !M! Vigor. NL Gain !Moonworks:SecondMagic! Strength. NL Exhaust. NL moonworks:Norma X: +X Strength.",
-    "EXTENDED_DESCRIPTION": ["Bigger Magnum","Biggest Magnum"]
+    "DESCRIPTION": "Lose !Moonworks:InvertedNumber! HP. NL Gain !M! Vigor. NL Gain !Moonworks:SecondMagic! Strength. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["+X Strength.","Bigger Magnum","Biggest Magnum"]
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "Big Rocket Cannon",
-    "DESCRIPTION": "Deal !D! damage and half that to ALL OTHER enemies. NL Shuffle *Air *Strike into your [#FFF6E2]draw pile. NL Purge."
+    "DESCRIPTION": "Deal !D! damage and half that to ALL OTHER enemies. NL Shuffle 1 *Air *Strike into your [#FFF6E2]draw pile. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "Binding Chains",
@@ -123,40 +128,45 @@
   },
   "Moonworks:CastOff": {
     "NAME": "Cast Off",
-    "DESCRIPTION": "Lose all Block. NL Gain Vigor equal to the amount of Block lost. NL Exhaust. NL moonworks:Norma 2: Gain 5 moonworks:Steady."
+    "DESCRIPTION": "Lose all Block. NL Gain Vigor equal to the amount of Block lost. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Gain 5 moonworks:Steady."]
   },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "Cloud of Seagulls",
-    "DESCRIPTION": "Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Shuffle !M! *Jonathan *Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card.",
-    "EXTENDED_DESCRIPTION": ["Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush+ into your draw pile. NL moonworks:Norma 2: Draw 1 card."]
+    "DESCRIPTION": "Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Shuffle !M! *Jonathan *Rush+ into your draw pile.",
+    "EXTENDED_DESCRIPTION": ["Draw 1 card.","Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush+ into your draw pile."]
   },
   "Moonworks:CompletionReward": {
     "NAME": "Completion Reward",
-    "DESCRIPTION": "Deals damage for every card played this combat. moonworks:Reset. NL (Deals !D! damage.) NL moonworks:Norma 2: +3 damage.",
-    "UPGRADE_DESCRIPTION": "Deals damage for every card played this combat. Half moonworks:Reset. NL (Deals !D! damage.) NL moonworks:Norma 2: +3 damage."
+    "DESCRIPTION": "Deals damage for every card played this combat. moonworks:Reset. NL (Deals !D! damage.)",
+    "UPGRADE_DESCRIPTION": "Deals damage for every card played this combat. Half moonworks:Reset. NL (Deals !D! damage.)",
+    "EXTENDED_DESCRIPTION": ["+3 damage."]
   },
   "Moonworks:CookingTime": {
     "NAME": "Cooking Time",
-    "DESCRIPTION": "Everyone heals !M! HP. Deals damage equal to the amount healed. NL Exhaust. NL moonworks:Norma 3: +3 HP healed."
+    "DESCRIPTION": "Everyone heals !M! HP. Deals damage equal to the amount healed. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["+3 HP healed."]
   },
   "Moonworks:CrystalBarrier": {
     "NAME": "Crystal Barrier",
-    "DESCRIPTION": "Block is not removed at the start of your turn. NL Gain !M! [#efc851]Plated[] [#efc851]Armor[].",
-    "UPGRADE_DESCRIPTION": "Block is not removed at the start of your turn. NL Gain !M! Plated Armor."
+    "DESCRIPTION": "Block is not removed at the start of your turn. NL Gain !M! *Plated *Armor."
   },
   "Moonworks:Dash": {
     "NAME": "Dash",
-    "DESCRIPTION": "Gain [E]. NL Exhaust. NL moonworks:Norma 2: Gain 5 Block.",
-    "UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Exhaust. NL moonworks:Norma 2: Gain 5 Block."
+    "DESCRIPTION": "Gain [E]. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Gain 5 Block."]
   },
   "Moonworks:Defend": {
     "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block. NL moonworks:Norma 1: +1 Block. NL moonworks:Norma 3: +1 Block."
+    "DESCRIPTION": "Gain !B! Block.",
+    "EXTENDED_DESCRIPTION": ["+1 Block", "+1 Block"]
   },
   "Moonworks:DeployBits": {
     "NAME": "Deploy Bits",
-    "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor. NL moonworks:Norma 4: -3 Bits, but Bit distribution is now optimized."
+    "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor.",
+    "EXTENDED_DESCRIPTION": ["-3 Bits, but Bit distribution is now optimized."]
   },
   "Moonworks:DevilHand": {
     "NAME": "Devil Hand",
@@ -164,7 +174,8 @@
   },
   "Moonworks:Dinner": {
     "NAME": "Dinner",
-    "DESCRIPTION": "Apply !M! Regen to ALL targets. NL Exhaust. NL moonworks:Norma 4: Gain Block equal to the amount of regen applied."
+    "DESCRIPTION": "Apply !M! Regen to ALL targets. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Gain Block equal to the amount of Regen applied."]
   },
   "Moonworks:EvilMastermind": {
     "NAME": "Evil Mastermind",
@@ -175,7 +186,9 @@
       " NL Exhaust.",
       "Play the *effect of the following *Traps on random enemies: ",
       " NL Plus *",
-      " more."]
+      " more.",
+      " time.",
+      " times."]
   },
   "Moonworks:EvilSpyWorkExecution": {
     "NAME": "Evil Spy Work Execution",
@@ -206,12 +219,14 @@
   },
   "Moonworks:ForcedRevival": {
     "NAME": "Forced Revival",
-    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:InvertedNumber! Weak, but also twice the energy.",
-    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust. NL moonworks:Norma 3: Gain !Moonworks:InvertedNumber! Weak, but also twice the energy."
+    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Gain !Moonworks:InvertedNumber! Weak, but also twice the energy."]
   },
   "Moonworks:FullSpeedAlicianrone": {
     "NAME": "Full Speed Alicianrone",
-    "DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional cards. NL moonworks:Norma 3: Deal damage to ALL enemies instead"
+    "DESCRIPTION": "Deal !D! damage. NL Next turn, draw !M! additional cards.",
+    "EXTENDED_DESCRIPTION": ["Deal damage to ALL enemies instead."]
   },
   "Moonworks:Gamble": {
     "NAME": "Gamble!",
@@ -225,13 +240,14 @@
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
-    "DESCRIPTION": "Remove all Block the next time it is gained. NL moonworks:Norma 2: Remove all Block the next 2 times it is gained.",
-    "EXTENDED_DESCRIPTION": ["Apply !M! Heat [#efc851]300%[] to the target."]
+    "DESCRIPTION": "Remove all Block the next time it is gained.",
+    "EXTENDED_DESCRIPTION": ["Remove all Block the next 2 times it is gained."]
   },
   "Moonworks:HolyNight": {
     "NAME": "Holy Night",
-    "DESCRIPTION": "At the start of your turn, draw !M! additional card. NL moonworks:Norma 3: If available, use an extra [E] to double the effect.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, draw !M! additional card. NL moonworks:Norma 3: If available, use an extra [E] to double the effect."
+    "DESCRIPTION": "At the start of your turn, draw !M! additional card.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, draw !M! additional card.",
+    "EXTENDED_DESCRIPTION": ["If available, use an extra [E] to double the effect."]
   },
   "Moonworks:ImmovableObject": {
     "NAME": "Immovable Object",
@@ -239,11 +255,13 @@
   },
   "Moonworks:ImOnFire": {
     "NAME": "I'm On Fire!",
-    "DESCRIPTION": "Gain !M! Vigor and !Moonworks:SecondMagic! Vulnerable. NL moonworks:Norma 3: -10 Vigor, gain Double Damage this turn."
+    "DESCRIPTION": "Gain !M! Vigor and !Moonworks:SecondMagic! Vulnerable.",
+    "EXTENDED_DESCRIPTION": ["-10 Vigor, gain Double Damage this turn."]
   },
   "Moonworks:IndiscriminateFireSupport": {
     "NAME": "Indiscriminate Fire",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL Shuffle !Moonworks:InvertedNumber! Dazed into your draw pile. NL moonworks:Norma 2: Shuffle 1 less Dazed into your draw pile."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies X times. NL Shuffle !Moonworks:InvertedNumber! Dazed into your draw pile.",
+    "EXTENDED_DESCRIPTION": ["Shuffle 1 less Dazed into your draw pile."]
   },
   "Moonworks:IntelligenceOfficer": {
     "NAME": "Intelligence Officer",
@@ -265,8 +283,8 @@
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "Long-Distance Shot",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card. NL moonworks:Norma 2: Add a temporary copy of this card without this effect to your hand.",
-    "EXTENDED_DESCRIPTION": ["Ethereal. NL Deal !D! damage. NL Draw !M! card. NL Exhaust."]
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card.",
+    "EXTENDED_DESCRIPTION": ["Add a temporary copy of this card without this effect to your hand.","Ethereal. NL Deal !D! damage. NL Draw !M! card. NL Exhaust."]
   },
   "Moonworks:LuckyCharm": {
     "NAME": "Lucky Charm",
@@ -308,8 +326,9 @@
   },
   "Moonworks:MiracleWalker": {
     "NAME": "Miracle Walker",
-    "DESCRIPTION": "Each time this card transforms, it costs 0 that turn. NL moonworks:Norma 5: Transformed Attack and Skill cards will not exhaust.",
-    "UPGRADE_DESCRIPTION": "Each time this card transforms, it costs 0 that turn. NL Transformed cards will be upgraded.  NL moonworks:Norma 5: Transformed Attack and Skill cards will not exhaust."
+    "DESCRIPTION": "Each time this card transforms, it costs 0 that turn.",
+    "UPGRADE_DESCRIPTION": "Each time this card transforms, it costs 0 that turn. NL Transformed cards will be upgraded.",
+    "EXTENDED_DESCRIPTION": ["Transformed Attack and Skill cards will not exhaust."]
   },
   "Moonworks:MixPhenomenon": {
     "NAME": "Mix Phenomenon",
@@ -318,16 +337,17 @@
   },
   "Moonworks:NicePresent": {
     "NAME": "Nice Present",
-    "DESCRIPTION": "Draw !M! card. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played. NL moonworks:Norma 3: +1 draw.",
-    "EXTENDED_DESCRIPTION": ["Draw !M! cards. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played. NL moonworks:Norma 3: +1 draw."]
+    "DESCRIPTION": "Draw !M! card. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played.",
+    "EXTENDED_DESCRIPTION": ["+1 draw.","Draw !M! cards. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played."]
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "Out Of Ammo",
-    "DESCRIPTION": "Whenever you have either no cards, or only moonworks:Gift and unplayable *Status cards, in your hand during your turn, draw a card."
+    "DESCRIPTION": "Whenever you have either no cards, or only moonworks:Gift and Unplayable Status cards, in your hand during your turn, draw a card."
   },
   "Moonworks:PlushieMaster": {
     "NAME": "Plushie Master",
-    "DESCRIPTION": "Apply !M! moonworks:Plushie_Marks to random enemies. NL moonworks:Norma 2: +2 Marks."
+    "DESCRIPTION": "Apply !M! moonworks:Plushie_Marks to random enemies.",
+    "EXTENDED_DESCRIPTION": ["+2 Marks."]
   },
   "Moonworks:Poppoformation": {
     "NAME": "Poppoformation",
@@ -339,8 +359,9 @@
   },
   "Moonworks:RagingMadness": {
     "NAME": "Raging Madness",
-    "DESCRIPTION": "Whenever you receive unblocked damage, gain !M! Strength. NL moonworks:Norma 3: Gain twice the Strength.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you receive unblocked damage, gain !M! Strength. NL moonworks:Norma 3: Gain twice the Strength."
+    "DESCRIPTION": "Whenever you receive unblocked damage, gain !M! Strength.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Whenever you receive unblocked damage, gain !M! Strength.",
+    "EXTENDED_DESCRIPTION": ["Gain twice the Strength."]
   },
   "Moonworks:RedAndBlue": {
     "NAME": "Red And Blue",
@@ -354,21 +375,25 @@
   },
   "Moonworks:ReproductionOfRecords": {
     "NAME": "Reproduction of Records",
-    "DESCRIPTION": "Add a copy of the !M! most recent cards in your discard pile to your hand. NL Exhaust. NL moonworks:Norma 4: Refund [E].",
-    "UPGRADE_DESCRIPTION": "Retain. NL Add a copy of the !M! most recent cards in your discard pile to your hand. NL Exhaust. NL moonworks:Norma 4: Refund [E]."
+    "DESCRIPTION": "Add a copy of the !M! most recent cards in your discard pile to your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Add a copy of the !M! most recent cards in your discard pile to your hand. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Gain [E]."]
   },
   "Moonworks:RocketCannon": {
     "NAME": "Rocket Cannon",
-    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Big *Rocket *Cannon into your draw pile. NL moonworks:Norma 2: Shuffle an additional card."
+    "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Big *Rocket *Cannon into your draw pile.",
+    "EXTENDED_DESCRIPTION": ["Shuffle an additional card."]
   },
   "Moonworks:SakisCookie": {
     "NAME": "Saki's Cookie",
-    "DESCRIPTION": "Heal !M! HP. NL Exhaust. NL moonworks:Norma 2: +2 HP healed."
+    "DESCRIPTION": "Heal !M! HP. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["+2 HP healed."]
   },
   "Moonworks:ScrambledEve": {
     "NAME": "Scrambled Eve",
-    "DESCRIPTION": "Discard any number of cards, then draw that many. NL moonworks:Norma 1: Draw +1 card. NL moonworks:Norma 3: Draw +1 card.",
-    "UPGRADE_DESCRIPTION": "Shuffle your discard pile into your draw pile. NL Discard any number of cards, then draw that many. NL moonworks:Norma 1: Draw +1 card. NL moonworks:Norma 3: Draw +1 card."
+    "DESCRIPTION": "Discard any number of cards, then draw that many plus !M!.",
+    "UPGRADE_DESCRIPTION": "Shuffle your discard pile into your draw pile. NL Discard any number of cards, then draw that many plus !M!.",
+    "EXTENDED_DESCRIPTION": ["Draw +1 card.", "Draw +1 card"]
   },
   "Moonworks:SealedMemories": {
     "NAME": "Sealed Memories",
@@ -377,12 +402,14 @@
   },
   "Moonworks:SelfDestruct": {
     "NAME": "Self Destruct",
-    "DESCRIPTION": "Gain !B! Block. NL Lose half your HP. Deal this amount to ALL enemies. NL moonworks:Norma 3: Gain 10 Temp HP."
+    "DESCRIPTION": "Gain !B! Block. NL Lose half your HP. Deal this amount to ALL enemies.",
+    "EXTENDED_DESCRIPTION": ["Gain 10 Temp HP."]
   },
   "Moonworks:ShieldCounter": {
     "NAME": "Shield Counter",
-    "DESCRIPTION": "Deal damage equal to the target's intent. NL moonworks:Norma 4: Remove all Block the next time it is gained.",
-    "UPGRADE_DESCRIPTION": "Remove all Block from the target. NL Deal damage equal to the target's intent. NL moonworks:Norma 4: Remove all Block the next time it is gained."
+    "DESCRIPTION": "Deal damage equal to the target's intent.",
+    "UPGRADE_DESCRIPTION": "Remove all Block from the target. NL Deal damage equal to the target's intent.",
+    "EXTENDED_DESCRIPTION": ["Remove all Block the next time it is gained."]
   },
   "Moonworks:SinkOrSwim": {
     "NAME": "Sink Or Swim",
@@ -395,16 +422,18 @@
   },
   "Moonworks:StarBlastingLight": {
     "NAME": "Star Blasting Light",
-    "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! moonworks:Blasting_Light to ALL enemies. NL Purge. NL moonworks:Norma X : +X moonworks:Blast.",
-    "EXTENDED_DESCRIPTION": ["Fufu... AHAHA!","Until you turn into ashes...","Burn beautifully."]
+    "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! moonworks:Blasting_Light to ALL enemies. NL Purge.",
+    "EXTENDED_DESCRIPTION": ["+X moonworks:Blast.","Fufu... AHAHA!","Until you turn into ashes...","Burn beautifully."]
   },
   "Moonworks:StiffCrystal": {
     "NAME": "Stiff Crystal",
-    "DESCRIPTION": "Gain !M! Artifact. NL Gain !B! Block. NL Exhaust. NL moonworks:Norma 1: +4 Block."
+    "DESCRIPTION": "Gain !M! Artifact. NL Gain !B! Block. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["+4 Block."]
   },
   "Moonworks:Strike": {
     "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage. NL moonworks:Norma 2: +1 base damage. NL moonworks:Norma 4: +2 bonus damage."
+    "DESCRIPTION": "Deal !D! damage.",
+    "EXTENDED_DESCRIPTION": ["+1 damage.", "+2 damage."]
   },
   "Moonworks:SubspaceTunnel": {
     "NAME": "Subspace Tunnel",
@@ -412,11 +441,13 @@
   },
   "Moonworks:TacticalRetreat": {
     "NAME": "Tactical Retreat",
-    "DESCRIPTION": "Gain !B! Block. NL Next turn, gain [E] and !M! Block. NL moonworks:Norma 2: +2 Block both turns."
+    "DESCRIPTION": "Gain !B! Block. NL Next turn, gain [E] and !M! Block.",
+    "EXTENDED_DESCRIPTION": ["+2 Block both turns."]
   },
   "Moonworks:TreasureThief": {
     "NAME": "Treasure Thief",
-    "DESCRIPTION": "Once per turn, the next time you damage this target, draw !M! card. NL Exhaust. NL moonworks:Norma 3: One per turn, there is a 50% chance to draw +1 card."
+    "DESCRIPTION": "Once per turn, the next time you damage this target, draw !M! card. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Once per turn, there is a 50% chance to draw +1 card."]
   },
   "Moonworks:Ubiquitous": {
     "NAME": "Ubiquitous",

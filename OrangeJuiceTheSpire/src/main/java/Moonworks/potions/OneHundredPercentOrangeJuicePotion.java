@@ -78,14 +78,15 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
     // This is your potency.
     @Override
     public int getPotency(final int potency) {
-        return 1;
+        return 6;
     }
 
     public void upgradePotion()
     {
         upgraded = true;
-      //potency += 2;
-      //tips.clear();
-      //tips.add(new PowerTip(name, description));
+        description = DESCRIPTIONS[0];
+        potency += 6; //using upgraded boolean instead
+        tips.clear();
+        tips.add(new PowerTip(name, description));
     }
 }

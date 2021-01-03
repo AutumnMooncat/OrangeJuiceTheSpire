@@ -43,12 +43,14 @@ public class HolyNight extends AbstractNormaAttentiveCard {
 
     private static final int DRAW = 1;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
 
     public HolyNight() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = DRAW;
 
     }
@@ -57,7 +59,7 @@ public class HolyNight extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ApplyPowerAction(p, p, new DrawPower(p, magicNumber)));
-        if (getNormaLevel() >= 3) {
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             if (this.freeToPlayOnce || EnergyPanel.totalCount >= 2) {
                 if (!this.freeToPlayOnce) {
                     p.energy.use(1);
@@ -73,7 +75,6 @@ public class HolyNight extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             this.isInnate = true;
-            rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }
     }

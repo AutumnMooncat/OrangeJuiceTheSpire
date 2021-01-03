@@ -22,7 +22,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
 
     public static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     public static final String SINGLEDRAWNAME = cardStrings.DESCRIPTION;
-    public static final String MULTIDRAWNAME = cardStrings.EXTENDED_DESCRIPTION[0];
+    public static final String MULTIDRAWNAME = cardStrings.EXTENDED_DESCRIPTION[1];
     // /TEXT DECLARATION/
 
 
@@ -40,10 +40,12 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     private static final int MAX_COST = 3;
     private static final int UPGRADE_MAX_COST = -1;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
     public NicePresent() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = DRAW;
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = MAX_COST;
     }
@@ -63,29 +65,17 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     }
 
     @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 3 ) {
-            this.magicNumber += 1;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyMagicNumber(1, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     @Override
     public void initializeDescription() {
         if (this.magicNumber > 1) {
-            this.rawDescription = MULTIDRAWNAME;
+            this.DESCRIPTION = MULTIDRAWNAME;
         } else {
-            this.rawDescription = SINGLEDRAWNAME;
+            this.DESCRIPTION = SINGLEDRAWNAME;
         }
         super.initializeDescription();
     }

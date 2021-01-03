@@ -34,25 +34,43 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
                             final CardTarget target, final int uses, final int currentUses) {
 
-        this(id, img, cost, type, color, rarity, target, uses, currentUses, false, false);
+        this(id, img, cost, type, color, rarity, target, uses, currentUses, false, false, null);
     }
 
     public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
                             final CardTarget target, final int uses, final int currentUses, final boolean checkedGolden) {
 
-        this(id, img, cost, type, color, rarity, target, uses, currentUses, checkedGolden, false);
+        this(id, img, cost, type, color, rarity, target, uses, currentUses, checkedGolden, false, null);
     }
 
     public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
                             final CardTarget target, final int uses, final int currentUses, final boolean checkedGolden, final boolean ignoreGolden) {
 
-        super(id, img, cost, type, color, rarity, target);
+        this(id, img, cost, type, color, rarity, target, uses, currentUses, checkedGolden, ignoreGolden, null);
+    }
+
+    public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
+                            final CardTarget target, final int uses, final int currentUses, Integer[] normaLevels) {
+
+        this(id, img, cost, type, color, rarity, target, uses, currentUses, false, false, normaLevels);
+    }
+
+    public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
+                            final CardTarget target, final int uses, final int currentUses, final boolean checkedGolden, Integer[] normaLevels) {
+
+        this(id, img, cost, type, color, rarity, target, uses, currentUses, checkedGolden, false, normaLevels);
+    }
+
+    public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
+                            final CardTarget target, final int uses, final int currentUses, final boolean checkedGolden, final boolean ignoreGolden, Integer[] normaLevels) {
+
+        super(id, img, cost, type, color, rarity, target, normaLevels);
         CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
         description = cardStrings.DESCRIPTION;
         spentDescription = cardStrings.UPGRADE_DESCRIPTION;
         this.active = false; //Card wont be active until it is in our hand
         if (currentUses <= 0) {
-            rawDescription = spentDescription;
+            DESCRIPTION = spentDescription;
         }
         this.defaultSecondMagicNumber = currentUses;
         this.defaultBaseSecondMagicNumber = uses;
@@ -76,7 +94,8 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
 
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add("Gift");
+        tags.add(BaseMod.getKeywordTitle("moonworks:Gift"));
+        tags.addAll(super.getCardDescriptors());
         return tags;
     }
 
@@ -136,12 +155,12 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         this.isEthereal = !hasUses;
         if (!hasUses) { //If we hit 0, or below 0 somehow, exhaust immediately
             this.active = false; //Card cant be active when it has no uses
-            this.rawDescription = this.spentDescription;
+            this.DESCRIPTION = this.spentDescription;
             initializeDescription(); //Initialize before we move to exhaust
             this.addToTop(new WitherExhaustImmediatelyAction(this)); //Hijack this wither code I wrote before, lol
         } else {
             //We dont set active is true here, since it might not be in our hand, and shouldnt be active if it isnt
-            this.rawDescription = this.description;
+            this.DESCRIPTION = this.description;
             initializeDescription();
         }
     }
@@ -175,6 +194,27 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         return super.canUse(p, m);
+    }
+
+    @Override
+    public void applyNormaDescriptions(){
+        StringBuilder sb = new StringBuilder();
+        boolean passedCheck, normaX;
+        sb.append(DESCRIPTION);
+        if(defaultSecondMagicNumber > 0 && normaLevels != null && normaLevels.size() > 0) {
+            for (int i = 0 ; i < normaLevels.size() ; i++) {
+                normaX = normaLevels.get(i) == -1;
+                passedCheck = getNormaLevel() >= (normaX ? 1 : normaLevels.get(i)); //Could also use absolute value here, but thats less intuitive to read
+                sb.append(" NL ");
+                sb.append(passedCheck ? upgradeGreen : "*");
+                sb.append(BaseMod.getKeywordTitle("moonworks:Norma")).append(" ");
+                sb.append(passedCheck ? upgradeGreen : "*");
+                sb.append(normaX ? "X" : normaLevels.get(i));
+                sb.append(": ");
+                sb.append(EXTENDED_DESCRIPTION[i]);
+            }
+        }
+        rawDescription = sb.toString();
     }
 
     public static ArrayList<AbstractGiftCard> getExhaustedGifts() {

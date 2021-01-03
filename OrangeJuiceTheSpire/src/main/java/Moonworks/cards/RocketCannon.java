@@ -36,10 +36,12 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
 
     private static final int CARDS = 1;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
     public RocketCannon() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.cardsToPreview = new BigRocketCannon();
         //this.cardsToPreview.cardsToPreview = new AirStrike(); // I tried, lol
         damage = baseDamage = DAMAGE;
@@ -53,22 +55,11 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
         this.addToBot(new MakeTempCardInDrawPileAction(this.cardsToPreview.makeStatEquivalentCopy(), magicNumber, true, true));
     }
 
-    @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
 
     @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 2) {
-            this.magicNumber += 1;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyMagicNumber(1, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     // Upgraded stats.

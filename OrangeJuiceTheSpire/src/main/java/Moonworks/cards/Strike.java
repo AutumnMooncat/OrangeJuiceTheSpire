@@ -12,10 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.BarricadePower;
-import com.megacrit.cardcrawl.powers.BufferPower;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
+import com.megacrit.cardcrawl.powers.*;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"
@@ -58,6 +55,8 @@ public class Strike extends AbstractNormaAttentiveCard {
     private static final int DAMAGE = 6;
     private static final int UPGRADE_PLUS_DMG = 3;
 
+    private static final Integer[] NORMA_LEVELS = {2, 4};
+
     // Hey want a second damage/magic/block/unique number??? Great!
     // Go check out DefaultAttackWithVariable and theDefault.variable.DefaultCustomVariable
     // that's how you get your own custom variable that you can use for anything you like.
@@ -66,7 +65,7 @@ public class Strike extends AbstractNormaAttentiveCard {
     // /STAT DECLARATION/
 
     public Strike() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(CardTags.STARTER_STRIKE); //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.
         this.tags.add(CardTags.STRIKE);
@@ -77,7 +76,7 @@ public class Strike extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         //int bonus = getNormaLevel() >= 4 ? 3 : getNormaLevel() >= 2 ? 1 : 0;
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        //this.addToBot(new ApplyPowerAction(m, p, new FrailPower(m, 1, false)));
+        //this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, 1, false)));
     }
 
     /*
@@ -86,19 +85,10 @@ public class Strike extends AbstractNormaAttentiveCard {
     }*/
 
     @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        int bonus = getNormaLevel() >= 4 ? 2 : 0;
-        int baseBonus = getNormaLevel() >= 2 ? 1 : 0;
-        if (baseBonus > 0) {
-            this.baseDamage += baseBonus;
-        }
-        super.calculateCardDamage(m);
-        if (bonus > 0) {
-            this.damage += bonus;
-        }
-        this.baseDamage -= baseBonus;
-        this.isDamageModified = this.damage != this.baseDamage;
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyDamage(1, NORMA_LEVELS[0]);
+        modifyDamage(2, NORMA_LEVELS[1]);
+        super.applyNormaEffects();
     }
 
     // Upgraded stats.

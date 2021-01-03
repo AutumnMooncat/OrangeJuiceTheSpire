@@ -46,11 +46,13 @@ public class Ambush extends AbstractNormaAttentiveCard {
     private static final int VULNERABLE = 1;
     private static final int UPGRADE_PLUS_VULNERABLE = 1;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
 
     public Ambush() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = VULNERABLE;
     }
@@ -58,7 +60,7 @@ public class Ambush extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        damageTypeForTurn = getNormaLevel() >= 3 ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
+        damageTypeForTurn = getNormaLevel() >= NORMA_LEVELS[0] ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
         this.addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false)));
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
         //Removed Action in favor of performing a check in calculate card damage

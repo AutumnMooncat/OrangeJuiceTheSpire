@@ -1,12 +1,17 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cards.LeapThroughSpace;
 import basemod.interfaces.CloneablePowerInterface;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
@@ -62,12 +67,21 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
         }
     }
 
+    /*
     @Override
     public void atStartOfTurn() {
         this.count = 0;
         this.gotBonus = false;
         updateDescription();
         super.atStartOfTurn();
+    }*/
+
+    @Override
+    public void atEndOfRound() {
+        this.count = 0;
+        this.gotBonus = false;
+        updateDescription();
+        super.atEndOfRound();
     }
 
     @Override
@@ -91,6 +105,12 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
             updateDescription();
         }
         return super.onAttacked(info, damageAmount);
+    }
+
+    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+        c = new Color(0.0F, 1.0F, 0.0F, 1.0F);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, c);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount - this.count), x, y + 15.0F * Settings.scale, this.fontScale, c);
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))

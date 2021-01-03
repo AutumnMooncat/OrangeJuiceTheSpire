@@ -41,11 +41,13 @@ public class Dash extends AbstractNormaAttentiveCard {
     private static final int ENERGY = 1;
     private static final int UPGRADE_PLUS_ENERGY = 1;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
 
     public Dash() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = ENERGY;
         this.exhaust = true;
     }
@@ -54,7 +56,7 @@ public class Dash extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new GainEnergyAction(magicNumber));
-        if(getNormaLevel() >= 2) {
+        if(getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new GainBlockAction(p, 4));
         }
     }

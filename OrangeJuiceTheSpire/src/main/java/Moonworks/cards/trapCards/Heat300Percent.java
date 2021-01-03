@@ -43,12 +43,14 @@ public class Heat300Percent extends AbstractTrapCard {
     private static final int UPGRADE_REDUCED_COST = 0;
     private static final int STACKS = 1;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
 
     public Heat300Percent() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = STACKS;
         //this.retain = true;
         //this.exhaust = true;
@@ -62,22 +64,9 @@ public class Heat300Percent extends AbstractTrapCard {
     }
 
     @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    public void calculateCardDamage(AbstractMonster m) {
-        //logger.info("Calc: last count: " + lastCount);
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 2) {
-            this.magicNumber += 1;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
-
+    public void applyNormaEffects() {
+        modifyMagicNumber(1, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

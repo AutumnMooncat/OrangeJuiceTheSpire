@@ -37,10 +37,12 @@ public class Dinner extends AbstractNormaAttentiveCard {
     private static final int REGEN = 3;
     private static final int UPGRADE_PLUS_REGEN = 1;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
     public Dinner() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = REGEN;
         exhaust = true;
         this.tags.add(CardTags.HEALING);
@@ -58,7 +60,7 @@ public class Dinner extends AbstractNormaAttentiveCard {
                 this.addToBot(new ApplyPowerAction(aM, p, new RegenPower(aM, magicNumber)));
             }
         }
-        if (getNormaLevel() >= 2) {
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new GainBlockAction(p, regenStacks));
         }
 

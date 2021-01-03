@@ -35,10 +35,12 @@ public class SelfDestruct extends AbstractNormaAttentiveCard {
     private static final int BLOCK = 10;
     private static final int UPGRADE_PLUS_BLOCK = 5;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
     public SelfDestruct() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         block = baseBlock = BLOCK;
         this.isMultiDamage = true;
     }

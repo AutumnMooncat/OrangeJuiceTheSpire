@@ -32,10 +32,12 @@ public class SakisCookie extends AbstractNormaAttentiveCard {
     private static final int HEAL = 2;
     private static final int UPGRADE_PLUS_HEAL = 2;
 
+    private static final Integer[] NORMA_LEVELS = {2};
+
     // /STAT DECLARATION/
 
     public SakisCookie() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = HEAL;
         exhaust = true;
         this.tags.add(CardTags.HEALING);
@@ -48,21 +50,9 @@ public class SakisCookie extends AbstractNormaAttentiveCard {
     }
 
     @Override
-    public void applyPowers() {
-        this.magicNumber = this.baseMagicNumber;
-        this.isMagicNumberModified = false;
-        super.applyPowers();
-        initializeDescription();
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-        if (getNormaLevel() >= 2) {
-            this.magicNumber += 2;
-            this.isMagicNumberModified = true;
-        }
-        initializeDescription();
+    public void applyNormaEffects() {
+        modifyMagicNumber(2, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     // Upgraded stats.

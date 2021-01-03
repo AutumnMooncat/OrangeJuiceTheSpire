@@ -43,13 +43,17 @@ public class ScrambledEve extends AbstractNormaAttentiveCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
+    private static final int EXTRA_DRAWS = 0;
+
+    private static final Integer[] NORMA_LEVELS = {1, 3};
 
     // /STAT DECLARATION/
 
 
     public ScrambledEve() {
 
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
+        this.magicNumber = this.baseMagicNumber = EXTRA_DRAWS;
         //this.selfRetain = true;
         //this.exhaust = true;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
@@ -66,10 +70,16 @@ public class ScrambledEve extends AbstractNormaAttentiveCard {
         if (!AbstractDungeon.player.hand.isEmpty()) {
             this.addToBot(new GamblingChipAction(AbstractDungeon.player, true));
         }
-        int bonus = getNormaLevel() >= 3 ? 2 : getNormaLevel() >= 1 ? 1 : 0;
-        if (bonus > 0) {
-            this.addToBot(new DrawCardAction(bonus));
+        if (magicNumber > 0) {
+            this.addToBot(new DrawCardAction(magicNumber));
         }
+    }
+
+    @Override
+    public void applyNormaEffects() {
+        modifyMagicNumber(1, NORMA_LEVELS[0]);
+        modifyMagicNumber(1, NORMA_LEVELS[1]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

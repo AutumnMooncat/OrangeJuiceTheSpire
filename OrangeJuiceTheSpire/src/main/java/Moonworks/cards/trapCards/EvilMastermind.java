@@ -3,6 +3,7 @@ package Moonworks.cards.trapCards;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BigBangBellPower;
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -114,9 +115,9 @@ public class EvilMastermind extends AbstractTrapCard {
             for (String s : trapAmounts.keySet()) {
                 sb.append(" NL ").append(s).append(": ").append(trapAmounts.get(s)); //Add each name and how many there are
                 if (trapAmounts.get(s) > 1) {
-                    sb.append(" times.");
+                    sb.append(EXTRA_DESCRIPTIONS[6]);
                 } else {
-                    sb.append(" time.");
+                    sb.append(EXTRA_DESCRIPTIONS[5]);
                 }
                 lines++;
                 traps += trapAmounts.get(s);
@@ -124,20 +125,7 @@ public class EvilMastermind extends AbstractTrapCard {
                     sb.append(EXTRA_DESCRIPTIONS[3]).append(trapCardArrayList.size()-traps).append(EXTRA_DESCRIPTIONS[4]);
                     break; //We have too many lines, dump the rest of the info
                 }
-            }/*
-            if (trapAmounts.size() <= (this.upgraded ? 4 : 5)) { //If we have too many other Trap cards, it will be hard to read if we list them all
-                sb.append(EXTRA_DESCRIPTIONS[2]);
-                for (String s : trapAmounts.keySet()) {
-                    sb.append(" NL ").append(s).append(": ").append(trapAmounts.get(s)); //Add each name and how many there are
-                    if (trapAmounts.get(s) > 1) {
-                        sb.append(" times.");
-                    } else {
-                        sb.append(" time.");
-                    }
-                }
-            } else { //Just add one line if we have too many to list individually
-                sb.append(EXTRA_DESCRIPTIONS[3]).append(trapCardArrayList.size()).append(EXTRA_DESCRIPTIONS[4]); //Just add a Card Effects and the amount
-            }*/
+            }
         } else { //Grab the base text
             sb.append(this.upgraded ? UPGRADE_DESCRIPTION : NORMAL_DESCRIPTION);
         }
@@ -146,6 +134,9 @@ public class EvilMastermind extends AbstractTrapCard {
         this.rawDescription = sb.toString();
         super.initializeDescription();
     }
+
+    @Override
+    public void applyNormaDescriptions(){}
 
     @Override
     public void applyPowers() {

@@ -65,7 +65,7 @@
     "NAME": "Homemark",
     "FLAVOR": "It tastes like orange juice. Strange.",
     "DESCRIPTIONS": [
-      "Start every combat at #yNorma #b",". Right click when out of combat to spend #b"," #yGold to permanently raise this effect, up to a maximum of #b5."
+      "Start every combat with #yNorma #b",". Right click when out of combat to spend #b"," #yGold to permanently raise this effect, up to a maximum of #b5."
     ]
   },
   "Moonworks:WarpPanel": {

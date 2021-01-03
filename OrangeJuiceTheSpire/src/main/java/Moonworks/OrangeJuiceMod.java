@@ -95,8 +95,8 @@ public class OrangeJuiceMod implements
     
     // Potion Colors in RGB
     public static final Color OJ_POTION_LIQUID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Orange
-    public static final Color OJ_POTION_HYBRID = CardHelper.getColor(237.0f, 174.0f, 0.0f); // Darker Orange
-    public static final Color OJ_POTION_SPOTS = CardHelper.getColor(255.0f, 190.0f, 8.0f); // Lighter Orange
+    public static final Color OJ_POTION_HYBRID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Darker Orange
+    public static final Color OJ_POTION_SPOTS = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Lighter Orange
     
     // ONCE YOU CHANGE YOUR MOD ID (BELOW, YOU CAN'T MISS IT) CHANGE THESE PATHS!!!!!!!!!!!
     // ONCE YOU CHANGE YOUR MOD ID (BELOW, YOU CAN'T MISS IT) CHANGE THESE PATHS!!!!!!!!!!!

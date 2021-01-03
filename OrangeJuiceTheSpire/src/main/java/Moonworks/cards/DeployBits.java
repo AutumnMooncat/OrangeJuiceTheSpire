@@ -46,11 +46,13 @@ public class DeployBits extends AbstractNormaAttentiveCard {
     private static final int STACKS = 10;
     private static final int UPGRADE_PLUS_STACKS = 4;
 
+    private static final Integer[] NORMA_LEVELS = {4};
+
     // /STAT DECLARATION/
 
 
     public DeployBits() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = STACKS;
 
@@ -60,8 +62,8 @@ public class DeployBits extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int bits = defaultSecondMagicNumber;
-        if (getNormaLevel() >= 4) {
-            bits -= 3;
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
+            //bits -= 3;
             int dmgSum = 0, dmg;
             for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
                 if (!aM.isDeadOrEscaped() && isAttacking(aM)) {
@@ -91,12 +93,19 @@ public class DeployBits extends AbstractNormaAttentiveCard {
 
     }
 
-    //Hopefully this works. Custom Intents that do damage will absolutely not work though.
+    //Hopefully this works. Custom Intents that do damage might not work though.
     private boolean isAttacking(AbstractMonster m) {
         AbstractMonster.Intent i = m.intent;
         //Maybe this will work? This is how Spot Weakness does it
         return m.getIntentBaseDmg() >= 0;
         //return (i == AbstractMonster.Intent.ATTACK || i == AbstractMonster.Intent.ATTACK_BUFF || i == AbstractMonster.Intent.ATTACK_DEBUFF || i == AbstractMonster.Intent.ATTACK_DEFEND);
+    }
+
+
+    @Override
+    public void applyNormaEffects() {
+        modifySecondMagic(-3, NORMA_LEVELS[0]);
+        super.applyNormaEffects();
     }
 
     //Upgraded stats.

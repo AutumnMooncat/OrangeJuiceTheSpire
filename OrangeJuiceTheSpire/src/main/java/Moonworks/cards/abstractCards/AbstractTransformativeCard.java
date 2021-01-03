@@ -44,7 +44,7 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
 
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add("Transformative");
+        tags.add(BaseMod.getKeywordTitle("moonworks:Transformative"));
         return tags;
     }
 

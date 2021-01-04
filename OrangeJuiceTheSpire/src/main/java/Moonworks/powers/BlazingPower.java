@@ -57,7 +57,7 @@ public class BlazingPower extends AbstractPower implements CloneablePowerInterfa
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
-        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + secondAmount + DESCRIPTIONS[2];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + -secondAmount + DESCRIPTIONS[2];
     }
 
     @Override

@@ -1,6 +1,8 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.CorruptedModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -69,6 +71,8 @@ public class Strike extends AbstractNormaAttentiveCard {
         this.baseDamage = this.damage = DAMAGE;
         this.tags.add(CardTags.STARTER_STRIKE); //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.
         this.tags.add(CardTags.STRIKE);
+        //For testing
+        //CardModifierManager.addModifier(this, new CorruptedModifier(CorruptedModifier.CorruptionEffects.REDUCE));
     }
 
     // Actions the card should do.

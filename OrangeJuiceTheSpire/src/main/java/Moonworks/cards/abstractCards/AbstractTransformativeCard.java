@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Deprecated
 public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
 
     // "How come DefaultCommonAttack extends CustomCard and not DynamicCard like all the rest?"
@@ -45,6 +45,7 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
         tags.add(BaseMod.getKeywordTitle("moonworks:Transformative"));
+        tags.addAll(super.getCardDescriptors());
         return tags;
     }
 
@@ -55,7 +56,9 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
             CustomTooltip = new ArrayList<>();
             CustomTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Transformative"), BaseMod.getKeywordDescription("moonworks:Transformative")));
         }
-        return CustomTooltip;
+        List<TooltipInfo> compoundList = new ArrayList<>(CustomTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
     public void reinitialize(AbstractCard card) {
         this.cost = card.cost;

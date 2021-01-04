@@ -81,8 +81,8 @@ public class StarBlastingLight extends AbstractTempCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(1, 3)];
+        this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 0.25F));
         this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
-        this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 1.0F));
         int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
         for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
             AbstractPower pow = aM.getPower(ArtifactPower.POWER_ID);

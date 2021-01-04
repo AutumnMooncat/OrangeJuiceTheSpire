@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class AbstractTempCard extends AbstractNormaAttentiveCard {
 
-    private static ArrayList<TooltipInfo> specialTooltip;
+    private static ArrayList<TooltipInfo> SpecialTooltip;
 
     public AbstractTempCard(String id, String img, int cost, CardType type, CardColor color, CardTarget target) {
         this(id, img, cost, type, color, target, null);
@@ -34,12 +34,13 @@ public abstract class AbstractTempCard extends AbstractNormaAttentiveCard {
 
     @Override
     public List<TooltipInfo> getCustomTooltipsTop() {
-        if (specialTooltip == null)
+        if (SpecialTooltip == null)
         {
-            specialTooltip = new ArrayList<>();
-            specialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
+            SpecialTooltip = new ArrayList<>();
+            SpecialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
         }
-        specialTooltip.addAll(super.getCustomTooltipsTop());
-        return specialTooltip;
+        List<TooltipInfo> compoundList = new ArrayList<>(SpecialTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 }

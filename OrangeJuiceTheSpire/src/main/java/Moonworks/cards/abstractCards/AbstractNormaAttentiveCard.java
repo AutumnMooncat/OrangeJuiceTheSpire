@@ -24,7 +24,7 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
     public String UPGRADE_DESCRIPTION; //The upgrade description of the card, if applicable
     public String[] EXTENDED_DESCRIPTION; //The Norma Effects of the card
 
-    private static ArrayList<TooltipInfo> NormaTooltip;
+    protected static ArrayList<TooltipInfo> NormaTooltip;
 
     public ArrayList<Integer> normaLevels = new ArrayList<>();
     public HashMap<Integer, Boolean> normaChecks = new HashMap<>();
@@ -72,12 +72,12 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
 
     @Override
     public List<TooltipInfo> getCustomTooltipsTop() {
-        if (normaLevels.size() > 0 && NormaTooltip == null)
+        if (NormaTooltip == null)
         {
             NormaTooltip = new ArrayList<>();
             NormaTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Norma"), BaseMod.getKeywordDescription("moonworks:Norma")));
         }
-        return NormaTooltip;
+        return normaLevels.size() > 0 ? NormaTooltip : null;
     }
 
     public int getNormaLevel() {

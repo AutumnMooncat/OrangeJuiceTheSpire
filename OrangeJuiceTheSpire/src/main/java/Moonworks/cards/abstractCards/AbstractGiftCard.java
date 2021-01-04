@@ -106,7 +106,9 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
             GiftTooltip = new ArrayList<>();
             GiftTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Gift"), BaseMod.getKeywordDescription("moonworks:Gift")));
         }
-        return GiftTooltip;
+        List<TooltipInfo> compoundList = new ArrayList<>(GiftTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 
     @Override

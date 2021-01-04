@@ -83,7 +83,7 @@ public class OrangeJuiceMod implements
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "The Star Breaker";
-    private static final String AUTHOR = "Mistress Alison"; // And pretty soon - You!
+    private static final String AUTHOR = "Mistress Alison";
     private static final String DESCRIPTION = "Adds Star Breaker (and cards) from 100% Orange Juice! NL Probably not balanced. Might not even run properly. NL Im so sorry.";
     
     // =============== INPUT TEXTURE LOCATION =================

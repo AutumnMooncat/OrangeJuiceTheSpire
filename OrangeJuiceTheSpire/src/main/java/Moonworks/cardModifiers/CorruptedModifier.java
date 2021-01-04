@@ -3,6 +3,7 @@ package Moonworks.cardModifiers;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.FragileExhaustOnDrawAction;
 import Moonworks.actions.WitherExhaustImmediatelyAction;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import basemod.abstracts.AbstractCardModifier;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SneckoField;
 import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
@@ -254,6 +255,8 @@ public class CorruptedModifier extends AbstractCardModifier {
                 return rawDescription;
             }
         }
+        //Big meme hack, might fix the issue, might not
+        //if (card instanceof AbstractNormaAttentiveCard) ((AbstractNormaAttentiveCard) card).DESCRIPTION = "Corrupted: "+effect.toString()+". NL " + rawDescription;
         return "Corrupted: "+effect.toString()+". NL " + rawDescription;
     }
 

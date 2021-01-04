@@ -36,6 +36,8 @@ public abstract class AbstractTrapCard extends AbstractNormaAttentiveCard {
             TrapTooltip = new ArrayList<>();
             TrapTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Trap"), BaseMod.getKeywordDescription("moonworks:Trap")));
         }
-        return TrapTooltip;
+        List<TooltipInfo> compoundList = new ArrayList<>(TrapTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 }

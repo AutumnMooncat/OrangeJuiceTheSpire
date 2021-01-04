@@ -75,7 +75,7 @@ public class DeployBits extends AbstractNormaAttentiveCard {
                     dmgSum += Math.max(0, dmg);
                 }
             }
-            dmgSum -= p.currentBlock;
+            dmgSum = Math.max(0, dmgSum - p.currentBlock);
             this.block = Math.min(dmgSum, bits);
         } else {
             this.block = AbstractDungeon.cardRandomRng.random(1, bits);

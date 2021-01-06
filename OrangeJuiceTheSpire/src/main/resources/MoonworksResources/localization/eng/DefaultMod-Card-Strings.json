@@ -1,55 +1,4 @@
 {
-  "Moonworks:DefaultCommonAttack": {
-    "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! Damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
-  },
-  "Moonworks:DefaultCommonSkill": {
-    "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block. NL Moonworks:Multiword_Keyword."
-  },
-  "Moonworks:DefaultCommonPower": {
-    "NAME": "Hold Place",
-    "DESCRIPTION": "Gain !M! Moonworks:Keyword.",
-    "UPGRADE_DESCRIPTION": "Gain !M! Moonworks:Keywords."
-  },
-  "Moonworks:DefaultUncommonAttack": {
-    "NAME": "Big slap",
-    "DESCRIPTION": "Deal !D! Damage."
-  },
-  "Moonworks:DefaultUncommonSkill": {
-    "NAME": "A Better Defend",
-    "DESCRIPTION": "Gain !B! Plated Armor. Affected by Dexterity."
-  },
-  "Moonworks:DefaultUncommonPower": {
-    "NAME": "Weirdness",
-    "DESCRIPTION": "Gain X Moonworks:Keywords.",
-    "UPGRADE_DESCRIPTION": "Gain X +1 Moonworks:Keywords."
-  },
-  "Moonworks:DefaultRareAttack": {
-    "NAME": "TOUCH",
-    "DESCRIPTION": "Deal !D! Damage."
-  },
-  "Moonworks:DefaultRareSkill": {
-    "NAME": "For Each Loop x2",
-    "DESCRIPTION": "Apply !M! vulnerable to ALL enemies, 2 times.",
-    "UPGRADE_DESCRIPTION": "Apply !M! vulnerable to ALL enemies, 3 times."
-  },
-  "Moonworks:DefaultRarePower": {
-    "NAME": "In-Progress Form",
-    "DESCRIPTION": "At the start of your turn, play a TOUCH."
-  },
-  "Moonworks:DefaultAttackWithVariable": {
-    "NAME": "Special Strike",
-    "DESCRIPTION": "Deal !D! Damage [E] times. NL (Deal !Moonworks:ENERGY_DAMAGE! damage total.)"
-  },
-  "Moonworks:DefaultSecondMagicNumberSkill": {
-    "NAME": "Cool 2 Number Card",
-    "DESCRIPTION": "Apply !M! vulnerable and !Moonworks:SecondMagic! poison to an enemy."
-  },
-  "Moonworks:OrbSkill": {
-    "NAME": "Get Orb",
-    "DESCRIPTION": "Channel 1 Default Orb."
-  },
   "Moonworks:Accelerator": {
     "NAME": "Accelerator",
     "DESCRIPTION": "The first card you play each turn is played twice."
@@ -179,12 +128,12 @@
   },
   "Moonworks:EvilMastermind": {
     "NAME": "Evil Mastermind",
-    "DESCRIPTION": "Play the *effect of all your other *Trap cards on random enemies.",
-    "UPGRADE_DESCRIPTION": "Innate. NL Play the *effect of all your other *Trap cards on random enemies.",
+    "DESCRIPTION": "Trigger the *effect of ALL your *Trap cards on random enemies, excluding other *Evil *Masterminds.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Trigger the *effect of ALL your *Trap cards on random enemies, excluding other *Evil *Masterminds.",
     "EXTENDED_DESCRIPTION":
     ["Innate. NL ",
       " NL Exhaust.",
-      "Play the *effect of the following *Traps on random enemies: ",
+      "Triggers the *effect of the following *Traps on random enemies: ",
       " NL Plus *",
       " more.",
       " time.",
@@ -192,8 +141,8 @@
   },
   "Moonworks:EvilSpyWorkExecution": {
     "NAME": "Evil Spy Work Execution",
-    "DESCRIPTION": "Autoplay. NL Deal !D! Damage to ALL enemies. NL Draw !M! card. NL Purge.",
-    "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! Damage to ALL enemies. NL Draw !M! cards. NL Purge."
+    "DESCRIPTION": "Autoplay. NL Deal !D! damage to ALL enemies. NL Draw !M! card. NL Purge.",
+    "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! damage to ALL enemies. NL Draw !M! cards. NL Purge."
   },
   "Moonworks:EvilSpyWorkPreparation": {
     "NAME": "Evil Spy Work Preparation",
@@ -235,8 +184,8 @@
   },
   "Moonworks:GoAway": {
     "NAME": "Go Away",
-    "DESCRIPTION": "Ethereal. NL The target skips it's turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "The target skips it's turn. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL The target is Stunned for a turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "The target is Stunned for a turn. NL Exhaust."
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
@@ -256,7 +205,7 @@
   "Moonworks:ImOnFire": {
     "NAME": "I'm On Fire!",
     "DESCRIPTION": "Gain !M! Vigor and !Moonworks:SecondMagic! Vulnerable.",
-    "EXTENDED_DESCRIPTION": ["-10 Vigor, gain Double Damage this turn."]
+    "EXTENDED_DESCRIPTION": ["-10 Vigor, gain double damage this turn."]
   },
   "Moonworks:IndiscriminateFireSupport": {
     "NAME": "Indiscriminate Fire",
@@ -269,8 +218,8 @@
   },
   "Moonworks:JonathanRush": {
     "NAME": "Jonathan Rush",
-    "DESCRIPTION": "Autoplay. NL Deal !D! Damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!.",
-    "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! Damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!."
+    "DESCRIPTION": "Autoplay. NL Deal !D! damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!.",
+    "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!."
   },
   "Moonworks:LeapThroughSpace": {
     "NAME": "Leap Through Space",
@@ -423,7 +372,7 @@
   "Moonworks:StarBlastingLight": {
     "NAME": "Star Blasting Light",
     "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! moonworks:Blasting_Light to ALL enemies. NL Purge.",
-    "EXTENDED_DESCRIPTION": ["+X moonworks:Blast.","Fufu... AHAHA!","Until you turn into ashes...","Burn beautifully."]
+    "EXTENDED_DESCRIPTION": ["+X moonworks:Blasting_Light.","Fufu... AHAHA!","Until you turn into ashes...","Burn beautifully."]
   },
   "Moonworks:StiffCrystal": {
     "NAME": "Stiff Crystal",

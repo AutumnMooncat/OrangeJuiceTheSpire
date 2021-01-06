@@ -22,6 +22,7 @@ public abstract class AbstractTrapCard extends AbstractNormaAttentiveCard {
         setBackgroundTexture(OrangeJuiceMod.TRAP_WHITE_ICE, OrangeJuiceMod.TRAP_WHITE_ICE_PORTRAIT);
     }
 
+    @Override
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
         tags.add(BaseMod.getKeywordTitle("moonworks:Trap"));

@@ -3,6 +3,8 @@ package Moonworks.powers;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.BlastingLoseHPAction;
 import basemod.interfaces.CloneablePowerInterface;
+import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -13,7 +15,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BlastingLightPower extends AbstractPower implements CloneablePowerInterface {
+public class BlastingLightPower extends AbstractPower implements CloneablePowerInterface, HealthBarRenderPower {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
     public AbstractCreature source;
@@ -22,6 +24,8 @@ public class BlastingLightPower extends AbstractPower implements CloneablePowerI
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    private final Color hpBarColor = new Color(-2686721);
 
     // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.
     // There's a fallback "missing texture" image, so the game shouldn't crash if you accidentally put a non-existent file.
@@ -67,5 +71,15 @@ public class BlastingLightPower extends AbstractPower implements CloneablePowerI
     @Override
     public AbstractPower makeCopy() {
         return new BlastingLightPower(owner, amount);
+    }
+
+    @Override
+    public int getHealthBarAmount() {
+        return amount;
+    }
+
+    @Override
+    public Color getColor() {
+        return hpBarColor;
     }
 }

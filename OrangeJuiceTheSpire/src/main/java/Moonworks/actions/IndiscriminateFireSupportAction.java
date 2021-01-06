@@ -63,10 +63,8 @@ public class IndiscriminateFireSupportAction extends AbstractGameAction {
                     this.addToTop(new RemoveSpecificPowerAction(pow.owner, pow.owner, pow.ID));
                 }
             }
-
-            this.addToBot(new MakeTempCardInDrawPileAction(new Dazed(), dazed, true, true));
         }
-
+        this.addToBot(new MakeTempCardInDrawPileAction(new Dazed(), dazed, true, true));
         this.isDone = true;
     }
 }

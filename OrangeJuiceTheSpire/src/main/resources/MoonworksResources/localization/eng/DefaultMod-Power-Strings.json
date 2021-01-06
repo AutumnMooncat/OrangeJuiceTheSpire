@@ -30,7 +30,7 @@
         },
         "Moonworks:InvisibleBombPower": {
                 "NAME": "Invisible Bomb",
-                "DESCRIPTIONS": ["Detonates and deals #b",
+                "DESCRIPTIONS": ["#bEach bomb detonates and deals #b",
                         " damage within at most #b"," turns", " damage this turn."]
         },
         "Moonworks:TreasureThiefPower": {

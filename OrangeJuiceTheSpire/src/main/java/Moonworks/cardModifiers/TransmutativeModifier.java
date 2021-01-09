@@ -58,6 +58,11 @@ public class TransmutativeModifier extends AbstractCardModifier {
     }
 
     @Override
+    public boolean isInherent(AbstractCard card) {
+        return infinite;
+    }
+
+    @Override
     public AbstractCardModifier makeCopy() {
         return new TransmutativeModifier(uses, free);
     }

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -87,19 +88,24 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         }
     }
     private void applyBrokenEffects() {
+        int hploss = AbstractDungeon.cardRandomRng.random(10, 15);
         this.addToBot(new VFXAction(owner, new ScreenOnFireEffect(), 1.0F));
-        this.addToBot(new LoseHPAction(owner, owner, AbstractDungeon.cardRandomRng.random(10, 15)));
+        this.addToBot(new LoseHPAction(owner, owner, hploss));
         this.addToBot(new GainEnergyAction(AbstractDungeon.cardRandomRng.random(1, 3)));
         if (AbstractDungeon.cardRandomRng.random(1, 2) == 1){
             this.addToBot(new ApplyPowerAction(owner, owner, new DoubleDamagePower(owner, 1, false)));
         } else {
             this.addToBot(new ApplyPowerAction(owner, owner, new IntangiblePlayerPower(owner, 1)));
         }
-        for (int i = 0 ; i < AbstractDungeon.cardRandomRng.random(5, 10) ; i++) {
-            for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters){
-                if (!aM.isDeadOrEscaped()) {
-                    this.addToBot(new ApplyPowerAction(aM, owner, new BlastingLightPower(aM, 1)));
-                }
+        for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
+            AbstractPower pow = aM.getPower(ArtifactPower.POWER_ID);
+            int artifactAmount = 0;
+            if (pow != null) {
+                artifactAmount = pow.amount;
+                this.addToTop(new ReducePowerAction(aM, owner, pow, hploss));
+            }
+            if (hploss > artifactAmount) {
+                this.addToBot(new ApplyPowerAction(aM, owner, new BlastingLightPower(aM, hploss-artifactAmount), hploss-artifactAmount, true));
             }
         }
     }
@@ -156,7 +162,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             description = DESCRIPTIONS[0];
         } else {
             //description = DESCRIPTIONS[1];
-            description = "#r"+getRandomString(AbstractDungeon.cardRandomRng.random(20, 20));
+            description = "#r"+getRandomString(AbstractDungeon.cardRandomRng.random(18, 18));
         }
 
     }

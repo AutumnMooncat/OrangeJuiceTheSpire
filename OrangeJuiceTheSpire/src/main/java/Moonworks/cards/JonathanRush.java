@@ -88,7 +88,7 @@ public class JonathanRush extends AbstractDynamicCard {
         boolean hasThorns = t.hasPower(ThornsPower.POWER_ID); //We use a different animation for thorns, once I figure out how
 
         //Throws multiple gulls at high attack damage
-        int gullThrows = Math.min(20, Math.max(1, MathUtils.floor(damage / 1f)));
+        int gullThrows = Math.min(20, Math.max(1, MathUtils.floor(damage / 3f)));
         for (int gulls = 0 ; gulls < gullThrows ; gulls++) {
             AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
                 public void update() {

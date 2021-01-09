@@ -97,7 +97,7 @@ public class NormaDynvarModifier extends AbstractCardModifier {
         int bonus = 0;
         if (effect == DYNVARMODS.DAMAGEMOD) {
             if (normaX) {
-                bonus = getNormaLevel();
+                bonus = getNormaLevel() * amount;
             } else {
                 bonus = getNormaLevel() >= normaCheck ? amount : 0;
             }
@@ -111,7 +111,7 @@ public class NormaDynvarModifier extends AbstractCardModifier {
         int bonus = 0;
         if (effect == DYNVARMODS.BLOCKMOD) {
             if (normaX) {
-                bonus = getNormaLevel();
+                bonus = getNormaLevel() * amount;
             } else {
                 bonus = getNormaLevel() >= normaCheck ? amount : 0;
             }

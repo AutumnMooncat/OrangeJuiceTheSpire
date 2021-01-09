@@ -95,5 +95,13 @@
         "Moonworks:TemporalAnchorPower": {
                 "NAME": "Temporal Anchor",
                 "DESCRIPTIONS": ["Rewinding time will currently result in ", " #rDivergence from the main timeline. NL Until you rewind time, #rDivergence increases by #b"," each turn.", "Your Temporal Anchor has reached a #rcritical #rlevel of #rDivergence. NL Attempting to rewind time will #balmost #bcertainly result in #rpermanent #rloss #rof #rcohesion."]
+        },
+        "Moonworks:AcceleratorPower": {
+                "NAME": "Accelerator",
+                "DESCRIPTIONS": ["Whenever a card is created in combat, create #b"," more copy of it."," more copies of it."," NL Does not apply to #yStatus, #yCurse, or #yMagical cards."]
+        },
+        "Moonworks:ShieldCounterPower": {
+                "NAME": "Shield Counter",
+                "DESCRIPTIONS": ["This turn,","For the next #b","turns,"," any attack you fully block is reflected onto the attacker."," NL If you still have Block at the end of the turn, you do not lose a stack of Shield Counter."]
         }
 }

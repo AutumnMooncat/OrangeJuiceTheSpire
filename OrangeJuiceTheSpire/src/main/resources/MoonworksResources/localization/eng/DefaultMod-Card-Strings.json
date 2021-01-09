@@ -1,7 +1,9 @@
 {
   "Moonworks:Accelerator": {
     "NAME": "Accelerator",
-    "DESCRIPTION": "The first card you play each turn is played twice."
+    "DESCRIPTION": "Whenever a card is created in combat, create an additional copy of it. Has *exceptions.",
+    "UPGRADE_DESCRIPTION": "Whenever a card is created in combat, create !M! additional copies of it. Has *exceptions.",
+    "EXTENDED_DESCRIPTION": ["Accelerator Exceptions", "Does not apply to #yStatus, #yCurse, or #yMagical cards.","If available, use an extra [E] to also upgrade all newly created cards."]
   },
   "Moonworks:AccelHyper": {
     "NAME": "Accel Hyper",
@@ -23,8 +25,9 @@
   },
   "Moonworks:AnotherUltimateWeapon": {
     "NAME": "Another Ultimate Weapon",
-    "DESCRIPTION": "Gain X Strength and Dexterity.",
-    "UPGRADE_DESCRIPTION": "Gain X+1 Strength and Dexterity."
+    "DESCRIPTION": "Gain X Strength and 5X Block.",
+    "UPGRADE_DESCRIPTION": "Gain X+1 Strength and 5(X+1) Block.",
+    "EXTENDED_DESCRIPTION": ["+X Strength and +5X Block."]
   },
   "Moonworks:Assault": {
     "NAME": "Assault",
@@ -72,8 +75,7 @@
   "Moonworks:Bloodlust": {
     "NAME": "Bloodlust",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Take 4 damage at the beginning of your turn, but for each Attack played heal !M! HP. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Your Bloodlust has subsided.",
-    "EXTENDED_DESCRIPTION": ["I can't play this card."]
+    "EXTENDED_DESCRIPTION": ["Your Bloodlust has subsided."]
   },
   "Moonworks:CastOff": {
     "NAME": "Cast Off",
@@ -82,8 +84,8 @@
   },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "Cloud of Seagulls",
-    "DESCRIPTION": "Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to a random enemy. NL Shuffle !M! *Jonathan *Rush+ into your draw pile.",
+    "DESCRIPTION": "Deal !D! moonworks:Fixed damage to a random target !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Deal !D! moonworks:Fixed damage to a random enemy !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush+ into your draw pile.",
     "EXTENDED_DESCRIPTION": ["Draw 1 card.","Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush+ into your draw pile."]
   },
   "Moonworks:CompletionReward": {
@@ -110,12 +112,12 @@
   "Moonworks:Defend": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block.",
-    "EXTENDED_DESCRIPTION": ["+1 Block", "+1 Block"]
+    "EXTENDED_DESCRIPTION": ["+1 Block.", "+1 Block."]
   },
   "Moonworks:DeployBits": {
     "NAME": "Deploy Bits",
     "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor.",
-    "EXTENDED_DESCRIPTION": ["-3 Bits, but Bit distribution is now optimized."]
+    "EXTENDED_DESCRIPTION": ["-3 Bits, but Bit distribution is now moonworks:Optimized."]
   },
   "Moonworks:DevilHand": {
     "NAME": "Devil Hand",
@@ -150,7 +152,7 @@
   },
   "Moonworks:ExtendedPhotonRifle": {
     "NAME": "Extended Photon Rifle",
-    "DESCRIPTION": "Deal !D! damage X times. Strength is !Moonworks:SecondMagic! times more effective for this card. NL Vigor has no effect on this card."
+    "DESCRIPTION": "Deal !D! damage X times. Strength is !Moonworks:SecondMagic! times more effective for this card."
   },
   "Moonworks:FinalBattle": {
     "NAME": "Final Battle",
@@ -163,8 +165,7 @@
   "Moonworks:Flamethrower": {
     "NAME": "Flamethrower",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !D! moonworks:Fixed damage to an enemy. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Your Flamethrower is out of fuel.",
-    "EXTENDED_DESCRIPTION": ["I can't play this card."]
+    "EXTENDED_DESCRIPTION": ["Your Flamethrower is out of fuel."]
   },
   "Moonworks:ForcedRevival": {
     "NAME": "Forced Revival",
@@ -238,8 +239,7 @@
   "Moonworks:LuckyCharm": {
     "NAME": "Lucky Charm",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain [E] at the beginning of your turn. NL On Play: Discard and use up to 3 [E] to regain moonworks:Gift_Uses.",
-    "UPGRADE_DESCRIPTION": "Your Lucky Charm has run out of luck.",
-    "EXTENDED_DESCRIPTION": ["I can't play this card."]
+    "EXTENDED_DESCRIPTION": ["Your Lucky Charm has run out of luck."]
   },
   "Moonworks:LulusLuckyEgg": {
     "NAME": "Lulu's Lucky Egg",
@@ -247,8 +247,7 @@
   },
   "Moonworks:MagicalInferno": {
     "NAME": "Magical Inferno",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies for EACH alive enemy. NL Purge.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies for EACH enemy, dead or alive. NL Purge."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies for EACH alive enemy. NL Purge."
   },
   "Moonworks:MagicalMassacre": {
     "NAME": "Magical Massacre",
@@ -265,13 +264,13 @@
   },
   "Moonworks:MetallicMonocoque": {
     "NAME": "Metallic Monocoque",
-    "DESCRIPTION": "Take !M! less direct damage. NL Take !Moonworks:SecondMagic! less indirect damage."
+    "DESCRIPTION": "Take !M! less *Direct damage. NL Take !Moonworks:SecondMagic! less *Indirect damage.",
+    "EXTENDED_DESCRIPTION": ["Direct vs. Indirect", "Generally speaking: NL If an enemy intends to attack you, that will be considered #yDirect damage. NL If you receive damage via thorns or self damaging cards, that will be considered #yIndirect damage."]
   },
   "Moonworks:MiracleRedBeanIceCream": {
     "NAME": "Red Bean Ice Cream",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! temporary Strength. NL On Play: Exhaust. NL On Exhaust: Heal 5 HP.",
-    "UPGRADE_DESCRIPTION": "You have eaten your Red Bean Ice Cream.",
-    "EXTENDED_DESCRIPTION": ["I can't play this card."]
+    "EXTENDED_DESCRIPTION": ["You have eaten your Red Bean Ice Cream."]
   },
   "Moonworks:MiracleWalker": {
     "NAME": "Miracle Walker",
@@ -281,8 +280,8 @@
   },
   "Moonworks:MixPhenomenon": {
     "NAME": "Mix Phenomenon",
-    "DESCRIPTION": "Shuffle !M! cards from your exhaust pile into your draw pile. NL Draw !Moonworks:SecondMagic! card. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Shuffle !M! cards from your exhaust pile into your draw pile. NL Draw !Moonworks:SecondMagic! cards. NL Exhaust."
+    "DESCRIPTION": "Restore the moonworks:Gift_Uses of !M! random gift card and shuffle it into your draw pile. NL Draw !Moonworks:SecondMagic! card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Restore the moonworks:Gift_Uses of !M! gift card and shuffle it into your draw pile. NL Draw !Moonworks:SecondMagic! card. NL Exhaust."
   },
   "Moonworks:NicePresent": {
     "NAME": "Nice Present",
@@ -315,8 +314,7 @@
   "Moonworks:RedAndBlue": {
     "NAME": "Red And Blue",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! Vigor and !M! moonworks:Steady at the beginning of your turn. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Red and Blue are taking a break.",
-    "EXTENDED_DESCRIPTION": ["I can't play this card."]
+    "EXTENDED_DESCRIPTION": ["Red and Blue are taking a break."]
   },
   "Moonworks:ReflectiveShell": {
     "NAME": "Reflective Shell",
@@ -356,9 +354,8 @@
   },
   "Moonworks:ShieldCounter": {
     "NAME": "Shield Counter",
-    "DESCRIPTION": "Deal damage equal to the target's intent.",
-    "UPGRADE_DESCRIPTION": "Remove all Block from the target. NL Deal damage equal to the target's intent.",
-    "EXTENDED_DESCRIPTION": ["Remove all Block the next time it is gained."]
+    "DESCRIPTION": "Gain !B! Block. NL Gain 1 moonworks:Shield_Counter. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["moonworks:Shield_Counter will *rollover."]
   },
   "Moonworks:SinkOrSwim": {
     "NAME": "Sink Or Swim",
@@ -405,8 +402,7 @@
   "Moonworks:UnluckyCharm": {
     "NAME": "Unlucky Charm",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Lose !Moonworks:InvertedNumber! temporary Dexterity. NL On Exhaust: Gain !M! Dexterity. NL This card can not be discarded by playing it.",
-    "UPGRADE_DESCRIPTION": "You are feeling a little luckier without this around.",
-    "EXTENDED_DESCRIPTION": ["I can't play this card."]
+    "EXTENDED_DESCRIPTION": ["You are feeling a little luckier without this around."]
   },
   "Moonworks:UnpaidWork": {
     "NAME": "Unpaid Work",
@@ -424,7 +420,7 @@
   "Moonworks:WindyEnchantment": {
     "NAME": "Windy Enchantment",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Draw !M! card. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "Your tailwind has diminished."
+    "EXTENDED_DESCRIPTION": ["Your tailwind has diminished."]
   },
   "Moonworks:x16BigRocket": {
     "NAME": "Big Rocket",

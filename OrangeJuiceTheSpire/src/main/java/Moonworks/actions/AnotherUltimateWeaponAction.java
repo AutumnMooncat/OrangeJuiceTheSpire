@@ -2,10 +2,7 @@ package Moonworks.actions;
 
 import Moonworks.powers.FreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -19,14 +16,17 @@ public class AnotherUltimateWeaponAction extends AbstractGameAction {
     private final boolean freeToPlayOnce;
     private final AbstractPlayer p;
     private final int energyOnUse;
+    private final int block, strength;
     private final boolean upgraded;
 
-    public AnotherUltimateWeaponAction(AbstractPlayer p, boolean upgraded, boolean freeToPlayOnce, int energyOnUse) {
+    public AnotherUltimateWeaponAction(AbstractPlayer p, int strength, int block, boolean upgraded, boolean freeToPlayOnce, int energyOnUse) {
         this.p = p;
         this.freeToPlayOnce = freeToPlayOnce;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.actionType = ActionType.SPECIAL;
         this.energyOnUse = energyOnUse;
+        this.strength = strength;
+        this.block = block;
         this.upgraded = upgraded;
     }
 
@@ -45,8 +45,8 @@ public class AnotherUltimateWeaponAction extends AbstractGameAction {
         }
         if (effect > 0) {
 
-            this.addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, effect)));
-            this.addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, effect)));
+            this.addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, effect+strength)));
+            this.addToBot(new GainBlockAction(p, 5*effect+block));
 
             if (!this.freeToPlayOnce) {
                 this.p.energy.use(EnergyPanel.totalCount);

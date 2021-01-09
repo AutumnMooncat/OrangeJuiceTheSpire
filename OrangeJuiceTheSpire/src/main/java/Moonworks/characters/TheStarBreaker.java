@@ -171,7 +171,7 @@ public class TheStarBreaker extends CustomPlayer {
 
         logger.info("Begin loading starter Deck Strings");
 
-        /* Main Deck
+        //* Main Deck
 
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
@@ -193,8 +193,8 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(Bloodlust.ID);
         //retVal.add(Flamethrower.ID);
         //retVal.add(LuckyCharm.ID);
-        retVal.add(MiracleRedBeanIceCream.ID);
-        retVal.add(MiracleRedBeanIceCream.ID);
+        //retVal.add(MiracleRedBeanIceCream.ID);
+        //retVal.add(MiracleRedBeanIceCream.ID);
         //retVal.add(RedAndBlue.ID);
         //retVal.add(UnluckyCharm.ID);
         //retVal.add(WindyEnchantment.ID);
@@ -217,7 +217,7 @@ public class TheStarBreaker extends CustomPlayer {
 
         //Normal Cards
 
-        retVal.add(Accelerator.ID);
+        //retVal.add(Accelerator.ID);
         //retVal.add(AccelHyper.ID);
         //retVal.add(AirStrike.ID);
         //retVal.add(AngelHand.ID);
@@ -231,7 +231,7 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(BindingChains.ID);
         //retVal.add(Blazing.ID);
         //retVal.add(CastOff.ID);
-        retVal.add(CloudOfSeagulls.ID);
+        //retVal.add(CloudOfSeagulls.ID);
         //retVal.add(CompletionReward.ID);
         //retVal.add(CookingTime.ID);
         //retVal.add(CrystalBarrier.ID);
@@ -260,7 +260,7 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(MeltingMemories.ID);
         //retVal.add(MetallicMonocoque.ID);
         //retVal.add(MiracleWalker.ID);
-        retVal.add(MixPhenomenon.ID);
+        //retVal.add(MixPhenomenon.ID);
         //retVal.add(NicePresent.ID);
         //retVal.add(OutOfAmmo.ID);
         //retVal.add(PortablePudding.ID);
@@ -272,7 +272,7 @@ public class TheStarBreaker extends CustomPlayer {
         //retVal.add(ScrambledEve.ID);
         //retVal.add(SealedMemories.ID);
         //retVal.add(SelfDestruct.ID);
-        retVal.add(ShieldCounter.ID);
+        //retVal.add(ShieldCounter.ID);
         //retVal.add(SinkOrSwim.ID);
         //retVal.add(StiffCrystal.ID);
         //retVal.add(SubspaceTunnel.ID);

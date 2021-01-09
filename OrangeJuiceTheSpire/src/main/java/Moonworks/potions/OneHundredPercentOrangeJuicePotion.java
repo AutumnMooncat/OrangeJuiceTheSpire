@@ -6,6 +6,7 @@ import Moonworks.powers.NormaPower;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,6 +15,8 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
+
+import java.util.ArrayList;
 
 public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
 
@@ -59,15 +62,9 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
 
     @Override
     public void use(AbstractCreature target) {
-        target = AbstractDungeon.player;
-        // If you are in combat, gain strength and the "lose strength at the end of your turn" power, equal to the potency of this potion.
-        //if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            //this.addToBot(new VFXAction(target, new ScreenOnFireEffect(), 1.0F));
-            //for (int i = 0 ; i < 6 ; i++) {
-                //this.addToBot(new ApplyPowerAction(target, target, new NormaPower(target, 1)));
-            //}
-            this.addToBot(new NormaBreakAction(target, false));
-        //}
+        this.getPotency(AbstractDungeon.ascensionLevel);
+        AbstractPlayer p = AbstractDungeon.player;
+        this.addToBot(new NormaBreakAction(p, upgraded));
     }
     
     @Override
@@ -77,16 +74,21 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
 
     // This is your potency.
     @Override
-    public int getPotency(final int potency) {
+    public int getPotency(final int ascensionLevel) {
+    AbstractPlayer p = AbstractDungeon.player;
+        if (p != null && p.hasRelic("SacredBark")) {
+            upgradePotion();
+        }
         return 6;
     }
 
-    public void upgradePotion() //Basically does nothing for now
+    public void upgradePotion()
     {
         upgraded = true;
         //description = DESCRIPTIONS[1]; //Took away permannt Norma 6, becasue fuck
-        potency += 6; //using upgraded boolean instead
-        tips.clear();
-        tips.add(new PowerTip(name, description));
+        //potency += 6; //using upgraded boolean instead, this does nothing
+        //tips = new ArrayList<>();
+        //tips.add(new PowerTip(name, description));
+        //tips.add(new PowerTip(NormaPower.NAME,NormaPower.DESCRIPTIONS[0]));
     }
 }

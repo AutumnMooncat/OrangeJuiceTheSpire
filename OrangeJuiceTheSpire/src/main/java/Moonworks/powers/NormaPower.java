@@ -30,6 +30,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     public boolean broken;
+    public boolean safeBreak;
 
     // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.
     // There's a fallback "missing texture" image, so the game shouldn't crash if you accidentally put a non-existent file.
@@ -60,12 +61,13 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         updateDescription();
     }
 
-    public void breakNorma() {
+    public void breakNorma(boolean upgraded) {
+        safeBreak = upgraded;
         broken = true;
         amount = 6;
         name = NAME + " #r" + amount;
         fontScale = 0.0F;
-        this.addToBot(new ApplyPowerAction(owner, owner, new VulnerablePower(owner, 10, false)));
+        this.addToBot(new ApplyPowerAction(owner, owner, new VulnerablePower(owner, safeBreak ? 2 : 10, false)));
         updateDescription();
         applyBrokenEffects();
     }
@@ -90,7 +92,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
     private void applyBrokenEffects() {
         int hploss = AbstractDungeon.cardRandomRng.random(10, 15);
         this.addToBot(new VFXAction(owner, new ScreenOnFireEffect(), 1.0F));
-        this.addToBot(new LoseHPAction(owner, owner, hploss));
+        this.addToBot(new LoseHPAction(owner, owner, hploss - (safeBreak ? 9 : 0)));
         this.addToBot(new GainEnergyAction(AbstractDungeon.cardRandomRng.random(1, 3)));
         if (AbstractDungeon.cardRandomRng.random(1, 2) == 1){
             this.addToBot(new ApplyPowerAction(owner, owner, new DoubleDamagePower(owner, 1, false)));
@@ -134,6 +136,12 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
 
     @Override
     public void stackPower(int stackAmount) {
+        if (stackAmount > 1) {
+            //If we get a big amount of Norma all at the same time, break it down into individual increases of 1 so our cards can flash properly
+            for (int i = 0 ; i < stackAmount ; i++){
+                this.stackPower(1);
+            }
+        }
         if(!broken) {
             boolean flashCards = amount < 4; //IF we are already at Norma 5, we dont want to flash the cards when we increase
             super.stackPower(stackAmount);

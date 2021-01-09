@@ -2,6 +2,7 @@ package Moonworks.cards.abstractCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.CheckGoldenAction;
+import Moonworks.actions.RecoverExhaustedGiftAction;
 import Moonworks.actions.WitherExhaustImmediatelyAction;
 import Moonworks.powers.NormaPower;
 import Moonworks.relics.GoldenDie;
@@ -23,13 +24,13 @@ import java.util.List;
 public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
-    protected final String description;
     protected final String spentDescription;
     private static ArrayList<TooltipInfo> GiftTooltip;
     protected boolean active;
     public boolean checkedGolden;
     public final boolean ignoreGolden;
     public static final float GOLDEN_BUFF = 1.5F;
+    public boolean hasUses;
 
     public AbstractGiftCard(final String id, final String img, final int cost, final CardType type, final CardColor color, final CardRarity rarity,
                             final CardTarget target, final int uses, final int currentUses) {
@@ -66,11 +67,13 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
 
         super(id, img, cost, type, color, rarity, target, normaLevels);
         CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
-        description = cardStrings.DESCRIPTION;
-        spentDescription = cardStrings.UPGRADE_DESCRIPTION;
+        spentDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         this.active = false; //Card wont be active until it is in our hand
+        this.hasUses = currentUses > 0;
         if (currentUses <= 0) {
-            DESCRIPTION = spentDescription;
+            rawDescription = spentDescription;
+        } else {
+            rawDescription = DESCRIPTION;
         }
         this.defaultSecondMagicNumber = currentUses;
         this.defaultBaseSecondMagicNumber = uses;
@@ -151,18 +154,18 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         if (defaultSecondMagicNumber != defaultBaseSecondMagicNumber) {
             this.isDefaultSecondMagicNumberModified = true;
         }
-        boolean hasUses = defaultSecondMagicNumber > 0;
+        this.hasUses = defaultSecondMagicNumber > 0;
         this.selfRetain = hasUses; //Retain while we have uses
-        this.exhaust = !hasUses; //Exhaust and Ethereal if we dont
+        this.exhaust = !hasUses; //Exhaust and Ethereal if we dont. This is for if we pull it back from the exhaust pile with no uses
         this.isEthereal = !hasUses;
         if (!hasUses) { //If we hit 0, or below 0 somehow, exhaust immediately
             this.active = false; //Card cant be active when it has no uses
-            this.DESCRIPTION = this.spentDescription;
+            rawDescription = this.spentDescription;
             initializeDescription(); //Initialize before we move to exhaust
             this.addToTop(new WitherExhaustImmediatelyAction(this)); //Hijack this wither code I wrote before, lol
         } else {
             //We dont set active is true here, since it might not be in our hand, and shouldnt be active if it isnt
-            this.DESCRIPTION = this.description;
+            rawDescription = this.DESCRIPTION;
             initializeDescription();
         }
     }
@@ -198,27 +201,6 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         return super.canUse(p, m);
     }
 
-    @Override
-    public void applyNormaDescriptions(){
-        StringBuilder sb = new StringBuilder();
-        boolean passedCheck, normaX;
-        sb.append(DESCRIPTION);
-        if(defaultSecondMagicNumber > 0 && normaLevels != null && normaLevels.size() > 0) {
-            for (int i = 0 ; i < normaLevels.size() ; i++) {
-                normaX = normaLevels.get(i) == -1;
-                passedCheck = getNormaLevel() >= (normaX ? 1 : normaLevels.get(i)); //Could also use absolute value here, but thats less intuitive to read
-                sb.append(" NL ");
-                sb.append(passedCheck ? upgradeGreen : "*");
-                sb.append(BaseMod.getKeywordTitle("moonworks:Norma")).append(" ");
-                sb.append(passedCheck ? upgradeGreen : "*");
-                sb.append(normaX ? "X" : normaLevels.get(i));
-                sb.append(": ");
-                sb.append(EXTENDED_DESCRIPTION[i]);
-            }
-        }
-        rawDescription = sb.toString();
-    }
-
     public static ArrayList<AbstractGiftCard> getExhaustedGifts() {
         ArrayList<AbstractGiftCard> exhaustedGifts = new ArrayList<>();
         for (AbstractCard card : AbstractDungeon.player.exhaustPile.group) {
@@ -234,7 +216,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         if (exhaustedGifts.isEmpty()) {
             return null;
         } else {
-            return exhaustedGifts.get(AbstractDungeon.cardRandomRng.random(1, exhaustedGifts.size()));
+            return exhaustedGifts.get(AbstractDungeon.cardRandomRng.random(0, exhaustedGifts.size()-1));
         }
     }
 
@@ -246,5 +228,33 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         } else {
             return false;
         }
+    }
+
+    public void restoreGiftUses(int amount) {
+        modifyUses(amount);
+        if (hasUses) {
+            unhover();
+            unfadeOut();
+            AbstractDungeon.player.exhaustPile.moveToDeck(this, true);
+            AbstractDungeon.player.exhaustPile.removeCard(this);
+        }
+    }
+
+    public void refreshGiftUses() {
+        defaultSecondMagicNumber = defaultBaseSecondMagicNumber;
+        restoreGiftUses(0);
+    }
+
+    public static void recoverRandomExhaustedGift(int amount) {
+        for (int i = 0 ; i < amount ; i++) {
+            AbstractGiftCard giftCard = getRandomExhaustedGift();
+            if(giftCard != null) {
+                giftCard.refreshGiftUses();
+            }
+        }
+    }
+
+    public static void recoverSpecificExhaustedGift(int amount) {
+        AbstractDungeon.actionManager.addToBottom(new RecoverExhaustedGiftAction(amount));
     }
 }

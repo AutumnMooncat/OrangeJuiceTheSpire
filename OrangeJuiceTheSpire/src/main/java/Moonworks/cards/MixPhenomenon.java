@@ -1,8 +1,9 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.actions.ExhaustToDrawPileAction;
+import Moonworks.actions.RecoverExhaustedGiftAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -38,7 +39,7 @@ public class MixPhenomenon extends AbstractDynamicCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
-    private static final int RESTORE = 2;
+    private static final int RESTORE = 1;
     private static final int DRAW = 1;
     private static final int UPGRADE_PLUS_DRAW = 1;
 
@@ -57,7 +58,12 @@ public class MixPhenomenon extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ExhaustToDrawPileAction(magicNumber));
+        if (upgraded) {
+            AbstractGiftCard.recoverSpecificExhaustedGift(magicNumber);
+        } else {
+            AbstractGiftCard.recoverRandomExhaustedGift(magicNumber);
+        }
+
         this.addToBot(new DrawCardAction(defaultSecondMagicNumber));
         //this.addToBot(new DiscardPileToTopOfDeckAction());
         //this.addToBot(new ExhumeAction());
@@ -69,7 +75,7 @@ public class MixPhenomenon extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             rawDescription = UPGRADE_DESCRIPTION;
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_DRAW);
+            //upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_DRAW);
             initializeDescription();
         }
     }

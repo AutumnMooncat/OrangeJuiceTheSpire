@@ -66,7 +66,7 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
             //for (int i = 0 ; i < 6 ; i++) {
                 //this.addToBot(new ApplyPowerAction(target, target, new NormaPower(target, 1)));
             //}
-            this.addToBot(new NormaBreakAction(target, upgraded));
+            this.addToBot(new NormaBreakAction(target, false));
         //}
     }
     
@@ -81,10 +81,10 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
         return 6;
     }
 
-    public void upgradePotion()
+    public void upgradePotion() //Basically does nothing for now
     {
         upgraded = true;
-        description = DESCRIPTIONS[0];
+        //description = DESCRIPTIONS[1]; //Took away permannt Norma 6, becasue fuck
         potency += 6; //using upgraded boolean instead
         tips.clear();
         tips.add(new PowerTip(name, description));

@@ -2,10 +2,10 @@ package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.IndiscriminateFireSupportAction;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.FreeCardPower;
-import Moonworks.variables.DefaultSecondMagicNumber;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -59,6 +59,7 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
         this.isMultiDamage = true;
         this.cardsToPreview = new Dazed();
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INVERTEDMOD, -1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
 
     }
     @Override
@@ -70,12 +71,6 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new IndiscriminateFireSupportAction(p, multiDamage, damageTypeForTurn, invertedNumber, AbstractGameAction.AttackEffect.FIRE, freeToPlayOnce, energyOnUse));
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyInvertedNumber(-1, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

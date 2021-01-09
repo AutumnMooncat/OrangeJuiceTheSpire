@@ -1,7 +1,9 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.tempCards.BigRocketCannon;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -46,6 +48,7 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
         //this.cardsToPreview.cardsToPreview = new AirStrike(); // I tried, lol
         damage = baseDamage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = CARDS;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -53,13 +56,6 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
         this.addToBot(new MakeTempCardInDrawPileAction(this.cardsToPreview.makeStatEquivalentCopy(), magicNumber, true, true));
-    }
-
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(1, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     // Upgraded stats.

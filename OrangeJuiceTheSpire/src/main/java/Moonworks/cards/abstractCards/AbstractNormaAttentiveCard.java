@@ -101,112 +101,26 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
 
     @Override
     public void applyPowers() {
+        applyNormaEffects(); //Empty hook on applyPowers if wanted for things that the NormaDynvarModifier cant do
         super.applyPowers();
-        applyNormaEffects();
         initializeDescription();
     }
 
     @Override
     public void initializeDescription() {
-        applyNormaDescriptions();
+        applyNormaDescriptions(); //Empty hook, if wanted. Should really use the INFOMOD option of NormaDynvarModifier, but if that wont work for whatever reason
         super.initializeDescription();
     }
 
-    public void applyNormaDescriptions(){
-        StringBuilder sb = new StringBuilder();
-        boolean passedCheck, normaX;
-        sb.append(upgraded && cardStrings.UPGRADE_DESCRIPTION != null ? UPGRADE_DESCRIPTION : DESCRIPTION);
-        if(normaLevels != null && normaLevels.size() > 0) {
-            for (int i = 0 ; i < normaLevels.size() ; i++) {
-                normaX = normaLevels.get(i) == -1;
-                passedCheck = getNormaLevel() >= (normaX ? 1 : normaLevels.get(i)); //Could also use absolute value here, but thats less intuitive to read
-                sb.append(" NL ");
-                sb.append(passedCheck ? upgradeGreen : "*");
-                sb.append(BaseMod.getKeywordTitle("moonworks:Norma")).append(" ");
-                sb.append(passedCheck ? upgradeGreen : "*");
-                sb.append(normaX ? "X" : normaLevels.get(i));
-                sb.append(": ");
-                sb.append(EXTENDED_DESCRIPTION[i]);
-            }
-        }
-        rawDescription = sb.toString();
-    }
+    /**
+     * Empty hook that calls prior to initDescription, if wanted for anything.
+     * Should really use the INFOMOD option of NormaDynvarModifier, but if that wont work for whatever reason, there is this
+     */
+    public void applyNormaDescriptions(){} //Empty hook, if wanted
 
-    public void applyNormaEffects(){
-        updateApplicationChecks();
-    }
-
-    public void modifyDamage(int amount, int normaCheck) {
-        boolean normaX = normaCheck == -1;
-        if (normaX) { // handle normaX stuff here
-            amount = getNormaLevel() - lastXChecked;
-            tempXChecked = getNormaLevel();
-        }
-        if (((normaX && amount > 0) || !normaChecks.getOrDefault(normaCheck, false)) && getNormaLevel() >= normaCheck){
-            damage = Math.max(0, damage + amount);
-            baseDamage = Math.max(0, baseDamage + amount);
-            isDamageModified = damage != baseDamage;
-            normaCheckBuffer.add(normaCheck);
-        }
-    }
-    public void modifyBlock(int amount, int normaCheck) {
-        boolean normaX = normaCheck == -1;
-        if (normaX) { // handle normaX stuff here
-            amount = getNormaLevel() - lastXChecked;
-            tempXChecked = getNormaLevel();
-        }
-        if (((normaX && amount > 0) || !normaChecks.getOrDefault(normaCheck, false)) && getNormaLevel() >= normaCheck){
-            block = Math.max(0, block + amount);
-            baseBlock = Math.max(0, baseBlock + amount);
-            isBlockModified = block != baseBlock;
-            normaCheckBuffer.add(normaCheck);
-        }
-    }
-    public void modifyMagicNumber(int amount, int normaCheck) {
-        boolean normaX = normaCheck == -1;
-        if (normaX) { // handle normaX stuff here
-            amount = getNormaLevel() - lastXChecked;
-            tempXChecked = getNormaLevel();
-        }
-        if (((normaX && amount > 0) || !normaChecks.getOrDefault(normaCheck, false)) && getNormaLevel() >= normaCheck){
-            magicNumber = Math.max(0, magicNumber + amount);
-            baseMagicNumber = Math.max(0, baseMagicNumber + amount);
-            isMagicNumberModified = magicNumber != baseMagicNumber;
-            normaCheckBuffer.add(normaCheck);
-        }
-    }
-    public void modifySecondMagic(int amount, int normaCheck) {
-        boolean normaX = normaCheck == -1;
-        if (normaX) { // handle normaX stuff here
-            amount = getNormaLevel() - lastXChecked;
-            tempXChecked = getNormaLevel();
-        }
-        if (((normaX && amount > 0) || !normaChecks.getOrDefault(normaCheck, false)) && getNormaLevel() >= normaCheck){
-            defaultSecondMagicNumber = Math.max(0, defaultSecondMagicNumber + amount);
-            defaultBaseSecondMagicNumber = Math.max(0, defaultBaseSecondMagicNumber + amount);
-            isDefaultSecondMagicNumberModified = defaultSecondMagicNumber != defaultBaseSecondMagicNumber;
-            normaCheckBuffer.add(normaCheck);
-        }
-    }
-    public void modifyInvertedNumber(int amount, int normaCheck) {
-        boolean normaX = normaCheck == -1;
-        if (normaX) { // handle normaX stuff here
-            amount = getNormaLevel() - lastXChecked;
-            tempXChecked = getNormaLevel();
-        }
-        if (((normaX && amount > 0) || !normaChecks.getOrDefault(normaCheck, false)) && getNormaLevel() >= normaCheck){
-            invertedNumber = Math.max(0, invertedNumber + amount);
-            baseInvertedNumber = Math.max(0, baseInvertedNumber + amount);
-            isInvertedNumberModified = invertedNumber != baseInvertedNumber;
-            normaCheckBuffer.add(normaCheck);
-        }
-    }
-
-    private void updateApplicationChecks() {
-        for (Integer i : normaCheckBuffer) {
-            normaChecks.put(i, true);
-        }
-        lastXChecked = tempXChecked;
-        normaCheckBuffer.clear();
-    }
+    /**
+     * Empty hook that calls prior to applyPowers.
+     * Most things can simply be done with a NormaDynvarModifier, but this is here if it is needed
+     */
+    public void applyNormaEffects(){} //Empty hook, if wanted
 }

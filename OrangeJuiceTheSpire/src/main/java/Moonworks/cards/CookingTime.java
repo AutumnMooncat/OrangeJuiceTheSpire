@@ -1,7 +1,9 @@
 package Moonworks.cards;
 
 import Moonworks.actions.CookingTimeAction;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -41,18 +43,13 @@ public class CookingTime extends AbstractNormaAttentiveCard {
         magicNumber = baseMagicNumber = HEAL;
         this.tags.add(CardTags.HEALING);
         this.exhaust = true;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 3, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new CookingTimeAction(p, m, magicNumber, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(3, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     // Upgraded stats.

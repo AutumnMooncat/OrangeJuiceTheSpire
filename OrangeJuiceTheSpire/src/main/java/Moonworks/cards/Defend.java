@@ -1,6 +1,8 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -46,20 +48,16 @@ public class Defend extends AbstractNormaAttentiveCard {
     public Defend() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         baseBlock = BLOCK;
-        this.tags.add(CardTags.STARTER_DEFEND); //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.
+        this.tags.add(CardTags.STARTER_DEFEND);
+        //Tag your strike, defend and form (Wraith form, Demon form, Echo form, etc.) cards so that they function correctly.
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.BLOCKMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.BLOCKMOD, 1, NORMA_LEVELS[1], EXTENDED_DESCRIPTION[1]));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyBlock(1, NORMA_LEVELS[0]);
-        modifyBlock(1, NORMA_LEVELS[1]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

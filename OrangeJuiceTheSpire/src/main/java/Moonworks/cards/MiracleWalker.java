@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cardModifiers.TransmutativeModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
@@ -45,6 +46,7 @@ public class MiracleWalker extends AbstractNormaAttentiveCard {
     public MiracleWalker() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //Norma 5 effect packaged into modifier/action
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
         CardModifierManager.addModifier(this, new TransmutativeModifier(-1, true));
     }
 
@@ -61,6 +63,7 @@ public class MiracleWalker extends AbstractNormaAttentiveCard {
     @Override
     public void upgrade() {
         upgradeName();
+        rawDescription = UPGRADE_DESCRIPTION;
         initializeDescription();
     }
 }

@@ -91,8 +91,8 @@ public class Bloodlust extends AbstractGiftCard {
 
     public void applyDamageEffect() {
         AbstractPlayer p = AbstractDungeon.player;
-        int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
-        this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE-lessDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+        //int lessDamage = getNormaLevel() >= 2 ? 1 : 0;
+        this.addToBot(new DamageAction(p, new DamageInfo(p, DAMAGE, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         //Dont use a use here. This will result in us being able to hold this Gift as long as we want, but get a limited number of heals
     }
 

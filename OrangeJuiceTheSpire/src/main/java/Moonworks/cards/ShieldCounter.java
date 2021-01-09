@@ -1,11 +1,15 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.powers.Heat300PercentPower;
+import Moonworks.powers.ShieldCounterPower;
 import basemod.ReflectionHacks;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -39,44 +43,32 @@ public class ShieldCounter extends AbstractNormaAttentiveCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
-    private static final CardType TYPE = CardType.ATTACK;
+    private static final CardTarget TARGET = CardTarget.SELF;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 2;
-    private static final int DAMAGE = 0;
+    private static final int COST = 1;
+    private static final int BLOCK = 15;
+    private static final int UPGRADE_PLUS_BLOCK = 5;
+    private static final int TURNS = 1;
 
-    private static final Integer[] NORMA_LEVELS = {4};
+    private static final Integer[] NORMA_LEVELS = {3};
 
     // /STAT DECLARATION/
 
 
     public ShieldCounter() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
-        baseDamage = DAMAGE;
+        baseBlock = block = BLOCK;
+        this.exhaust = true;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(upgraded){
-            AbstractDungeon.actionManager.addToBottom(new RemoveAllBlockAction(m, p));
-        }
-        // Thanks @Alchyr#3696, #modding-technical
-        if (!m.isDeadOrEscaped() && m.getIntentBaseDmg() >= 0) {
-            int dmg = (int)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentDmg");
-            if ((boolean)ReflectionHacks.getPrivate(m, AbstractMonster.class, "isMultiDmg"))
-            {
-                dmg *= (int)ReflectionHacks.getPrivate(m, AbstractMonster.class, "intentMultiAmt");
-            }
-            AbstractDungeon.actionManager.addToBottom(
-                    new DamageAction(m, new DamageInfo(p, dmg, damageTypeForTurn),
-                            AbstractGameAction.AttackEffect.SLASH_HEAVY));
-        }
-        if (getNormaLevel() >= NORMA_LEVELS[0]) {
-            this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, 1)));
-        }
-
+        this.addToBot(new GainBlockAction(p, block));
+        this.addToBot(new ApplyPowerAction(p, p, new ShieldCounterPower(p, TURNS, getNormaLevel() >= NORMA_LEVELS[0]))); //Retain if we pass the check
     }
 
     //Upgraded stats.
@@ -84,7 +76,7 @@ public class ShieldCounter extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
+            upgradeBlock(UPGRADE_PLUS_BLOCK);
             initializeDescription();
         }
     }

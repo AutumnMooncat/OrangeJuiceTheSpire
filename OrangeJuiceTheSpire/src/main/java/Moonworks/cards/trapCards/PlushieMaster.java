@@ -1,11 +1,13 @@
 package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.PlushieMasterPower;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -63,6 +65,7 @@ public class PlushieMaster extends AbstractTrapCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = HITS;
         damage = baseDamage = DAMAGE;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 2, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -76,12 +79,6 @@ public class PlushieMaster extends AbstractTrapCard {
         for (AbstractMonster aM : map.keySet()) {
             this.addToBot(new ApplyPowerAction(aM, p, new PlushieMasterPower(aM, p, map.get(aM), TEMP_HP, DAMAGE)));
         }
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(2, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

@@ -1,8 +1,10 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import basemod.ReflectionHacks;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -55,7 +57,7 @@ public class DeployBits extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = STACKS;
-
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.SECONDMAGICMOD, -3, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -99,13 +101,6 @@ public class DeployBits extends AbstractNormaAttentiveCard {
         //Maybe this will work? This is how Spot Weakness does it
         return m.getIntentBaseDmg() >= 0;
         //return (i == AbstractMonster.Intent.ATTACK || i == AbstractMonster.Intent.ATTACK_BUFF || i == AbstractMonster.Intent.ATTACK_DEBUFF || i == AbstractMonster.Intent.ATTACK_DEFEND);
-    }
-
-
-    @Override
-    public void applyNormaEffects() {
-        modifySecondMagic(-3, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

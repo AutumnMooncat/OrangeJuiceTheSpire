@@ -1,9 +1,11 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -58,6 +60,7 @@ public class FullSpeedAlicianrone extends AbstractNormaAttentiveCard {
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
         //this.isMultiDamage = true;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
     @Override
     public float getTitleFontSize() {

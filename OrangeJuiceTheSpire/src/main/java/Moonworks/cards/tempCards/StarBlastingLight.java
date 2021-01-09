@@ -1,11 +1,13 @@
 package Moonworks.cards.tempCards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BlastingLightPower;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -75,14 +77,18 @@ public class StarBlastingLight extends AbstractTempCard {
         this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         //this.bannerColor = BANNER_COLOR_RARE.cpy();
         //this.imgFrameColor = IMG_FRAME_COLOR_RARE.cpy();
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.SECONDMAGICMOD, 1, NORMA_LEVELS[0], null));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(1, 3)];
-        this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 0.25F));
+        this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 0.0F));
         this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
+        logger.info("Magic: "+magicNumber+". Base Magic: "+baseMagicNumber+".");
+        logger.info("Second: "+defaultSecondMagicNumber+". Base Second: "+defaultBaseSecondMagicNumber+".");
         int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
         for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
             AbstractPower pow = aM.getPower(ArtifactPower.POWER_ID);
@@ -95,13 +101,6 @@ public class StarBlastingLight extends AbstractTempCard {
                 this.addToBot(new ApplyPowerAction(aM, p, new BlastingLightPower(aM, hits-artifactAmount), hits-artifactAmount, true));
             }
         }
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(getNormaLevel(), NORMA_LEVELS[0]); // normaX effect
-        modifySecondMagic(getNormaLevel(), NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

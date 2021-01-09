@@ -2,12 +2,13 @@ package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ModifyCostThisCombatAction;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -48,6 +49,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = DRAW;
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = MAX_COST;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -62,12 +64,6 @@ public class NicePresent extends AbstractNormaAttentiveCard {
             }
             initializeDescription();
         //}
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(1, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     @Override

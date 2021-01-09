@@ -72,7 +72,7 @@ public class EvilSpyWorkExecution extends AbstractTempCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //this.purgeOnUse = getNormaLevel() < 3 || AbstractDungeon.cardRandomRng.random(1, 2) != 1;
-        this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+        this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, true));
         this.addToBot(new DrawCardAction(magicNumber));
     }
 
@@ -84,7 +84,7 @@ public class EvilSpyWorkExecution extends AbstractTempCard {
         if (!upgraded) {
             upgradeName();
             rawDescription = UPGRADE_DESCRIPTION;
-            upgradeMagicNumber(UPGRADE_PLUS_DRAW);
+            //upgradeMagicNumber(UPGRADE_PLUS_DRAW);
             upgradeDamage(UPGRADE_PLUS_DMG);
             initializeDescription();
         }

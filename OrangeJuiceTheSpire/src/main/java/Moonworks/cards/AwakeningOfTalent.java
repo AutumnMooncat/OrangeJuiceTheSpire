@@ -1,6 +1,8 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.defect.SunderAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -52,6 +54,7 @@ public class AwakeningOfTalent extends AbstractNormaAttentiveCard {
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = CARDS;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = ENERGY;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
     @Override
     public float getTitleFontSize() {
@@ -76,7 +79,7 @@ public class AwakeningOfTalent extends AbstractNormaAttentiveCard {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
             this.upgradeBlock(UPGRADE_PLUS_BLOCK);
-            this.upgradeMagicNumber(UPGRADE_PLUS_CARDS);
+            //this.upgradeMagicNumber(UPGRADE_PLUS_CARDS);
             this.initializeDescription();
         }
     }

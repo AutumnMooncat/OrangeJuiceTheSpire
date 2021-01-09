@@ -1,5 +1,5 @@
 package Moonworks.patches;
-
+/*
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+*/
 /*
  * Using SpirePatch, also known as patching, allows you to insert your own code into the basegame code.
  * It is an extremely powerful and useful tool that can appear complicated at first. If you have no experience with modding StS, and especially
@@ -52,9 +52,9 @@ import org.apache.logging.log4j.Logger;
  * Let's get to it!
  */
 
-@SpirePatch(    // "Use the @SpirePatch annotation on the patch class."
-        clz = AbstractDungeon.class, // This is the class where the method we will be patching is. In our case - Abstract Dungeon
-        method = "returnRandomRelicKey" // This is the name of the method we will be patching.
+//@SpirePatch(    // "Use the @SpirePatch annotation on the patch class."
+//        clz = AbstractDungeon.class, // This is the class where the method we will be patching is. In our case - Abstract Dungeon
+//        method = "returnRandomRelicKey" // This is the name of the method we will be patching.
         /*
         Now let's imagine for a second that there were two methods named returnRandomRelicKey()
         The one we're patching - "String returnRandomRelicKey(RelicTier tier)" - that grabs a relic of specific tier
@@ -67,29 +67,29 @@ import org.apache.logging.log4j.Logger;
         }
         to this annotation, after the method parameter. (If we wanted to patch the first one, we'd only put "AbstractRelic.RelicTier.class".
         */
-)
-public class DefaultInsertPatch {// Don't worry about the "never used" warning - *You* usually don't use/call them anywhere. Mod The Spire does.
+//)
+//public class DefaultInsertPatch {// Don't worry about the "never used" warning - *You* usually don't use/call them anywhere. Mod The Spire does.
     
     // You can have as many inner classes with patches as you want inside this one - you don't have to separate each patch into it's own file.
     // So if you need to put 4 patches all for 1 purpose (for example they all make a specific relic effect happen) - you can keep them organized together.
     // Do keep in mind that "A patch class must be a public static class."
     
-    private static final Logger logger = LogManager.getLogger(DefaultInsertPatch.class.getName()); // This is our logger! It prints stuff out in the console.
+//    private static final Logger logger = LogManager.getLogger(DefaultInsertPatch.class.getName()); // This is our logger! It prints stuff out in the console.
     // It's like a very fancy System.out.println();
     
-    @SpireInsertPatch( // This annotation of our patch method specifies the type of patch we will be using. In our case - a Spire Insert Patch
+//    @SpireInsertPatch( // This annotation of our patch method specifies the type of patch we will be using. In our case - a Spire Insert Patch
             
-            locator = Locator.class, // Spire insert patches require a locator - this isn't something you import - this is something we write.
+//            locator = Locator.class, // Spire insert patches require a locator - this isn't something you import - this is something we write.
             // (Or as is usually the case with them - copy paste cause they're always nearly the same thing.
             // In fact, most insert patches are fairly boiler-plate. You could easily make an insert patch template, if you'd like.)
             // You can find our Locator class just below, as an inner class, underneath our actual patch method.
             
-            localvars = {"retVal"} // The method we're patching, returnRandomRelicKey(), has a local variable that we'd like to access and manipulate -
+//            localvars = {"retVal"} // The method we're patching, returnRandomRelicKey(), has a local variable that we'd like to access and manipulate -
             // "String retVal = null;". So, we simply write out it's name here and then add it as a parameter to our patch method.
             // Keep in mind that localvars can also be used to capture class variables, not just local method ones. This also includes private ones.
-    )
+//    )
     //"A patch method must be a public static method."
-    public static void thisIsOurActualPatchMethod(
+//    public static void thisIsOurActualPatchMethod(
             // 1. "Patch methods are passed all the arguments of the original method,
             // 2. as well as the instance if original method is not static (instance first, then parameters).
             // 3. localvars are passed as arguments, appearing the in parameter list after the original method's parameters."
@@ -99,13 +99,13 @@ public class DefaultInsertPatch {// Don't worry about the "never used" warning -
             // As it stands, that method is static so it's not tied to a specific instance of AbstractDungeon. (Read up on what "static" means in java
             // if you don't understand this part).
             // As such we write our method parameters like this instead:
-            AbstractRelic.RelicTier tier, String retVal) {
+//            AbstractRelic.RelicTier tier, String retVal) {
         
         // Wow time to actually put stuff in the basegame code!!! Everything here will be executed exactly as written, at the line which we specified.
         // You can change retVal (using @byRef) to always return the same relic, or return a specific relic if it passes some check.
         // You can execute any other static method you have, you can save retVal to your personal public static variable to always be able to
         // reference the last relic you grabbed - etc. etc. The possibilities are endless. We're gonna do the following:
-        logger.info("Hey our patch triggered. The relic we're about to get is " + retVal);
+//        logger.info("Hey our patch triggered. The relic we're about to get is " + retVal);
         // Incredible.
         
         // Let's talk about @byRef for a bit.
@@ -132,11 +132,11 @@ public class DefaultInsertPatch {// Don't worry about the "never used" warning -
         // Then, when we want to use it, can just access the (for us) one and only value in that array of Strings - which would be placed at index 0.
         // retVal[0] = Anchor().relicID
         // Then the retVal would actually be changed outside of this method - inside returnRandomRelicKey();
-    }
+//    }
     
-    private static class Locator extends SpireInsertLocator { // Hey welcome to our SpireInsertLocator class!
-        @Override
-        public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {// All the locator has and needs is an override of the Locate method
+//    private static class Locator extends SpireInsertLocator { // Hey welcome to our SpireInsertLocator class!
+//        @Override
+//        public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {// All the locator has and needs is an override of the Locate method
             // In simple terms, the locator works like this:
             // We give is something to match with, and it returns the line number that it finds the ting on,
             // inside the method which we specified wayyyy early on in our @SpirePatch annotation.
@@ -189,7 +189,7 @@ public class DefaultInsertPatch {// Don't worry about the "never used" warning -
             // ever appear again anywhere else, so let's just go for the first one:
             // As the documentation says, put the Class type and the method name (as a string) as your parameters:
             
-            Matcher finalMatcher = new Matcher.MethodCallMatcher(RelicLibrary.class, "getRelic");
+//            Matcher finalMatcher = new Matcher.MethodCallMatcher(RelicLibrary.class, "getRelic");
             
             // Now we just have to return the line number corresponding to that particular method call.
             // We have 2 options:
@@ -201,7 +201,7 @@ public class DefaultInsertPatch {// Don't worry about the "never used" warning -
             // and we want to insert our code right before ALL of the matches, or before a particular one of them.)
             
             // In our case "RelicLibrary.getRelic()" is called only once, in that particular return statement, so we can just return it.
-            return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+//            return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             
             // If we wanted to use findAllInOrder instead, we would do it like this:
             // return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)[0]};
@@ -210,6 +210,6 @@ public class DefaultInsertPatch {// Don't worry about the "never used" warning -
             
             // Finally, if we wanted to insert our code before *every* line with a match, we would just skip the index and return the whole list of lines:
             // return LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher)
-        }
-    }
-}
+//        }
+//    }
+//}

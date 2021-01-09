@@ -1,9 +1,11 @@
 package Moonworks.cards.trapCards;
 
+import Moonworks.cardModifiers.EvilMastermindHelperModifier;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BigBangBellPower;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -38,6 +40,14 @@ public class EvilMastermind extends AbstractTrapCard {
     private ArrayList<AbstractTrapCard> trapCardArrayList = new ArrayList<>();
     private HashMap<String, Integer> trapAmounts = new HashMap<>();
 
+    public ArrayList<AbstractTrapCard> getTrapCardArrayList() {
+        return trapCardArrayList;
+    }
+
+    public HashMap<String, Integer> getTrapAmounts() {
+        return trapAmounts;
+    }
+
     // /STORED INFORMATION/
 
     // STAT DECLARATION
@@ -60,6 +70,7 @@ public class EvilMastermind extends AbstractTrapCard {
             findTrapCards();
         }
         //upgrade(); // for testing
+        CardModifierManager.addModifier(this, new EvilMastermindHelperModifier(EXTENDED_DESCRIPTION));
         initializeDescription();
     }
 
@@ -100,45 +111,6 @@ public class EvilMastermind extends AbstractTrapCard {
     }
 
     @Override
-    public void initializeDescription() {
-        //Initialize a new string builder
-        StringBuilder sb = new StringBuilder();
-
-        //If we can actually get these lists, dynamically build the card description
-        if (trapCardArrayList != null && trapAmounts != null && trapAmounts.size() > 0) {
-            if (this.upgraded) {
-                sb.append(EXTRA_DESCRIPTIONS[0]);
-            }
-            int lines = 0;
-            int traps = 0;
-            sb.append(EXTRA_DESCRIPTIONS[2]);
-            for (String s : trapAmounts.keySet()) {
-                sb.append(" NL ").append(s).append(": ").append(trapAmounts.get(s)); //Add each name and how many there are
-                if (trapAmounts.get(s) > 1) {
-                    sb.append(EXTRA_DESCRIPTIONS[6]);
-                } else {
-                    sb.append(EXTRA_DESCRIPTIONS[5]);
-                }
-                lines++;
-                traps += trapAmounts.get(s);
-                if (lines >= (this.upgraded ? 3 : 4) && (trapAmounts.size() - lines > 1)) { //If we still have more than 1 line, but we dont have room for them
-                    sb.append(EXTRA_DESCRIPTIONS[3]).append(trapCardArrayList.size()-traps).append(EXTRA_DESCRIPTIONS[4]);
-                    break; //We have too many lines, dump the rest of the info
-                }
-            }
-        } else { //Grab the base text
-            sb.append(this.upgraded ? UPGRADE_DESCRIPTION : NORMAL_DESCRIPTION);
-        }
-
-        sb.append(EXTRA_DESCRIPTIONS[1]); //Add the exhaust part
-        this.rawDescription = sb.toString();
-        super.initializeDescription();
-    }
-
-    @Override
-    public void applyNormaDescriptions(){}
-
-    @Override
     public void applyPowers() {
         findTrapCards();
         initializeDescription();
@@ -162,6 +134,7 @@ public class EvilMastermind extends AbstractTrapCard {
         if (!upgraded) {
             upgradeName();
             this.isInnate = true;
+            this.rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }
     }

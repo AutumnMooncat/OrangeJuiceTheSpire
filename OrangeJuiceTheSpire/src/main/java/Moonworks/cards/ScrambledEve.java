@@ -1,9 +1,11 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.actions.common.ShuffleAction;
@@ -57,6 +59,8 @@ public class ScrambledEve extends AbstractNormaAttentiveCard {
         //this.selfRetain = true;
         //this.exhaust = true;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[1], EXTENDED_DESCRIPTION[1]));
 
     }
 
@@ -73,13 +77,6 @@ public class ScrambledEve extends AbstractNormaAttentiveCard {
         if (magicNumber > 0) {
             this.addToBot(new DrawCardAction(magicNumber));
         }
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(1, NORMA_LEVELS[0]);
-        modifyMagicNumber(1, NORMA_LEVELS[1]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

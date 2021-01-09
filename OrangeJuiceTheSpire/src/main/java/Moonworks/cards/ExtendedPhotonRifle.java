@@ -75,24 +75,24 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
 
     public void applyPowers() {
         AbstractPower strength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
-        AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
-        int vigorAmount = 0;
+        //AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
+        //int vigorAmount = 0;
         if (strength != null) {
             strength.amount *= this.defaultSecondMagicNumber;
         }
-        if (vigor != null) {
+        /*if (vigor != null) {
             vigorAmount = vigor.amount;
             vigor.amount = 0;
-        }
+        }*/
 
         super.applyPowers();
 
         if (strength != null) {
             strength.amount /= this.defaultSecondMagicNumber;
         }
-        if (vigor != null) {
+        /*if (vigor != null) {
             vigor.amount = vigorAmount;
-        }
+        }*/
 
     }
 

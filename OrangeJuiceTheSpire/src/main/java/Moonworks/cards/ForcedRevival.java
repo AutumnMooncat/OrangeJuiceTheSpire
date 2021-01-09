@@ -1,9 +1,11 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.variables.DefaultSecondMagicNumber;
 import basemod.devcommands.energy.Energy;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
@@ -58,6 +60,7 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
         invertedNumber = baseInvertedNumber = ENERGY;
         exhaust = true;
         this.tags.add(CardTags.HEALING);
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -78,6 +81,7 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            rawDescription = UPGRADE_DESCRIPTION;
             this.upgradeMagicNumber(UPGRADE_PLUS_HEAL);
             this.upgradeInvertedNumber(UPGRADE_PLUS_ENERGY);
             this.initializeDescription();

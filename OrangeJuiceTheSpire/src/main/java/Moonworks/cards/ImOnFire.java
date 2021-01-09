@@ -1,7 +1,9 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -55,7 +57,7 @@ public class ImOnFire extends AbstractNormaAttentiveCard {
         //this.block = this.baseBlock = BLOCK;
         this.magicNumber = this.baseMagicNumber = VIGOR;
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = VULNERABLE;
-
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, -10, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -68,12 +70,6 @@ public class ImOnFire extends AbstractNormaAttentiveCard {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
         }
         this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, defaultSecondMagicNumber, true)));
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(-10, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

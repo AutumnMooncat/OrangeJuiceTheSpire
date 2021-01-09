@@ -1,7 +1,9 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -51,6 +53,8 @@ public class TacticalRetreat extends AbstractNormaAttentiveCard {
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = NEXT_TURN_BLOCK;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = ENERGY;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.BLOCKMOD, 2, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 2, NORMA_LEVELS[0], null));
     }
 
     // Actions the card should do.
@@ -59,13 +63,6 @@ public class TacticalRetreat extends AbstractNormaAttentiveCard {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, block));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnBlockPower(p, magicNumber), magicNumber));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedBluePower(p, defaultSecondMagicNumber)));
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyBlock(2, NORMA_LEVELS[0]);
-        modifyMagicNumber(2, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     // Upgraded stats.

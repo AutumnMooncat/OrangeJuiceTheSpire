@@ -1,9 +1,11 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.relics.BrokenBomb;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -66,7 +68,7 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
     }
 
     public LongDistanceShot(boolean copy) {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, copy ? null : NORMA_LEVELS);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
         this.copy = copy;
@@ -75,6 +77,8 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
             this.exhaust = true;
             this.rawDescription = COPY_DESCRIPTION;
             initializeDescription();
+        } else {
+            CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
         }
     }
 
@@ -88,9 +92,9 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
             if (upgraded) {
                 lds.upgrade();
             }
-            this.addToBot(new MakeTempCardInHandAction(lds));
+            //this.addToBot(new MakeTempCardInHandAction(lds));
             //lds.current_x = -1000.0F * Settings.scale;
-            //AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(lds, (float) Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(lds));
         }
     }
 

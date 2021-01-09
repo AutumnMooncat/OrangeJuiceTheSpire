@@ -1,6 +1,8 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -37,7 +39,7 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
 
     private static final int ARTIFACT = 1;
     private static final int UPGRADE_PLUS_ARTIFACT = 1;
-    private static final int BLOCK = 6;
+    private static final int BLOCK = 0;
 
     private static final Integer[] NORMA_LEVELS = {1};
 
@@ -48,6 +50,7 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
         magicNumber = baseMagicNumber = ARTIFACT;
         block = baseBlock = BLOCK;
         this.exhaust = true;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.BLOCKMOD, 4, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -55,13 +58,6 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new GainBlockAction(p, block));
         this.addToBot(new ApplyPowerAction(p, p, new ArtifactPower(p, magicNumber)));
-
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyBlock(4, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     // Upgraded stats.

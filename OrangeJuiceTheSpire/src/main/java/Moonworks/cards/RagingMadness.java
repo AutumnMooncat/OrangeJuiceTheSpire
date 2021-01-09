@@ -1,8 +1,10 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.powers.RagingMadnessPower;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -54,6 +56,7 @@ public class RagingMadness extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = EFFECT;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
 
     }
 
@@ -63,18 +66,13 @@ public class RagingMadness extends AbstractNormaAttentiveCard {
         this.addToBot(new ApplyPowerAction(p, p, new RagingMadnessPower(p, magicNumber)));
     }
 
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(1, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
-    }
-
     //Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
             this.isInnate = true;
+            rawDescription = UPGRADE_DESCRIPTION;
             //upgradeMagicNumber(UPGRADE_PLUS_EFFECT);
             //updateCost(UPGRADE_COST);
             initializeDescription();

@@ -1,8 +1,10 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -58,6 +60,7 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
         magicNumber = baseMagicNumber = VIGOR;
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber = STR;
         this.exhaust = true;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.SECONDMAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -82,12 +85,6 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber + getNormaLevel();
         this.isDefaultSecondMagicNumberModified = getNormaLevel() != 0;
         initializeDescription();
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifySecondMagic(getNormaLevel(), NORMA_LEVELS[0]); // normaX
-        super.applyNormaEffects();
     }
 
     @Override

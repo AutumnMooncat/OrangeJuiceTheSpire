@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cardModifiers.CorruptedModifier;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -73,6 +74,8 @@ public class Strike extends AbstractNormaAttentiveCard {
         this.tags.add(CardTags.STRIKE);
         //For testing
         //CardModifierManager.addModifier(this, new CorruptedModifier(CorruptedModifier.CorruptionEffects.REDUCE));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.DAMAGEMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.DAMAGEMOD, 2, NORMA_LEVELS[1], EXTENDED_DESCRIPTION[1]));
     }
 
     // Actions the card should do.
@@ -81,18 +84,6 @@ public class Strike extends AbstractNormaAttentiveCard {
         //int bonus = getNormaLevel() >= 4 ? 3 : getNormaLevel() >= 2 ? 1 : 0;
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         //this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, 1, false)));
-    }
-
-    /*
-    public void calculateDamageDisplay(AbstractMonster mo) {
-        this.calculateCardDamage(mo);
-    }*/
-
-    @Override
-    public void applyNormaEffects() {
-        modifyDamage(1, NORMA_LEVELS[0]);
-        modifyDamage(2, NORMA_LEVELS[1]);
-        super.applyNormaEffects();
     }
 
     // Upgraded stats.

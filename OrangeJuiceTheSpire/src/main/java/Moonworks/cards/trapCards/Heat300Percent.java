@@ -1,18 +1,14 @@
 package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.Heat300PercentPower;
-import basemod.BaseMod;
-import basemod.helpers.TooltipInfo;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 //@AutoAdd.Ignore
@@ -54,6 +50,7 @@ public class Heat300Percent extends AbstractTrapCard {
         this.magicNumber = this.baseMagicNumber = STACKS;
         //this.retain = true;
         //this.exhaust = true;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
 
     }
 
@@ -61,12 +58,6 @@ public class Heat300Percent extends AbstractTrapCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, this.magicNumber)));
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(1, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

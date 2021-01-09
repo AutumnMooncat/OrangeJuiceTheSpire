@@ -1,6 +1,8 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -47,6 +49,7 @@ public class CompletionReward extends AbstractNormaAttentiveCard {
         //upgraded = true;
         //lastCount = AbstractDungeon.actionManager.cardsPlayedThisCombat.size(); //Buff: Card wont start at 0 damage if generated in combat
         this.baseDamage = AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - lastCount;//Damage is the number of cards played since the last time this card was played
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
         initializeDescription();
     }
 
@@ -92,6 +95,7 @@ public class CompletionReward extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
+            rawDescription = UPGRADE_DESCRIPTION;
             //this.upgradeDamage(UPGRADE_PLUS_DAMAGE);
             this.initializeDescription();
         }

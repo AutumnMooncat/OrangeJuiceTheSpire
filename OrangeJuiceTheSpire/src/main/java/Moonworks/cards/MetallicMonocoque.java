@@ -3,6 +3,7 @@ package Moonworks.cards;
 import Moonworks.actions.UpdateSecondValueAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.powers.MetallicMonocoquePower;
+import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,6 +12,9 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -28,7 +32,9 @@ public class MetallicMonocoque extends AbstractDynamicCard {
     public static final String IMG = makeCardPath("MetallicMonocoque.png");
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    public static final String[] EXTRA_DESCRIPTIONS = cardStrings.EXTENDED_DESCRIPTION;
+
+    private static ArrayList<TooltipInfo> ExceptionsTooltip;
     // /TEXT DECLARATION/
 
 
@@ -56,6 +62,18 @@ public class MetallicMonocoque extends AbstractDynamicCard {
         this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = THORNS_REDUCE;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        if (ExceptionsTooltip == null)
+        {
+            ExceptionsTooltip = new ArrayList<>();
+            ExceptionsTooltip.add(new TooltipInfo(EXTRA_DESCRIPTIONS[0], EXTRA_DESCRIPTIONS[1]));
+        }
+        List<TooltipInfo> compoundList = new ArrayList<>(ExceptionsTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 
     // Actions the card should do.

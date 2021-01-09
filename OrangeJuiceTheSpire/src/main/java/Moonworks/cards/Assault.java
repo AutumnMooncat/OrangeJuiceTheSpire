@@ -1,6 +1,8 @@
 package Moonworks.cards;
 
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -41,6 +43,7 @@ public class Assault extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         damage = baseDamage = DAMAGE;
         damageType = damageTypeForTurn = DamageInfo.DamageType.HP_LOSS;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.DAMAGEMOD, 2, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -51,20 +54,9 @@ public class Assault extends AbstractNormaAttentiveCard {
 
     //Stops powers from effecting the card
     @Override
-    public void applyPowers() {
-        applyNormaEffects();
-        initializeDescription();
-    }
+    public void applyPowers() {}
     @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        initializeDescription();
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyDamage(2, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
-    }
+    public void calculateCardDamage(AbstractMonster m) {}
 
     // Upgraded stats.
     @Override

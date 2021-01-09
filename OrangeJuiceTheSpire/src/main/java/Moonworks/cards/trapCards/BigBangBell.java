@@ -1,11 +1,13 @@
 package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BigBangBellPower;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -57,6 +59,7 @@ public class BigBangBell extends AbstractTrapCard {
         this.magicNumber = this.baseMagicNumber = STACKS;
         //this.retain = true;
         //this.exhaust = true;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 5, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
 
     }
 
@@ -64,12 +67,6 @@ public class BigBangBell extends AbstractTrapCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new ApplyPowerAction(m, p, new BigBangBellPower(m, p, this.magicNumber)));
-    }
-
-    @Override
-    public void applyNormaEffects() {
-        modifyMagicNumber(5, NORMA_LEVELS[0]);
-        super.applyNormaEffects();
     }
 
     //Upgraded stats.

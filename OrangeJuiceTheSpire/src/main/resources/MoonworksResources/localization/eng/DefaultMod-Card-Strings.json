@@ -185,8 +185,8 @@
   },
   "Moonworks:GoAway": {
     "NAME": "Go Away",
-    "DESCRIPTION": "Ethereal. NL The target is Stunned for a turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "The target is Stunned for a turn. NL Exhaust."
+    "DESCRIPTION": "Ethereal. NL The target is moonworks:Stunned for a turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "The target is moonworks:Stunned for a turn. NL Exhaust."
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
@@ -215,7 +215,7 @@
   },
   "Moonworks:IntelligenceOfficer": {
     "NAME": "Intelligence Officer",
-    "DESCRIPTION": "Scry !M! then For Each... NL Attack: Gain !Moonworks:SecondMagic! Vigor. NL Skill: Gain !B! Block. NL Power: Draw 1 card."
+    "DESCRIPTION": "Scry !M! then For Each... NL Attack: Gain !Moonworks:SecondMagic! Vigor. NL Skill: Gain !Moonworks:SecondMagic! moonworks:Steady. NL Other: Draw 1 card."
   },
   "Moonworks:JonathanRush": {
     "NAME": "Jonathan Rush",
@@ -363,7 +363,7 @@
   },
   "Moonworks:StarBlastingFuse": {
     "NAME": "Star Blasting Fuse",
-    "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! moonworks:Invisible_Bombs to random enemies. NL Each bomb deals !D! damage.",
+    "DESCRIPTION": "Apply moonworks:Invisible_Bomb. NL Shuffle this card into your draw pile. NL When you draw this card, ALL enemies with moonworks:Invisible_Bomb lose !M! HP.",
     "EXTENDED_DESCRIPTION": ["Kaboom!","Fufufu, you want me to blow you up?","Amuse me, okay?"]
   },
   "Moonworks:StarBlastingLight": {
@@ -383,7 +383,7 @@
   },
   "Moonworks:SubspaceTunnel": {
     "NAME": "Subspace Tunnel",
-    "DESCRIPTION": "Put !M! card from any pile into your hand. NL Exhaust."
+    "DESCRIPTION": "Choose a card in any pile. NL Move that card to your hand and put this card where it was. NL The card this swaps with costs 0 this turn."
   },
   "Moonworks:TacticalRetreat": {
     "NAME": "Tactical Retreat",
@@ -425,5 +425,75 @@
   "Moonworks:x16BigRocket": {
     "NAME": "Big Rocket",
     "DESCRIPTION": "Deal !D! damage. Increase this card's damage by !M! this combat. NL Can be Upgraded to x16."
+  },
+  "Moonworks:AttackTextContainer": {
+    "NAME": "Generic Attack Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when playing an attack.",
+    "EXTENDED_DESCRIPTION": ["Just burn.","Ashes.","Bang!","Ahahahaha!"]
+  },
+  "Moonworks:SkillTextContainer": {
+    "NAME": "Generic Skill Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when playing a skill.",
+    "EXTENDED_DESCRIPTION": ["Ufufufu.","Let's go.","How about this?"]
+  },
+  "Moonworks:PowerTextContainer": {
+    "NAME": "Generic Power Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when playing a power.",
+    "EXTENDED_DESCRIPTION": ["Okay, I'll use this!","Let's see what'll happen.","I think I'll give it a shot."]
+  },
+  "Moonworks:BattleStartTextContainer": {
+    "NAME": "Battle Start Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the beginning of combat.",
+    "EXTENDED_DESCRIPTION": ["Amuse me, okay?","Sure, I have time for you.","Fufufu... Some prey has appeared.","You want me to burn you?"]
+  },
+  "Moonworks:LowHPBattleStartTextContainer": {
+    "NAME": "Low HP Battle Start Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the beginning of combat if you are badly injured.",
+    "EXTENDED_DESCRIPTION": ["I hate it. Geez!","Get out of my way!","This is stupid.","So annoying."]
+  },
+  "Moonworks:BattleEndTextContainer": {
+    "NAME": "Battle End Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the end of combat.",
+    "EXTENDED_DESCRIPTION": ["That was a beautiful flame!","Look at how clean and tidy it's around here.","AhahaHAHAHA!","And this ends it here.","Ufufu, look how burned you are."]
+  },
+  "Moonworks:BossFightTextContainer": {
+    "NAME": "Boss Fight Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the beginning of a boss fight.",
+    "EXTENDED_DESCRIPTION": ["Here it is! A powerful one!","Ahaha! This is going to be fun.","I'm sure you'll burn well."]
+  },
+  "Moonworks:HealingTextContainer": {
+    "NAME": "Healing Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when healing.",
+    "EXTENDED_DESCRIPTION": ["I can continue...","Fufu... It feels nice.","I'm ready to fight again.","I feel better.","I'm not hurt anymore! Ahaha!"]
+  },
+  "Moonworks:FieldDamageTextContainer": {
+    "NAME": "Field Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when taking thorns damage.",
+    "EXTENDED_DESCRIPTION": ["Kya!","Au.","Ow.","You little..."]
+  },
+  "Moonworks:LightDamageTextContainer": {
+    "NAME": "Light Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when taking light damage.",
+    "EXTENDED_DESCRIPTION": ["Jeez.","Au.","You...","Ugh."]
+  },
+  "Moonworks:HeavyDamageTextContainer": {
+    "NAME": "Heavy Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when taking heavy damage.",
+    "EXTENDED_DESCRIPTION": ["This is not fair.","It hurts... It huuuurts!","That hurt!","This is ridiculous.","Uuuuu."]
+  },
+  "Moonworks:BlockedDamageTextContainer": {
+    "NAME": "Blocked Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when blocking damage.",
+    "EXTENDED_DESCRIPTION": ["Aha!","You can't get to me.","What, did you just do something?"]
+  },
+  "Moonworks:HomemarkTextContainer": {
+    "NAME": "Homemark Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when spending gold with the Homemark.",
+    "EXTENDED_DESCRIPTION": ["Dang, I wanted to burn them.","Fufufu, they're all shattered now.","I don't need this many of these.","These coins are nothing but a burden.","*sigh* What I want is war, not these stupid things."]
+  },
+  "Moonworks:KOTextContainer": {
+    "NAME": "KO Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when defeated in battle.",
+    "EXTENDED_DESCRIPTION": ["No... This is not happening.","Defeat makes my life meaningless...","No way... Why do I even exist?","I-I got defeated by a thing like that...","I had to win... I must always win!"]
   }
 }

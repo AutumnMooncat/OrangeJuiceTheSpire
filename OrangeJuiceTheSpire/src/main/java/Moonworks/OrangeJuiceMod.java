@@ -8,12 +8,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
@@ -21,7 +22,6 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.events.IdentityCrisisEvent;
 import Moonworks.potions.OneHundredPercentOrangeJuicePotion;
 import Moonworks.util.IDCheckDontTouchPls;
 import Moonworks.util.TextureLoader;
@@ -31,6 +31,7 @@ import Moonworks.variables.DefaultSecondMagicNumber;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Properties;
 
 //TODO: DON'T MASS RENAME/REFACTOR
@@ -76,10 +77,33 @@ public class OrangeJuiceMod implements
 
     // Mod-settings settings. This is if you want an on/off savable button
     public static Properties theStarBreakerDefaultSettings = new Properties();
+
     public static final String ENABLE_SELFDAMAGE_SETTING = "enableSelfDamage";
     public static boolean enableSelfDamage = false; // The boolean we'll be setting on/off (true/false)
+
     public static final String FIVE_STAR_WANTED_SETTING = "enableStrongerWantedEffect";
     public static boolean enableStrongerWantedEffect = false;
+
+    public static final String CARD_BATTLE_TALK_SETTING = "enableCardBattleTalk";
+    public static boolean enableCardBattleTalkEffect = true;
+
+    public static final String CARD_BATTLE_TALK_PROBABILITY_SETTING = "cardTalkProbability";
+    private static final int BASE_CARD_TALK_PROBABILITY = 25;
+    public static int cardTalkProbability = BASE_CARD_TALK_PROBABILITY; //Out of 100
+
+    public static final String DAMAGED_BATTLE_TALK_SETTING = "enableDamagedBattleTalk";
+    public static boolean enableDamagedBattleTalkEffect = true;
+
+    public static final String DAMAGED_BATTLE_TALK_PROBABILITY_SETTING = "damagedTalkProbability";
+    private static final int BASE_DAMAGED_TALK_PROBABILITY = 50;
+    public static int damagedTalkProbability = BASE_DAMAGED_TALK_PROBABILITY; //Out of 100
+
+    public static final String PRE_BATTLE_TALK_SETTING = "enablePreBattleTalk";
+    public static boolean enablePreBattleTalkEffect = true;
+
+    public static final String PRE_BATTLE_TALK_PROBABILITY_SETTING = "preTalkProbability";
+    private static final int BASE_PRE_TALK_PROBABILITY = 75;
+    public static int preTalkProbability = BASE_PRE_TALK_PROBABILITY; //Out of 100
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "The Star Breaker";
@@ -137,7 +161,8 @@ public class OrangeJuiceMod implements
     private static final String STARBREAKER_BUTTON = "MoonworksResources/images/charSelect/SBButton.png"; //
     //private static final String THE_DEFAULT_PORTRAIT = "MoonworksResources/images/charSelect/DefaultCharacterPortraitBG.png";
     //private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8.png";
-    private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8bg.png";
+    //private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8bg.png";
+    private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/StarbreakerScaled.png";
     public static final String STARBREAKER_SHOULDER_1 = "MoonworksResources/images/char/defaultCharacter/shoulderclean.png"; //
     public static final String STARBREAKER_SHOULDER_2 = "MoonworksResources/images/char/defaultCharacter/shoulder2clean.png";
     public static final String STARBREAKER_CORPSE = "MoonworksResources/images/char/defaultCharacter/SBKOSmall.png"; //
@@ -248,6 +273,67 @@ public class OrangeJuiceMod implements
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        theStarBreakerDefaultSettings.setProperty(CARD_BATTLE_TALK_SETTING, "TRUE");
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            enableCardBattleTalkEffect = config.getBool(CARD_BATTLE_TALK_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        theStarBreakerDefaultSettings.setProperty(CARD_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(BASE_CARD_TALK_PROBABILITY));
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            cardTalkProbability = config.getInt(CARD_BATTLE_TALK_PROBABILITY_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        theStarBreakerDefaultSettings.setProperty(DAMAGED_BATTLE_TALK_SETTING, "TRUE");
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            enableDamagedBattleTalkEffect = config.getBool(DAMAGED_BATTLE_TALK_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        theStarBreakerDefaultSettings.setProperty(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(BASE_DAMAGED_TALK_PROBABILITY));
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            damagedTalkProbability = config.getInt(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_SETTING, "TRUE");
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            enablePreBattleTalkEffect = config.getBool(PRE_BATTLE_TALK_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(PRE_BATTLE_TALK_PROBABILITY_SETTING));
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            preTalkProbability = config.getInt(PRE_BATTLE_TALK_PROBABILITY_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         logger.info("Done adding mod settings");
         
     }
@@ -332,10 +418,20 @@ public class OrangeJuiceMod implements
         
         // Create the Mod Menu
         ModPanel settingsPanel = new ModPanel();
+
+        //Get the longest slider text for positioning
+        ArrayList<String> labelStrings = new ArrayList<>();
+        labelStrings.add(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigBattleTalkButton")).TEXT[0]);
+        labelStrings.add(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigDamagedTalkButton")).TEXT[0]);
+        labelStrings.add(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigPreBattleTalkButton")).TEXT[0]);
+        float sliderOffset = getSliderPosition(labelStrings);
+        labelStrings.clear();
+        float currentYposition = 740f;
+        float spacingY = 55f;
         
         // Create the on/off button:
-        ModLabeledToggleButton enableSelfDamageButton = new ModLabeledToggleButton("Allow Cloud Of Seagulls to still hit the player even when upgraded. Default: false.",
-                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+        ModLabeledToggleButton enableSelfDamageButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigSeagulls")).TEXT[0],
+                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
                 enableSelfDamage, // Boolean it uses
                 settingsPanel, // The mod panel in which this button will be in
                 (label) -> {}, // thing??????? idk
@@ -351,8 +447,9 @@ public class OrangeJuiceMod implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableStrongerWantedButton = new ModLabeledToggleButton("Wanted enemies will hurt themselves in addition to the original effects. Default: false.",
-                350.0f, 740.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+        currentYposition -= spacingY;
+        ModLabeledToggleButton enableStrongerWantedButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigWanted")).TEXT[0],
+                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
                 enableStrongerWantedEffect, // Boolean it uses
                 settingsPanel, // The mod panel in which this button will be in
                 (label) -> {}, // thing??????? idk
@@ -368,9 +465,121 @@ public class OrangeJuiceMod implements
                         e.printStackTrace();
                     }
                 });
-        
+        currentYposition -= spacingY;
+        //Used for randomly talking when playing cards
+        ModLabeledToggleButton enableCardBattleTalkButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigBattleTalkButton")).TEXT[0],
+                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                enableCardBattleTalkEffect, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    enableCardBattleTalkEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setBool(CARD_BATTLE_TALK_SETTING, enableCardBattleTalkEffect);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        ModMinMaxSlider cardBattleTalkSlider = new ModMinMaxSlider("",
+                enableCardBattleTalkButton.getX() + sliderOffset,
+                enableCardBattleTalkButton.getY() + 20f,
+                0, 100, cardTalkProbability, "%.0f",
+                settingsPanel,
+                slider -> {
+                    cardTalkProbability = (int)slider.getValue();
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setInt(CARD_BATTLE_TALK_PROBABILITY_SETTING, (int) slider.getValue());
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        currentYposition -= spacingY;
+        //Used for randomly talking when taking damage
+        ModLabeledToggleButton enableDamagedBattleTalkButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigDamagedTalkButton")).TEXT[0],
+                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                enableDamagedBattleTalkEffect, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    enableDamagedBattleTalkEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setBool(DAMAGED_BATTLE_TALK_SETTING, enableDamagedBattleTalkEffect);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        ModMinMaxSlider damagedBattleTalkSlider = new ModMinMaxSlider("",
+                enableDamagedBattleTalkButton.getX() + sliderOffset,
+                enableDamagedBattleTalkButton.getY() + 20f,
+                0, 100, damagedTalkProbability, "%.0f",
+                settingsPanel,
+                slider -> {
+                    damagedTalkProbability = (int)slider.getValue();
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setInt(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING, (int) slider.getValue());
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        currentYposition -= spacingY;
+        //Used for randomly talking when combat starts and ends
+        ModLabeledToggleButton enablePreBattleTalkButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigPreBattleTalkButton")).TEXT[0],
+                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                enablePreBattleTalkEffect, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    enablePreBattleTalkEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setBool(PRE_BATTLE_TALK_SETTING, enablePreBattleTalkEffect);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        ModMinMaxSlider preBattleTalkSlider = new ModMinMaxSlider("",
+                enablePreBattleTalkButton.getX() + sliderOffset,
+                enablePreBattleTalkButton.getY() + 20f,
+                0, 100, preTalkProbability, "%.0f",
+                settingsPanel,
+                slider -> {
+                    preTalkProbability = (int)slider.getValue();
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setInt(PRE_BATTLE_TALK_PROBABILITY_SETTING, (int) slider.getValue());
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        currentYposition -= spacingY;
+
         settingsPanel.addUIElement(enableSelfDamageButton); // Add the button to the settings panel. Button is a go.
         settingsPanel.addUIElement(enableStrongerWantedButton); // Add the button to the settings panel. Button is a go.
+        settingsPanel.addUIElement(enableCardBattleTalkButton);
+        settingsPanel.addUIElement(cardBattleTalkSlider);
+        settingsPanel.addUIElement(enableDamagedBattleTalkButton);
+        settingsPanel.addUIElement(damagedBattleTalkSlider);
+        settingsPanel.addUIElement(enablePreBattleTalkButton);
+        settingsPanel.addUIElement(preBattleTalkSlider);
         
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
@@ -387,6 +596,15 @@ public class OrangeJuiceMod implements
         
         // =============== /EVENTS/ =================
         logger.info("Done loading badge Image and mod options");
+    }
+
+    //Get the longest text so all sliders are centered
+    private float getSliderPosition (ArrayList<String> stringsToCompare) {
+        float longest = 0;
+        for (String s : stringsToCompare) {
+            longest = Math.max(longest, FontHelper.getWidth(FontHelper.charDescFont, s, 1f / Settings.scale));
+        }
+        return longest + 60f;
     }
     
     // =============== / POST-INITIALIZE/ =================
@@ -488,8 +706,22 @@ public class OrangeJuiceMod implements
     }
     
     // ================ /ADD CARDS/ ===================
-    
-    
+
+
+    // ================ LOAD THE LOCALIZATION ===================
+
+    private String loadLocalizationIfAvailable() {
+        if (!Gdx.files.internal(getModID() + "Resources/localization/" + Settings.language.toString().toLowerCase()).exists()) {
+            logger.info("Language not not currently supported: " + Settings.language.toString().toLowerCase() + ".");
+            return "eng";
+        } else {
+            logger.info("Loaded Language: "+ Settings.language.toString().toLowerCase() + ".");
+            return Settings.language.toString().toLowerCase();
+        }
+    }
+
+    // ================ /LOAD THE LOCALIZATION/ ===================
+
     // ================ LOAD THE TEXT ===================
     
     @Override
@@ -498,33 +730,37 @@ public class OrangeJuiceMod implements
         
         // CardStrings
         BaseMod.loadCustomStringsFile(CardStrings.class,
-                getModID() + "Resources/localization/eng/DefaultMod-Card-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Card-Strings.json");
         
         // PowerStrings
         BaseMod.loadCustomStringsFile(PowerStrings.class,
-                getModID() + "Resources/localization/eng/DefaultMod-Power-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Power-Strings.json");
         
         // RelicStrings
         BaseMod.loadCustomStringsFile(RelicStrings.class,
-                getModID() + "Resources/localization/eng/DefaultMod-Relic-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Relic-Strings.json");
         
         // Event Strings
         BaseMod.loadCustomStringsFile(EventStrings.class,
-                getModID() + "Resources/localization/eng/DefaultMod-Event-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Event-Strings.json");
         
         // PotionStrings
         BaseMod.loadCustomStringsFile(PotionStrings.class,
-                getModID() + "Resources/localization/eng/DefaultMod-Potion-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Potion-Strings.json");
         
         // CharacterStrings
         BaseMod.loadCustomStringsFile(CharacterStrings.class,
-                getModID() + "Resources/localization/eng/DefaultMod-Character-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Character-Strings.json");
         
         // OrbStrings
         BaseMod.loadCustomStringsFile(OrbStrings.class,
-                getModID() + "Resources/localization/eng/DefaultMod-Orb-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Orb-Strings.json");
+
+        // UIStrings
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-UI-Strings.json");
         
-        logger.info("Done editting strings");
+        logger.info("Done editing strings");
     }
     
     // ================ /LOAD THE TEXT/ ===================
@@ -542,7 +778,7 @@ public class OrangeJuiceMod implements
         // In Keyword-Strings.json you would have PROPER_NAME as A Long Keyword and the first element in NAMES be a long keyword, and the second element be a_long_keyword
         
         Gson gson = new Gson();
-        String json = Gdx.files.internal(getModID() + "Resources/localization/eng/DefaultMod-Keyword-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        String json = Gdx.files.internal(getModID()+"Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Keyword-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
         
         if (keywords != null) {

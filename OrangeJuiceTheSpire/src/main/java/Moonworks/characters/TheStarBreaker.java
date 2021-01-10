@@ -2,8 +2,11 @@ package Moonworks.characters;
 
 import Moonworks.CustomAnimationListener;
 import Moonworks.CustomSpriterAnimation;
+import Moonworks.RandomChatterHelper;
 import Moonworks.cards.*;
 import Moonworks.cards.giftCards.*;
+import Moonworks.cards.tempCards.LeapThroughTime;
+import Moonworks.cards.tempCards.StarBlastingLight;
 import Moonworks.cards.trapCards.*;
 import Moonworks.relics.*;
 import basemod.abstracts.CustomPlayer;
@@ -18,6 +21,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -68,6 +72,7 @@ public class TheStarBreaker extends CustomPlayer {
     public static final int STARTING_GOLD = 99;
     public static final int CARD_DRAW = 5;
     public static final int ORB_SLOTS = 0;
+    //public static final int TALK_PERCENT = 100; //We will make a mod setting for this
 
     // =============== /BASE STATS/ =================
 
@@ -420,13 +425,18 @@ public class TheStarBreaker extends CustomPlayer {
         super.useCard(c, monster, energyOnUse);
         switch (c.type) {
             case ATTACK:
+                RandomChatterHelper.showChatter(RandomChatterHelper.getAttackText(), cardTalkProbability, enableCardBattleTalkEffect);
                 playAnimation("attack");
                 break;
             case SKILL:
+                if (!(c instanceof StarBlastingLight) && !(c instanceof StarBlastingFuse) && !(c instanceof LeapThroughTime)) {
+                    RandomChatterHelper.showChatter(RandomChatterHelper.getSkillText(), cardTalkProbability, enableCardBattleTalkEffect);
+                }
                 playAnimation("skill");
                 //This can be compressed into default, but will stay like this for if I make more animations
                 break;
             case POWER:
+                RandomChatterHelper.showChatter(RandomChatterHelper.getPowerText(), cardTalkProbability, enableCardBattleTalkEffect);
                 playAnimation("happy");
                 break;
             case STATUS:
@@ -438,8 +448,24 @@ public class TheStarBreaker extends CustomPlayer {
     }
 
     public void damage(DamageInfo info) {
+        boolean hadBlockBeforeSuper = this.currentBlock > 0;
         super.damage(info);
-        if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
+        boolean hasBlockAfterSuper = this.currentBlock > 0;
+        boolean tookNoDamage = this.lastDamageTaken == 0;
+        if (hadBlockBeforeSuper && (hasBlockAfterSuper || tookNoDamage)) {
+            RandomChatterHelper.showChatter(RandomChatterHelper.getBlockedDamageText(), damagedTalkProbability, enableDamagedBattleTalkEffect);
+            playAnimation("skill");
+            //playAnimation("happy");
+        } else {
+            if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
+                if (info.output >= 15) {
+                    RandomChatterHelper.showChatter(RandomChatterHelper.getHeavyDamageText(), damagedTalkProbability, enableDamagedBattleTalkEffect);
+                } else {
+                    RandomChatterHelper.showChatter(RandomChatterHelper.getLightDamageText(), damagedTalkProbability, enableDamagedBattleTalkEffect);
+                }
+            } else if (info.type == DamageInfo.DamageType.THORNS && info.output > 0) {
+                RandomChatterHelper.showChatter(RandomChatterHelper.getFieldDamageText(), damagedTalkProbability, enableDamagedBattleTalkEffect);
+            }
             playAnimation("hurt");
         }
     }
@@ -461,7 +487,34 @@ public class TheStarBreaker extends CustomPlayer {
 
     @Override
     public void playDeathAnimation() {
+        RandomChatterHelper.showChatter(RandomChatterHelper.getKOText(), preTalkProbability, enablePreBattleTalkEffect); // I don't think this works
         playAnimation("ko");
     }
 
+    @Override
+    public void heal(int healAmount) {
+        RandomChatterHelper.showChatter(RandomChatterHelper.getHealingText(), damagedTalkProbability, enableDamagedBattleTalkEffect); //Technically changes your hp, lol
+        super.heal(healAmount);
+    }
+
+    @Override
+    public void preBattlePrep() {
+        super.preBattlePrep();
+        if (AbstractDungeon.getCurrRoom().eliteTrigger) {
+            RandomChatterHelper.showChatter(RandomChatterHelper.getBossFightText(), preTalkProbability, enablePreBattleTalkEffect);
+        } else {
+            if (AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth*0.5f) {
+                RandomChatterHelper.showChatter(RandomChatterHelper.getLowHPBattleStartText(), preTalkProbability, enablePreBattleTalkEffect);
+            } else {
+                RandomChatterHelper.showChatter(RandomChatterHelper.getBattleStartText(), preTalkProbability, enablePreBattleTalkEffect);
+            }
+        }
+    }
+
+    //Maybe, currently just moved to Homemark relic
+    /*
+    @Override
+    public void loseGold(int goldAmount) {
+        super.loseGold(goldAmount);
+    }*/
 }

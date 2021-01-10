@@ -1,5 +1,6 @@
 package Moonworks.relics;
 
+import Moonworks.RandomChatterHelper;
 import Moonworks.actions.NormaBreakAction;
 import Moonworks.powers.NormaPower;
 import basemod.abstracts.CustomRelic;
@@ -12,8 +13,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.util.TextureLoader;
 
-import static Moonworks.OrangeJuiceMod.makeRelicOutlinePath;
-import static Moonworks.OrangeJuiceMod.makeRelicPath;
+import static Moonworks.OrangeJuiceMod.*;
 
 public class Homemark extends CustomRelic implements ClickableRelic { // You must implement things you want to use from StSlib
     /*
@@ -46,6 +46,7 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
                 }
                 this.counter++;
                 AbstractDungeon.player.loseGold(COST);
+                RandomChatterHelper.showChatter(RandomChatterHelper.getHomemarkText(), preTalkProbability, enablePreBattleTalkEffect);
                 this.description = this.getUpdatedDescription();
                 this.tips.clear();
                 this.tips.add(new PowerTip(this.name, this.description));
@@ -57,6 +58,7 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
         }
     }
 
+    //This was a horrible idea, lol
     public void breakHomemark() {
         broken = true;
         this.counter = 6;

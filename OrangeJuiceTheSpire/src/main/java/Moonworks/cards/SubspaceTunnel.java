@@ -1,11 +1,13 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.actions.FetchCardFromAnywhereAction;
+import Moonworks.actions.ReplaceCardFromAnywhere;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -36,10 +38,14 @@ public class SubspaceTunnel extends AbstractDynamicCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 1;
-    private static final int UPGRADE_COST = 0;
+    private static final int COST = 2;
+    private static final int UPGRADE_COST = 1;
 
     private static final int CARDS = 1;
+
+    private int handIndex;
+    public boolean success;
+    public CardGroup targetGroup;
 
     // /STAT DECLARATION/
 
@@ -47,13 +53,13 @@ public class SubspaceTunnel extends AbstractDynamicCard {
     public SubspaceTunnel() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = CARDS;
-        this.exhaust = true; //This should exhaust. Currently doesnt for testing.
+        //this.exhaust = true; //This shouldnt exhaust
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new FetchCardFromAnywhereAction(magicNumber));
+        this.addToBot(new ReplaceCardFromAnywhere(this, handIndex));
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
@@ -63,6 +69,12 @@ public class SubspaceTunnel extends AbstractDynamicCard {
         } else {
             return p.drawPile.group.size() > 0 || p.discardPile.group.size() > 0 || p.exhaustPile.group.size() > 0;
         }
+    }
+
+    @Override
+    public void applyPowers() {
+        this.handIndex = AbstractDungeon.player.hand.group.indexOf(this);
+        super.applyPowers();
     }
 
     //Upgraded stats.

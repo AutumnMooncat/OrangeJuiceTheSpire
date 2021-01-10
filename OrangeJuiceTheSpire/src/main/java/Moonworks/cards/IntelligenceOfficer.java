@@ -26,13 +26,10 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
 
-    private static final int VIGOR = 5;
+    private static final int VIGORSTEADY = 3;
     private static final int UPGRADE_PLUS_VIGOR = 2;
-
-    private static final int BLOCK = 5;
-    private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final int CARDS = 1;
     private static final int UPGRADE_PLUS_CARDS = 1;
@@ -45,9 +42,8 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
     public IntelligenceOfficer() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         //damage = baseDamage = DAMAGE;
-        block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = SCRY;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = VIGOR;
+        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = VIGORSTEADY;
     }
     @Override
     public float getTitleFontSize() {
@@ -61,7 +57,7 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
         //AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
         //AbstractDungeon.actionManager.addToBottom(new DrawCardAction(magicNumber));
         //this.addToBot(new ScryAction(defaultSecondMagicNumber));
-        this.addToBot(new IntelligenceOfficerAction(magicNumber, m, defaultSecondMagicNumber, block, CARDS));
+        this.addToBot(new IntelligenceOfficerAction(magicNumber, p, defaultSecondMagicNumber, CARDS));
     }
 
     // Upgraded stats.

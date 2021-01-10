@@ -1,5 +1,6 @@
 package Moonworks.actions;
 
+import Moonworks.powers.SteadyPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import java.util.Iterator;
 
@@ -19,14 +21,12 @@ public class IntelligenceOfficerAction extends AbstractGameAction {
     private final float startingDuration;
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
-    private final int block;
     private final int draw;
-    private final int vigor;
+    private final int vigorsteady;
 
-    public IntelligenceOfficerAction(int numCards, AbstractCreature target, int vigor, int block, int draw) {
+    public IntelligenceOfficerAction(int numCards, AbstractCreature target, int vigorsteady, int draw) {
         this.amount = numCards;
-        this.block = block;
-        this.vigor = vigor;
+        this.vigorsteady = vigorsteady;
         this.draw = draw;
         this.target = target;
         if (AbstractDungeon.player.hasRelic("GoldenEye")) {
@@ -74,19 +74,14 @@ public class IntelligenceOfficerAction extends AbstractGameAction {
                 for (AbstractCard card : tmpGroup.group) {
                     switch (card.type) {
                         case ATTACK:
-                            this.addToBot(new DamageAction(target, new DamageInfo(AbstractDungeon.player, vigor, DamageInfo.DamageType.NORMAL), AttackEffect.BLUNT_LIGHT));
+                            this.addToBot(new ApplyPowerAction(target, target, new VigorPower(target, vigorsteady)));
                             break;
                         case SKILL:
-                            this.addToBot(new GainBlockAction(AbstractDungeon.player, block));
+                            this.addToBot(new ApplyPowerAction(target, target, new SteadyPower(target, vigorsteady)));
                             break;
-                        case POWER:
-                            //this.addToBot(new GainEnergyAction(draw));
+                        default:
                             this.addToBot(new DrawCardAction(draw));
                             break;
-                        case CURSE:
-                            //Nothing
-                        case STATUS:
-                            //Nothing
                     }
                 }
                 AbstractDungeon.gridSelectScreen.open(tmpGroup, this.amount, true, TEXT[0]);

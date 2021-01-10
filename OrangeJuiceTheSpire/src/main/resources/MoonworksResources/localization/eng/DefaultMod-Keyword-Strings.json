@@ -181,5 +181,13 @@
       "shield_counter"
     ],
     "DESCRIPTION": "Any attack you fully block is reflected onto the attacker. NL If you still have #bBlock at the end of the turn and #yrollover is applied, you do not lose #yShield #yCounter."
+  },
+  {
+    "NAMES": [
+      "Stunned",
+      "stunned",
+      "stun"
+    ],
+    "DESCRIPTION": "A stunned target does nothing this turn."
   }
 ]

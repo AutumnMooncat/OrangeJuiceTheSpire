@@ -1,0 +1,23 @@
+{
+  "Moonworks:RestoreGift": {
+    "TEXT": ["Select a Gift to restore to your draw pile."]
+  },
+  "Moonworks:FetchFromAnywhere": {
+    "TEXT": ["Select a card to add to your hand. All Draw Pile cards are shown before Discard Pile and then Exhaust Pile cards"]
+  },
+  "Moonworks:ModConfigSeagulls": {
+    "TEXT": ["Allow Cloud Of Seagulls to still hit the player even when upgraded. Default: false."]
+  },
+  "Moonworks:ModConfigWanted": {
+    "TEXT": ["Wanted enemies will hurt themselves in addition to the original effects. Default: false."]
+  },
+  "Moonworks:ModConfigBattleTalkButton": {
+    "TEXT": ["Enable random phrases when attacking. Defaults: true, 25% chance."]
+  },
+  "Moonworks:ModConfigDamagedTalkButton": {
+    "TEXT": ["Enable random phrases when attacked. Defaults: true, 50% chance."]
+  },
+  "Moonworks:ModConfigPreBattleTalkButton": {
+    "TEXT": ["Enable random pre/post combat phrases. Defaults: true, 75% chance."]
+  }
+}

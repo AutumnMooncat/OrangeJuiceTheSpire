@@ -230,26 +230,27 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         }
     }
 
-    public void restoreGiftUses(int amount) {
-        modifyUses(amount);
-        if (hasUses) {
-            unhover();
-            unfadeOut();
-            AbstractDungeon.player.exhaustPile.moveToDeck(this, true);
-            AbstractDungeon.player.exhaustPile.removeCard(this);
+    public static void restoreGiftUses(AbstractGiftCard gift, int amount) {
+        gift.modifyUses(amount);
+        if (gift.hasUses) {
+            gift.unhover();
+            gift.unfadeOut();
+            AbstractDungeon.player.exhaustPile.moveToDeck(gift, true);
+            AbstractDungeon.player.exhaustPile.removeCard(gift);
         }
     }
 
-    public void refreshGiftUses() {
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber;
-        restoreGiftUses(0);
+    public static void refreshGiftUses(AbstractGiftCard gift) {
+        gift.defaultSecondMagicNumber = gift.defaultBaseSecondMagicNumber;
+        gift.checkedGolden = false; // Since we reset to base values, we want to check golden again
+        restoreGiftUses(gift, 0); //Just do a 0 call here since we dont both checking for non 0 anywhere, this ensures we stay at max capacity
     }
 
     public static void recoverRandomExhaustedGift(int amount) {
         for (int i = 0 ; i < amount ; i++) {
-            AbstractGiftCard giftCard = getRandomExhaustedGift();
-            if(giftCard != null) {
-                giftCard.refreshGiftUses();
+            AbstractGiftCard gift = getRandomExhaustedGift();
+            if(gift != null) {
+                refreshGiftUses(gift);
             }
         }
     }

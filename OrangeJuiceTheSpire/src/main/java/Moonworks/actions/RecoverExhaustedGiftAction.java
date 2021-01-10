@@ -52,7 +52,8 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
                 //logger.info("Exhaust Size: " + this.p.exhaustPile.size() + ", Draw Amount: " + amount);
                 while (!giftCards.isEmpty()){
                     AbstractCard card = giftCards.getTopCard();
-                    logger.info("Card: " + card.toString());
+                    //logger.info("Card: " + card.toString());
+                    AbstractGiftCard.refreshGiftUses((AbstractGiftCard) card);
                     card.unfadeOut();
                     //this.p.drawPile.addToRandomSpot(card);
                     this.p.exhaustPile.moveToDeck(card, true); //Actually pull it from exhaust here
@@ -86,6 +87,7 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
             if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
                 for(c = AbstractDungeon.gridSelectScreen.selectedCards.iterator(); c.hasNext(); derp.unhover()) {
                     derp = c.next();
+                    AbstractGiftCard.refreshGiftUses((AbstractGiftCard) derp);
                     this.p.exhaustPile.moveToDeck(derp, true); //Actually pull from exhaust
                     if (AbstractDungeon.player.hasPower("Corruption") && derp.type == CardType.SKILL) {
                         derp.setCostForTurn(-9);
@@ -111,7 +113,7 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
     }
 
     static {
-        uiStrings = CardCrawlGame.languagePack.getUIString("ExhumeAction");
+        uiStrings = CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("RestoreGift"));
         TEXT = uiStrings.TEXT;
     }
 }

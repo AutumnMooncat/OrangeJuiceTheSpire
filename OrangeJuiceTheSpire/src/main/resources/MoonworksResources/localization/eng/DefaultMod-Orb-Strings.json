@@ -1,11 +1,8 @@
 {
-  "Moonworks:DefaultOrb": {
-    "NAME": "Default Orb",
+  "Moonworks:UnunsedOrbPlaceholder": {
+    "NAME": "Placeholder",
     "DESCRIPTION": [
-      "#yPassive: At the start of your turn, draw #b",
-      " card.",
-      " cards.",
-      "NL #yEvoke: Deal #b damage to all enemies."
+      "This is only here to act as a reference if orbs are added later."
     ]
   }
 }

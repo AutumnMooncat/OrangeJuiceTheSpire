@@ -136,26 +136,49 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
 
     @Override
     public void stackPower(int stackAmount) {
+        if (stackAmount == 0) {
+            //We have no reason to do anything if we are stacking by 0 >:L
+            return;
+        }
         if (stackAmount > 1) {
             //If we get a big amount of Norma all at the same time, break it down into individual increases of 1 so our cards can flash properly
             for (int i = 0 ; i < stackAmount ; i++){
                 this.stackPower(1);
             }
         }
+        if (stackAmount < -1) {
+            //If we get a big amount of negative Norma all at the same time, break it down into individual decreases of 1 so our cards can flash properly
+            for (int i = 0 ; i < -stackAmount ; i++){
+                this.stackPower(-1);
+            }
+        }
         if(!broken) {
-            boolean flashCards = amount < 4; //IF we are already at Norma 5, we dont want to flash the cards when we increase
+            boolean flashCardsGreen = stackAmount > 0 && amount < 5; //If we are already at Norma 5, we don't want to flash the cards when we increase
+            boolean flashCardsRed = stackAmount < 0 && amount > 0; //If we are already at Norma 0, we don't want to flash the cards when we decrease
             super.stackPower(stackAmount);
             if (amount > 5) {
                 amount = 5;
             }
+            if (amount < 0) {
+                amount = 0;
+            }
             name = NAME + " " + amount;
             updateDescription();
 
-            if(flashCards){
+            if(flashCardsGreen){
                 for (AbstractCard c : AbstractDungeon.player.hand.group) {
                     if (c instanceof AbstractNormaAttentiveCard) {
                         if (((AbstractNormaAttentiveCard) c).normaLevels.contains(amount) || ((AbstractNormaAttentiveCard) c).normaLevels.contains(-1)){
                             c.flash(Color.GREEN);
+                        }
+                    }
+                }
+            }
+            if(flashCardsRed){
+                for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                    if (c instanceof AbstractNormaAttentiveCard) {
+                        if (((AbstractNormaAttentiveCard) c).normaLevels.contains(amount+1) || ((AbstractNormaAttentiveCard) c).normaLevels.contains(-1)){
+                            c.flash(Color.RED);
                         }
                     }
                 }

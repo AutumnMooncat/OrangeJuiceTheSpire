@@ -161,7 +161,14 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
                         subspaceTunnel.success = false;
                     }
                     if(subspaceTunnel.success) {
-                        target.group.add(pileIndex, subspaceTunnel);
+                        if (pileIndex <= target.group.size())
+                        {
+                            target.group.add(pileIndex, subspaceTunnel);
+                        }
+                        else
+                        {
+                            target.group.add(0, subspaceTunnel);
+                        }
                     }
                 }
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();

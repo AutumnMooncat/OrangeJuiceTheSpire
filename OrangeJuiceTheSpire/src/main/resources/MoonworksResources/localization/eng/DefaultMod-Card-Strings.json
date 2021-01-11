@@ -424,7 +424,7 @@
   },
   "Moonworks:UnluckyCharm": {
     "NAME": "Unlucky Charm",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Lose !Moonworks:InvertedNumber! temporary Dexterity. NL On Exhaust: Gain !M! Dexterity. NL This card can not be discarded by playing it.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: ALL targets lose !Moonworks:InvertedNumber! temporary Dexterity. NL On Exhaust: Gain !M! Dexterity. NL This card can not be discarded by playing it.",
     "EXTENDED_DESCRIPTION": ["You are feeling a little luckier without this around."]
   },
   "Moonworks:UnpaidWork": {

@@ -1,0 +1,232 @@
+[
+  {
+    "NAMES": [
+      "keyword",
+      "keywords"
+    ],
+    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+  },
+  {
+    "PROPER_NAME": "Multiword Keyword",
+    "NAMES": [
+      "Multiword Keyword",
+      "multiword_keyword",
+      "multiword_keywords",
+      "multikey",
+      "multikeyword"
+    ],
+    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  },
+  {
+  "NAMES": [
+    "Gift",
+    "gift"
+  ],
+  "DESCRIPTION": "礼物卡在你的手牌中时发挥基本效果. 礼物卡可能具有可触发的额外效果."
+  },
+  {
+    "PROPER_NAME": "烧毁星球之光",
+    "NAMES": [
+      "烧毁星球之光",
+      "烧毁星球之光",
+      "烧毁星球之光"
+    ],
+    "DESCRIPTION": "在回合开始的时候失去生命，每经过一个回合，层数会增加，层数越大燃尽的几率越高."
+  },
+  {
+    "NAMES": [
+      "Trap",
+      "trap"
+    ],
+    "DESCRIPTION": "这张牌的效果无视 #y人工制品 ."
+  },
+  {
+    "PROPER_NAME": "不可视的炸弹",
+    "NAMES": [
+      "不可视的炸弹",
+      "不可视的炸弹",
+      "不可视的炸弹"
+    ],
+    "DESCRIPTION": "目标在抽到 #y星球的导火线 时受到伤害."
+  },
+  {
+    "NAMES": [
+      "重置",
+      "重置"
+    ],
+    "DESCRIPTION": "将这张牌的计数效果变回初始状态."
+  },
+  {
+    "NAMES": [
+      "Norma",
+      "norma"
+    ],
+    "DESCRIPTION": "达到一定的Norma等级会使卡牌具有额外效果."
+  },
+  {
+    "NAMES": [
+      "固定",
+      "固定"
+    ],
+    "DESCRIPTION": "这张卡会受到 #g人偶印记 影响,但不受 #y力量 , #y敏捷 , #g虚弱 , #g脆弱 , #r易伤 , 和 #y多数能力牌 的影响."
+  },
+  {
+    "NAMES": [
+      "Transformative",
+      "transformative"
+    ],
+    "DESCRIPTION": "这张卡再被抽到或者保留时 #y变化 ."
+  },
+  {
+    "NAMES": [
+      "被通缉",
+      "被通缉"
+    ],
+    "DESCRIPTION": "本回合内, 被通缉的敌人会成为所有攻击和负面效果的目标. NL 被通缉的敌人不会伤害自己."
+  },
+  {
+    "NAMES": [
+      "Special",
+      "Special"
+    ],
+    "DESCRIPTION": "这张卡不能从普通卡牌掉落中得到."
+  },
+  {
+    "NAMES": [
+      "稳固",
+      "稳固"
+    ],
+    "DESCRIPTION": "在下次打出获得格挡的卡牌时获得更多格挡."
+  },
+  {
+    "PROPER_NAME": "礼物卡余额",
+    "NAMES": [
+      "礼物卡余额",
+      "礼物卡余额"
+    ],
+    "DESCRIPTION": "这张牌具有余额时获得保留,余额耗尽时消耗. 当触发效果时消耗一点余额."
+  },
+  {
+    "PROPER_NAME": "人偶印记",
+    "NAMES": [
+      "人偶印记",
+      "人偶印记",
+      "人偶印记"
+    ],
+    "DESCRIPTION": "具有人偶印记的敌人被攻击时... NL 小于等于6点伤害: 将伤害提高至7且无视格挡. NL 大于等于7伤害: 获得 3点临时生命. NL 消耗一层人偶印记."
+  },
+  {
+    "NAMES": [
+      "偏差",
+      "偏差",
+      "偏差",
+      "偏差"
+    ],
+    "DESCRIPTION": "偏差会导致当你回溯时间线的时候，有些东西不能完全准确变动. NL 如果在 #r高偏差 时回溯时间线可能会产生 #r永久的负面效果 ."
+  },
+  {
+    "NAMES": [
+      "Degraded",
+      "degraded"
+    ],
+    "DESCRIPTION": "这张卡每次被抽到时，基础伤害和格挡数值 #r降低 最多#r3 . 基础数值不会低于 #b1 ."
+  },
+  {
+    "NAMES": [
+      "Fragile",
+      "fragile"
+    ],
+    "DESCRIPTION": "这张牌被抽到时有#r三分之一 的可能性 #r自动消耗 ."
+  },
+  {
+    "NAMES": [
+      "Voiding",
+      "voiding"
+    ],
+    "DESCRIPTION": "当你抽到这张牌时，失去#b1 点能量."
+  },
+  {
+    "NAMES": [
+      "Reduced",
+      "reduced"
+    ],
+    "DESCRIPTION": "This card's base values are lowered by 1."
+  },
+  {
+    "NAMES": [
+      "Withering",
+      "withering"
+    ],
+    "DESCRIPTION": "这张牌立即消耗, 无论位于哪个牌堆."
+  },
+  {
+    "PROPER_NAME": "时间锚",
+    "NAMES": [
+      "时间锚",
+      "时间锚"
+    ],
+    "DESCRIPTION": "#y时间锚 允许你回溯你的 #g个人状态 到它被创建的时候. 其他东西的状态 #g不受影响 . NL 你距离创建 #y时间锚 的时间跨度越大，会受到 #r偏差 越大."
+  },
+  {
+    "NAMES": [
+      "最优化选择",
+      "最优化选择"
+    ],
+    "DESCRIPTION": "这张卡会给予正好足够的 #y格挡 数, 取决于敌人的意图和你现有的格挡. 剩余的数值会分配到 #y活力 ."
+  },
+  {
+    "PROPER_NAME": "护盾反转",
+    "NAMES": [
+      "护盾反转",
+      "护盾反转"
+    ],
+    "DESCRIPTION": "任何被完全格挡的伤害会反射给敌人. NL 如果回合结束时还有 #b格挡 剩余并且拥有 #y残影 , 将不会失去 #y护盾反转 ."
+  },
+  {
+    "NAMES": [
+      "击晕",
+      "击晕",
+      "击晕"
+    ],
+    "DESCRIPTION": "被击晕的敌人该回合不会行动."
+  },
+  {
+    "NAMES": [
+      "溅射",
+      "溅射"
+    ],
+    "DESCRIPTION": "主要目标受到全额伤害. 所有其他敌人受到一半伤害."
+  },
+  {
+    "PROPER_NAME": "Free Draw",
+    "NAMES": [
+      "Free Draw",
+      "free_draw"
+    ],
+    "DESCRIPTION": "如果你在战斗开始时没抽到这张牌, 将其加入你的手牌."
+  },
+  {
+    "PROPER_NAME": "Auto Effect",
+    "NAMES": [
+      "Auto Effect",
+      "auto_effect"
+    ],
+    "DESCRIPTION": "该效果自动发动且不算作打出一张牌."
+  },
+  {
+    "PROPER_NAME": "自动食用",
+    "NAMES": [
+      "自动食用",
+      "自动食用"
+    ],
+    "DESCRIPTION": "这张牌的效果自动发动且立刻抹除. 不算作打出一张牌."
+  },
+  {
+    "PROPER_NAME": "出动",
+    "NAMES": [
+      "出动",
+      "出动"
+    ],
+    "DESCRIPTION": "受到伤害时提高受到伤害的数值. 在你的下一个回合开始时, 目标失去出动并且受到其数值的伤害"
+  }
+]

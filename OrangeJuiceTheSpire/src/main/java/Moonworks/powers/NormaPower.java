@@ -118,6 +118,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         }
     }
 
+    /*
     //Play LDS cards, also do this in stack
     @Override
     public void onInitialApplication() {
@@ -125,7 +126,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         if (amount > 0) {
             autoPlayLDS();
         }
-    }
+    }*/
 
     private void autoPlayLDS() {
         //Make a map of the cards and where they came from

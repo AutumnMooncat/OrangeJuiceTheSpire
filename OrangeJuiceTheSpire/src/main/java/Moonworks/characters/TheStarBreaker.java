@@ -442,6 +442,7 @@ public class TheStarBreaker extends CustomPlayer {
             case STATUS:
             case CURSE:
             default:
+                RandomChatterHelper.showChatter(RandomChatterHelper.getSkillText(), cardTalkProbability, enableCardBattleTalkEffect);
                 playAnimation("skill");
                 break;
         }

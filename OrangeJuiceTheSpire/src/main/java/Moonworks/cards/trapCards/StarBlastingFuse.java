@@ -43,40 +43,42 @@ public class StarBlastingFuse extends AbstractTrapCard {
     // STAT DECLARATION
 
     private static final CardRarity RARITY = CardRarity.RARE;
-    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
+    private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 2;
-    private static final int DAMAGE = 10;
-    private static final int MIN_HITS = 3;
-    private static final int UPGRADE_PLUS_MIN_HITS = 1;
-    private static final int MAX_HITS = 5;
-    private static final int UPGRADE_PLUS_MAX_HITS = 1;
+    private static final int HP_LOSS = 30;
+    private static final int UPGRADE_PLUS_HP_LOSS = 10;
 
     // /STAT DECLARATION/
 
 
     public StarBlastingFuse() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        damage = baseDamage = DAMAGE;
-        magicNumber = baseMagicNumber = MIN_HITS;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = MAX_HITS;
+        magicNumber = baseMagicNumber = HP_LOSS;
+        shuffleBackIntoDrawPile = true;
         //this.isMultiDamage = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractMonster aM;
         TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(0, 2)];
         this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
-        //this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 1.0F));
-        int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
-        for (int i = 0 ; i < hits ; i++){
-            aM = AbstractDungeon.getRandomMonster();
-            this.addToBot(new ApplyPowerAction(aM, p, new InvisibleBombPower(aM, p, damage, 1)));
-            //this.addToBot(new DamageAllEnemiesAction(p, damage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+
+        this.addToBot(new ApplyPowerAction(m, p, new InvisibleBombPower(m, p)));
+        shuffleBackIntoDrawPile = true;
+    }
+
+    @Override
+    public void triggerWhenDrawn() {
+        super.triggerWhenDrawn();
+        //Blow up bombs here
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            if (m.getPower(InvisibleBombPower.POWER_ID) != null) {
+                ((InvisibleBombPower)m.getPower(InvisibleBombPower.POWER_ID)).blast(magicNumber);
+            }
         }
     }
 
@@ -85,9 +87,7 @@ public class StarBlastingFuse extends AbstractTrapCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //rawDescription = UPGRADE_DESCRIPTION;
-            upgradeMagicNumber(UPGRADE_PLUS_MIN_HITS);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_MAX_HITS);
+            upgradeMagicNumber(UPGRADE_PLUS_HP_LOSS);
             initializeDescription();
         }
     }

@@ -8,6 +8,8 @@ import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -63,9 +65,12 @@ public class Ambush extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        damageTypeForTurn = getNormaLevel() >= NORMA_LEVELS[0] ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
+        //damageTypeForTurn = getNormaLevel() >= NORMA_LEVELS[0] ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
+        int removedBlock = m.currentBlock;
+        this.addToBot(new RemoveAllBlockAction(m, p));
         this.addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false)));
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+        this.addToBot(new GainBlockAction(m, removedBlock, true));
         //Removed Action in favor of performing a check in calculate card damage
         //this.addToBot(new AmbushAction(m, p, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
     }

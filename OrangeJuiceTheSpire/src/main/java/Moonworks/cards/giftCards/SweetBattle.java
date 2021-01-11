@@ -56,7 +56,7 @@ public class SweetBattle extends AbstractGiftCard {
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
         if(active) {
-            this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview, 1, true, true));
+            this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
             this.applyEffect();
         }
     }
@@ -65,7 +65,7 @@ public class SweetBattle extends AbstractGiftCard {
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
         if (active) {
-            this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview, 1, true, true));
+            this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
             this.applyEffect();
         }
     }
@@ -75,7 +75,7 @@ public class SweetBattle extends AbstractGiftCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            this.cardsToPreview.upgrade();
+            //this.cardsToPreview.upgrade();
             upgradeSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }

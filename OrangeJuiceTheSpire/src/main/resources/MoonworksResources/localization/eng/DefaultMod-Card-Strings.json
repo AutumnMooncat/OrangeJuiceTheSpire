@@ -405,7 +405,7 @@
   },
   "Moonworks:SweetBattle": {
     "NAME": "Sweet Battle",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Shuffle 1 *Saki's *Cookie into your draw pile. NL In Hand: *Saki's *Cookies are twice as effective and moonworks:Auto_Consume when drawn. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Shuffle 1 *Saki's *Cookie into your draw pile. NL In Hand: *Saki's *Cookies gain +2 to their effect and moonworks:Auto_Consume when drawn. NL On Play: Discard.",
     "EXTENDED_DESCRIPTION": ["Your sugar rush has faded."]
   },
   "Moonworks:TacticalRetreat": {

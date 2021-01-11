@@ -1,5 +1,7 @@
 package Moonworks.cards;
 
+import Moonworks.actions.ConsumePurgeImmediatelyAction;
+import Moonworks.actions.WitherExhaustImmediatelyAction;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.giftCards.SweetBattle;
@@ -11,6 +13,7 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.colorless.RitualDagger;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -31,6 +34,7 @@ public class SakisCookie extends AbstractNormaAttentiveCard {
     public static final String IMG = makeCardPath("SakisCookie.png");
 
     private static ArrayList<TooltipInfo> OptimizationTooltip;
+    private boolean applyingEffects;
 
     // /TEXT DECLARATION/
 
@@ -82,28 +86,29 @@ public class SakisCookie extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int effect = effectLogic();
-        boolean sweetBattle = hasSweetBattle();
-        int boostEffect = sweetBattle ? 2 : 1;
+        int boostEffect = applyingEffects ? 2 : 0;
         switch (effect) { //Switches allow us to run code based on the value in the switch.
             case 1: //Big Block. We multiply by 2 or 3 here
-                AbstractDungeon.actionManager.addToBottom(new HealAction(p, p, magicNumber*boostEffect));
+                this.addToTop(new HealAction(p, p, magicNumber+boostEffect, 0.1f));
                 break; //Break after each case since we dont want it to then look at the other cases
             case 2: //Draw 2 or 3 cards, as this is stored in magicNumber
-                this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, secondMagicNumber*boostEffect)));
-                this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, thirdMagicNumber*boostEffect)));
+                //this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, secondMagicNumber*boostEffect)));
+                this.addToTop(new ApplyPowerAction(p, p, new SteadyPower(p, thirdMagicNumber+boostEffect), thirdMagicNumber+boostEffect, true));
                 break;
             case 3: //Buff 2 or 3 stacks of temp dex
-                this.addToBot(new ApplyPowerAction(p, p, new TemporaryStrengthPower(p, secondMagicNumber*boostEffect)));
-                this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, thirdMagicNumber*boostEffect)));
+                //this.addToBot(new ApplyPowerAction(p, p, new TemporaryStrengthPower(p, secondMagicNumber*boostEffect)));
+                this.addToTop(new ApplyPowerAction(p, p, new VigorPower(p, thirdMagicNumber+boostEffect), thirdMagicNumber+boostEffect, true));
                 break;
         }
-        if (sweetBattle) {
-            this.purgeOnUse = true;
+        if (applyingEffects) {
+            //this.purgeOnUse = true;
+            this.addToTop(new ConsumePurgeImmediatelyAction(this));
+            //applyingEffects = false;
         }
     }
     private boolean hasSweetBattle() {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c instanceof SweetBattle) {
+            if (c instanceof SweetBattle && ((SweetBattle) c).secondMagicNumber > 0) {
                 return true;
             }
         }
@@ -132,11 +137,24 @@ public class SakisCookie extends AbstractNormaAttentiveCard {
     }
     private boolean hasBlockingCard() {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
-            if (c.baseBlock > 0) {
+            if (c.baseBlock > 0 && !(c instanceof RitualDagger)) {
                 return true;
             }
         }
         return false;
+    }
+    private boolean isInHand() {
+        return AbstractDungeon.player.hand.contains(this);
+    }
+
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        if (hasSweetBattle() && isInHand() && !applyingEffects) {
+            applyingEffects = true;
+            use(AbstractDungeon.player, AbstractDungeon.getRandomMonster());
+        }
     }
 
     // Upgraded stats.

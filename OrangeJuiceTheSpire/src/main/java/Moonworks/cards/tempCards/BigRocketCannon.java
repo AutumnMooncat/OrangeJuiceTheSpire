@@ -10,6 +10,7 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.defect.DamageAllButOneEnemyAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -51,7 +52,7 @@ public class BigRocketCannon extends AbstractTempCard {
     private static final int COST = 1;
 
     private static final int DAMAGE = 10;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 6;
 
     // /STAT DECLARATION/
 
@@ -59,7 +60,8 @@ public class BigRocketCannon extends AbstractTempCard {
     public BigRocketCannon() {
         super(ID, IMG, COST, TYPE, COLOR, TARGET);
         this.cardsToPreview = new AirStrike();
-        baseDamage = DAMAGE;
+        baseDamage = damage = DAMAGE;
+        isMultiDamage = true;
         //this.setDisplayRarity(CardRarity.RARE);
         //this.isMultiDamage = true; //Not using DamageAllEnemies Action
         //this.isInAutoplay = true;
@@ -69,10 +71,10 @@ public class BigRocketCannon extends AbstractTempCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
-        for (AbstractMonster aM: AbstractDungeon.getMonsters().monsters)
-        {
+        //this.addToBot(new DamageAllButOneEnemyAction(p, m, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, true));
+        for (AbstractMonster aM: AbstractDungeon.getMonsters().monsters) {
             if (aM != m) {
-                this.addToBot(new DamageAction(aM, new DamageInfo(p, damage/2, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+                this.addToBot(new DamageAction(aM, new DamageInfo(p, damage/2, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE, true));
             }
         }
         /* int[] test = {damage}; // Bad. causes crashing and sadness

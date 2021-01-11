@@ -8,9 +8,13 @@ import Moonworks.characters.TheStarBreaker;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import com.megacrit.cardcrawl.actions.defect.DamageAllButOneEnemyAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -48,7 +52,7 @@ public class AirStrike extends AbstractTempCard {
     private static final int COST = 2;
 
     private static final int DAMAGE = 20;
-    private static final int UPGRADE_PLUS_DMG = 5;
+    private static final int UPGRADE_PLUS_DMG = 10;
 
     // /STAT DECLARATION/
 
@@ -64,7 +68,18 @@ public class AirStrike extends AbstractTempCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+        //this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+        for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
+            if (!aM.isDeadOrEscaped()) {
+                int index = AbstractDungeon.getMonsters().monsters.indexOf(aM);
+                this.addToBot(new DamageAction(aM, new DamageInfo(p, multiDamage[index], damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE, true));
+                for (AbstractMonster aM2: AbstractDungeon.getMonsters().monsters) {
+                    if (aM2 != aM && !aM2.isDeadOrEscaped()) {
+                        this.addToBot(new DamageAction(aM2, new DamageInfo(p, multiDamage[index]/2, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE, true));
+                    }
+                }
+            }
+        }
     }
 
     //Upgraded stats.

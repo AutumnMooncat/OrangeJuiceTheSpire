@@ -1,12 +1,4 @@
 {
-"Moonworks:CommonPower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
-},
-"Moonworks:RarePower": {
-        "NAME": "Placeholder Power",
-        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
-},
         "Moonworks:PortablePuddingPower": {
                 "NAME": "Portable Pudding",
                 "DESCRIPTIONS": ["At the end of your turn, heal #b", " #yHP."]
@@ -26,22 +18,21 @@
         "Moonworks:BlastingLightPower": {
                 "NAME": "Blasting Light",
                 "DESCRIPTIONS": ["At the start of it's turn, lose #b",
-                        " HP, then increase #yBlasting #yLight by #b1. The higher the blast, the more likely it is to wear off."]
+                        " HP and Max HP, then increase #yBlasting #yLight by #b1. The higher the blast, the more likely it is to wear off."]
         },
         "Moonworks:InvisibleBombPower": {
                 "NAME": "Invisible Bomb",
-                "DESCRIPTIONS": ["#bEach bomb detonates and deals #b",
-                        " damage within at most #b"," turns", " damage this turn."]
+                "DESCRIPTIONS": ["#bDetonates and causes the target to lose HP #beach #btime you draw #yStar #yBlasting #yFuse."]
         },
         "Moonworks:TreasureThiefPower": {
                 "NAME": "Treasure Thief",
-                "DESCRIPTIONS": ["Draw one card the next #b",
-                        " time this enemy is damaged.", " times this enemy is damaged."]
+                "DESCRIPTIONS": ["Draw one card the next #b", " time this enemy is damaged.", " times this enemy is damaged."]
         },
         "Moonworks:ReflectiveShellPower": {
                 "NAME": "Reflective Shell",
                 "DESCRIPTIONS": ["Prevent the next #b",
-                        " time you take damage. Gain #yVigor equal to the amount prevented.", " times you take damage. Gain #yVigor equal to the amount prevented."]
+                        " time you take damage. Gain #yVigor equal to the amount prevented.",
+                        " times you take damage. Gain #yVigor equal to the amount prevented."]
         },
         "Moonworks:SinkOrSwimPower": {
                 "NAME": "Sink Or Swim",
@@ -50,7 +41,9 @@
         },
         "Moonworks:PlushieMasterPower": {
                 "NAME": "Plushie Mark",
-                "DESCRIPTIONS": ["Gain #b", " temporary HP or raise incoming damage to #b", " the next time this enemy is damaged.", " the next #b", " times this enemy is damaged."]
+                "DESCRIPTIONS": ["Gain #b", " temporary HP or raise incoming damage to #b",
+                        " the next time this enemy is damaged.",
+                        " the next #b", " times this enemy is damaged."]
         },
         "Moonworks:OutOfAmmoPower": {
                 "NAME": "Out Of Ammo",

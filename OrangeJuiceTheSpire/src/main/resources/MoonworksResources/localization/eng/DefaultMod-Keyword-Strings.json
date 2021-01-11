@@ -31,7 +31,7 @@
       "blasting_light",
       "blast"
     ],
-    "DESCRIPTION": "Blasted creatures lose HP at the start of their turn. Each turn, the blast worsens, but the worse the blast is the more likely it is to wear off."
+    "DESCRIPTION": "Blasted creatures lose both HP and Max HP at the start of their turn. Each turn, the blast worsens, but the worse the blast is the more likely it is to wear off."
   },
   {
     "NAMES": [
@@ -47,7 +47,7 @@
       "invisible_bomb",
       "invisible_bombs"
     ],
-    "DESCRIPTION": "Detonates and damages it's target within at most 3 turns."
+    "DESCRIPTION": "Causes the target to lose HP each time a #yStar #yBlasting #yFuse is drawn."
   },
   {
     "NAMES": [
@@ -189,5 +189,36 @@
       "stun"
     ],
     "DESCRIPTION": "A stunned target does nothing this turn."
+  },
+  {
+    "NAMES": [
+      "Splash",
+      "splash"
+    ],
+    "DESCRIPTION": "The primary target takes the full effect. ALL OTHER targets take half the amount."
+  },
+  {
+    "PROPER_NAME": "Free Draw",
+    "NAMES": [
+      "Free Draw",
+      "free_draw"
+    ],
+    "DESCRIPTION": "If you do not draw this card at the start of combat, add it to your hand."
+  },
+  {
+    "PROPER_NAME": "Auto Effect",
+    "NAMES": [
+      "Auto Effect",
+      "auto_effect"
+    ],
+    "DESCRIPTION": "This effect is automatically activated and does not count as playing the card."
+  },
+  {
+    "PROPER_NAME": "Auto Consume",
+    "NAMES": [
+      "Auto Consume",
+      "auto_consume"
+    ],
+    "DESCRIPTION": "The card's effect is automatically activated and the card is immediately purged. This does not count as playing the card."
   }
 ]

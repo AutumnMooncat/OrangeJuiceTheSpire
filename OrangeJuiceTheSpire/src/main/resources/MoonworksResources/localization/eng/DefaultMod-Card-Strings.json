@@ -12,7 +12,7 @@
   },
   "Moonworks:AirStrike": {
     "NAME": "Air Strike",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Purge."
+    "DESCRIPTION": "Deal !D! moonworks:Splash *Damage to ALL enemies. NL Purge."
   },
   "Moonworks:Ambush": {
     "NAME": "Ambush",
@@ -46,7 +46,7 @@
   },
   "Moonworks:BeyondHell": {
     "NAME": "Beyond Hell",
-    "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:InvertedNumber! missing HP.",
+    "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:InvertedNumber! missing HP. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Gain Vigor for every 3 missing HP instead."]
   },
   "Moonworks:BigBangBell": {
@@ -61,11 +61,11 @@
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "Big Rocket Cannon",
-    "DESCRIPTION": "Deal !D! damage and half that to ALL OTHER enemies. NL Shuffle 1 *Air *Strike into your [#FFF6E2]draw pile. NL Purge."
+    "DESCRIPTION": "Deal !D! moonworks:Splash *Damage. NL Shuffle 1 *Air *Strike into your [#FFF6E2]draw pile. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "Binding Chains",
-    "DESCRIPTION": "Target loses !M! Strength this turn. NL ALL OTHER enemies lose half this amount. NL Decrease this card's effect by 4 this combat.",
+    "DESCRIPTION": "Target loses !M! Strength this turn. moonworks:Splash. NL Decrease this card's effect by 4 this combat.",
     "EXTENDED_DESCRIPTION": ["Decayed Chains","The chains have decayed to almost nothingness.","I can't play this card."]
   },
   "Moonworks:Blazing": {
@@ -186,7 +186,8 @@
   "Moonworks:GoAway": {
     "NAME": "Go Away",
     "DESCRIPTION": "Ethereal. NL The target is moonworks:Stunned for a turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "The target is moonworks:Stunned for a turn. NL Exhaust."
+    "UPGRADE_DESCRIPTION": "The target is moonworks:Stunned for a turn. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["The target is removed from combat. NL The target will randomly reappear on a new floor."]
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
@@ -233,8 +234,9 @@
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "Long-Distance Shot",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! card.",
-    "EXTENDED_DESCRIPTION": ["Add a temporary copy of this card without this effect to your hand.","Ethereal. NL Deal !D! damage. NL Draw !M! card. NL Exhaust."]
+    "DESCRIPTION": "Deal !D! damage. NL Draw this card whenever you gain a *Norma level.",
+    "EXTENDED_DESCRIPTION": ["Ethereal. NL Deal !D! damage. NL Exhaust.",
+      "Draw !M! card if this effect has uses. Uses: !Moonworks:SecondMagic!."]
   },
   "Moonworks:LuckyCharm": {
     "NAME": "Lucky Charm",
@@ -333,8 +335,8 @@
   },
   "Moonworks:SakisCookie": {
     "NAME": "Saki's Cookie",
-    "DESCRIPTION": "Heal !M! HP. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["+2 HP healed."]
+    "DESCRIPTION": "Trigger 1 of 3 effects: NL Heal !M! HP. NL Gain !Moonworks:ThirdMagic! Vigor. NL Gain !Moonworks:ThirdMagic! moonworks:Steady.",
+    "EXTENDED_DESCRIPTION": ["Effect will be *Optimized","Cookie Optimization","Healing will always be chosen if it needed. NL Steady will be chosen over Vigor if there is enemy intending to attack and a block card is in your hand."]
   },
   "Moonworks:ScrambledEve": {
     "NAME": "Scrambled Eve",
@@ -369,7 +371,8 @@
   "Moonworks:StarBlastingLight": {
     "NAME": "Star Blasting Light",
     "DESCRIPTION": "Apply !M! to !Moonworks:SecondMagic! moonworks:Blasting_Light to ALL enemies. NL Purge.",
-    "EXTENDED_DESCRIPTION": ["+X moonworks:Blasting_Light.","Fufu... AHAHA!","Until you turn into ashes...","Burn beautifully."]
+    "EXTENDED_DESCRIPTION": ["+X moonworks:Blasting_Light.",
+      "Fufu... AHAHA!","Until you turn into ashes...","Burn beautifully."]
   },
   "Moonworks:StiffCrystal": {
     "NAME": "Stiff Crystal",
@@ -384,6 +387,11 @@
   "Moonworks:SubspaceTunnel": {
     "NAME": "Subspace Tunnel",
     "DESCRIPTION": "Choose a card in any pile. NL Move that card to your hand and put this card where it was. NL The card this swaps with costs 0 this turn."
+  },
+  "Moonworks:SweetBattle": {
+    "NAME": "Sweet Battle",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Shuffle 1 *Saki's *Cookie into your draw pile. NL In Hand: *Saki's *Cookies are twice as effective and moonworks:Auto_Consume when drawn. NL On Play: Discard.",
+    "EXTENDED_DESCRIPTION": ["Your sugar rush has faded."]
   },
   "Moonworks:TacticalRetreat": {
     "NAME": "Tactical Retreat",

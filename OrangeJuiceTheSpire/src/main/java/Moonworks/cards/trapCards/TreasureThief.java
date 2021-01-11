@@ -1,11 +1,13 @@
 package Moonworks.cards.trapCards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.TreasureThiefPower;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -54,7 +56,7 @@ public class TreasureThief extends AbstractTrapCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = STACKS;
         this.exhaust = true; //Maybe?
-
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 0, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.

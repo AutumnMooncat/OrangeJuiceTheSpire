@@ -67,11 +67,7 @@ public class UnluckyCharm extends AbstractGiftCard {
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if(active){
-            AbstractPlayer p = AbstractDungeon.player;
-            this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, -invertedNumber)));
-            this.applyEffect();
-        }
+        applyDebuffs();
     }
 
     //We cant use it IF it has uses. If it has exhausted and then was returned to the hand, you can get rid of it.
@@ -83,9 +79,18 @@ public class UnluckyCharm extends AbstractGiftCard {
     @Override
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
+        applyDebuffs();
+    }
+
+    private void applyDebuffs() {
         if(active) {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, -invertedNumber)));
+            for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
+                if (!aM.isDeadOrEscaped()) {
+                    this.addToBot(new ApplyPowerAction(aM, p, new TemporaryDexterityPower(aM, -invertedNumber), -invertedNumber, true));
+                }
+            }
             this.applyEffect();
         }
     }

@@ -70,10 +70,8 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
 
     @Override
     public void triggerOnExhaust() {
-        if(active) {
-            AbstractPlayer p = AbstractDungeon.player;
-            this.addToBot(new HealAction(p, p, this.heal));
-        }
+        AbstractPlayer p = AbstractDungeon.player;
+        this.addToBot(new HealAction(p, p, HEAL));
         super.triggerOnExhaust();
     }
 

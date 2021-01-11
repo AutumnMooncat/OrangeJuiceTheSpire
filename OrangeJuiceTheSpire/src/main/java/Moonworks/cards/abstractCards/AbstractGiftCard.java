@@ -159,6 +159,10 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
             this.active = false; //Card cant be active when it has no uses
             rawDescription = this.spentDescription;
             initializeDescription(); //Initialize before we move to exhaust
+            this.unhover();
+            this.untip();
+            this.stopGlowing();
+            AbstractDungeon.actionManager.removeFromQueue(this);
             this.addToTop(new WitherExhaustImmediatelyAction(this)); //Hijack this wither code I wrote before, lol
         } else {
             //We dont set active is true here, since it might not be in our hand, and shouldnt be active if it isnt

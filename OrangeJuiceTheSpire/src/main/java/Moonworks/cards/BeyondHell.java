@@ -1,9 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
-import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
-import Moonworks.variables.DefaultSecondMagicNumber;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -38,7 +36,7 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
 
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final CardType TYPE = CardType.POWER;
+    private static final CardType TYPE = CardType.SKILL;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
@@ -58,6 +56,7 @@ public class BeyondHell extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = MULTIPLE;
         this.invertedNumber = this.baseInvertedNumber = DIVISOR;
+        this.exhaust = true;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INVERTEDMOD, NORMA_DIVISOR, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }

@@ -1,16 +1,19 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cards.LongDistanceShot;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -20,6 +23,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class NormaPower extends AbstractPower implements CloneablePowerInterface {
@@ -90,9 +96,9 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         }
     }
     private void applyBrokenEffects() {
-        int hploss = AbstractDungeon.cardRandomRng.random(10, 15);
+        int hpLoss = AbstractDungeon.cardRandomRng.random(10, 15);
         this.addToBot(new VFXAction(owner, new ScreenOnFireEffect(), 1.0F));
-        this.addToBot(new LoseHPAction(owner, owner, hploss - (safeBreak ? 9 : 0)));
+        this.addToBot(new LoseHPAction(owner, owner, hpLoss - (safeBreak ? 9 : 0)));
         this.addToBot(new GainEnergyAction(AbstractDungeon.cardRandomRng.random(1, 3)));
         if (AbstractDungeon.cardRandomRng.random(1, 2) == 1){
             this.addToBot(new ApplyPowerAction(owner, owner, new DoubleDamagePower(owner, 1, false)));
@@ -104,12 +110,55 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             int artifactAmount = 0;
             if (pow != null) {
                 artifactAmount = pow.amount;
-                this.addToTop(new ReducePowerAction(aM, owner, pow, hploss));
+                this.addToTop(new ReducePowerAction(aM, owner, pow, hpLoss));
             }
-            if (hploss > artifactAmount) {
-                this.addToBot(new ApplyPowerAction(aM, owner, new BlastingLightPower(aM, hploss-artifactAmount), hploss-artifactAmount, true));
+            if (hpLoss > artifactAmount) {
+                this.addToBot(new ApplyPowerAction(aM, owner, new BlastingLightPower(aM, hpLoss-artifactAmount), hpLoss-artifactAmount, true));
             }
         }
+    }
+
+    //Play LDS cards, also do this in stack
+    @Override
+    public void onInitialApplication() {
+        super.onInitialApplication();
+        if (amount > 0) {
+            autoPlayLDS();
+        }
+    }
+
+    private void autoPlayLDS() {
+        //Make a map of the cards and where they came from
+        Map<LongDistanceShot, CardGroup> LDSMap = new HashMap<>();
+
+        //Find the ones that are more or less active
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            if (c instanceof LongDistanceShot) {
+                LDSMap.put((LongDistanceShot) c, AbstractDungeon.player.drawPile);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            if (c instanceof LongDistanceShot) {
+                LDSMap.put((LongDistanceShot) c, AbstractDungeon.player.discardPile);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            if (c instanceof LongDistanceShot) {
+                LDSMap.put((LongDistanceShot) c, AbstractDungeon.player.exhaustPile);
+            }
+        }
+
+        //Set them all to AutoPlay and move them to the hand
+        for (LongDistanceShot l : LDSMap.keySet()) {
+            //l.oldAutoPlayState = AutoplayField.autoplay.get(l);
+            //l.normaAutoPlay = true;
+            //AutoplayField.autoplay.set(l, true);
+            AbstractDungeon.player.hand.addToTop(l);
+            LDSMap.get(l).removeCard(l);
+        }
+
+        //Clear the map
+        LDSMap.clear();
     }
 
     @Override
@@ -145,12 +194,17 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             for (int i = 0 ; i < stackAmount ; i++){
                 this.stackPower(1);
             }
+            return;
         }
         if (stackAmount < -1) {
             //If we get a big amount of negative Norma all at the same time, break it down into individual decreases of 1 so our cards can flash properly
             for (int i = 0 ; i < -stackAmount ; i++){
                 this.stackPower(-1);
             }
+            return;
+        }
+        if (stackAmount > 0 && amount < 5) {
+            autoPlayLDS();
         }
         if(!broken) {
             boolean flashCardsGreen = stackAmount > 0 && amount < 5; //If we are already at Norma 5, we don't want to flash the cards when we increase

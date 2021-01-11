@@ -220,5 +220,13 @@
       "auto_consume"
     ],
     "DESCRIPTION": "The card's effect is automatically activated and the card is immediately purged. This does not count as playing the card."
+  },
+  {
+    "PROPER_NAME": "Blast Off!",
+    "NAMES": [
+      "Blast Off!",
+      "blast_off"
+    ],
+    "DESCRIPTION": "Increases by the amount of damage received. At the start of your next turn, the target loses Blastoff and takes damage equal to it's amount"
   }
 ]

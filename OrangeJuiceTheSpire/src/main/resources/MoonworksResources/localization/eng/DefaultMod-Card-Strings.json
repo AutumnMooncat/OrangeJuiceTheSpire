@@ -128,6 +128,11 @@
     "DESCRIPTION": "Apply !M! Regen to ALL targets. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Gain Block equal to the amount of Regen applied."]
   },
+  "Moonworks:Encore": {
+    "NAME": "Encore",
+    "DESCRIPTION": "The last card you play each turn has it's *effect used at the start of your turn.",
+    "EXTENDED_DESCRIPTION": ["Gain Block equal to the amount of Regen applied."]
+  },
   "Moonworks:EvilMastermind": {
     "NAME": "Evil Mastermind",
     "DESCRIPTION": "Trigger the *effect of ALL your *Trap cards on random enemies, excluding other *Evil *Masterminds.",
@@ -261,8 +266,13 @@
   },
   "Moonworks:MeltingMemories": {
     "NAME": "Melting Memories",
-    "DESCRIPTION": "Choose 1 of 3 Magical cards, add it to your hand.",
-    "UPGRADE_DESCRIPTION": "Choose 1 of 3 upgraded Magical cards, add it to your hand."
+    "DESCRIPTION": "Choose 1 of 3 Magical cards, add it to your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose 1 of 3 upgraded Magical cards, add it to your hand. NL Exhaust"
+  },
+  "Moonworks:Mimic": {
+    "NAME": "Mimic",
+    "DESCRIPTION": "Choose a card in your hand. Next turn, draw no cards, but add !M! copies of the selected card instead.",
+    "EXTENDED_DESCRIPTION": ["Add +1 Copy."]
   },
   "Moonworks:MetallicMonocoque": {
     "NAME": "Metallic Monocoque",
@@ -306,6 +316,11 @@
   "Moonworks:PortablePudding": {
     "NAME": "Portable Pudding",
     "DESCRIPTION": "Heal !M! HP at the end of every turn."
+  },
+  "Moonworks:ProtagonistsPrivilege": {
+    "NAME": "Protagonist's Privilege",
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. NL If both cards drawn are the same type, repeat this *effect next turn.",
+    "EXTENDED_DESCRIPTION": ["Heal !Moonworks:SecondMagic! HP if unblocked damage was dealt."]
   },
   "Moonworks:RagingMadness": {
     "NAME": "Raging Madness",
@@ -401,7 +416,7 @@
   "Moonworks:TreasureThief": {
     "NAME": "Treasure Thief",
     "DESCRIPTION": "Once per turn, the next time you damage this target, draw !M! card. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["Once per turn, there is a 50% chance to draw +1 card."]
+    "EXTENDED_DESCRIPTION": ["Once per turn, there is a 50% chance to draw and extra card when you damage the target."]
   },
   "Moonworks:Ubiquitous": {
     "NAME": "Ubiquitous",
@@ -415,6 +430,11 @@
   "Moonworks:UnpaidWork": {
     "NAME": "Unpaid Work",
     "DESCRIPTION": "The next card you play which does not [#FFF6E2]purge and costs more than 0 will [#FFF6E2]refund it's cost. NL Exhaust."
+  },
+  "Moonworks:WarudaMachine": {
+    "NAME": "Waruda Machine",
+    "DESCRIPTION": "Apply 1 moonworks:Blast_Off. If the target dies before moonworks:Blast_Off activates, apply it to a random enemy and double it's effect. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Draw cards until you draw a *Skill card."]
   },
   "Moonworks:Wanted": {
     "NAME": "Wanted",

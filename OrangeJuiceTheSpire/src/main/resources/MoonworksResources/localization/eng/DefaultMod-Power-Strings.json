@@ -96,5 +96,17 @@
         "Moonworks:ShieldCounterPower": {
                 "NAME": "Shield Counter",
                 "DESCRIPTIONS": ["This turn,","For the next #b","turns,"," any attack you fully block is reflected onto the attacker."," NL If you still have Block at the end of the turn, you do not lose a stack of Shield Counter."]
+        },
+        "Moonworks:BlastOffPower": {
+                "NAME": "Blast Off!",
+                "DESCRIPTIONS": ["Next turn, this target takes #b"," damage and this power wears off. If the target dies before this activates, this moves to a random enemy and doubles in amount."]
+        },
+        "Moonworks:Encore": {
+                "NAME": "Encore",
+                "DESCRIPTIONS": ["Repeats the effect of the last card played at the beginning of your turn. NL Currently, will repeat the effect of ", "."]
+        },
+        "Moonworks:ProtagonistsPrivilegePower": {
+                "NAME": "Protagonist's Privilege",
+                "DESCRIPTIONS": ["At the beginning of your turn, deal #b"," damage and draw #b"," cards. If both cards drawn are the same type, repeat this #yeffect again next turn."]
         }
 }

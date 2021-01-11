@@ -2,18 +2,14 @@ package Moonworks.cards.tempCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.NormaDynvarModifier;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BlastingLightPower;
-import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
-import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,9 +19,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -72,7 +65,7 @@ public class StarBlastingLight extends AbstractTempCard {
         super(ID, IMG, COST, TYPE, COLOR, TARGET, NORMA_LEVELS);
         //damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = MIN_HITS;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = MAX_HITS;
+        secondMagicNumber = baseSecondMagicNumber = MAX_HITS;
         //this.setDisplayRarity(CardRarity.RARE);
         this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         //this.bannerColor = BANNER_COLOR_RARE.cpy();
@@ -88,8 +81,8 @@ public class StarBlastingLight extends AbstractTempCard {
         this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 0.0F));
         this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
         logger.info("Magic: "+magicNumber+". Base Magic: "+baseMagicNumber+".");
-        logger.info("Second: "+defaultSecondMagicNumber+". Base Second: "+defaultBaseSecondMagicNumber+".");
-        int hits = AbstractDungeon.cardRandomRng.random(magicNumber, defaultSecondMagicNumber);
+        logger.info("Second: "+ secondMagicNumber +". Base Second: "+ baseSecondMagicNumber +".");
+        int hits = AbstractDungeon.cardRandomRng.random(magicNumber, secondMagicNumber);
         for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
             AbstractPower pow = aM.getPower(ArtifactPower.POWER_ID);
             int artifactAmount = 0;
@@ -110,7 +103,7 @@ public class StarBlastingLight extends AbstractTempCard {
             upgradeName();
             //rawDescription = UPGRADE_DESCRIPTION;
             upgradeMagicNumber(UPGRADE_PLUS_MIN_HITS);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_MAX_HITS);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_MAX_HITS);
             initializeDescription();
         }
     }

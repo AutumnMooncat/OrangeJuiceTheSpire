@@ -38,18 +38,8 @@ public class BlastingLoseHPAction extends AbstractGameAction {
                 if (this.target.currentHealth > 0) {
                     this.target.tint.color = Color.CHARTREUSE.cpy();
                     this.target.tint.changeColor(Color.WHITE.cpy());
-                    this.target.damage(new DamageInfo(this.source, this.amount, DamageInfo.DamageType.THORNS));
-                }
-
-                AbstractPower p = this.target.getPower(BlastingLightPower.POWER_ID);
-                if (p != null) {
-                    ++p.amount;
-                    int i = AbstractDungeon.cardRandomRng.random(1, 10);
-                    if (p.amount > i) {
-                        this.target.powers.remove(p);
-                    } else {
-                        p.updateDescription();
-                    }
+                    this.target.damage(new DamageInfo(this.source, this.amount, DamageInfo.DamageType.HP_LOSS));
+                    this.target.decreaseMaxHealth(this.amount);
                 }
 
                 if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {

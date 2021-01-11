@@ -1,7 +1,6 @@
 package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
-import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
@@ -56,14 +55,14 @@ public class DeployBits extends AbstractNormaAttentiveCard {
     public DeployBits() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = STACKS;
+        this.secondMagicNumber = this.baseSecondMagicNumber = STACKS;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.SECONDMAGICMOD, -3, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int bits = defaultSecondMagicNumber;
+        int bits = secondMagicNumber;
         if (getNormaLevel() >= NORMA_LEVELS[0]) {
             //bits -= 3;
             int dmgSum = 0, dmg;
@@ -109,7 +108,7 @@ public class DeployBits extends AbstractNormaAttentiveCard {
         if (!upgraded) {
             upgradeName();
             //upgradeBlock(UPGRADE_PLUS_BLOCK);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_STACKS);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_STACKS);
             initializeDescription();
         }
     }

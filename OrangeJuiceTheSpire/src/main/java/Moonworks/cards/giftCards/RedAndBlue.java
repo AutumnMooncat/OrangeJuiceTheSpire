@@ -92,6 +92,6 @@ public class RedAndBlue extends AbstractGiftCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new RedAndBlue(defaultSecondMagicNumber, checkedGolden);
+        return new RedAndBlue(secondMagicNumber, checkedGolden);
     }
 }

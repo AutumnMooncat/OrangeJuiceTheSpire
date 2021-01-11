@@ -77,7 +77,7 @@ public class UnluckyCharm extends AbstractGiftCard {
     //We cant use it IF it has uses. If it has exhausted and then was returned to the hand, you can get rid of it.
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return defaultSecondMagicNumber > 0;
+        return secondMagicNumber > 0;
     }
 
     @Override
@@ -103,6 +103,6 @@ public class UnluckyCharm extends AbstractGiftCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new UnluckyCharm(defaultSecondMagicNumber, checkedGolden);
+        return new UnluckyCharm(secondMagicNumber, checkedGolden);
     }
 }

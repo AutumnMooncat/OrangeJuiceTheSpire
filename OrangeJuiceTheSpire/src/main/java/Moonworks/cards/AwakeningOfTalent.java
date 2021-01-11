@@ -53,7 +53,7 @@ public class AwakeningOfTalent extends AbstractNormaAttentiveCard {
         damage = baseDamage = DAMAGE;
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = CARDS;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = ENERGY;
+        secondMagicNumber = baseSecondMagicNumber = ENERGY;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
     @Override
@@ -64,11 +64,11 @@ public class AwakeningOfTalent extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new SunderAction(m, new DamageInfo(p, damage, damageTypeForTurn),defaultSecondMagicNumber));
+        AbstractDungeon.actionManager.addToBottom(new SunderAction(m, new DamageInfo(p, damage, damageTypeForTurn), secondMagicNumber));
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
         AbstractDungeon.actionManager.addToBottom(new DrawCardAction(magicNumber));
         if (getNormaLevel() >= NORMA_LEVELS[0]) {
-           this.addToBot(new GainEnergyAction(defaultSecondMagicNumber));
+           this.addToBot(new GainEnergyAction(secondMagicNumber));
         }
     }
 

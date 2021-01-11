@@ -95,6 +95,6 @@ public class Flamethrower extends AbstractGiftCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new Flamethrower(defaultSecondMagicNumber, checkedGolden);
+        return new Flamethrower(secondMagicNumber, checkedGolden);
     }
 }

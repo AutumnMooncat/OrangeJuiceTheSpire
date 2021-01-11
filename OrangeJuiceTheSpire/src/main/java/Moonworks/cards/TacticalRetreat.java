@@ -1,7 +1,6 @@
 package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
-import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -10,7 +9,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedBluePower;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
@@ -52,7 +50,7 @@ public class TacticalRetreat extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         block = baseBlock = BLOCK;
         magicNumber = baseMagicNumber = NEXT_TURN_BLOCK;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = ENERGY;
+        secondMagicNumber = baseSecondMagicNumber = ENERGY;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.BLOCKMOD, 2, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 2, NORMA_LEVELS[0], null));
     }
@@ -62,7 +60,7 @@ public class TacticalRetreat extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, block));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnBlockPower(p, magicNumber), magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedBluePower(p, defaultSecondMagicNumber)));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedBluePower(p, secondMagicNumber)));
     }
 
     // Upgraded stats.

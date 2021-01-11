@@ -48,7 +48,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     public NicePresent() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = DRAW;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = MAX_COST;
+        this.secondMagicNumber = this.baseSecondMagicNumber = MAX_COST;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
@@ -59,7 +59,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
         //if (AbstractDungeon.cardRandomRng.random(0, 1) == 1) {
             this.baseMagicNumber++;
             this.magicNumber = this.baseMagicNumber;
-            if(this.cost < this.defaultSecondMagicNumber) {
+            if(this.cost < this.secondMagicNumber) {
                 this.addToBot(new ModifyCostThisCombatAction(this, INCREASE_COST));
             }
             initializeDescription();
@@ -81,7 +81,7 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!this.upgraded) {
             this.upgradeName();
-            this.upgradeDefaultSecondMagicNumber(UPGRADE_MAX_COST);
+            this.upgradeSecondMagicNumber(UPGRADE_MAX_COST);
             this.initializeDescription();
         }
     }

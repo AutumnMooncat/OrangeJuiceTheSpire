@@ -43,7 +43,7 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         //damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = SCRY;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = VIGORSTEADY;
+        secondMagicNumber = baseSecondMagicNumber = VIGORSTEADY;
     }
     @Override
     public float getTitleFontSize() {
@@ -57,7 +57,7 @@ public class IntelligenceOfficer extends AbstractDynamicCard {
         //AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
         //AbstractDungeon.actionManager.addToBottom(new DrawCardAction(magicNumber));
         //this.addToBot(new ScryAction(defaultSecondMagicNumber));
-        this.addToBot(new IntelligenceOfficerAction(magicNumber, p, defaultSecondMagicNumber, CARDS));
+        this.addToBot(new IntelligenceOfficerAction(magicNumber, p, secondMagicNumber, CARDS));
     }
 
     // Upgraded stats.

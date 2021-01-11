@@ -46,6 +46,10 @@ public class NormaDynvarModifier extends AbstractCardModifier {
          */
         SECONDMAGICMOD,
         /**
+         * Used to modify the third magic number of a Moonworks:AbstractDefaultCard, just as bad as before
+         */
+        THIRDMAGICMOD,
+        /**
          * Used to modify the inverted magic number of a Moonworks:AbstractDefaultCard, just as bad as before
          */
         INVERTEDMOD,
@@ -152,7 +156,7 @@ public class NormaDynvarModifier extends AbstractCardModifier {
                 case SECONDMAGICMOD:
                     if (card instanceof AbstractDefaultCard) {
                         AbstractDefaultCard c = (AbstractDefaultCard) card;
-                        bonus = allowNegatives || temp >= 0 ? temp : -Math.min(-temp, c.defaultSecondMagicNumber);
+                        bonus = allowNegatives || temp >= 0 ? temp : -Math.min(-temp, c.secondMagicNumber);
                     }
                     break;
                 case INVERTEDMOD:
@@ -181,9 +185,17 @@ public class NormaDynvarModifier extends AbstractCardModifier {
             case SECONDMAGICMOD:
                 if (card instanceof AbstractDefaultCard) {
                     AbstractDefaultCard c = (AbstractDefaultCard) card;
-                    amountToApply = allowNegatives || amount >= 0 ? amount : -Math.min(-amount, c.defaultSecondMagicNumber);
-                    c.defaultSecondMagicNumber += amountToApply;
-                    c.isDefaultSecondMagicNumberModified = c.defaultBaseSecondMagicNumber != c.defaultSecondMagicNumber;
+                    amountToApply = allowNegatives || amount >= 0 ? amount : -Math.min(-amount, c.secondMagicNumber);
+                    c.secondMagicNumber += amountToApply;
+                    c.isSecondMagicNumberModified = c.baseSecondMagicNumber != c.secondMagicNumber;
+                }
+                break;
+            case THIRDMAGICMOD:
+                if (card instanceof AbstractDefaultCard) {
+                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                    amountToApply = allowNegatives || amount >= 0 ? amount : -Math.min(-amount, c.thirdMagicNumber);
+                    c.thirdMagicNumber += amountToApply;
+                    c.isThirdMagicNumberModified = c.baseThirdMagicNumber != c.thirdMagicNumber;
                 }
                 break;
             case INVERTEDMOD:
@@ -215,8 +227,15 @@ public class NormaDynvarModifier extends AbstractCardModifier {
             case SECONDMAGICMOD:
                 if (card instanceof AbstractDefaultCard) {
                     AbstractDefaultCard c = (AbstractDefaultCard) card;
-                    c.defaultSecondMagicNumber -= amountToRemove;
-                    c.isDefaultSecondMagicNumberModified = c.defaultBaseSecondMagicNumber != c.defaultSecondMagicNumber;
+                    c.secondMagicNumber -= amountToRemove;
+                    c.isSecondMagicNumberModified = c.baseSecondMagicNumber != c.secondMagicNumber;
+                }
+                break;
+            case THIRDMAGICMOD:
+                if (card instanceof AbstractDefaultCard) {
+                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                    c.thirdMagicNumber -= amountToRemove;
+                    c.isThirdMagicNumberModified = c.baseThirdMagicNumber != c.thirdMagicNumber;
                 }
                 break;
             case INVERTEDMOD:

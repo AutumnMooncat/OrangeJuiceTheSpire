@@ -89,7 +89,7 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.defaultSecondMagicNumber = 0;
+        this.secondMagicNumber = 0;
         this.exhaust = true;
         this.active = false; //Card cant be active when it has no uses
         this.rawDescription = this.spentDescription;
@@ -101,13 +101,13 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new MiracleRedBeanIceCream(defaultSecondMagicNumber, checkedGolden);
+        return new MiracleRedBeanIceCream(secondMagicNumber, checkedGolden);
     }
 }

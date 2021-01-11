@@ -19,10 +19,10 @@ public class CheckGoldenAction extends AbstractGameAction {
         if (duration == Settings.ACTION_DUR_XFAST) {
             if (!giftCard.ignoreGolden && !giftCard.checkedGolden) {
                 boolean goldenDie = AbstractDungeon.player.hasRelic(GoldenDie.ID);
-                giftCard.defaultSecondMagicNumber += (goldenDie ? AbstractGiftCard.GOLDEN_BUFF : 0);
+                giftCard.secondMagicNumber += (goldenDie ? AbstractGiftCard.GOLDEN_BUFF : 0);
                 //this.defaultBaseSecondMagicNumber += (goldenDie ? GOLDEN_BUFF : 0);
                 if (goldenDie) {
-                    giftCard.isDefaultSecondMagicNumberModified = true;
+                    giftCard.isSecondMagicNumberModified = true;
                 }
                 giftCard.checkedGolden = true;
                 giftCard.initializeDescription();

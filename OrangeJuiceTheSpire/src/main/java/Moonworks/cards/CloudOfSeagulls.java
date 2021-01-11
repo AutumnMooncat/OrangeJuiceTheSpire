@@ -77,7 +77,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
         this.cardsToPreview = new JonathanRush();
         baseDamage = damage = DAMAGE;
         magicNumber = baseMagicNumber = GULLS_ADDED;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = HITS;
+        secondMagicNumber = baseSecondMagicNumber = HITS;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
@@ -177,7 +177,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
             upgradeName();
             cardsToPreview.upgrade();
             //upgradeDamage(UPGRADE_PLUS_DAMAGE);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_HITS);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_HITS);
             if (!enableSelfDamage) {
                 target = CardTarget.ALL_ENEMY;
                 rawDescription = UPGRADE_DESCRIPTION;

@@ -5,7 +5,6 @@ import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.NormaPower;
-import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -51,7 +50,7 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     public BackdoorTrade() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         magicNumber = baseMagicNumber = CARDS;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = NORMA_UP;
+        secondMagicNumber = baseSecondMagicNumber = NORMA_UP;
         this.exhaust = true;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
@@ -61,7 +60,7 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         //this.addToBot(new LoseHPAction(p, p, magicNumber));
         if (getNormaLevel() < NORMA_LEVELS[0]) {
-            this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, defaultSecondMagicNumber),defaultSecondMagicNumber));
+            this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, secondMagicNumber), secondMagicNumber));
         } else {
             this.addToBot(new DrawCardAction(magicNumber));
         }

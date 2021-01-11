@@ -59,7 +59,7 @@ public class MetallicMonocoque extends AbstractDynamicCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = DAMAGE_REDUCE;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = THORNS_REDUCE;
+        this.secondMagicNumber = this.baseSecondMagicNumber = THORNS_REDUCE;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
     }
@@ -80,7 +80,7 @@ public class MetallicMonocoque extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         boolean updateSecondValue = p.hasPower(MetallicMonocoquePower.POWER_ID);
-        this.addToBot(new ApplyPowerAction(p, p, new MetallicMonocoquePower(p, defaultSecondMagicNumber, magicNumber)));
+        this.addToBot(new ApplyPowerAction(p, p, new MetallicMonocoquePower(p, secondMagicNumber, magicNumber)));
         if (updateSecondValue) {
             this.addToBot(new UpdateSecondValueAction(p, p, (TwoAmountPower)p.getPower(MetallicMonocoquePower.POWER_ID), magicNumber));
         }
@@ -92,7 +92,7 @@ public class MetallicMonocoque extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             //rawDescription = UPGRADE_DESCRIPTION;
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_THORNS_REDUCE);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_THORNS_REDUCE);
             upgradeMagicNumber(UPGRADE_PLUS_DAMAGE_REDUCE);
             //upgradeBaseCost(UPGRADE_COST);
             initializeDescription();

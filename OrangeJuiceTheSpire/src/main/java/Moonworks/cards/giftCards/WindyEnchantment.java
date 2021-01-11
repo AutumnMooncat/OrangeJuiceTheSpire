@@ -3,13 +3,10 @@ package Moonworks.cards.giftCards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.TemporaryDexterityPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -80,13 +77,13 @@ public class WindyEnchantment extends AbstractGiftCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new WindyEnchantment(defaultSecondMagicNumber, checkedGolden);
+        return new WindyEnchantment(secondMagicNumber, checkedGolden);
     }
 }

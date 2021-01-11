@@ -53,7 +53,7 @@ public class Blazing extends AbstractDynamicCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = STRENGTH;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = DEXTERITY;
+        this.secondMagicNumber = this.baseSecondMagicNumber = DEXTERITY;
         this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
     }
@@ -61,7 +61,7 @@ public class Blazing extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p ,p , new BlazingPower(p, magicNumber, defaultSecondMagicNumber)));
+        this.addToBot(new ApplyPowerAction(p ,p , new BlazingPower(p, magicNumber, secondMagicNumber)));
     }
 
     //Upgraded stats.
@@ -71,7 +71,7 @@ public class Blazing extends AbstractDynamicCard {
             upgradeName();
             //rawDescription = UPGRADE_DESCRIPTION;
             upgradeMagicNumber(UPGRADE_PLUS_STRENGTH);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_DEXTERITY);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_DEXTERITY);
             initializeDescription();
         }
     }

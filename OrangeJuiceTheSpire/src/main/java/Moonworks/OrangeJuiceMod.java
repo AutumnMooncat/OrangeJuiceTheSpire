@@ -2,13 +2,13 @@ package Moonworks;
 
 import Moonworks.relics.*;
 import Moonworks.variables.DefaultInvertedNumber;
+import Moonworks.variables.ThirdMagicNumber;
 import basemod.*;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
@@ -26,7 +26,7 @@ import Moonworks.potions.OneHundredPercentOrangeJuicePotion;
 import Moonworks.util.IDCheckDontTouchPls;
 import Moonworks.util.TextureLoader;
 import Moonworks.variables.DefaultCustomVariable;
-import Moonworks.variables.DefaultSecondMagicNumber;
+import Moonworks.variables.SecondMagicNumber;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -678,7 +678,8 @@ public class OrangeJuiceMod implements
         logger.info("Add variables");
         // Add the Custom Dynamic variables
         BaseMod.addDynamicVariable(new DefaultCustomVariable());
-        BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
+        BaseMod.addDynamicVariable(new SecondMagicNumber());
+        BaseMod.addDynamicVariable(new ThirdMagicNumber());
         BaseMod.addDynamicVariable(new DefaultInvertedNumber());
         
         logger.info("Adding cards");

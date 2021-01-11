@@ -501,7 +501,14 @@ public class TheStarBreaker extends CustomPlayer {
     @Override
     public void preBattlePrep() {
         super.preBattlePrep();
-        if (AbstractDungeon.getCurrRoom().eliteTrigger) {
+        boolean bossFight = false;
+        for (AbstractMonster mons : AbstractDungeon.getMonsters().monsters) {
+            if (mons.type == AbstractMonster.EnemyType.BOSS) {
+                bossFight = true;
+                break;
+            }
+        }
+        if (AbstractDungeon.getCurrRoom().eliteTrigger || bossFight) {
             RandomChatterHelper.showChatter(RandomChatterHelper.getBossFightText(), preTalkProbability, enablePreBattleTalkEffect);
         } else {
             if (AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth*0.5f) {

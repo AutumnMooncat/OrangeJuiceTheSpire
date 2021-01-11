@@ -36,9 +36,6 @@ public class Accelerator extends AbstractNormaAttentiveCard {
     public static final String ID = OrangeJuiceMod.makeID(Accelerator.class.getSimpleName());
     public static final String IMG = makeCardPath("Accelerator.png");
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String[] EXTRA_DESCRIPTIONS = cardStrings.EXTENDED_DESCRIPTION;
-
     private static ArrayList<TooltipInfo> ExceptionsTooltip;
     // /TEXT DECLARATION/
 
@@ -75,7 +72,7 @@ public class Accelerator extends AbstractNormaAttentiveCard {
         if (ExceptionsTooltip == null)
         {
             ExceptionsTooltip = new ArrayList<>();
-            ExceptionsTooltip.add(new TooltipInfo(EXTRA_DESCRIPTIONS[0], EXTRA_DESCRIPTIONS[1]));
+            ExceptionsTooltip.add(new TooltipInfo(EXTENDED_DESCRIPTION[0], EXTENDED_DESCRIPTION[1]));
         }
         List<TooltipInfo> compoundList = new ArrayList<>(ExceptionsTooltip);
         if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());

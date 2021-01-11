@@ -4,7 +4,6 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ExtendedPhotonRifleAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.FreeCardPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -57,7 +56,7 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         damage = baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = HITS;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = STRENGTH_MULTI;
+        secondMagicNumber = baseSecondMagicNumber = STRENGTH_MULTI;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
 
     }
@@ -78,7 +77,7 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         //AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
         //int vigorAmount = 0;
         if (strength != null) {
-            strength.amount *= this.defaultSecondMagicNumber;
+            strength.amount *= this.secondMagicNumber;
         }
         /*if (vigor != null) {
             vigorAmount = vigor.amount;
@@ -88,7 +87,7 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         super.applyPowers();
 
         if (strength != null) {
-            strength.amount /= this.defaultSecondMagicNumber;
+            strength.amount /= this.secondMagicNumber;
         }
         /*if (vigor != null) {
             vigor.amount = vigorAmount;
@@ -101,7 +100,7 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
         int vigorAmount = 0;
         if (strength != null) {
-            strength.amount *= this.defaultSecondMagicNumber;
+            strength.amount *= this.secondMagicNumber;
         }
         if (vigor != null) {
             vigorAmount = vigor.amount;
@@ -111,7 +110,7 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         super.calculateCardDamage(m);
 
         if (strength != null) {
-            strength.amount /= this.defaultSecondMagicNumber;
+            strength.amount /= this.secondMagicNumber;
         }
         if (vigor != null) {
             vigor.amount = vigorAmount;
@@ -124,7 +123,7 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             //upgradeMagicNumber(UPGRADE_PLUS_HITS);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_STRENGTH_MULTI);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_STRENGTH_MULTI);
             //rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }

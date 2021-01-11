@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -58,7 +57,7 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         invertedNumber = baseInvertedNumber = HPLOSS;
         magicNumber = baseMagicNumber = VIGOR;
-        defaultSecondMagicNumber = defaultBaseSecondMagicNumber = STR;
+        secondMagicNumber = baseSecondMagicNumber = STR;
         this.exhaust = true;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.SECONDMAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
@@ -68,22 +67,22 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new LoseHPAction(p, p, invertedNumber));
         this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber), magicNumber));
-        this.addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, defaultSecondMagicNumber), defaultSecondMagicNumber));
+        this.addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, secondMagicNumber), secondMagicNumber));
     }
 
     @Override
     public void applyPowers() {
         super.applyPowers();
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber;
-        this.isDefaultSecondMagicNumberModified = false;
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.isSecondMagicNumberModified = false;
         initializeDescription();
     }
 
     @Override
     public void calculateCardDamage(AbstractMonster m) {
         super.calculateCardDamage(m);
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber + getNormaLevel();
-        this.isDefaultSecondMagicNumberModified = getNormaLevel() != 0;
+        this.secondMagicNumber = this.baseSecondMagicNumber + getNormaLevel();
+        this.isSecondMagicNumberModified = getNormaLevel() != 0;
         initializeDescription();
     }
 
@@ -102,7 +101,7 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
             this.upgradeName();
             this.upgradeMagicNumber(UPGRADE_PLUS_VIGOR);
             this.upgradeInvertedNumber(UPGRADE_PLUS_HPLOSS);
-            this.upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_STR);
+            this.upgradeSecondMagicNumber(UPGRADE_PLUS_STR);
             this.initializeDescription();
         }
     }

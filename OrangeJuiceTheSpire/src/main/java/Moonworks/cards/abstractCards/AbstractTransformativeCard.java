@@ -132,10 +132,10 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
     }
 
     public void reinitializeExtras(AbstractDefaultCard defaultCard) {
-        this.defaultSecondMagicNumber = defaultCard.defaultSecondMagicNumber;
-        this.defaultBaseSecondMagicNumber = defaultCard.defaultBaseSecondMagicNumber;
-        this.upgradedDefaultSecondMagicNumber = defaultCard.upgradedDefaultSecondMagicNumber;
-        this.isDefaultSecondMagicNumberModified = defaultCard.isDefaultSecondMagicNumberModified;
+        this.secondMagicNumber = defaultCard.secondMagicNumber;
+        this.baseSecondMagicNumber = defaultCard.baseSecondMagicNumber;
+        this.upgradedSecondMagicNumber = defaultCard.upgradedSecondMagicNumber;
+        this.isSecondMagicNumberModified = defaultCard.isSecondMagicNumberModified;
     }
 
     public void refreshStats(AbstractCard card) {

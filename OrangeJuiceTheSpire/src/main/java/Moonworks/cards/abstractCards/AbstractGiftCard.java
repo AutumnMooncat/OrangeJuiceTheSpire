@@ -1,10 +1,8 @@
 package Moonworks.cards.abstractCards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.actions.CheckGoldenAction;
 import Moonworks.actions.RecoverExhaustedGiftAction;
 import Moonworks.actions.WitherExhaustImmediatelyAction;
-import Moonworks.powers.NormaPower;
 import Moonworks.relics.GoldenDie;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
@@ -14,7 +12,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -75,10 +72,10 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         } else {
             rawDescription = DESCRIPTION;
         }
-        this.defaultSecondMagicNumber = currentUses;
-        this.defaultBaseSecondMagicNumber = uses;
+        this.secondMagicNumber = currentUses;
+        this.baseSecondMagicNumber = uses;
         if (uses != currentUses) {
-            this.isDefaultSecondMagicNumberModified = true;
+            this.isSecondMagicNumberModified = true;
         }
         this.checkedGolden = checkedGolden;
         this.ignoreGolden = ignoreGolden;
@@ -117,7 +114,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     @Override
     public void triggerWhenDrawn() {
         checkGolden(); //This will be the main way we check for the buff
-        this.active = defaultSecondMagicNumber >= 1; //In case we've pulled from exhaust, only set active with uses
+        this.active = secondMagicNumber >= 1; //In case we've pulled from exhaust, only set active with uses
         initializeDescription();
         super.triggerWhenDrawn();
     }
@@ -139,7 +136,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     @Override
     public void onRetained() {
         checkGolden(); //This will happen if the card is generated or transformed, and then not played to discard it
-        this.active = defaultSecondMagicNumber >= 1; //If we retained it, make sure it still has uses. This can happen if a card force retains an empty gift
+        this.active = secondMagicNumber >= 1; //If we retained it, make sure it still has uses. This can happen if a card force retains an empty gift
         super.onRetained();
     }
 
@@ -150,11 +147,11 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     }
 
     public void modifyUses(int uses) {
-        this.defaultSecondMagicNumber += uses;
-        if (defaultSecondMagicNumber != defaultBaseSecondMagicNumber) {
-            this.isDefaultSecondMagicNumberModified = true;
+        this.secondMagicNumber += uses;
+        if (secondMagicNumber != baseSecondMagicNumber) {
+            this.isSecondMagicNumberModified = true;
         }
-        this.hasUses = defaultSecondMagicNumber > 0;
+        this.hasUses = secondMagicNumber > 0;
         this.selfRetain = hasUses; //Retain while we have uses
         this.exhaust = !hasUses; //Exhaust and Ethereal if we dont. This is for if we pull it back from the exhaust pile with no uses
         this.isEthereal = !hasUses;
@@ -173,11 +170,11 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     public void checkGolden() {
         if (!ignoreGolden && !checkedGolden) {
             boolean goldenDie = AbstractDungeon.player.hasRelic(GoldenDie.ID);
-            this.defaultSecondMagicNumber *= (goldenDie ? GOLDEN_BUFF : 1);
+            this.secondMagicNumber *= (goldenDie ? GOLDEN_BUFF : 1);
             //this.defaultBaseSecondMagicNumber += (goldenDie ? GOLDEN_BUFF : 0);
             if (goldenDie) {
                 AbstractDungeon.player.getRelic(GoldenDie.ID).flash();
-                this.isDefaultSecondMagicNumberModified = true;
+                this.isSecondMagicNumberModified = true;
             }
             checkedGolden = true;
             initializeDescription();
@@ -241,7 +238,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     }
 
     public static void refreshGiftUses(AbstractGiftCard gift) {
-        gift.defaultSecondMagicNumber = gift.defaultBaseSecondMagicNumber;
+        gift.secondMagicNumber = gift.baseSecondMagicNumber;
         gift.checkedGolden = false; // Since we reset to base values, we want to check golden again
         restoreGiftUses(gift, 0); //Just do a 0 call here since we dont both checking for non 0 anywhere, this ensures we stay at max capacity
     }

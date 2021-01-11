@@ -46,7 +46,7 @@ public class SinkOrSwim extends AbstractDynamicCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = ENERGY;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = DEBUFFS;
+        this.secondMagicNumber = this.baseSecondMagicNumber = DEBUFFS;
         //this.exhaust = true; //Maybe?
 
     }
@@ -54,7 +54,7 @@ public class SinkOrSwim extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new SinkOrSwimPower(p, this.magicNumber, this.defaultSecondMagicNumber)));
+        this.addToBot(new ApplyPowerAction(p, p, new SinkOrSwimPower(p, this.magicNumber, this.secondMagicNumber)));
         //this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, defaultSecondMagicNumber, false)));
         //this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, defaultSecondMagicNumber, false)));
         //this.addToBot(new ApplyPowerAction(p, p, new FrailPower(p, defaultSecondMagicNumber, false)));

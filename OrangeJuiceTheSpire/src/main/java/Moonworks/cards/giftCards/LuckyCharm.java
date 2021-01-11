@@ -88,13 +88,13 @@ public class LuckyCharm extends AbstractGiftCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new LuckyCharm(defaultSecondMagicNumber, checkedGolden);
+        return new LuckyCharm(secondMagicNumber, checkedGolden);
     }
 }

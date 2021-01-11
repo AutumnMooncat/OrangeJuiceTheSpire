@@ -1,7 +1,6 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.actions.RecoverExhaustedGiftAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
@@ -50,7 +49,7 @@ public class MixPhenomenon extends AbstractDynamicCard {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = RESTORE;
-        this.defaultSecondMagicNumber = this.defaultBaseSecondMagicNumber = DRAW;
+        this.secondMagicNumber = this.baseSecondMagicNumber = DRAW;
         this.exhaust = true;
 
     }
@@ -64,7 +63,7 @@ public class MixPhenomenon extends AbstractDynamicCard {
             AbstractGiftCard.recoverRandomExhaustedGift(magicNumber);
         }
 
-        this.addToBot(new DrawCardAction(defaultSecondMagicNumber));
+        this.addToBot(new DrawCardAction(secondMagicNumber));
         //this.addToBot(new DiscardPileToTopOfDeckAction());
         //this.addToBot(new ExhumeAction());
     }

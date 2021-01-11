@@ -102,13 +102,13 @@ public class Bloodlust extends AbstractGiftCard {
         if (!upgraded) {
             upgradeName();
             //upgradeMagicNumber(UPGRADE_PLUS_HEAL);
-            upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new Bloodlust(defaultSecondMagicNumber, checkedGolden);
+        return new Bloodlust(secondMagicNumber, checkedGolden);
     }
 }

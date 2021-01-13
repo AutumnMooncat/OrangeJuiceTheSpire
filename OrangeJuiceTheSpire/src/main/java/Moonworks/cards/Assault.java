@@ -52,12 +52,12 @@ public class Assault extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int removedBlock = m.currentBlock;
-        //this.addToBot(new RemoveAllBlockAction(m, p));
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+        this.addToBot(new RemoveAllBlockAction(m, p));
+        /*AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             public void update() {
                 m.currentBlock = 0;
                 this.isDone = true;
-            }});
+            }});*/
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             public void update() {

@@ -66,11 +66,21 @@ public class Ambush extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //damageTypeForTurn = getNormaLevel() >= NORMA_LEVELS[0] ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
+        boolean normaCheck = getNormaLevel() >= NORMA_LEVELS[0];
         int removedBlock = m.currentBlock;
-        this.addToBot(new RemoveAllBlockAction(m, p));
+        if (normaCheck) {
+            this.addToBot(new RemoveAllBlockAction(m, p));
+        }
         this.addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false)));
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-        this.addToBot(new GainBlockAction(m, removedBlock, true));
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT,true));
+        if (normaCheck) {
+            //this.addToBot(new GainBlockAction(m, removedBlock, true));
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                public void update() {
+                    m.currentBlock = removedBlock;
+                    this.isDone = true;
+                }});
+        }
         //Removed Action in favor of performing a check in calculate card damage
         //this.addToBot(new AmbushAction(m, p, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
     }

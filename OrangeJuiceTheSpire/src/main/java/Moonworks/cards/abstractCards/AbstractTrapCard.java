@@ -25,7 +25,7 @@ public abstract class AbstractTrapCard extends AbstractNormaAttentiveCard {
     @Override
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add(BaseMod.getKeywordTitle("moonworks:Trap"));
+        tags.add(BaseMod.getKeywordTitle("moonworks:trap"));
         tags.addAll(super.getCardDescriptors());
         return tags;
     }
@@ -35,7 +35,7 @@ public abstract class AbstractTrapCard extends AbstractNormaAttentiveCard {
         if (TrapTooltip == null)
         {
             TrapTooltip = new ArrayList<>();
-            TrapTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Trap"), BaseMod.getKeywordDescription("moonworks:Trap")));
+            TrapTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:trap"), BaseMod.getKeywordDescription("moonworks:trap")));
         }
         List<TooltipInfo> compoundList = new ArrayList<>(TrapTooltip);
         if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());

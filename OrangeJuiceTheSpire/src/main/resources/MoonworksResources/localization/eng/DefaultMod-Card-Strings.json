@@ -130,7 +130,7 @@
   },
   "Moonworks:Encore": {
     "NAME": "Encore",
-    "DESCRIPTION": "The last card you play each turn has it's *effect used at the start of your turn.",
+    "DESCRIPTION": "The last card you play each turn has it's *effect repeated at the start of your turn.",
     "EXTENDED_DESCRIPTION": ["Gain Block equal to the amount of Regen applied."]
   },
   "Moonworks:EvilMastermind": {
@@ -350,7 +350,7 @@
   },
   "Moonworks:SakisCookie": {
     "NAME": "Saki's Cookie",
-    "DESCRIPTION": "Trigger 1 of 3 effects: NL Heal !M! HP. NL Gain !Moonworks:ThirdMagic! Vigor. NL Gain !Moonworks:ThirdMagic! moonworks:Steady.",
+    "DESCRIPTION": "Trigger 1 of 3 effects: NL Heal !M! HP. NL Gain !Moonworks:ThirdMagic! Vigor. NL Gain !Moonworks:ThirdMagic! moonworks:Steady. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Effect will be *Optimized","Cookie Optimization","Healing will always be chosen if it needed. NL Steady will be chosen over Vigor if there is enemy intending to attack and a block card is in your hand."]
   },
   "Moonworks:ScrambledEve": {

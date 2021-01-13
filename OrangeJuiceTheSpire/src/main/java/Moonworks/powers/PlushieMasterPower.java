@@ -71,7 +71,7 @@ public class PlushieMasterPower extends AbstractTrapPower implements CloneablePo
         if(!this.owner.isDead && this.amount > 0) {
             if (damageAmount < this.damage) {
                 damageAmount = this.damage;
-                info.type = DamageInfo.DamageType.HP_LOSS;
+                //info.type = DamageInfo.DamageType.HP_LOSS;
             } else {
                 this.addToBot(new AddTemporaryHPAction(source, source, this.heal));
             }

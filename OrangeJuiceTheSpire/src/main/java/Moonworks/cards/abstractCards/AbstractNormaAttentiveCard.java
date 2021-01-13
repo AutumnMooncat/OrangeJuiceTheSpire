@@ -65,7 +65,7 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
         if (normaLevels.size() > 0) {
-            tags.add(BaseMod.getKeywordTitle("moonworks:Norma"));
+            tags.add(BaseMod.getKeywordTitle("moonworks:norma"));
         }
         return tags;
     }
@@ -75,7 +75,7 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
         if (NormaTooltip == null)
         {
             NormaTooltip = new ArrayList<>();
-            NormaTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Norma"), BaseMod.getKeywordDescription("moonworks:Norma")));
+            NormaTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:norma"), BaseMod.getKeywordDescription("moonworks:norma")));
         }
         return normaLevels.size() > 0 ? NormaTooltip : null;
     }

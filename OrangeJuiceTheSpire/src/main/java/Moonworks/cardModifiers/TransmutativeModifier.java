@@ -3,6 +3,7 @@ package Moonworks.cardModifiers;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.TransmutativeAction;
 import Moonworks.powers.NormaPower;
+import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
@@ -45,7 +46,7 @@ public class TransmutativeModifier extends AbstractCardModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return "moonworks:Transformative. NL " + rawDescription;
+        return BaseMod.getKeywordTitle("moonworks:transformative") + " NL " + rawDescription;
     }
 
     @Override

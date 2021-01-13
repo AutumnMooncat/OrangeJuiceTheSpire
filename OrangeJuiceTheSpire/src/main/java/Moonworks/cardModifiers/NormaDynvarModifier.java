@@ -263,7 +263,7 @@ public class NormaDynvarModifier extends AbstractCardModifier {
             boolean passedCheck = getNormaLevel() >= (normaX ? 1 : normaCheck);
             sb.append(" NL ");
             sb.append(passedCheck ? upgradeGreen : "*");
-            sb.append(BaseMod.getKeywordTitle("moonworks:Norma")).append(" ");
+            sb.append(BaseMod.getKeywordTitle("moonworks:norma")).append(" ");
             sb.append(passedCheck ? upgradeGreen : "*");
             sb.append(normaX ? "X" : normaCheck);
             sb.append(": ");

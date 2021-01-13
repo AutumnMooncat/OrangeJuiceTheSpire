@@ -21,9 +21,8 @@
                         " 点生命, 然后提高 #y烧毁星球之光 层数 #b1. 层数越高, 燃尽的可能性越高."]
         },
         "Moonworks:InvisibleBombPower": {
-                "NAME": "不可视炸弹",
-                "DESCRIPTIONS": ["#b每个 炸弹造成 #b",
-                        " #b引爆 在 #b每当 你抽到 #y星球的导火线 时."]
+                "NAME": "不可视的炸弹",
+                "DESCRIPTIONS": ["#b引爆 在 #b每当 你抽到 #y星球的导火线 时.."]
         },
         "Moonworks:TreasureThiefPower": {
                 "NAME": "宝物小偷",
@@ -95,7 +94,7 @@
         },
         "Moonworks:ShieldCounterPower": {
                 "NAME": "护盾反转",
-                "DESCRIPTIONS": ["本回合,","在下 #b","个回合,"," 任何被完全格挡的伤害会反射给敌人."," NL 如果回合结束时还有格挡并且拥有残影, 将不会失去护盾反转."]
+                "DESCRIPTIONS": ["本回合,","在下 #b","个回合,"," 任何被完全格挡的伤害会反射给敌人."," NL 如果回合结束时还有格挡并且拥有承转, 将不会失去护盾反转."]
         },
         "Moonworks:BlastOffPower": {
                 "NAME": "出动!",
@@ -103,7 +102,7 @@
         },
         "Moonworks:Encore": {
                 "NAME": "安可",
-                "DESCRIPTIONS": ["在你的回合开始时重复你打出的最后一张卡效果. NL 当前, 将会重复这张牌的效果 ", "."]
+                "DESCRIPTIONS": ["在你的回合开始时重复你打出的最后一张卡效果."," NL 当前, 将会重复这张牌的效果 ", "."]
         },
         "Moonworks:ProtagonistsPrivilegePower": {
                 "NAME": "主角的特权",

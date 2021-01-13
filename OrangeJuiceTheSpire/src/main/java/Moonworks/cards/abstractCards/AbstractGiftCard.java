@@ -94,7 +94,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
 
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add(BaseMod.getKeywordTitle("moonworks:Gift"));
+        tags.add(BaseMod.getKeywordTitle("moonworks:gift"));
         tags.addAll(super.getCardDescriptors());
         return tags;
     }
@@ -104,7 +104,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         if (GiftTooltip == null)
         {
             GiftTooltip = new ArrayList<>();
-            GiftTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Gift"), BaseMod.getKeywordDescription("moonworks:Gift")));
+            GiftTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:gift"), BaseMod.getKeywordDescription("moonworks:gift")));
         }
         List<TooltipInfo> compoundList = new ArrayList<>(GiftTooltip);
         if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());

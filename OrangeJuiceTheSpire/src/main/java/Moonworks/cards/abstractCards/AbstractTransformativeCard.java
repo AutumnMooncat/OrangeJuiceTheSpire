@@ -44,7 +44,7 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
 
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add(BaseMod.getKeywordTitle("moonworks:Transformative"));
+        tags.add(BaseMod.getKeywordTitle("moonworks:transformative"));
         tags.addAll(super.getCardDescriptors());
         return tags;
     }
@@ -54,7 +54,7 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
         if (CustomTooltip == null)
         {
             CustomTooltip = new ArrayList<>();
-            CustomTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Transformative"), BaseMod.getKeywordDescription("moonworks:Transformative")));
+            CustomTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:transformative"), BaseMod.getKeywordDescription("moonworks:transformative")));
         }
         List<TooltipInfo> compoundList = new ArrayList<>(CustomTooltip);
         if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());

@@ -29,13 +29,13 @@ public class CorruptedModifier extends AbstractCardModifier {
         VOIDING {
             @Override
             public String toString() {
-                return "moonworks:Voiding";
+                return "moonworks:voiding";
             }
         }, //Lower energy when drawn
         REDUCE {
             @Override
             public String toString() {
-                return "moonworks:Reduced";
+                return "moonworks:reduced";
             }
         }, //Lower base values by 1
         SNECKO {
@@ -53,7 +53,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         DEGRADE {
             @Override
             public String toString() {
-                return "moonworks:Degraded";
+                return "moonworks:degraded";
             }
         }, //Damage Block and Magic number all go down, Done
         EXHAUST {
@@ -71,7 +71,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         FRAGILE {
             @Override
             public String toString() {
-                return "moonworks:Fragile";
+                return "moonworks:fragile";
             }
         }, //Card is now exhaust and ethereal
         CORRUPTDESC {
@@ -95,7 +95,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         WITHER {
             @Override
             public String toString() {
-                return "moonworks:Withering";
+                return "moonworks:withering";
             }
         }
     }

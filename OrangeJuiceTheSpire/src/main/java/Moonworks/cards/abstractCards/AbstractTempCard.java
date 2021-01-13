@@ -27,7 +27,7 @@ public abstract class AbstractTempCard extends AbstractNormaAttentiveCard {
 
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();
-        tags.add(BaseMod.getKeywordTitle("moonworks:Special"));
+        tags.add(BaseMod.getKeywordTitle("moonworks:special"));
         tags.addAll(super.getCardDescriptors());
         return tags;
     }
@@ -37,7 +37,7 @@ public abstract class AbstractTempCard extends AbstractNormaAttentiveCard {
         if (SpecialTooltip == null)
         {
             SpecialTooltip = new ArrayList<>();
-            SpecialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:Special"), BaseMod.getKeywordDescription("moonworks:Special")));
+            SpecialTooltip.add(new TooltipInfo(BaseMod.getKeywordTitle("moonworks:special"), BaseMod.getKeywordDescription("moonworks:special")));
         }
         List<TooltipInfo> compoundList = new ArrayList<>(SpecialTooltip);
         if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());

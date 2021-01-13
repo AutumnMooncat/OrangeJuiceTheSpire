@@ -236,7 +236,7 @@
   "Moonworks:LeapThroughTime": {
     "NAME": "时间的跳跃",
     "DESCRIPTION": "回溯你的时间线到 moonworks:时间锚 被创建的时刻. NL 在你的回合开始时, moonworks:偏差 增加 !M! 点直到这张牌被打出.",
-    "EXTENDED_DESCRIPTION": [":无论我在哪里终结, 我都知道该怎么做", "时间跳跃!", "你要带我去哪儿?"]
+    "EXTENDED_DESCRIPTION": ["无论我在哪里终结, 我都知道该怎么做", "时间跳跃!", "你要带我去哪儿?"]
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "远距离射击",
@@ -295,8 +295,8 @@
   },
   "Moonworks:MixPhenomenon": {
     "NAME": "混成化现象",
-    "DESCRIPTION": "将 !M! 张牌从 消耗 堆洗入抽牌堆. NL 抽 !Moonworks:SecondMagic! 张牌. NL 消耗 .",
-    "UPGRADE_DESCRIPTION": "将 !M! 张牌从 消耗 堆洗入抽牌堆. NL 抽 !Moonworks:SecondMagic! 张牌. NL 消耗 ."
+    "DESCRIPTION": "补满 !M! 张随机礼物卡的 moonworks:礼物卡余额 并将其洗入抽牌堆. NL 抽 !Moonworks:SecondMagic! 张牌. NL 消耗.",
+    "UPGRADE_DESCRIPTION": "补满 !M! 张礼物卡的 moonworks:礼物卡余额 并将其洗入抽牌堆. NL 抽 !Moonworks:SecondMagic! 张牌. NL 消耗."
   },
   "Moonworks:NicePresent": {
     "NAME": "美妙的礼物",
@@ -375,7 +375,7 @@
   "Moonworks:ShieldCounter": {
     "NAME": "护盾反转",
     "DESCRIPTION": "获得 !B! 点 格挡 . NL 获得1层 moonworks:护盾反转 . NL 消耗.",
-    "EXTENDED_DESCRIPTION": [" moonworks:护盾反转 拥有 *残影."]
+    "EXTENDED_DESCRIPTION": [" moonworks:护盾反转 拥有 *承转."]
   },
   "Moonworks:SinkOrSwim": {
     "NAME": "赌命一搏",

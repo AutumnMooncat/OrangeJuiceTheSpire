@@ -87,7 +87,7 @@
   {
     "NAMES": [
       "Special",
-      "Special"
+      "special"
     ],
     "DESCRIPTION": "这张卡不能从普通卡牌掉落中得到."
   },
@@ -150,7 +150,7 @@
       "Reduced",
       "reduced"
     ],
-    "DESCRIPTION": "This card's base values are lowered by 1."
+    "DESCRIPTION": "这张牌的基础数值减少 1."
   },
   {
     "NAMES": [
@@ -180,7 +180,7 @@
       "护盾反转",
       "护盾反转"
     ],
-    "DESCRIPTION": "任何被完全格挡的伤害会反射给敌人. NL 如果回合结束时还有 #b格挡 剩余并且拥有 #y残影 , 将不会失去 #y护盾反转 ."
+    "DESCRIPTION": "任何被完全格挡的伤害会反射给敌人. NL 如果回合结束时还有 #b格挡 剩余并且拥有 #y承转 (这个状态不会显示在状态栏中.译者注) , 将不会失去 #y护盾反转 ."
   },
   {
     "NAMES": [

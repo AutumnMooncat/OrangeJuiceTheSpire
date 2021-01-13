@@ -711,13 +711,13 @@ public class OrangeJuiceMod implements
 
     // ================ LOAD THE LOCALIZATION ===================
 
-    private String loadLocalizationIfAvailable() {
-        if (!Gdx.files.internal(getModID() + "Resources/localization/" + Settings.language.toString().toLowerCase()).exists()) {
-            logger.info("Language not not currently supported: " + Settings.language.toString().toLowerCase() + ".");
-            return "eng";
+    private String loadLocalizationIfAvailable(String fileName) {
+        if (!Gdx.files.internal(getModID() + "Resources/localization/" + Settings.language.toString().toLowerCase()+ "/" + fileName).exists()) {
+            logger.info("Language: " + Settings.language.toString().toLowerCase() + ", not currently supported for" +fileName+".");
+            return "eng" + "/" + fileName;
         } else {
-            logger.info("Loaded Language: "+ Settings.language.toString().toLowerCase() + ".");
-            return Settings.language.toString().toLowerCase();
+            logger.info("Loaded Language: "+ Settings.language.toString().toLowerCase() + ", for "+fileName+".");
+            return Settings.language.toString().toLowerCase() + "/" + fileName;
         }
     }
 
@@ -731,35 +731,35 @@ public class OrangeJuiceMod implements
         
         // CardStrings
         BaseMod.loadCustomStringsFile(CardStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Card-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Card-Strings.json"));
         
         // PowerStrings
         BaseMod.loadCustomStringsFile(PowerStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Power-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Power-Strings.json"));
         
         // RelicStrings
         BaseMod.loadCustomStringsFile(RelicStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Relic-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Relic-Strings.json"));
         
         // Event Strings
         BaseMod.loadCustomStringsFile(EventStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Event-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Event-Strings.json"));
         
         // PotionStrings
         BaseMod.loadCustomStringsFile(PotionStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Potion-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Potion-Strings.json"));
         
         // CharacterStrings
         BaseMod.loadCustomStringsFile(CharacterStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Character-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Character-Strings.json"));
         
         // OrbStrings
         BaseMod.loadCustomStringsFile(OrbStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Orb-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Orb-Strings.json"));
 
         // UIStrings
         BaseMod.loadCustomStringsFile(UIStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-UI-Strings.json");
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-UI-Strings.json"));
         
         logger.info("Done editing strings");
     }
@@ -779,7 +779,7 @@ public class OrangeJuiceMod implements
         // In Keyword-Strings.json you would have PROPER_NAME as A Long Keyword and the first element in NAMES be a long keyword, and the second element be a_long_keyword
         
         Gson gson = new Gson();
-        String json = Gdx.files.internal(getModID()+"Resources/localization/"+loadLocalizationIfAvailable()+"/DefaultMod-Keyword-Strings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        String json = Gdx.files.internal(getModID()+"Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Keyword-Strings.json")).readString(String.valueOf(StandardCharsets.UTF_8));
         com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
         
         if (keywords != null) {

@@ -1,12 +1,10 @@
-package Moonworks.cards;
+package Moonworks.cards.cutCards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.actions.AnotherUltimateWeaponAction;
-import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.EncorePower;
-import basemod.helpers.CardModifierManager;
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,6 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
+@AutoAdd.Ignore
 public class Encore extends AbstractNormaAttentiveCard {
 
     /*

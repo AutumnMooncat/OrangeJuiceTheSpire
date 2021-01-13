@@ -5,6 +5,7 @@ import Moonworks.actions.ModifyCostThisCombatAction;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -55,15 +56,22 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        //Draw cards
         this.addToBot(new DrawCardAction(p, this.magicNumber));
-        //if (AbstractDungeon.cardRandomRng.random(0, 1) == 1) {
+
+        //If it is reasonable to increase draw power any more, do it
+        if ((baseMagicNumber + 1) < BaseMod.MAX_HAND_SIZE) {
             this.baseMagicNumber++;
             this.magicNumber = this.baseMagicNumber;
-            if(this.cost < this.secondMagicNumber) {
-                this.addToBot(new ModifyCostThisCombatAction(this, INCREASE_COST));
-            }
-            initializeDescription();
-        //}
+        }
+
+        //If we have not yet hit the cost cap, increase it
+        if(this.cost < this.secondMagicNumber) {
+            this.addToBot(new ModifyCostThisCombatAction(this, INCREASE_COST));
+        }
+
+        initializeDescription();
+
     }
 
     @Override

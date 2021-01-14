@@ -1,0 +1,232 @@
+﻿[
+  {
+    "NAMES": [
+      "keyword",
+      "keywords"
+    ],
+    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+  },
+  {
+    "PROPER_NAME": "Multiword Keyword",
+    "NAMES": [
+      "Multiword Keyword",
+      "multiword_keyword",
+      "multiword_keywords",
+      "multikey",
+      "multikeyword"
+    ],
+    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  },
+  {
+  "NAMES": [
+    "기프트",
+    "gift"
+  ],
+  "DESCRIPTION": "이 카드의 주요 효과는 손에 들고 있는 동안 발동합니다. 조건을 충족시키면 추가적인 효과를 발동시킬 수 도 있습니다. ."
+  },
+  {
+    "PROPER_NAME": "불태우는 빛",
+    "NAMES": [
+      "불태우는빛",
+      "blasting_light",
+      "blast"
+    ],
+    "DESCRIPTION": "불태워진 적들은 자신의 턴이 시작할 때 그 만큼 체력과 최대 체력을 잃습니다. 이는 턴이 지날 때 마다 심해지나 중첩이 높을 수록 사라져버릴 확률도 증가합니다."
+  },
+  {
+    "NAMES": [
+      "트랩",
+      "trap"
+    ],
+    "DESCRIPTION": "이 카드의 효과는 #y인공물 을 무시합니다."
+  },
+  {
+    "PROPER_NAME": "보이지않는 폭탄",
+    "NAMES": [
+      "보이지않는폭탄",
+      "invisible_bomb",
+      "invisible_bombs"
+    ],
+    "DESCRIPTION": "#y별의 #y도화선 을 뽑을 때 마다 대상이 체력을 잃습니다."
+  },
+  {
+    "NAMES": [
+      "초기화",
+      "reset"
+    ],
+    "DESCRIPTION": "사용 시 이 카드의 조건부 효과를 초기화합니다."
+  },
+  {
+    "NAMES": [
+      "노르마",
+      "norma"
+    ],
+    "DESCRIPTION": "특정 노르마 레벨마다 일부 카드가 추가적인 효과를 얻습니다."
+  },
+  {
+    "NAMES": [
+      "고정",
+      "fixed"
+    ],
+    "DESCRIPTION": "이 카드는 #g인형 #g표식 과 #r버퍼 를 제외한 #y힘, #y민첩, #g약화, #g손상, #r취약, 그리고 #y대부분의 #y다른 #y효과 에 영향을 받지 않습니다."
+  },
+  {
+    "NAMES": [
+      "변환성",
+      "transformative"
+    ],
+    "DESCRIPTION": "이 카드는 뽑거나 보존될 시 #y변환 합니다."
+  },
+  {
+    "NAMES": [
+      "현상수배",
+      "wanted"
+    ],
+    "DESCRIPTION": "현상수배 당한 적은 이번 턴 동안  모든 공격과 부정적인 효과의 대상이 됩니다. NL 현상수배 당한 적은 기본적으로 스스로에게 피해를 주지 않습니다."
+  },
+  {
+    "NAMES": [
+      "특수",
+      "special"
+    ],
+    "DESCRIPTION": "이 카드는 일반적인 카드 보상에서 얻을 수 없습니다."
+  },
+  {
+    "NAMES": [
+      "굳건함",
+      "steady"
+    ],
+    "DESCRIPTION": "다음 방어에서 추가 방어도를 얻습니다."
+  },
+  {
+    "PROPER_NAME": "사용횟수",
+    "NAMES": [
+      "사용횟수",
+      "gift_uses"
+    ],
+    "DESCRIPTION": "이 카드는 사용횟수가 남은 동안 보존되며, 사용횟수가 모두 소모되면 즉시 소멸합니다. 카드의 주요 효과가 발동할 때 마다 사용횟수가 1씩 감소합니다."
+  },
+  {
+    "PROPER_NAME": "인형 표식",
+    "NAMES": [
+      "인형표식",
+      "plushie_mark",
+      "plushie_marks"
+    ],
+    "DESCRIPTION": "표식이 찍힌 대상이 공격 받았을 때, NL 6 이하의 피해를 받았을 경우: 피해를 7 로 증가시키고 방어도 를 무시합니다. NL 7 이상의 피해를 받았을 경우: 3의 임시 체력을 얻습니다. NL 이후 표식이 1 감소합니다."
+  },
+  {
+    "NAMES": [
+      "발산",
+      "divergence",
+      "diverging",
+      "diverge"
+    ],
+    "DESCRIPTION": "본 시간대로부터의 발산은 기억대로의 정확한 과거로 돌아갈 수 없게 만듭니다. NL  발산이 #r높은 상태에서 도약을 시도 할 경우 #r원치않은 #r영구적인 #r부작용 이 초래될 수 있습니다."
+  },
+  {
+    "NAMES": [
+      "퇴화",
+      "degraded"
+    ],
+    "DESCRIPTION": "이 카드를 뽑을 때 마다 카드의 기본 방어도와 피해가 최대 #r3 씩 #r감소합니다. 카드의 기본 방어도와 피해는 #b1 이하로 감소하지 않습니다.."
+  },
+  {
+    "NAMES": [
+      "연약함",
+      "fragile"
+    ],
+    "DESCRIPTION": "이 카드는 뽑을 때 #r3분의 #r1 확률로 #r자동적으로 #r소멸합니다."
+  },
+  {
+    "NAMES": [
+      "공허함",
+      "voiding"
+    ],
+    "DESCRIPTION": "이 카드를 뽑으면 에너지를 #b1 잃습니다."
+  },
+  {
+    "NAMES": [
+      "감소됨",
+      "reduced"
+    ],
+    "DESCRIPTION": "이 카드의 기본 수치가 1 감소되었습니다."
+  },
+  {
+    "NAMES": [
+      "쇠약",
+      "withering"
+    ],
+    "DESCRIPTION": "이 카드는 위치와 상관 없이 즉시 소멸합니다."
+  },
+  {
+    "PROPER_NAME": "시간의 닻",
+    "NAMES": [
+      "시간의닻",
+      "temporal_anchor"
+    ],
+    "DESCRIPTION": "#y시간의 #y닻을 통해 닻을 내렸을 때의 #g상태 로 되돌아 갈 수 있습니다. 다른 대상들에겐 #g효과가 #g없습니다. NL #y시간의 #y닻 을 내린 뒤 시간이 지날수록 #r발산 이 증가합니다."
+  },
+  {
+    "NAMES": [
+      "최적화",
+      "optimized"
+    ],
+    "DESCRIPTION": "이 카드를 사용하면 상대의 의도와 자신의 현재 방어도에 따라 필요한 만큼의 #y방어도 만을 얻습니다. 남은 수치 만큼 #y활력 을 얻습니다."
+  },
+  {
+    "PROPER_NAME": "실드반전",
+    "NAMES": [
+      "실드반전",
+      "shield_counter"
+    ],
+    "DESCRIPTION": "공격을 완전히 막아내면 피해를 되돌려줍니다.. NL 턴 종료시 #b방어도 가 남아있고 #y넘겨주기 가 적용되어 있을 경우, #y실드 #y반전 을 유지합니다."
+  },
+  {
+    "NAMES": [
+      "기절",
+      "stunned",
+      "stun"
+    ],
+    "DESCRIPTION": "기절한 대상은 이번 턴 동안 행동할 수 없습니다."
+  },
+  {
+    "NAMES": [
+      "광역",
+      "splash"
+    ],
+    "DESCRIPTION": "대상에게 온전한 효과를 줍니다. 대상이 아닌 모든 적들에게 절반의 효과를 줍니다."
+  },
+  {
+    "PROPER_NAME": "가져오기",
+    "NAMES": [
+      "가져오기",
+      "free_draw"
+    ],
+    "DESCRIPTION": "전투가 시작 될 때 이 카드를 뽑지 못했으면 자동으로 손에 가져옵니다."
+  },
+  {
+    "PROPER_NAME": "자동효과",
+    "NAMES": [
+      "Auto Effect",
+      "auto_effect"
+    ],
+    "DESCRIPTION": "이 효과는 자동으로 발동되며 카드 사용으로 취급되지 않습니다."
+  },
+  {
+    "PROPER_NAME": "자동소모",
+    "NAMES": [
+      "자동소모",
+      "auto_consume"
+    ],
+    "DESCRIPTION": "이 카드의 효과는 자동으로 발동되며 카드 사용으로 취급되지 않습니다. 이후 이 카드는 제거됩니다."
+  },
+  {
+    "PROPER_NAME": "발진!",
+    "NAMES": [
+      "발진!",
+      "blast_off"
+    ],
+    "DESCRIPTION": "대상이 피해를 입을 때 마다 수치가 증가합니다. 대상의 턴 시작시 효과가 제거되고 수치 만큼의 피해를 입습니다."
+  }
+]

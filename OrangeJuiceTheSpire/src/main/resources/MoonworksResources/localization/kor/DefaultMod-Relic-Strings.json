@@ -1,0 +1,78 @@
+﻿{
+  "Moonworks:PlaceholderRelic": {
+    "NAME": "Placeholder Energy Relic",
+    "FLAVOR": "The snake is a friend.",
+    "DESCRIPTIONS": [
+      "Gain #b1 [E] ."
+    ]
+  },
+  "Moonworks:PlaceholderRelic2": {
+    "NAME": "Placeholder Relic 2",
+    "FLAVOR": "You feel stronger.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b1 #yStrength."
+    ]
+  },
+  "Moonworks:DefaultClickableRelic": {
+    "NAME": "Right-Clicky Relic",
+    "FLAVOR": "The more you right-click it, the more orbs you've evoked in your lifetime.",
+    "DESCRIPTIONS": [
+      "[#2aecd7]Usable [#2aecd7]once [#2aecd7]per [#2aecd7]turn.[] NL #yEvoke your rightmost Orb.",
+      "YOU ARE MINE!"
+    ]
+  },
+  "Moonworks:BottledPlaceholderRelic": {
+    "NAME": "Bottled Placeholder",
+    "FLAVOR": "What is this?",
+    "DESCRIPTIONS": [
+      "Choose a card. Whenever you take play any card, draw the chosen card.",
+      "Whenever you play a card, draw ",
+      ".",
+      "Select a card to bottle for "
+    ]
+  },
+  "Moonworks:LittleGull": {
+    "NAME": "작은 갈매기",
+    "FLAVOR": "가장 좋아하는 숫자는 7입니다.",
+    "DESCRIPTIONS": [
+      "턴 시작시, 무작위 적에게 2에서 7의 피해를 줍니다."
+    ]
+  },
+  "Moonworks:BrokenBomb": {
+    "NAME": "망가진 폭탄",
+    "FLAVOR": "위험해보여요.",
+    "DESCRIPTIONS": [
+      "#b10 번 째로 사용하는 #y스킬카드 가 #y노르마 를 #b1 증가시키고 #y별을 #y불태우는 #y빛 을 손에 #b1 장 가져옵니다.",
+      "작별이야."
+    ]
+  },
+  "Moonworks:SBBomb": {
+    "NAME": "스타부 폭탄",
+    "FLAVOR": "떨어트리지 마세요.",
+    "DESCRIPTIONS": [
+      "#b12번째 로 사용하는 카드가 #y노르마 를 #b1 증가시키고 #y별을 #y불태우는 #y빛 #b1 장을 손에 가져옵니다.",
+      "작별이야."
+    ]
+  },
+  "Moonworks:GoldenDie": {
+    "NAME": "황금 주사위",
+    "FLAVOR": "슬프게도, 0이나 7을 굴릴 순 없습니다.",
+    "DESCRIPTIONS": [
+      "긍정적인 #y기프트 카드의 #y보존 을 #b2 만큼 증가시킵니다."
+    ]
+  },
+  "Moonworks:Homemark": {
+    "NAME": "홈마크",
+    "FLAVOR": "오렌지 주스 맛이 납니다, 이상하게도요.",
+    "DESCRIPTIONS": [
+      "#y노르마 #b"," 레벨로 전투를 시작합니다. 전투 중이 아닐때 우클릭 하여 #b"," #y골드를 소모하고 영구적으로 레벨을 #b1 증가시켜, 최대 #b5 까지 증가시킵니다."
+    ]
+  },
+  "Moonworks:WarpPanel": {
+    "NAME": "워프 패널",
+    "FLAVOR": "주사위운이 정말 좋네요!",
+    "DESCRIPTIONS": [
+      "#r발산 이 80 이상으로 쌓이지 않습니다."
+    ]
+  }
+}

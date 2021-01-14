@@ -301,7 +301,7 @@
   "Moonworks:NicePresent": {
     "NAME": "美妙的礼物",
     "DESCRIPTION": "抽 !M! 张牌. NL 消耗 .",
-    "EXTENDED_DESCRIPTION": [":抽牌将保留此回合."]
+    "EXTENDED_DESCRIPTION": [":抽到的牌在本回合 保留 ."]
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "弹药用尽",

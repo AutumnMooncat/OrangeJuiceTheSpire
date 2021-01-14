@@ -52,20 +52,6 @@ public class PlushieMasterPower extends AbstractTrapPower implements CloneablePo
         updateDescription();
     }
 
-    /*
-    @Override //Works for intent block, but this is covered by the patch!
-    public void atEndOfRound() {
-        if(!this.owner.isDying && !this.owner.isDead && this.owner.currentBlock > 0) {
-            this.flash();
-            this.owner.loseBlock();
-            this.amount--;
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-            }
-        }
-        super.atEndOfRound();
-    }*/
-
     @Override
     public int onAttacked(DamageInfo info, int damageAmount) {
         if(!this.owner.isDead && this.amount > 0) {

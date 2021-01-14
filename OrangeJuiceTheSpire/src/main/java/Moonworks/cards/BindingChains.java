@@ -3,6 +3,7 @@ package Moonworks.cards;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.powers.TemporaryStrengthPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -58,6 +59,20 @@ public class BindingChains extends AbstractDynamicCard {
         this.decayed = false;
     }
 
+    public BindingChains(boolean decayed) {
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        this.magicNumber = this.baseMagicNumber = SHACKLES;
+        this.decayed = decayed;
+        if(decayed) {
+            this.name = DECAYED_NAME;
+            this.rawDescription = DECAYED_DESCRIPTION;
+            this.magicNumber = 0;
+            this.cost = -2;
+            this.target = CardTarget.NONE;
+            this.exhaust = true;
+        }
+    }
+
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -100,5 +115,10 @@ public class BindingChains extends AbstractDynamicCard {
             upgradeMagicNumber(UPGRADE_PLUS_SHACKLES);
             initializeDescription();
         }
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new BindingChains(decayed);
     }
 }

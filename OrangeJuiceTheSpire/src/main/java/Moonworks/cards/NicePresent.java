@@ -58,8 +58,13 @@ public class NicePresent extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        //Use this to know what was originally in our hand
         ArrayList<AbstractCard> oldCards = new ArrayList<>();
+
+        //We don't need this directly, since we can just loop through our current hand. Im keeping this in case I add any additional actions
         ArrayList<AbstractCard> newCards = new ArrayList<>();
+
+        //To know if we passed our check or not
         boolean normaCheck = getNormaLevel() >= NORMA_LEVELS[0];
 
         //Grab all of our cards

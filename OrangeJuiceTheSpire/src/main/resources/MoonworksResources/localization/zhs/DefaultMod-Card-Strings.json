@@ -300,8 +300,8 @@
   },
   "Moonworks:NicePresent": {
     "NAME": "美妙的礼物",
-    "DESCRIPTION": "抽 !M! 张牌. NL 每打出一次多抽1张牌,增加1费用(最高费用为 !Moonworks:SecondMagic! ).",
-    "EXTENDED_DESCRIPTION": [":+1 抽卡.","NL 每打出一次多抽1张牌,增加1费用(最高费用为 !Moonworks:SecondMagic! )."]
+    "DESCRIPTION": "抽 !M! 张牌. NL 消耗 .",
+    "EXTENDED_DESCRIPTION": [":抽牌将保留此回合."]
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "弹药用尽",

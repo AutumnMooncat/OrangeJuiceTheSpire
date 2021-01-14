@@ -104,7 +104,7 @@
     "DESCRIPTION": "Block is not removed at the start of your turn. NL Gain !M! *Plated *Armor."
   },
   "Moonworks:Dash": {
-    "NAME": "Dash",
+    "NAME": "Dash!",
     "DESCRIPTION": "Gain [E]. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Gain [E] [E]. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Gain 5 Block."]
@@ -297,8 +297,8 @@
   },
   "Moonworks:NicePresent": {
     "NAME": "Nice Present",
-    "DESCRIPTION": "Draw !M! card. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played.",
-    "EXTENDED_DESCRIPTION": ["+1 draw.","Draw !M! cards. NL Increase this card's draw by 1, and cost by 1 (up to a maximum of !Moonworks:SecondMagic!) each time it is played."]
+    "DESCRIPTION": "Draw !M! cards. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Drawn cards will Retain this turn."]
   },
   "Moonworks:OutOfAmmo": {
     "NAME": "Out Of Ammo",

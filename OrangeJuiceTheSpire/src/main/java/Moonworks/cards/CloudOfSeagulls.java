@@ -95,74 +95,77 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
                     validTargets.add(abstractMonster);
                 }
             }
-            AbstractCreature t = validTargets.get(AbstractDungeon.cardRandomRng.random(0, validTargets.size()-1));
-            if (t instanceof AbstractMonster) {
-                calculateCardDamage((AbstractMonster) t);
-            }
-            final boolean hasThorns = t.hasPower(ThornsPower.POWER_ID); //We use a different animation for thorns, once I figure out how
+            if (validTargets.size() > 0) {
+                AbstractCreature t = validTargets.get(AbstractDungeon.cardRandomRng.random(0, validTargets.size()-1));
+                if (t instanceof AbstractMonster) {
+                    calculateCardDamage((AbstractMonster) t);
+                }
+                final boolean hasThorns = t.hasPower(ThornsPower.POWER_ID); //We use a different animation for thorns, once I figure out how
 
-            if (!disableGullVfx) {
-                //Gull Cloud
-                for (int j = 0 ; j < CLOUDS_PER_THROW ; j++) {
+                if (!disableGullVfx) {
+                    //Gull Cloud
+                    for (int j = 0 ; j < CLOUDS_PER_THROW ; j++) {
+                        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                            public void update() {
+                                for (int i = 0 ; i < AbstractDungeon.cardRandomRng.random(15, 20) ; i++) {
+                                    float startX = MathUtils.random((float) Settings.WIDTH * 0.1F, (float)Settings.WIDTH * 0.9F);
+                                    int angleCorrect = startX > Settings.WIDTH * 0.5F ? 0 : 90;
+                                    boolean flip = startX < Settings.WIDTH * 0.5F;
+                                    AbstractGameEffect cloudGull = new VfxBuilder(flip ? VFXContainer.GULL_ATTACK_TEXTURE : VFXContainer.GULL_ATTACK_TEXTURE_FLIP, startX, Settings.HEIGHT, 1.8f)
+                                            .setScale(MathUtils.random(0.17f,0.23f))
+                                            .gravity(-50f)
+                                            .velocity(MathUtils.random(180f, 270f)+angleCorrect, MathUtils.random(800f, 1200f))
+                                            .rotate(MathUtils.random(10f, 40f) * (flip ? -1 : 1))
+                                            .build();
+                                    AbstractDungeon.effectList.add(cloudGull);
+                                }
+                                this.isDone = true;
+                            }
+                        });
+                    }
+                    //Gull Attack
                     AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
                         public void update() {
-                            for (int i = 0 ; i < AbstractDungeon.cardRandomRng.random(15, 20) ; i++) {
-                                float startX = MathUtils.random((float) Settings.WIDTH * 0.1F, (float)Settings.WIDTH * 0.9F);
-                                int angleCorrect = startX > Settings.WIDTH * 0.5F ? 0 : 90;
-                                boolean flip = startX < Settings.WIDTH * 0.5F;
-                                AbstractGameEffect cloudGull = new VfxBuilder(flip ? VFXContainer.GULL_ATTACK_TEXTURE : VFXContainer.GULL_ATTACK_TEXTURE_FLIP, startX, Settings.HEIGHT, 1.8f)
-                                        .setScale(MathUtils.random(0.17f,0.23f))
-                                        .gravity(-50f)
-                                        .velocity(MathUtils.random(180f, 270f)+angleCorrect, MathUtils.random(800f, 1200f))
-                                        .rotate(MathUtils.random(10f, 40f) * (flip ? -1 : 1))
-                                        .build();
-                                AbstractDungeon.effectList.add(cloudGull);
-                            }
+                            float startX = MathUtils.random((float) Settings.WIDTH * 0.25F, (float)Settings.WIDTH * 0.75F);
+                            boolean flip = startX > t.drawX;
+                            //Normal attack
+                            AbstractGameEffect hurtGull = new VfxBuilder(flip ? VFXContainer.GULL_HURT_TEXTURE : VFXContainer.GULL_HURT_TEXTURE_FLIP, t.drawX, t.drawY, 1.5f)
+                                    .setScale(0.2f)
+                                    //.moveX(t.drawX, t.drawX + (flip ? Settings.WIDTH * 0.05F : -Settings.WIDTH * 0.05F), VfxBuilder.Interpolations.LINEAR)
+                                    //.moveY(t.drawY, Settings.HEIGHT/3f, VfxBuilder.Interpolations.CIRCLE)
+                                    .gravity(50f)
+                                    .velocity(MathUtils.random(45f, 135f), MathUtils.random(600f, 800f))
+                                    .rotate(MathUtils.random(50f, 200f) * (MathUtils.randomBoolean() ? -1 : 1))
+                                    .build();
+                            AbstractGameEffect shootGull = new VfxBuilder(flip ? VFXContainer.GULL_ATTACK_TEXTURE : VFXContainer.GULL_ATTACK_TEXTURE_FLIP, startX, Settings.HEIGHT, 0.5f)
+                                    .scale(0.2f, 0.25f, VfxBuilder.Interpolations.SWINGIN)
+                                    .moveX(startX, t.drawX)
+                                    .moveY(Settings.HEIGHT, t.drawY)
+                                    .rotate(MathUtils.random(50f, 200f) * (flip ? -1 : 1))
+                                    .build();
+                            AbstractGameEffect shootGullAtThorns = new VfxBuilder(flip ? VFXContainer.GULL_ATTACK_TEXTURE : VFXContainer.GULL_ATTACK_TEXTURE_FLIP, startX, Settings.HEIGHT, 0.5f)
+                                    .scale(0.2f, 0.25f, VfxBuilder.Interpolations.SWINGIN)
+                                    .moveX(startX, t.drawX)
+                                    .moveY(Settings.HEIGHT, t.drawY)
+                                    .rotate(MathUtils.random(50f, 200f) * (flip ? -1 : 1))
+                                    .triggerVfxAt(0.5F, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
+                                        @Override
+                                        public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
+                                            return hurtGull;
+                                        }
+                                    })
+                                    .build();
+                            AbstractDungeon.effectList.add(hasThorns ? shootGullAtThorns : shootGull);
+                            //AbstractDungeon.effectList.add(hurtGull);
                             this.isDone = true;
                         }
                     });
                 }
-                //Gull Attack
-                AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-                    public void update() {
-                        float startX = MathUtils.random((float) Settings.WIDTH * 0.25F, (float)Settings.WIDTH * 0.75F);
-                        boolean flip = startX > t.drawX;
-                        //Normal attack
-                        AbstractGameEffect hurtGull = new VfxBuilder(flip ? VFXContainer.GULL_HURT_TEXTURE : VFXContainer.GULL_HURT_TEXTURE_FLIP, t.drawX, t.drawY, 1.5f)
-                                .setScale(0.2f)
-                                //.moveX(t.drawX, t.drawX + (flip ? Settings.WIDTH * 0.05F : -Settings.WIDTH * 0.05F), VfxBuilder.Interpolations.LINEAR)
-                                //.moveY(t.drawY, Settings.HEIGHT/3f, VfxBuilder.Interpolations.CIRCLE)
-                                .gravity(50f)
-                                .velocity(MathUtils.random(45f, 135f), MathUtils.random(600f, 800f))
-                                .rotate(MathUtils.random(50f, 200f) * (MathUtils.randomBoolean() ? -1 : 1))
-                                .build();
-                        AbstractGameEffect shootGull = new VfxBuilder(flip ? VFXContainer.GULL_ATTACK_TEXTURE : VFXContainer.GULL_ATTACK_TEXTURE_FLIP, startX, Settings.HEIGHT, 0.5f)
-                                .scale(0.2f, 0.25f, VfxBuilder.Interpolations.SWINGIN)
-                                .moveX(startX, t.drawX)
-                                .moveY(Settings.HEIGHT, t.drawY)
-                                .rotate(MathUtils.random(50f, 200f) * (flip ? -1 : 1))
-                                .build();
-                        AbstractGameEffect shootGullAtThorns = new VfxBuilder(flip ? VFXContainer.GULL_ATTACK_TEXTURE : VFXContainer.GULL_ATTACK_TEXTURE_FLIP, startX, Settings.HEIGHT, 0.5f)
-                                .scale(0.2f, 0.25f, VfxBuilder.Interpolations.SWINGIN)
-                                .moveX(startX, t.drawX)
-                                .moveY(Settings.HEIGHT, t.drawY)
-                                .rotate(MathUtils.random(50f, 200f) * (flip ? -1 : 1))
-                                .triggerVfxAt(0.5F, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
-                                    @Override
-                                    public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
-                                        return hurtGull;
-                                    }
-                                })
-                                .build();
-                        AbstractDungeon.effectList.add(hasThorns ? shootGullAtThorns : shootGull);
-                        //AbstractDungeon.effectList.add(hurtGull);
-                        this.isDone = true;
-                    }
-                });
-            }
 
-            //Do the damage
-            this.addToBot(new DamageAction(t, new DamageInfo(p, this.damage, damageTypeForTurn), hasThorns ? AbstractGameAction.AttackEffect.SLASH_HORIZONTAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
+                //Do the damage
+                this.addToBot(new DamageAction(t, new DamageInfo(p, this.damage, damageTypeForTurn), hasThorns ? AbstractGameAction.AttackEffect.SLASH_HORIZONTAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
+
+            }
 
         }
 

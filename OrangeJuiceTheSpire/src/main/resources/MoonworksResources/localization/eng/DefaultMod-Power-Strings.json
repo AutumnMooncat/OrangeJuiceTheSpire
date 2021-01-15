@@ -41,9 +41,9 @@
         },
         "Moonworks:PlushieMasterPower": {
                 "NAME": "Plushie Mark",
-                "DESCRIPTIONS": ["Gain #b", " temporary HP or raise incoming damage to #b",
-                        " the next time this enemy is damaged.",
-                        " the next #b", " times this enemy is damaged."]
+                "DESCRIPTIONS": ["Gain #b", " temporary HP or #yPierce for #b",
+                        " damage the next time this enemy is damaged.",
+                        " damage the next #b", " times this enemy is damaged."]
         },
         "Moonworks:OutOfAmmoPower": {
                 "NAME": "Out Of Ammo",

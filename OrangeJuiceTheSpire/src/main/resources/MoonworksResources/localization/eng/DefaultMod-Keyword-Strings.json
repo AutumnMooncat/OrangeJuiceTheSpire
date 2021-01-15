@@ -113,7 +113,7 @@
       "plushie_mark",
       "plushie_marks"
     ],
-    "DESCRIPTION": "If a target with a mark is hit for... NL 6 or less damage: Raise the damage to 7 and ignore block. NL 7 or more damage: Gain 3 temporary HP. NL One mark then consumed."
+    "DESCRIPTION": "If a target with a mark is hit for... NL 6 or less damage: Raise the damage to 7 and #yPierce. NL 7 or more damage: Gain 3 temporary HP. NL One mark then consumed."
   },
   {
     "NAMES": [
@@ -228,5 +228,13 @@
       "blast_off"
     ],
     "DESCRIPTION": "Increases by the amount of damage received. At the start of your next turn, the target loses Blastoff and takes damage equal to it's amount"
+  },
+  {
+    "NAMES": [
+      "Piercing",
+      "piercing",
+      "pierce"
+    ],
+    "DESCRIPTION": "If this Attack damages the enemy's Block, they lose an equal amount of HP."
   }
 ]

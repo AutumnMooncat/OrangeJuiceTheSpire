@@ -35,7 +35,7 @@
     "NAME": "Little Gull",
     "FLAVOR": "His favourite number is 7.",
     "DESCRIPTIONS": [
-      "At the beginning of your turn, deal #b2 to #b7 damage to a random enemy."
+      "At the beginning of your turn, and every time you play a #yJonathan #yRush or #yCloud #yof #ySeagulls, deal #b2 to #b7 damage to a random enemy."
     ]
   },
   "Moonworks:BrokenBomb": {

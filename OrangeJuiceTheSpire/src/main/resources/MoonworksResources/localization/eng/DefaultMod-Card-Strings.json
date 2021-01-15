@@ -148,8 +148,7 @@
   },
   "Moonworks:EvilSpyWorkExecution": {
     "NAME": "Evil Spy Work Execution",
-    "DESCRIPTION": "Autoplay. NL Deal !D! damage to ALL enemies. NL Draw !M! card. NL Purge.",
-    "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! damage to ALL enemies. NL Draw !M! cards. NL Purge."
+    "DESCRIPTION": "Autoplay. NL Deal !D! damage to ALL enemies. NL Draw !M! card. NL Purge."
   },
   "Moonworks:EvilSpyWorkPreparation": {
     "NAME": "Evil Spy Work Preparation",
@@ -239,8 +238,8 @@
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "Long-Distance Shot",
-    "DESCRIPTION": "Deal !D! damage. NL Draw this card whenever you gain a *Norma level.",
-    "EXTENDED_DESCRIPTION": ["Ethereal. NL Deal !D! damage. NL Exhaust.",
+    "DESCRIPTION": "Deal !D! moonworks:Piercing *Damage. NL Draw this card whenever you gain a *Norma level.",
+    "EXTENDED_DESCRIPTION": ["Ethereal. NL Deal !D! moonworks:Piercing *Damage. NL Exhaust.",
       "Draw !M! card if this effect has uses. Uses: !Moonworks:SecondMagic!."]
   },
   "Moonworks:LuckyCharm": {

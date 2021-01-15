@@ -48,7 +48,7 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
         if (this.duration == Settings.ACTION_DUR_FAST) {
             if (giftCards.isEmpty()) {
                 this.isDone = true;
-            } else if (giftCards.size() <= amount) {
+            /*} else if (giftCards.size() <= amount) {
                 //logger.info("Exhaust Size: " + this.p.exhaustPile.size() + ", Draw Amount: " + amount);
                 while (!giftCards.isEmpty()){
                     AbstractCard card = giftCards.getTopCard();
@@ -68,7 +68,7 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
                     card.fadingOut = false;
                 }
                 this.isDone = true;
-
+*/
             } else {
                 c = giftCards.group.iterator();
 
@@ -79,7 +79,7 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
                     derp.unfadeOut();
                 }
 
-                AbstractDungeon.gridSelectScreen.open(giftCards, amount, TEXT[0], upgrade);
+                AbstractDungeon.gridSelectScreen.open(giftCards, Math.min(amount, giftCards.size()), TEXT[0], upgrade);
                 this.tickDuration();
 
             }

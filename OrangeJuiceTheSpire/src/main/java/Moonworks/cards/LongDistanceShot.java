@@ -2,11 +2,13 @@ package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.patches.PiercingPatches;
 import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -83,7 +85,15 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        int block = m.currentBlock;
+        int piercing = Math.min(block, damage);
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
+        if (piercing > 0) {
+            //this.addToBot(new LoseHPAction(m, p, piercing));
+            DamageInfo pierceDamage = new DamageInfo(p, damage, DamageInfo.DamageType.HP_LOSS);
+            PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
+            this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
+        }
         if (getNormaLevel() >= NORMA_LEVELS[0] && p.hand.size() < BaseMod.MAX_HAND_SIZE && !isEthereal && secondMagicNumber > 0) {
             this.addToBot(new DrawCardAction(magicNumber));
             secondMagicNumber = Math.max(0, secondMagicNumber - 1);

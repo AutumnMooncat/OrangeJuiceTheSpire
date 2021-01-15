@@ -19,5 +19,8 @@
   },
   "Moonworks:ModConfigPreBattleTalkButton": {
     "TEXT": ["Enable random pre/post combat phrases. Defaults: true, 75% chance."]
+  },
+  "Moonworks:ModConfigGullVFXButton": {
+    "TEXT": ["Disable Seagull vfx/sfx. Default: false."]
   }
 }

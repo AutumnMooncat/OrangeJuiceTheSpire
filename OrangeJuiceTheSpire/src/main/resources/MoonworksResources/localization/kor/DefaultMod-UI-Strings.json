@@ -19,5 +19,8 @@
   },
   "Moonworks:ModConfigPreBattleTalkButton": {
     "TEXT": ["무작위 전투 전/후 대사를 활성화합니다. 기본 : 활성화, 75% 확률."]
+  },
+  "Moonworks:ModConfigGullVFXButton": {
+    "TEXT": ["갈매기들의 시각/음향 효과를 사용하지 않습니다. 기본: 비활성화."]
   }
 }

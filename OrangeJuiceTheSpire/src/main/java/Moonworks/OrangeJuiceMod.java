@@ -84,6 +84,9 @@ public class OrangeJuiceMod implements
     public static final String FIVE_STAR_WANTED_SETTING = "enableStrongerWantedEffect";
     public static boolean enableStrongerWantedEffect = false;
 
+    public static final String DISABLE_GULL_VFX = "disableGullVfx";
+    public static boolean disableGullVfx = false;
+
     public static final String CARD_BATTLE_TALK_SETTING = "enableCardBattleTalk";
     public static boolean enableCardBattleTalkEffect = true;
 
@@ -270,6 +273,16 @@ public class OrangeJuiceMod implements
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
             enableStrongerWantedEffect = config.getBool(FIVE_STAR_WANTED_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        theStarBreakerDefaultSettings.setProperty(DISABLE_GULL_VFX, "FALSE");
+        try {
+            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            disableGullVfx = config.getBool(DISABLE_GULL_VFX);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -466,6 +479,24 @@ public class OrangeJuiceMod implements
                     }
                 });
         currentYposition -= spacingY;
+        ModLabeledToggleButton disableGullVFXButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigGullVFXButton")).TEXT[0],
+                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                disableGullVfx, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    disableGullVfx = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+                        config.setBool(DISABLE_GULL_VFX, disableGullVfx);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        currentYposition -= spacingY;
         //Used for randomly talking when playing cards
         ModLabeledToggleButton enableCardBattleTalkButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigBattleTalkButton")).TEXT[0],
                 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
@@ -574,6 +605,7 @@ public class OrangeJuiceMod implements
 
         settingsPanel.addUIElement(enableSelfDamageButton); // Add the button to the settings panel. Button is a go.
         settingsPanel.addUIElement(enableStrongerWantedButton); // Add the button to the settings panel. Button is a go.
+        settingsPanel.addUIElement(disableGullVFXButton);
         settingsPanel.addUIElement(enableCardBattleTalkButton);
         settingsPanel.addUIElement(cardBattleTalkSlider);
         settingsPanel.addUIElement(enableDamagedBattleTalkButton);

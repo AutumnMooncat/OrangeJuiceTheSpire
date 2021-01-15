@@ -19,5 +19,8 @@
   },
   "Moonworks:ModConfigPreBattleTalkButton": {
     "TEXT": ["允许战斗前/后主角随机说话. 默认: 是, 75% 概率."]
+  },
+  "Moonworks:ModConfigGullVFXButton": {
+    "TEXT": ["删除海鸥效果. 默认: 否."]
   }
 }

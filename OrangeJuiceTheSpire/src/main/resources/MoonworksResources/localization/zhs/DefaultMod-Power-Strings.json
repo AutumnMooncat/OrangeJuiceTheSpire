@@ -42,7 +42,9 @@
         },
         "Moonworks:PlushieMasterPower": {
                 "NAME": "人偶印记",
-                "DESCRIPTIONS": ["获得 #b", " 点临时生命或提高 #b", " 点对敌人造成的伤害.", " 在下 #b", " 次敌人受到伤害时."]
+                "DESCRIPTIONS": ["获得 #b ", " 点临时生命或 #y穿透 #b ",
+                        " 下次受到伤害时.",
+                        " 下 #b ", " 次受到伤害时."]
         },
         "Moonworks:OutOfAmmoPower": {
                 "NAME": "弹药用尽",

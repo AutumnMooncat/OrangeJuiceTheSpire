@@ -113,7 +113,7 @@
       "人偶印记",
       "人偶印记"
     ],
-    "DESCRIPTION": "具有人偶印记的敌人被攻击时... NL 小于等于6点伤害: 将伤害提高至7且无视格挡. NL 大于等于7伤害: 获得 3点临时生命. NL 消耗一层人偶印记."
+    "DESCRIPTION": "对一个有人偶印记的敌人造成... NL 小于等于6点伤害 : 将伤害提高至 7 并且具有 #y穿透. NL 大于等于7伤害: 获得 3 点临时生命. NL 消耗一层人偶印记."
   },
   {
     "NAMES": [
@@ -231,10 +231,12 @@
   },
   {
     "NAMES": [
-      "Piercing",
+      "穿透",
+      "穿透",
+      "穿透",
       "piercing",
       "pierce"
     ],
-    "DESCRIPTION": "If this Attack damages the enemy's Block, they lose an equal amount of HP."
+    "DESCRIPTION": "如果攻击对敌人的格挡造成伤害, 敌人失去等量的生命."
   }
 ]

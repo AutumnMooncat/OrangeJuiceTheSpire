@@ -240,7 +240,7 @@
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "远距离射击",
-    "DESCRIPTION": "造成 !D! 点伤害. NL 每当你提升 *Norma 等级时抽取这张牌.",
+    "DESCRIPTION": "造成 !D! 点伤害. moonworks:穿透 . NL 将这张牌放入手牌当 *Norma 等级提升时.",
     "EXTENDED_DESCRIPTION": [" 虚无 . NL 造成 !D! 点伤害. NL 消耗 .",
       "抽 !M! 张牌在有余额时. 余额: !Moonworks:SecondMagic! ."]
   },

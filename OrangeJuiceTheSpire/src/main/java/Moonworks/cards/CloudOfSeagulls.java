@@ -85,7 +85,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (int k = 0 ; k < HITS ; k++) {
+        for (int k = 0 ; k < secondMagicNumber ; k++) {
             ArrayList<AbstractCreature> validTargets = new ArrayList<>();
             if (enableSelfDamage || !upgraded) {
                 validTargets.add(p);

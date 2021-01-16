@@ -58,7 +58,7 @@ public class LuckyCharm extends AbstractGiftCard {
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if(active) {
+        if(isActive(true)) {
             this.addToBot(new GainEnergyAction(magicNumber));
             this.applyEffect();
         }
@@ -67,7 +67,7 @@ public class LuckyCharm extends AbstractGiftCard {
     @Override
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
-        if (active) {
+        if (isActive()) {
             this.addToBot(new GainEnergyAction(magicNumber));
             this.applyEffect();
         }

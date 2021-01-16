@@ -60,7 +60,7 @@ public class RedAndBlue extends AbstractGiftCard {
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if(active){
+        if(isActive(true)){
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
@@ -71,7 +71,7 @@ public class RedAndBlue extends AbstractGiftCard {
     @Override
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
-        if(active) {
+        if(isActive()) {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));

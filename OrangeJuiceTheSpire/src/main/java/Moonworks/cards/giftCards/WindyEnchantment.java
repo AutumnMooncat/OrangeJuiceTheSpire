@@ -54,7 +54,7 @@ public class WindyEnchantment extends AbstractGiftCard {
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if(active){
+        if(isActive(true)){
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new DrawCardAction(INITIAL_DRAW));
             this.applyEffect();
@@ -65,7 +65,7 @@ public class WindyEnchantment extends AbstractGiftCard {
     @Override
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
-        if(active) {
+        if(isActive()) {
             AbstractPlayer p = AbstractDungeon.player;
             this.addToBot(new DrawCardAction(magicNumber));
             this.applyEffect();

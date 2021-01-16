@@ -55,7 +55,7 @@ public class SweetBattle extends AbstractGiftCard {
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if(active) {
+        if(isActive(true)) {
             this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
             this.applyEffect();
         }
@@ -64,7 +64,7 @@ public class SweetBattle extends AbstractGiftCard {
     @Override
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
-        if (active) {
+        if (isActive()) {
             this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
             this.applyEffect();
         }

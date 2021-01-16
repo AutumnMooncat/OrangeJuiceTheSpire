@@ -6,6 +6,7 @@ import Moonworks.actions.WitherExhaustImmediatelyAction;
 import Moonworks.relics.GoldenDie;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,7 +24,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
 
     protected final String spentDescription;
     private static ArrayList<TooltipInfo> GiftTooltip;
-    protected boolean active;
+    //protected boolean active;
     public boolean checkedGolden;
     public final boolean ignoreGolden;
     public static final float GOLDEN_BUFF = 1.5F;
@@ -65,7 +66,6 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         super(id, img, cost, type, color, rarity, target, normaLevels);
         CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
         spentDescription = cardStrings.EXTENDED_DESCRIPTION[0];
-        this.active = false; //Card wont be active until it is in our hand
         this.hasUses = currentUses > 0;
         if (currentUses <= 0) {
             rawDescription = spentDescription;
@@ -79,13 +79,6 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         }
         this.checkedGolden = checkedGolden;
         this.ignoreGolden = ignoreGolden;
-        /*if (AbstractDungeon.player != null) {
-            //checkGolden();
-            logger.info("Card created, checking golden? " + !checkedGolden);
-            if (!ignoreGolden && !checkedGolden) {
-                AbstractDungeon.actionManager.addToBottom(new CheckGoldenAction(this));
-            }
-        }*/
         this.selfRetain = true; //Let it retain N times
         this.isEthereal = true; //Then it is ethereal
         setBackgroundTexture(OrangeJuiceMod.GIFT_WHITE_ICE, OrangeJuiceMod.GIFT_WHITE_ICE_PORTRAIT);
@@ -114,7 +107,6 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     @Override
     public void triggerWhenDrawn() {
         checkGolden(); //This will be the main way we check for the buff
-        this.active = secondMagicNumber >= 1; //In case we've pulled from exhaust, only set active with uses
         initializeDescription();
         super.triggerWhenDrawn();
     }
@@ -122,28 +114,44 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
     @Override
     public void onMoveToDiscard() {
         checkGolden(); //This will happen if the card is generated or transformed, and then we play it to discard it
-        this.active = false; //Cant be active if it isnt in our hand
         super.onMoveToDiscard();
     }
 
     @Override
     public void moveToDiscardPile() {
         checkGolden(); //May as well check both cases
-        this.active = false;
         super.moveToDiscardPile();
     }
 
     @Override
     public void onRetained() {
         checkGolden(); //This will happen if the card is generated or transformed, and then not played to discard it
-        this.active = secondMagicNumber >= 1; //If we retained it, make sure it still has uses. This can happen if a card force retains an empty gift
         super.onRetained();
     }
 
-    @Override
-    public void triggerOnExhaust() {
-        this.active = false; //Obviously it shouldn't be active in the exhaust pile
-        super.triggerOnExhaust();
+    public boolean isActive() {
+        return isActive(false);
+    }
+
+    public boolean isActive(boolean onDrawFlag) {
+        return isInHand(onDrawFlag) && (secondMagicNumber >= 1);
+    }
+
+    public boolean isInHand() {
+        return isInHand(false);
+    }
+
+    public boolean isInHand(boolean onDrawFlag) {
+        if (AbstractDungeon.player == null) {
+            return false;
+        }
+        if (onDrawFlag) {
+            return true;
+        }
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c == this) return true;
+        }
+        return false;
     }
 
     public void modifyUses(int uses) {
@@ -156,7 +164,6 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         this.exhaust = !hasUses; //Exhaust and Ethereal if we dont. This is for if we pull it back from the exhaust pile with no uses
         this.isEthereal = !hasUses;
         if (!hasUses) { //If we hit 0, or below 0 somehow, exhaust immediately
-            this.active = false; //Card cant be active when it has no uses
             rawDescription = this.spentDescription;
             initializeDescription(); //Initialize before we move to exhaust
             this.unhover();
@@ -237,26 +244,37 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
             gift.unhover();
             gift.unfadeOut();
             AbstractDungeon.player.exhaustPile.moveToDeck(gift, true);
+            //AbstractDungeon.player.drawPile.addToRandomSpot(gift);
             AbstractDungeon.player.exhaustPile.removeCard(gift);
         }
     }
 
-    public static void refreshGiftUses(AbstractGiftCard gift) {
+    public static void restoreAllGiftUses(AbstractGiftCard gift) {
         gift.secondMagicNumber = gift.baseSecondMagicNumber;
         gift.checkedGolden = false; // Since we reset to base values, we want to check golden again
         restoreGiftUses(gift, 0); //Just do a 0 call here since we dont both checking for non 0 anywhere, this ensures we stay at max capacity
     }
 
-    public static void recoverRandomExhaustedGift(int amount) {
-        for (int i = 0 ; i < amount ; i++) {
-            AbstractGiftCard gift = getRandomExhaustedGift();
-            if(gift != null) {
-                refreshGiftUses(gift);
+    public static void recoverRandomExhaustedGift(int recoverAmount) {
+        AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {
+            public void update() {
+                for (int i = 0 ; i < recoverAmount ; i++) {
+                    AbstractGiftCard gift = getRandomExhaustedGift();
+                    if(gift != null) {
+                        restoreAllGiftUses(gift);
+                    }
+                }
+                this.isDone = true;
             }
-        }
+        });
     }
 
-    public static void recoverSpecificExhaustedGift(int amount) {
-        AbstractDungeon.actionManager.addToBottom(new RecoverExhaustedGiftAction(amount));
+    public static void recoverSpecificExhaustedGift(int recoverAmount) {
+        AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {
+            public void update() {
+                AbstractDungeon.actionManager.addToBottom(new RecoverExhaustedGiftAction(recoverAmount));
+                this.isDone = true;
+            }
+        });
     }
 }

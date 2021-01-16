@@ -2,6 +2,7 @@ package Moonworks.actions;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -22,6 +23,7 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
     private final boolean upgrade;
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
+    CardGroup giftCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
     public RecoverExhaustedGiftAction(int amount) {
         this(amount, false);
@@ -37,9 +39,6 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
     }
 
     public void update() {
-        Iterator <AbstractCard>c;
-        AbstractCard derp;
-        CardGroup giftCards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard exhaustedCard : this.p.exhaustPile.group){
             if (exhaustedCard instanceof AbstractGiftCard) {
                 giftCards.addToRandomSpot(exhaustedCard);
@@ -67,16 +66,13 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
                     card.unhover();
                     card.fadingOut = false;
                 }
-                this.isDone = true;
-*/
-            } else {
-                c = giftCards.group.iterator();
+                this.isDone = true;*/
 
-                while(c.hasNext()) {
-                    derp = c.next();
-                    derp.stopGlowing();
-                    derp.unhover();
-                    derp.unfadeOut();
+            } else {
+                for (AbstractCard c : giftCards.group) {
+                    c.stopGlowing();
+                    c.unhover();
+                    c.unfadeOut();
                 }
 
                 AbstractDungeon.gridSelectScreen.open(giftCards, Math.min(amount, giftCards.size()), TEXT[0], upgrade);
@@ -85,29 +81,25 @@ public class RecoverExhaustedGiftAction extends AbstractGameAction {
             }
         } else {
             if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-                for(c = AbstractDungeon.gridSelectScreen.selectedCards.iterator(); c.hasNext(); derp.unhover()) {
-                    derp = c.next();
-                    AbstractGiftCard.refreshGiftUses((AbstractGiftCard) derp);
-                    this.p.exhaustPile.moveToDeck(derp, true); //Actually pull from exhaust
-                    if (AbstractDungeon.player.hasPower("Corruption") && derp.type == CardType.SKILL) {
-                        derp.setCostForTurn(-9);
-                    }
-
-                    this.p.exhaustPile.removeCard(derp); //Same here
-                    if (this.upgrade && derp.canUpgrade()) {
-                        derp.upgrade();
+                for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
+                    c.unhover();
+                    AbstractGiftCard.restoreAllGiftUses((AbstractGiftCard) c);
+                    //this.p.drawPile.addToRandomSpot(c);
+                    //this.p.exhaustPile.moveToDeck(c, true);
+                    //this.p.exhaustPile.removeCard(c);
+                    if (this.upgrade && c.canUpgrade()) {
+                        c.upgrade();
                     }
                 }
 
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
 
-                for(c = giftCards.group.iterator(); c.hasNext(); derp.target_y = 0.0F) {
-                    derp = c.next();
-                    derp.unhover();
-                    derp.target_x = (float)CardGroup.DISCARD_PILE_X;
+                for (AbstractCard c : giftCards.group) {
+                    c.target_y = 0.0F;
+                    c.target_x = CardGroup.DISCARD_PILE_X;
+                    c.unhover();
                 }
             }
-
             this.tickDuration();
         }
     }

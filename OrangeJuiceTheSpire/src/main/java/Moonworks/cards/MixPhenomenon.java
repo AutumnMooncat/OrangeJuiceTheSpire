@@ -4,9 +4,11 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -58,9 +60,17 @@ public class MixPhenomenon extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (upgraded) {
-            AbstractGiftCard.recoverSpecificExhaustedGift(magicNumber);
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                public void update() {
+                    AbstractGiftCard.recoverSpecificExhaustedGift(magicNumber);
+                    this.isDone = true;
+                }});
         } else {
-            AbstractGiftCard.recoverRandomExhaustedGift(magicNumber);
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                public void update() {
+                    AbstractGiftCard.recoverRandomExhaustedGift(magicNumber);
+                    this.isDone = true;
+                }});
         }
 
         this.addToBot(new DrawCardAction(secondMagicNumber));

@@ -63,7 +63,7 @@ public class Bloodlust extends AbstractGiftCard {
 
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
-        if(active) {
+        if(isActive()) {
             AbstractPlayer p = AbstractDungeon.player;
             if(c.type == CardType.ATTACK) {
                 this.addToBot(new HealAction(p, p, magicNumber));
@@ -76,7 +76,7 @@ public class Bloodlust extends AbstractGiftCard {
     @Override
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
-        if(active) {
+        if(isActive(true)) {
             this.applyDamageEffect();
         }
     }
@@ -84,7 +84,7 @@ public class Bloodlust extends AbstractGiftCard {
     @Override
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
-        if(active) {
+        if(isActive()) {
             this.applyDamageEffect();
         }
     }

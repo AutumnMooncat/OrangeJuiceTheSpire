@@ -64,7 +64,7 @@ public class Flamethrower extends AbstractGiftCard {
     @Override
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
         super.onPlayCard(c, m);
-        if(active && c != this) { //Dont activate when playing itself
+        if(isActive() && c != this) { //Dont activate when playing itself
             AbstractPlayer p = AbstractDungeon.player;
             if(m != null) {
                 this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));

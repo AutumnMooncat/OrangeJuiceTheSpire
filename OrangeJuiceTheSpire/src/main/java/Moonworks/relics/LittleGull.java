@@ -48,25 +48,27 @@ public class LittleGull extends CustomRelic {
     public void doGullDamage() {
         int DMG = AbstractDungeon.cardRandomRng.random(2, 7);
         AbstractCreature t = AbstractDungeon.getRandomMonster();
-        this.flash();
-        this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+        if (t != null) {
+            this.flash();
+            this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
 
-        if (!disableGullVfx) {
-            AbstractGameEffect shootGull = new VfxBuilder(VFXContainer.GULL_ATTACK_TEXTURE, 0f, Settings.HEIGHT, 0.5f)
-                    .setScale(0.22f)
-                    .moveX(0f, t.drawX, VfxBuilder.Interpolations.EXP5IN)
-                    .moveY(Settings.HEIGHT, t.drawY, VfxBuilder.Interpolations.EXP5IN)
-                    .rotate(MathUtils.random(50f, 200f))
-                    //.playSoundAt(0.48f, DMG == 7 ? "BLUNT_HEAVY" : "BLUNT_FAST")
-                    .build();
+            if (!disableGullVfx) {
+                AbstractGameEffect shootGull = new VfxBuilder(VFXContainer.GULL_ATTACK_TEXTURE, 0f, Settings.HEIGHT, 0.5f)
+                        .setScale(0.22f)
+                        .moveX(0f, t.drawX, VfxBuilder.Interpolations.EXP5IN)
+                        .moveY(Settings.HEIGHT, t.drawY, VfxBuilder.Interpolations.EXP5IN)
+                        .rotate(MathUtils.random(50f, 200f))
+                        //.playSoundAt(0.48f, DMG == 7 ? "BLUNT_HEAVY" : "BLUNT_FAST")
+                        .build();
 
-            AbstractDungeon.effectList.add(shootGull);
-            //this.addToBot(new WaitAction(0.2F));
+                AbstractDungeon.effectList.add(shootGull);
+                //this.addToBot(new WaitAction(0.2F));
+            }
+
+            this.addToTop(new DamageAction(t, new DamageInfo(AbstractDungeon.player, DMG, DamageInfo.DamageType.THORNS),
+                    DMG == 7 ? AbstractGameAction.AttackEffect.BLUNT_HEAVY : AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+            this.addToTop(new WaitAction(0.2F));
         }
-
-        this.addToTop(new DamageAction(t, new DamageInfo(AbstractDungeon.player, DMG, DamageInfo.DamageType.THORNS),
-                DMG == 7 ? AbstractGameAction.AttackEffect.BLUNT_HEAVY : AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-        this.addToTop(new WaitAction(0.2F));
     }
 
     // Description

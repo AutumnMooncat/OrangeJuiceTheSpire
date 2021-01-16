@@ -228,5 +228,13 @@
       "出动"
     ],
     "DESCRIPTION": "受到伤害时提高受到伤害的数值. 在你的下一个回合开始时, 目标失去出动并且受到其数值的伤害"
+  },
+  {
+    "NAMES": [
+      "Piercing",
+      "piercing",
+      "pierce"
+    ],
+    "DESCRIPTION": "If this Attack damages the enemy's Block, they lose an equal amount of HP."
   }
 ]

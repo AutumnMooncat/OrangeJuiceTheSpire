@@ -239,7 +239,7 @@
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "원거리 사격",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL *노르마 레벨이 오를 때 마다 이 카드를 뽑습니다.",
+    "DESCRIPTION": "피해를 !D! 줍니다. moonworks:관통. NL *노르마 레벨이 오를 때 마다 이 카드를 뽑습니다.",
     "EXTENDED_DESCRIPTION": ["휘발성. NL 피해를 !D! 줍니다. NL 소멸.",
       "사용횟수가 남아 있을 경우 카드를 !M! 장 뽑습니다. 사용횟수: !Moonworks:SecondMagic!."]
   },

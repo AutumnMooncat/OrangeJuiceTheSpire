@@ -57,13 +57,15 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             }
             //This should be randomized so the player cant figure out the upcoming card order
             for (AbstractCard card : p.drawPile.group) {
-                if (doColors) {
-                    colorMap.put(card, card.glowColor.cpy());
-                    card.glowColor = new Color(drawPileBlue);
-                    card.beginGlowing();
+                if (!(card instanceof SubspaceTunnel)) {
+                    if (doColors) {
+                        colorMap.put(card, card.glowColor.cpy());
+                        card.glowColor = new Color(drawPileBlue);
+                        card.beginGlowing();
+                    }
+                    tempCards.addToRandomSpot(card);
+                    map.put(card, p.drawPile);
                 }
-                tempCards.addToRandomSpot(card);
-                map.put(card, p.drawPile);
             }
             tempCards.sortAlphabetically(true);
             //tempCards.sortByRarity(true);
@@ -73,13 +75,15 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             //These should not be randomized to help the player correctly pick a card from the discard or exhaust piles
             //If they happened to have a duplicate card in the draw pile, they can now tell the difference hopefully
             for (AbstractCard card : p.discardPile.group) {
-                if (doColors) {
-                    colorMap.put(card, card.glowColor.cpy());
-                    card.glowColor = new Color(discardPileRed);
-                    card.beginGlowing();
+                if (!(card instanceof SubspaceTunnel)) {
+                    if (doColors) {
+                        colorMap.put(card, card.glowColor.cpy());
+                        card.glowColor = new Color(discardPileRed);
+                        card.beginGlowing();
+                    }
+                    tempCards.addToTop(card);
+                    map.put(card, p.discardPile);
                 }
-                tempCards.addToTop(card);
-                map.put(card, p.discardPile);
             }
             tempCards.sortAlphabetically(true);
             //tempCards.sortByRarity(true);
@@ -87,13 +91,15 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             allCards.group.addAll(tempCards.group);
             tempCards.clear();
             for (AbstractCard card : p.exhaustPile.group) {
-                if (doColors) {
-                    colorMap.put(card, card.glowColor.cpy());
-                    card.glowColor = new Color(exhaustPilePurple);
-                    card.beginGlowing();
+                if (!(card instanceof SubspaceTunnel)) {
+                    if (doColors) {
+                        colorMap.put(card, card.glowColor.cpy());
+                        card.glowColor = new Color(exhaustPilePurple);
+                        card.beginGlowing();
+                    }
+                    tempCards.addToTop(card);
+                    map.put(card, p.exhaustPile);
                 }
-                tempCards.addToTop(card);
-                map.put(card, p.exhaustPile);
             }
             tempCards.sortAlphabetically(true);
             //tempCards.sortByRarity(true);

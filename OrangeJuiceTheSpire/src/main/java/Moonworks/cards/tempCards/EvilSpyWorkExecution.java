@@ -83,7 +83,7 @@ public class EvilSpyWorkExecution extends AbstractTempCard {
         //Nevertheless if the player manually upgrades these cards somehow, they will be in for a treat, as they are much more powerful.
         if (!upgraded) {
             upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
+            //rawDescription = UPGRADE_DESCRIPTION;
             //upgradeMagicNumber(UPGRADE_PLUS_DRAW);
             upgradeDamage(UPGRADE_PLUS_DMG);
             initializeDescription();

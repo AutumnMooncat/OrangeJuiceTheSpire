@@ -2,6 +2,7 @@ package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -63,32 +64,61 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
         super.onEnergyRecharge();
 
         for (int i = 0 ; i < Math.min(amount, cardArray.size()) ; i++) {
-            //Get the original monster
-            AbstractMonster t = targetArray.get(i);
 
-            //If its null, dead, or otherwise gone, grab a new target.
-            //If the card has a null target to begin with, that it ought not interact with what we pass into the use function
-            //Still grab a non-null target anyway for safety
-            if (t == null || t.isDeadOrEscaped() || !AbstractDungeon.getMonsters().monsters.contains(t)) {
-                t = AbstractDungeon.getRandomMonster();
-            }
+            //Use an action so things don't get messed up
+            int finalI = i;
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                public void update() {
+                    //Flash this power
+                    flash();
 
-            //Calculate the stuff
-            cardArray.get(i).applyPowers();
-            cardArray.get(i).calculateCardDamage(t);
+                    //Get the original monster
+                    AbstractMonster t = targetArray.get(finalI);
+                    /*OrangeJuiceMod.logger.info("Target: "+t);
+                    if (t != null) {
+                        OrangeJuiceMod.logger.info("Alive?: "+t.isDeadOrEscaped());
+                        OrangeJuiceMod.logger.info("HP: "+t.currentHealth);
+                    }*/
 
-            //Use the card on the (new) target
-            cardArray.get(i).use(AbstractDungeon.player, t);
+                    //If its null, dead, or otherwise gone, grab a new target.
+                    //If the card has a null target to begin with, that it ought not interact with what we pass into the use function
+                    //Still grab a non-null target anyway for safety
+                    if (t == null || t.isDeadOrEscaped() || t.currentHealth <= 0 || !AbstractDungeon.getMonsters().monsters.contains(t)) {
+                        t = AbstractDungeon.getRandomMonster(t);
+                        //OrangeJuiceMod.logger.info("Selected new target : "+t);
+                    }
+                    if (t != null) {
+                        //Calculate the stuff
+                        cardArray.get(finalI).applyPowers();
+                        cardArray.get(finalI).calculateCardDamage(t);
+
+                        //Use the card on the (new) target
+                        cardArray.get(finalI).use(AbstractDungeon.player, t);
+                    }
+
+                    //End Action
+                    this.isDone = true;
+                }
+            });
         }
 
-        //Clear the arrays and wait for next time
-        cardArray.clear();
-        targetArray.clear();
+        //Use an action so things don't get messed up
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            public void update() {
+                //Clear the arrays and wait for next time
+                cardArray.clear();
+                targetArray.clear();
 
-        //Clear the card text for next time
-        lastName = "?";
+                //Clear the card text for next time
+                lastName = "?";
 
-        updateDescription();
+                //Update descriptions
+                updateDescription();
+
+                //End Action
+                this.isDone = true;
+            }
+        });
     }
 
     //Fix scaling here?
@@ -112,13 +142,14 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
     }
 
     private String getNameStrings() {
-        if (cardArray.size() == 0) {
-            return "?";
-        }
-
         StringBuilder sb = new StringBuilder();
-        for (int i = 0 ;  i < Math.min(amount, cardArray.size()) ; i++) {
-            sb.append(cardArray.get(i).name).append(i < (amount - 1) ? ", " : ""); //Add the name, and add space if there are still more names to add
+        for (int i = 0 ;  i < amount ; i++) {
+            if (i < cardArray.size()) {
+                sb.append(cardArray.get(i).name).append(i < (amount - 1) ? ", " : ""); //Add the name, and add space if there are still more names to add
+            } else {
+                sb.append("?").append(i < (amount - 1) ? ", " : ""); //Add a ? if we don't have a card yet, and add space if there are still more names to add
+
+            }
         }
 
         return sb.toString();

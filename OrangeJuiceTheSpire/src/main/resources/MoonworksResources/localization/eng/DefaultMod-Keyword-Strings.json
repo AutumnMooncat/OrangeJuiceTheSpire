@@ -104,7 +104,7 @@
       "Gift Uses",
       "gift_uses"
     ],
-    "DESCRIPTION": "This card Retains while it has uses, and immediately Exhausts when it is out. One use is consumed when this card's primary effect triggers."
+    "DESCRIPTION": "Gift cards #yRetain while they have uses, and immediately #yExhaust when they are out. One use is consumed when a Gift card's primary effect triggers."
   },
   {
     "PROPER_NAME": "Plushie Mark",

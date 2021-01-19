@@ -63,11 +63,13 @@ public class LulusLuckyEgg extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //this.block = this.baseBlock; //Reset the block since it could have been modified from case 2. This also removes dex and other debufs :(
         int effect = AbstractDungeon.cardRandomRng.random(1, 3); //Choose a random number for the effect
         switch (effect) { //Switches allow us to run code based on the value in the switch.
-            case 1: //Big Block. We multiply by 2 or 3 here
-                this.block *= magicNumber;
+            case 1: //Big Block. We multiply add block 1 or 2 more times here
+                //Loop for 1 less than the magic number, since we still block normally after
+                for (int i = 0 ; i < magicNumber - 1 ; i++) {
+                    this.addToBot(new GainBlockAction(p, p, block));
+                }
                 break; //Break after each case since we dont want it to then look at the other cases
             case 2: //Draw 2 or 3 cards, as this is stored in magicNumber
                 this.addToBot(new DrawCardAction(magicNumber));
@@ -76,7 +78,7 @@ public class LulusLuckyEgg extends AbstractDynamicCard {
                 this.addToBot(new ApplyPowerAction(p, p, new TemporaryDexterityPower(p, magicNumber)));
                 break;
         }
-        this.addToBot(new GainBlockAction(p, p, block)); //Do our block action. If case 2 happened, this will be higher than the default 5
+        this.addToBot(new GainBlockAction(p, p, block)); //Do our block action.
     }
 
     //Upgraded stats.

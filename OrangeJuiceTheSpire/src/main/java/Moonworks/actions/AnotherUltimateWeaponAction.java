@@ -43,10 +43,13 @@ public class AnotherUltimateWeaponAction extends AbstractGameAction {
         if (upgraded) {
             effect += 1;
         }
-        if (effect > 0) {
-
+        if (effect+strength > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new StrengthPower(p, effect+strength)));
+        }
+        if (effect+block > 0) {
             this.addToBot(new GainBlockAction(p, 5*effect+block));
+        }
+        if (effect > 0 || strength > 0 || block > 0) {
 
             if (!this.freeToPlayOnce) {
                 this.p.energy.use(EnergyPanel.totalCount);

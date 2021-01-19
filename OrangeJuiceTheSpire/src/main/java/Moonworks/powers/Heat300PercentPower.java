@@ -1,8 +1,12 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.patches.PiercingPatches;
 import basemod.interfaces.CloneablePowerInterface;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -20,20 +24,39 @@ public class Heat300PercentPower extends AbstractTrapPower implements CloneableP
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
+    private int previousBlock;
+    private int dmgPercent;
+
     // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.
     // There's a fallback "missing texture" image, so the game shouldn't crash if you accidentally put a non-existent file.
     //private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
+    /**
+     * Sets a default 30% increase in damage, use other constructor for a different increase
+     * @param owner - Who has the power
+     * @param amount - How many turns the power will be active for
+     */
     public Heat300PercentPower(final AbstractCreature owner, final int amount) {
+        this(owner, amount, 30);
+    }
+
+    /**
+     *
+     * @param owner - Who has the power
+     * @param amount - How many turns the power will be active for
+     * @param dmgPercent - An int holding the percentile increase. For a 50% increase enter 50, etc.
+     */
+    public Heat300PercentPower(final AbstractCreature owner, final int amount, final int dmgPercent) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
         this.amount = amount;
+        this.dmgPercent = dmgPercent;
 
         type = PowerType.BUFF;
-        isTurnBased = false;
+        isTurnBased = true;
 
         // We load those txtures here.
         this.loadRegion("noBlock");
@@ -43,67 +66,63 @@ public class Heat300PercentPower extends AbstractTrapPower implements CloneableP
         updateDescription();
     }
 
-    @Override
-    public float modifyBlock(float blockAmount) {
-        if(blockAmount > 0) {
-            this.flash();
-            blockAmount = 0;
-            //this.owner.loseBlock();
-            this.amount--;
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-            }
-        }
-        return blockAmount;
+    public void setDmgPercent(int dmgPercent) {
+        this.dmgPercent = dmgPercent;
+        updateDescription();
     }
 
-    /*@Override
-    public void onGainedBlock(float blockAmount) {
-        if(this.owner.currentBlock > 0) {
-            this.flash();
-            this.owner.loseBlock();
-            this.amount--;
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-            }
+    //Apply bonus damage if they have no Block
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
+        //If they have no block, deal 30-50% more damage, stacks with Vulnerable
+        if (owner.currentBlock <= 0) {
+            damage *= (100f + dmgPercent)/100f;
         }
-    }*/
-    /*
-    @Override //Works for intent block, but this is covered by the patch!
-    public void atEndOfRound() {
-        if(!this.owner.isDying && !this.owner.isDead && this.owner.currentBlock > 0) {
-            this.flash();
-            this.owner.loseBlock();
-            this.amount--;
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-            }
-        }
-        super.atEndOfRound();
-    }*/
+        return super.atDamageReceive(damage, damageType);
+    }
 
-    /*
-    @Override //Works if they already have block, This might not be kept so that it is specifically the NEXT time.
-    public void onInitialApplication() {
-        if(!this.owner.isDying && !this.owner.isDead && this.owner.currentBlock > 0) {
-            this.flash();
-            this.owner.loseBlock();
-            this.amount--;
-            this.updateDescription();
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
-            }
+    //Used to grab the old block values before they get attacked
+    @Override
+    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
+        if(!this.owner.isDead && this.amount > 0) {
+            //Grab the amount of block they used to have, used for piercing calculations
+            previousBlock = owner.currentBlock;
         }
-        super.onInitialApplication();
-    }*/
+        return super.atDamageFinalReceive(damage, type);
+    }
+
+    //Apply the pierce when we actually attack them
+    @Override
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if(!this.owner.isDead && this.amount > 0 && !PiercingPatches.PiercingField.piercing.get(info)) {
+
+            //Needed for piercing and indirect calculations to know how much to modify by
+            int blockDelta = previousBlock - owner.currentBlock;
+
+            if (blockDelta > 0) {
+                //Set up a damage info with the piecing flag.
+                DamageInfo pierceDamage = new DamageInfo(source, blockDelta, DamageInfo.DamageType.HP_LOSS);
+                PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
+                this.addToTop(new DamageAction(owner, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
+            }
+
+        }
+        return damageAmount;
+    }
+
+    //Decrement this at the end of the round
+    @Override
+    public void atEndOfRound() {
+        this.addToBot(new ReducePowerAction(owner, owner, this, 1));
+    }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
         if (amount == 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1] + DESCRIPTIONS[3] + dmgPercent + DESCRIPTIONS[4];
         } else if (amount > 1) {
-            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2];
+            description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[2] + DESCRIPTIONS[3] + dmgPercent + DESCRIPTIONS[4];
         }
     }
 

@@ -5,7 +5,7 @@
         },
         "Moonworks:Heat300PercentPower": {
                 "NAME": "Heat 300%",
-                "DESCRIPTIONS": ["Remove all block the next #b", " time it is gained.", " times it is gained."]
+                "DESCRIPTIONS": ["For #b", " turn..."," turns..."," NL Attacks to this target will #yPierce. NL If this target has no #bBlock, they take #b","% more damage from attacks."]
         },
         "Moonworks:FreeCardPower": {
                 "NAME": "Refund Card",

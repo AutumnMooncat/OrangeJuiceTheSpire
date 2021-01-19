@@ -236,5 +236,12 @@
       "pierce"
     ],
     "DESCRIPTION": "If this Attack damages the enemy's Block, they lose an equal amount of HP."
+  },
+  {
+    "NAMES": [
+      "Overheat",
+      "overheat"
+    ],
+    "DESCRIPTION": "Attacks to this target will #yPierce. NL If this target has no #bBlock, they take #b30% more damage from attacks."
   }
 ]

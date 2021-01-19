@@ -1,5 +1,6 @@
 package Moonworks.actions;
 
+import Moonworks.powers.Heat300PercentPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -18,7 +19,7 @@ public class FinalSurgeryAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (this.target != null && this.target.hasPower("Vulnerable")) {
+        if (this.target != null && (this.target.hasPower("Vulnerable") || this.target.hasPower(Heat300PercentPower.POWER_ID))) {
             this.addToTop(new DamageAction(this.target, this.info, AttackEffect.SLASH_HEAVY));
         }
 

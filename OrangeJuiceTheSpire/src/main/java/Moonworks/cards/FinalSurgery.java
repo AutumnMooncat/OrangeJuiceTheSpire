@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.FinalSurgeryAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.Heat300PercentPower;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -57,7 +58,7 @@ public class FinalSurgery extends AbstractDynamicCard {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
 
         for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (!m.isDeadOrEscaped() && m.hasPower("Vulnerable")) {
+            if (!m.isDeadOrEscaped() && (m.hasPower("Vulnerable") || m.hasPower(Heat300PercentPower.POWER_ID))) {
                 this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
                 break;
             }

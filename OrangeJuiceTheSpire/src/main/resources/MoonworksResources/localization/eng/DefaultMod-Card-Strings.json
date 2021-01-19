@@ -17,7 +17,7 @@
   "Moonworks:Ambush": {
     "NAME": "Ambush",
     "DESCRIPTION": "Apply !M! Vulnerable. NL Then deal !D! damage.",
-    "EXTENDED_DESCRIPTION": ["This Attack ignores Block."]
+    "EXTENDED_DESCRIPTION": ["This Attack will moonworks:Pierce."]
   },
   "Moonworks:AngelHand": {
     "NAME": "Angel Hand",
@@ -31,7 +31,7 @@
   },
   "Moonworks:Assault": {
     "NAME": "Assault",
-    "DESCRIPTION": "Deal !D! moonworks:Fixed damage. NL This Attack ignores Block.",
+    "DESCRIPTION": "Deal !D! moonworks:Fixed moonworks:Piercing *Damage.",
     "EXTENDED_DESCRIPTION": ["+2 damage."]
   },
   "Moonworks:AwakeningOfTalent": {
@@ -164,7 +164,7 @@
   },
   "Moonworks:FinalSurgery": {
     "NAME": "Final Surgery",
-    "DESCRIPTION": "Deal !D! damage. NL If the enemy has Vulnerable, deal !D! damage again."
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy has Vulnerable or moonworks:Overheat, deal !D! damage again."
   },
   "Moonworks:Flamethrower": {
     "NAME": "Flamethrower",
@@ -195,8 +195,8 @@
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
-    "DESCRIPTION": "Remove all Block the next time it is gained.",
-    "EXTENDED_DESCRIPTION": ["Remove all Block the next 2 times it is gained."]
+    "DESCRIPTION": "Apply !M! moonworks:Overheat. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["*Overheat will apply a 50% bonus instead."]
   },
   "Moonworks:HolyNight": {
     "NAME": "Holy Night",
@@ -249,7 +249,7 @@
   },
   "Moonworks:LulusLuckyEgg": {
     "NAME": "Lulu's Lucky Egg",
-    "DESCRIPTION": "Gain !B! Block. NL Trigger 1 of 3 effects: NL Draw !M! cards. NL Block is !M! times stronger. NL Gain !M! temporary Dexterity."
+    "DESCRIPTION": "Gain !B! Block. NL Trigger 1 of 3 effects: NL Draw !M! cards. NL Gain Block !M! times instead. NL Gain !M! temporary Dexterity."
   },
   "Moonworks:MagicalInferno": {
     "NAME": "Magical Inferno",

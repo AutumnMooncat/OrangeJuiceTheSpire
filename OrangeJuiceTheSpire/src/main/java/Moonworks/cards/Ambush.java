@@ -4,6 +4,7 @@ import Moonworks.actions.AmbushAction;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.patches.PiercingPatches;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -65,24 +66,25 @@ public class Ambush extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //damageTypeForTurn = getNormaLevel() >= NORMA_LEVELS[0] ? DamageInfo.DamageType.HP_LOSS : DamageInfo.DamageType.NORMAL;
+        //Check if we pass our Norma requirement
         boolean normaCheck = getNormaLevel() >= NORMA_LEVELS[0];
-        int removedBlock = m.currentBlock;
-        if (normaCheck) {
-            this.addToBot(new RemoveAllBlockAction(m, p));
-        }
+
+        //Our Pierce will hit for as much block as the main attack will actually remove
+        int blockDelta = Math.min(m.currentBlock, damage);
+
+        //Apply Vulnerable. I should probably use an action for recalculating damage on the vulnerable target...
+        //BUT this works well enough for now as it shows on card hover
         this.addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false)));
+
+        //Deal the damage, it was already boosted for Vulnerable if it will be applied
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT,true));
-        if (normaCheck) {
-            //this.addToBot(new GainBlockAction(m, removedBlock, true));
-            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-                public void update() {
-                    m.currentBlock = removedBlock;
-                    this.isDone = true;
-                }});
+
+        //Only do pierce if we pass our norma and actually have any to do
+        if (normaCheck && blockDelta > 0) {
+            DamageInfo pierceDamage = new DamageInfo(p, blockDelta, DamageInfo.DamageType.HP_LOSS);
+            PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
+            this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
         }
-        //Removed Action in favor of performing a check in calculate card damage
-        //this.addToBot(new AmbushAction(m, p, new DamageInfo(p, damage, damageTypeForTurn), magicNumber));
     }
 
     @Override

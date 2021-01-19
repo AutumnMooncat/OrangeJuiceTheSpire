@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.patches.PiercingPatches;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -51,21 +52,18 @@ public class Assault extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int removedBlock = m.currentBlock;
-        this.addToBot(new RemoveAllBlockAction(m, p));
-        /*AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-            public void update() {
-                m.currentBlock = 0;
-                this.isDone = true;
-            }});*/
+        //Our Pierce will hit for as much block as the main attack will actually remove
+        int blockDelta = Math.min(m.currentBlock, damage);
+
+        //Main attack
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
-        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-            public void update() {
-                m.currentBlock = removedBlock;
-                this.isDone = true;
-            }});
-        //this.addToBot(new GainBlockAction(m, removedBlock, true));
-        //m.currentBlock = removedBlock;
+
+        //If we have any piercing to do, do it
+        if (blockDelta > 0) {
+            DamageInfo pierceDamage = new DamageInfo(p, blockDelta, DamageInfo.DamageType.HP_LOSS);
+            PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
+            this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
+        }
     }
 
     //Stops powers from effecting the card

@@ -97,7 +97,7 @@ public class JonathanRush extends AbstractDynamicCard {
                     AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
                         public void update() {
                             //Gull Attack
-                            float startX = 0, startY = Settings.HEIGHT;
+                            float startX, startY = Settings.HEIGHT;
                             startX = MathUtils.random((float) Settings.WIDTH * 0.0F, (float)Settings.WIDTH * 1.0F);
                     /*if (AbstractDungeon.cardRandomRng.random(0, 1) == 0) {
                         startX = MathUtils.random((float) Settings.WIDTH * 0.0F, (float)Settings.WIDTH * 1.0F);
@@ -141,12 +141,7 @@ public class JonathanRush extends AbstractDynamicCard {
                                     .moveY(startY, t.drawY, VfxBuilder.Interpolations.EXP5IN)
                                     .rotate(MathUtils.random(50f, 200f) * (flip ? -1 : 1))
                                     .playSoundAt(0.48f, "ATTACK_FAST")
-                                    .triggerVfxAt(0.5F, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
-                                        @Override
-                                        public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
-                                            return hurtGull;
-                                        }
-                                    })
+                                    .triggerVfxAt(0.5F, 1, (aFloat, aFloat2) -> hurtGull)
                                     .build();
                             AbstractDungeon.effectList.add(hasThorns ? shootGullAtThorns : shootGull);
                             this.addToTop(new WaitAction(0.015F));
@@ -155,7 +150,6 @@ public class JonathanRush extends AbstractDynamicCard {
                         }
                     });
                 }
-
 
                 //Do the damage action
                 if (!disableGullVfx) {

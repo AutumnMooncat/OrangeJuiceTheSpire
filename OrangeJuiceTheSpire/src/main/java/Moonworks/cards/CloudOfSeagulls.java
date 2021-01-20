@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.patches.FixedPatches;
 import Moonworks.relics.LittleGull;
 import Moonworks.vfx.VFXContainer;
 import basemod.helpers.CardModifierManager;
@@ -97,9 +98,6 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
             }
             if (validTargets.size() > 0) {
                 AbstractCreature t = validTargets.get(AbstractDungeon.cardRandomRng.random(0, validTargets.size()-1));
-                if (t instanceof AbstractMonster) {
-                    calculateCardDamage((AbstractMonster) t);
-                }
                 final boolean hasThorns = t.hasPower(ThornsPower.POWER_ID); //We use a different animation for thorns, once I figure out how
 
                 if (!disableGullVfx) {
@@ -148,12 +146,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
                                     .moveX(startX, t.drawX)
                                     .moveY(Settings.HEIGHT, t.drawY)
                                     .rotate(MathUtils.random(50f, 200f) * (flip ? -1 : 1))
-                                    .triggerVfxAt(0.5F, 1, new BiFunction<Float, Float, AbstractGameEffect>() {
-                                        @Override
-                                        public AbstractGameEffect apply(Float aFloat, Float aFloat2) {
-                                            return hurtGull;
-                                        }
-                                    })
+                                    .triggerVfxAt(0.5F, 1, (aFloat, aFloat2) -> hurtGull)
                                     .build();
                             AbstractDungeon.effectList.add(hasThorns ? shootGullAtThorns : shootGull);
                             //AbstractDungeon.effectList.add(hurtGull);
@@ -163,7 +156,9 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
                 }
 
                 //Do the damage
-                this.addToBot(new DamageAction(t, new DamageInfo(p, this.damage, damageTypeForTurn), hasThorns ? AbstractGameAction.AttackEffect.SLASH_HORIZONTAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
+                DamageInfo fixedDamage = new DamageInfo(p, damage, damageTypeForTurn);
+                FixedPatches.FixedField.fixed.set(fixedDamage, true);
+                this.addToBot(new DamageAction(t, fixedDamage, hasThorns ? AbstractGameAction.AttackEffect.SLASH_HORIZONTAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
 
             }
 
@@ -187,8 +182,10 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
     //Stops powers from effecting the card
     @Override
     public void applyPowers() {}
+
+    //Don't let damage be modified
     @Override
-    public void calculateCardDamage(AbstractMonster m) {}
+    public void calculateCardDamage(AbstractMonster mo) {}
 
     //Upgraded stats.
     @Override

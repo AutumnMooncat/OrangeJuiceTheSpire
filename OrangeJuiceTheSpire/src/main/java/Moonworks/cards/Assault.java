@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.patches.FixedPatches;
 import Moonworks.patches.PiercingPatches;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -56,7 +57,9 @@ public class Assault extends AbstractNormaAttentiveCard {
         int blockDelta = Math.min(m.currentBlock, damage);
 
         //Main attack
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+        DamageInfo fixedDamage = new DamageInfo(p, damage, damageTypeForTurn);
+        FixedPatches.FixedField.fixed.set(fixedDamage, true);
+        this.addToBot(new DamageAction(m, fixedDamage, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
 
         //If we have any piercing to do, do it
         if (blockDelta > 0) {
@@ -69,8 +72,10 @@ public class Assault extends AbstractNormaAttentiveCard {
     //Stops powers from effecting the card
     @Override
     public void applyPowers() {}
+
+    //Don't let damage be modified
     @Override
-    public void calculateCardDamage(AbstractMonster m) {}
+    public void calculateCardDamage(AbstractMonster mo) {}
 
     // Upgraded stats.
     @Override

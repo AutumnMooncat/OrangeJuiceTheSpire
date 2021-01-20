@@ -3,16 +3,20 @@ package Moonworks.cards.giftCards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.patches.FixedPatches;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -65,11 +69,17 @@ public class Flamethrower extends AbstractGiftCard {
     public void onPlayCard(AbstractCard c, AbstractMonster m) {
         super.onPlayCard(c, m);
         if(isActive() && c != this) { //Dont activate when playing itself
-            AbstractPlayer p = AbstractDungeon.player;
+
+            //Define a damage info and set Fixed to true
+            DamageInfo fixedDamage = new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn);
+            FixedPatches.FixedField.fixed.set(fixedDamage, true);
+
+            //If we actually had a monster that our card was played on, hit them
             if(m != null) {
-                this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+                calculateCardDamage(m);
+                this.addToBot(new DamageAction(m, fixedDamage, AbstractGameAction.AttackEffect.FIRE));
             } else {
-                this.addToBot(new DamageRandomEnemyAction(new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+                this.addToBot(new DamageRandomEnemyAction(fixedDamage, AbstractGameAction.AttackEffect.FIRE));
             }
             this.applyEffect();
         }
@@ -78,8 +88,10 @@ public class Flamethrower extends AbstractGiftCard {
     //Ensures we do not so anything to change our fixed damage
     @Override
     public void applyPowers() {}
+
+    //Don't let damage be modified
     @Override
-    public void calculateCardDamage(AbstractMonster m) {}
+    public void calculateCardDamage(AbstractMonster mo) {}
 
 
     //Upgraded stats.

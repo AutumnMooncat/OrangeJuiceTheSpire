@@ -113,7 +113,7 @@
       "plushie_mark",
       "plushie_marks"
     ],
-    "DESCRIPTION": "If a target with a mark is hit for... NL 6 or less damage: Raise the damage to 7 and #yPierce. NL 7 or more damage: Gain 3 temporary HP. NL One mark then consumed."
+    "DESCRIPTION": "If a target is hit for 7 or less damage, raise the damage to 7 and #yPierce. NL If no #yPierce was performed, gain 3 temporary HP. NL One mark consumed per hit."
   },
   {
     "NAMES": [

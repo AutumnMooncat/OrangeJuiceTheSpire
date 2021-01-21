@@ -7,12 +7,17 @@ import Moonworks.cards.tempCards.MagicalInferno;
 import Moonworks.cards.tempCards.MagicalMassacre;
 import Moonworks.cards.tempCards.MagicalRevenge;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.MeltingMemoriesPower;
+import Moonworks.powers.NormaGainPower;
+import Moonworks.powers.NormaPower;
 import com.badlogic.gdx.Gdx;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
 
@@ -64,7 +69,26 @@ public class MeltingMemories extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new MeltingMemoriesAction(upgraded));
+        //this.addToBot(new MeltingMemoriesAction(upgraded));
+
+        //Get our Norma power, if it exists
+        AbstractPower normaPower = p.getPower(NormaPower.POWER_ID);
+
+        //Get our norma level, or 0 if we dont have the power
+        int normaLevels = normaPower != null ? normaPower.amount : 0;
+
+        //If our norma is greater than 0...
+        if (normaLevels > 0) {
+            //Stack the negative amount to reduce Norma to 0
+            this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, -normaLevels)));
+
+            //Add the power to restore our lost Norma
+            this.addToBot(new ApplyPowerAction(p, p, new NormaGainPower(p, normaLevels)));
+
+            //Add the power that gives us the Magical cards
+            this.addToBot(new ApplyPowerAction(p, p, new MeltingMemoriesPower(p, normaLevels, upgraded)));
+        }
+
     }
 
     @Override

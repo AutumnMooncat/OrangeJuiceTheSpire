@@ -2,10 +2,13 @@ package Moonworks.cards.tempCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.HealPercentileDamageAction;
+import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractMagicalCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.characters.TheStarBreaker;
 import basemod.BaseMod;
+import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -19,7 +22,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class MagicalRevenge extends AbstractTempCard {
+public class MagicalRevenge extends AbstractMagicalCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -49,19 +52,26 @@ public class MagicalRevenge extends AbstractTempCard {
     private static final int HEAL_PERCENT = 33;
     private static final int UPGRADE_PLUS_HEAL_PERCENT = 17;
 
+    private static final int DAMAGE_PERCENT = 50;
+
+    private static final Integer[] NORMA_LEVELS = {-1};
+
     // /STAT DECLARATION/
 
 
     public MagicalRevenge() {
         super(ID, IMG, COST, TYPE, COLOR, TARGET);
         magicNumber = baseMagicNumber = HEAL_PERCENT;
+        secondMagicNumber = baseSecondMagicNumber = DAMAGE_PERCENT;
         //this.setDisplayRarity(CardRarity.RARE);
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.SECONDMAGICMOD, -3, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int dmg = p.maxHealth - p.currentHealth;
+        int dmg = (int)((p.maxHealth - p.currentHealth)*secondMagicNumber/100f);
         this.addToBot(new HealPercentileDamageAction(p, m, new DamageInfo(p, dmg, damageTypeForTurn), magicNumber, AbstractGameAction.AttackEffect.FIRE));
     }
 

@@ -108,5 +108,14 @@
         "Moonworks:ProtagonistsPrivilegePower": {
                 "NAME": "Protagonist's Privilege",
                 "DESCRIPTIONS": ["At the beginning of your turn, deal #b"," damage and draw #b"," cards. If all cards drawn are the same type, repeat this #yeffect again next turn."]
+        },
+        "Moonworks:NormaGainPower": {
+                "NAME": "Norma Gain",
+                "DESCRIPTIONS": ["At the beginning of your turn, gain #b1 Norma."]
+        },
+        "Moonworks:MeltingMemoriesPower": {
+                "NAME": "Magical Memories",
+                "DESCRIPTIONS": ["At the beginning of your turn, choose 1 of 3 #yMagical cards, add it to your hand.",
+                        "At the beginning of your turn, choose 1 of 3 #yupgraded #yMagical cards, add it to your hand."]
         }
 }

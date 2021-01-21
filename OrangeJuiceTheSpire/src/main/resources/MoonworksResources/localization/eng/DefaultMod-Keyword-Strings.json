@@ -243,5 +243,20 @@
       "overheat"
     ],
     "DESCRIPTION": "Attacks to this target will #yPierce. NL If this target has no #bBlock, they take #b30% more damage from attacks."
+  },
+  {
+    "NAMES": [
+      "Magical",
+      "magical"
+    ],
+    "DESCRIPTION": "This card inversely scales with Norma and can not be obtained from normal card-drops."
+  },
+  {
+    "PROPER_NAME": "Magical Memories",
+    "NAMES": [
+      "Magical Memories",
+      "magical_memories"
+    ],
+    "DESCRIPTION": "At the beginning of your turn, choose 1 of 3 #yMagical cards, add it to your hand."
   }
 ]

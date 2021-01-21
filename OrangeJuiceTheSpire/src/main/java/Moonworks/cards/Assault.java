@@ -1,19 +1,16 @@
 package Moonworks.cards;
 
+import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
-import Moonworks.patches.FixedPatches;
+import Moonworks.characters.TheStarBreaker;
 import Moonworks.patches.PiercingPatches;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.blue.Melter;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import Moonworks.OrangeJuiceMod;
-import Moonworks.characters.TheStarBreaker;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -47,7 +44,7 @@ public class Assault extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         damage = baseDamage = DAMAGE;
         //damageType = damageTypeForTurn = DamageInfo.DamageType.HP_LOSS;
-        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.DAMAGEMOD, 2, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 0, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -56,26 +53,34 @@ public class Assault extends AbstractNormaAttentiveCard {
         //Our Pierce will hit for as much block as the main attack will actually remove
         int blockDelta = Math.min(m.currentBlock, damage);
 
-        //Main attack
-        DamageInfo fixedDamage = new DamageInfo(p, damage, damageTypeForTurn);
+        //Removed Fixed aspect
+        /*DamageInfo fixedDamage = new DamageInfo(p, damage, damageTypeForTurn);
         FixedPatches.FixedField.fixed.set(fixedDamage, true);
-        this.addToBot(new DamageAction(m, fixedDamage, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+        this.addToBot(new DamageAction(m, fixedDamage, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));*/
+
+        //Main attack
+        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
 
         //If we have any piercing to do, do it
         if (blockDelta > 0) {
-            DamageInfo pierceDamage = new DamageInfo(p, blockDelta, DamageInfo.DamageType.HP_LOSS);
-            PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
-            this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
+            int numPierces = getNormaLevel() > NORMA_LEVELS[0] ? 2 : 1;
+            for (int i = 0 ; i < numPierces ; i++) {
+                DamageInfo pierceDamage = new DamageInfo(p, blockDelta, DamageInfo.DamageType.HP_LOSS);
+                PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
+                this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
+            }
         }
     }
 
+    //Removed the Fixed aspect.
+    /*
     //Stops powers from effecting the card
     @Override
     public void applyPowers() {}
 
     //Don't let damage be modified
     @Override
-    public void calculateCardDamage(AbstractMonster mo) {}
+    public void calculateCardDamage(AbstractMonster mo) {}*/
 
     // Upgraded stats.
     @Override

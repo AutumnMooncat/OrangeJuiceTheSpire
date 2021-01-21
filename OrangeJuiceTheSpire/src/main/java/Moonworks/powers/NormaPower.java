@@ -7,6 +7,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -193,14 +194,24 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         if (stackAmount > 1) {
             //If we get a big amount of Norma all at the same time, break it down into individual increases of 1 so our cards can flash properly
             for (int i = 0 ; i < stackAmount ; i++){
-                this.stackPower(1);
+                this.addToTop(new AbstractGameAction() {
+                    public void update() {
+                        stackPower(1);
+                        this.isDone = true;
+                    }});
+                //this.stackPower(1);
             }
             return;
         }
         if (stackAmount < -1) {
             //If we get a big amount of negative Norma all at the same time, break it down into individual decreases of 1 so our cards can flash properly
             for (int i = 0 ; i < -stackAmount ; i++){
-                this.stackPower(-1);
+                this.addToTop(new AbstractGameAction() {
+                    public void update() {
+                        stackPower(-1);
+                        this.isDone = true;
+                    }});
+                //this.stackPower(-1);
             }
             return;
         }
@@ -208,8 +219,11 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             autoPlayLDS();
         }
         if(!broken) {
-            boolean flashCardsGreen = stackAmount > 0 && amount < 5; //If we are already at Norma 5, we don't want to flash the cards when we increase
-            boolean flashCardsRed = stackAmount < 0 && amount > 0; //If we are already at Norma 0, we don't want to flash the cards when we decrease
+            //boolean flashCardsGreen = stackAmount > 0 && amount < 5; //If we are already at Norma 5, we don't want to flash the cards when we increase
+            //boolean flashCardsRed = stackAmount < 0 && amount > 0; //If we are already at Norma 0, we don't want to flash the cards when we decrease
+            boolean increase = stackAmount > 0; //If false, we know stackAmount cant be 0, as we would have returned above
+            boolean flashCards = (increase && amount < 5) || (!increase && amount > 0);
+            int offset = increase ? 0 : 1;
             super.stackPower(stackAmount);
             if (amount > 5) {
                 amount = 5;
@@ -220,20 +234,11 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             name = NAME + " " + amount;
             updateDescription();
 
-            if(flashCardsGreen){
+            if(flashCards){
                 for (AbstractCard c : AbstractDungeon.player.hand.group) {
                     if (c instanceof AbstractNormaAttentiveCard) {
-                        if (((AbstractNormaAttentiveCard) c).normaLevels.contains(amount) || ((AbstractNormaAttentiveCard) c).normaLevels.contains(-1)){
-                            c.flash(Color.GREEN);
-                        }
-                    }
-                }
-            }
-            if(flashCardsRed){
-                for (AbstractCard c : AbstractDungeon.player.hand.group) {
-                    if (c instanceof AbstractNormaAttentiveCard) {
-                        if (((AbstractNormaAttentiveCard) c).normaLevels.contains(amount+1) || ((AbstractNormaAttentiveCard) c).normaLevels.contains(-1)){
-                            c.flash(Color.RED);
+                        if (((AbstractNormaAttentiveCard) c).normaLevels.contains(amount+offset) || ((AbstractNormaAttentiveCard) c).normaLevels.contains(-1)){
+                            ((AbstractNormaAttentiveCard) c).flashNormaColor(increase);
                         }
                     }
                 }

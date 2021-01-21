@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.powers.NormaPower;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -123,4 +124,16 @@ public abstract class AbstractNormaAttentiveCard extends AbstractDynamicCard {
      * Most things can simply be done with a NormaDynvarModifier, but this is here if it is needed
      */
     public void applyNormaEffects(){} //Empty hook, if wanted
+
+    /**
+     * Flashes green on increase and red on decrease by default. This can be overwritten by other cards if desired
+     * @param increase - If the norma goes up or down, we want a different color
+     */
+    public void flashNormaColor(boolean increase){
+        if (increase) {
+            this.flash(new Color(16711935)); //COLOR.GREEN
+        } else {
+            this.flash(new Color(-16776961)); //COLOR.RED
+        }
+    }
 }

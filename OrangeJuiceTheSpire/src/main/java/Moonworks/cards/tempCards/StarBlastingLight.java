@@ -79,7 +79,7 @@ public class StarBlastingLight extends AbstractTempCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(1, 3)];
         this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 0.0F));
-        this.addToBot(new TalkAction(true, TALK_TEXT, 4.0f, 2.0f));
+        this.addToBot(new TalkAction(true, TALK_TEXT, 0.4f, 2.0f));
         logger.info("Magic: "+magicNumber+". Base Magic: "+baseMagicNumber+".");
         logger.info("Second: "+ secondMagicNumber +". Base Second: "+ baseSecondMagicNumber +".");
         int hits = AbstractDungeon.cardRandomRng.random(magicNumber, secondMagicNumber);

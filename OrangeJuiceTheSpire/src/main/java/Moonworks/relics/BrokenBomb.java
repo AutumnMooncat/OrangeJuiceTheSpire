@@ -46,7 +46,7 @@ public class BrokenBomb extends CustomRelic {
                 this.flash();
                 this.pulse = false;
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NormaPower(AbstractDungeon.player, 1)));
-                AbstractDungeon.actionManager.addToBottom(new TalkAction(true, DESCRIPTIONS[1], 4.0f, 2.0f));
+                AbstractDungeon.actionManager.addToBottom(new TalkAction(true, DESCRIPTIONS[1], 0.4f, 2.0f));
                 AbstractDungeon.player.hand.refreshHandLayout();
                 if (AbstractDungeon.player.hasPower("MasterRealityPower")) {
                     starBlastingLight.upgrade();

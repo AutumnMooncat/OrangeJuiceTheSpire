@@ -2,7 +2,7 @@ package Moonworks.variables;
 
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import Moonworks.cards.abstractCards.AbstractDefaultCard;
+import Moonworks.cards.abstractCards.AbstractModdedCard;
 
 import static Moonworks.OrangeJuiceMod.makeID;
 
@@ -21,23 +21,23 @@ public class SecondMagicNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((AbstractDefaultCard) card).isSecondMagicNumberModified;
+        return ((AbstractModdedCard) card).isSecondMagicNumberModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((AbstractDefaultCard) card).secondMagicNumber;
+        return ((AbstractModdedCard) card).secondMagicNumber;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((AbstractDefaultCard) card).baseSecondMagicNumber;
+        return ((AbstractModdedCard) card).baseSecondMagicNumber;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((AbstractDefaultCard) card).upgradedSecondMagicNumber;
+        return ((AbstractModdedCard) card).upgradedSecondMagicNumber;
     }
 
     //Moved to a new variable

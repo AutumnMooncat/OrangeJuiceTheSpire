@@ -2,7 +2,7 @@ package Moonworks.cards.abstractCards;
 
 import static com.megacrit.cardcrawl.core.CardCrawlGame.languagePack;
 
-public abstract class AbstractDynamicCard extends AbstractDefaultCard {
+public abstract class AbstractDynamicCard extends AbstractModdedCard {
 
     // "How come DefaultCommonAttack extends CustomCard and not DynamicCard like all the rest?"
 

@@ -1,6 +1,6 @@
 package Moonworks.variables;
 
-import Moonworks.cards.abstractCards.AbstractDefaultCard;
+import Moonworks.cards.abstractCards.AbstractModdedCard;
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
@@ -21,23 +21,23 @@ public class ThirdMagicNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((AbstractDefaultCard) card).isThirdMagicNumberModified;
+        return ((AbstractModdedCard) card).isThirdMagicNumberModified;
 
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((AbstractDefaultCard) card).thirdMagicNumber;
+        return ((AbstractModdedCard) card).thirdMagicNumber;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((AbstractDefaultCard) card).baseThirdMagicNumber;
+        return ((AbstractModdedCard) card).baseThirdMagicNumber;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((AbstractDefaultCard) card).upgradedThirdMagicNumber;
+        return ((AbstractModdedCard) card).upgradedThirdMagicNumber;
     }
 
 }

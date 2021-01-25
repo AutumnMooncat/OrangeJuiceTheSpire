@@ -1,6 +1,6 @@
 package Moonworks.variables;
 
-import Moonworks.cards.abstractCards.AbstractDefaultCard;
+import Moonworks.cards.abstractCards.AbstractModdedCard;
 import basemod.abstracts.DynamicVariable;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -22,22 +22,22 @@ public class DefaultInvertedNumber extends DynamicVariable {
 
     @Override
     public boolean isModified(AbstractCard card) {
-        return ((AbstractDefaultCard) card).isInvertedNumberModified;
+        return ((AbstractModdedCard) card).isInvertedNumberModified;
     }
 
     @Override
     public int value(AbstractCard card) {
-        return ((AbstractDefaultCard) card).invertedNumber;
+        return ((AbstractModdedCard) card).invertedNumber;
     }
 
     @Override
     public int baseValue(AbstractCard card) {
-        return ((AbstractDefaultCard) card).baseInvertedNumber;
+        return ((AbstractModdedCard) card).baseInvertedNumber;
     }
 
     @Override
     public boolean upgraded(AbstractCard card) {
-        return ((AbstractDefaultCard) card).upgradedInvertedNumber;
+        return ((AbstractModdedCard) card).upgradedInvertedNumber;
     }
 
     @Override

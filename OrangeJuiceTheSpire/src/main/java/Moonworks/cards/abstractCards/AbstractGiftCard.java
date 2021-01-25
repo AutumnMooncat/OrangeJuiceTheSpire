@@ -277,4 +277,13 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
             }
         });
     }
+
+    //Dont mess up Gift Uses. I should make a new dynvar unique to Gifts tbh
+    @Override
+    public void resetAttributes() {
+        int currentUses = secondMagicNumber;
+        super.resetAttributes();
+        secondMagicNumber = currentUses;
+        isSecondMagicNumberModified = secondMagicNumber != baseSecondMagicNumber;
+    }
 }

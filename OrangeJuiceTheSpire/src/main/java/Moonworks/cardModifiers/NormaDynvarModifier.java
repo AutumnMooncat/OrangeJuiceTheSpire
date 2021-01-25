@@ -1,7 +1,7 @@
 package Moonworks.cardModifiers;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.abstractCards.AbstractDefaultCard;
+import Moonworks.cards.abstractCards.AbstractModdedCard;
 import Moonworks.powers.NormaPower;
 import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
@@ -33,30 +33,37 @@ public class NormaDynvarModifier extends AbstractCardModifier {
          * Used to dynamically modify the damage of any card
          */
         DAMAGEMOD,
+
         /**
          * Used to dynamically modify the Block of any card
          */
         BLOCKMOD,
+
         /**
          * Used to modify the magic number of any card, much less elegant
          */
         MAGICMOD,
+
         /**
          * Used to modify the second magic number of a Moonworks:AbstractDefaultCard, even less elegant
          */
         SECONDMAGICMOD,
+
         /**
          * Used to modify the third magic number of a Moonworks:AbstractDefaultCard, just as bad as before
          */
         THIRDMAGICMOD,
+
         /**
          * Used to modify the inverted magic number of a Moonworks:AbstractDefaultCard, just as bad as before
          */
         INVERTEDMOD,
+
         /**
          * Used to add descriptions to a card when you dont want to change any dynvars. Will dynamically color if the norma effect is active
          */
         INFOMOD,
+
         /**
          * Used when you need to modify a dynamic variable defined by a different mod
          * Can be used with locator and pre/postfix patches by using customHookCall() and customHookRemovedCall
@@ -140,6 +147,22 @@ public class NormaDynvarModifier extends AbstractCardModifier {
         super.onApplyPowers(card);
     }
 
+    @Override
+    public void onDrawn(AbstractCard card) {
+        boolean normaLowered = getNormaLevel() < lastNormaChecked;
+        lastNormaChecked = getNormaLevel();
+        if (normaLowered) {
+            removeEffects(card); //Release old buffs, they will be recalculated
+        }
+        if (normaX || (!effectApplied && getNormaLevel() >= normaCheck)) {
+            int amountToApply = calculateNormaEffects(card);
+            if (amountToApply != 0) {
+                applyEffects(card, amountToApply);
+            }
+        }
+        super.onDrawn(card);
+    }
+
     private int calculateNormaEffects(AbstractCard card) {
         int bonus = 0;
         int temp;
@@ -154,14 +177,14 @@ public class NormaDynvarModifier extends AbstractCardModifier {
                     bonus = allowNegatives || temp >= 0 ? temp : -Math.min(-temp, card.magicNumber);
                     break;
                 case SECONDMAGICMOD:
-                    if (card instanceof AbstractDefaultCard) {
-                        AbstractDefaultCard c = (AbstractDefaultCard) card;
+                    if (card instanceof AbstractModdedCard) {
+                        AbstractModdedCard c = (AbstractModdedCard) card;
                         bonus = allowNegatives || temp >= 0 ? temp : -Math.min(-temp, c.secondMagicNumber);
                     }
                     break;
                 case INVERTEDMOD:
-                    if (card instanceof AbstractDefaultCard) {
-                        AbstractDefaultCard c = (AbstractDefaultCard) card;
+                    if (card instanceof AbstractModdedCard) {
+                        AbstractModdedCard c = (AbstractModdedCard) card;
                         bonus = allowNegatives || temp >= 0 ? temp : -Math.min(-temp, c.invertedNumber);
                     }
                     break;
@@ -183,24 +206,24 @@ public class NormaDynvarModifier extends AbstractCardModifier {
                 card.isMagicNumberModified = card.baseMagicNumber != card.magicNumber;
                 break;
             case SECONDMAGICMOD:
-                if (card instanceof AbstractDefaultCard) {
-                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                if (card instanceof AbstractModdedCard) {
+                    AbstractModdedCard c = (AbstractModdedCard) card;
                     amountToApply = allowNegatives || amount >= 0 ? amount : -Math.min(-amount, c.secondMagicNumber);
                     c.secondMagicNumber += amountToApply;
                     c.isSecondMagicNumberModified = c.baseSecondMagicNumber != c.secondMagicNumber;
                 }
                 break;
             case THIRDMAGICMOD:
-                if (card instanceof AbstractDefaultCard) {
-                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                if (card instanceof AbstractModdedCard) {
+                    AbstractModdedCard c = (AbstractModdedCard) card;
                     amountToApply = allowNegatives || amount >= 0 ? amount : -Math.min(-amount, c.thirdMagicNumber);
                     c.thirdMagicNumber += amountToApply;
                     c.isThirdMagicNumberModified = c.baseThirdMagicNumber != c.thirdMagicNumber;
                 }
                 break;
             case INVERTEDMOD:
-                if (card instanceof AbstractDefaultCard) {
-                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                if (card instanceof AbstractModdedCard) {
+                    AbstractModdedCard c = (AbstractModdedCard) card;
                     amountToApply = allowNegatives || amount >= 0 ? amount : -Math.min(-amount, c.invertedNumber);
                     c.invertedNumber += amountToApply;
                     c.isInvertedNumberModified = c.baseInvertedNumber != c.invertedNumber;
@@ -225,22 +248,22 @@ public class NormaDynvarModifier extends AbstractCardModifier {
                 card.isMagicNumberModified = card.baseMagicNumber != card.magicNumber;
                 break;
             case SECONDMAGICMOD:
-                if (card instanceof AbstractDefaultCard) {
-                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                if (card instanceof AbstractModdedCard) {
+                    AbstractModdedCard c = (AbstractModdedCard) card;
                     c.secondMagicNumber -= amountToRemove;
                     c.isSecondMagicNumberModified = c.baseSecondMagicNumber != c.secondMagicNumber;
                 }
                 break;
             case THIRDMAGICMOD:
-                if (card instanceof AbstractDefaultCard) {
-                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                if (card instanceof AbstractModdedCard) {
+                    AbstractModdedCard c = (AbstractModdedCard) card;
                     c.thirdMagicNumber -= amountToRemove;
                     c.isThirdMagicNumberModified = c.baseThirdMagicNumber != c.thirdMagicNumber;
                 }
                 break;
             case INVERTEDMOD:
-                if (card instanceof AbstractDefaultCard) {
-                    AbstractDefaultCard c = (AbstractDefaultCard) card;
+                if (card instanceof AbstractModdedCard) {
+                    AbstractModdedCard c = (AbstractModdedCard) card;
                     c.invertedNumber -= amountToRemove;
                     c.isInvertedNumberModified = c.baseInvertedNumber != c.invertedNumber;
                 }

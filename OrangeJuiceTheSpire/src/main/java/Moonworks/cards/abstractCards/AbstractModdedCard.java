@@ -1,7 +1,7 @@
 package Moonworks.cards.abstractCards;
 import basemod.abstracts.CustomCard;
 
-public abstract class AbstractDefaultCard extends CustomCard {
+public abstract class AbstractModdedCard extends CustomCard {
 
     // Custom Abstract Cards can be a bit confusing. While this is a simple base for simply adding a second magic number,
     // if you're new to modding I suggest you skip this file until you know what unique things that aren't provided
@@ -26,15 +26,15 @@ public abstract class AbstractDefaultCard extends CustomCard {
     public boolean upgradedInvertedNumber;
     public boolean isInvertedNumberModified;
 
-    public AbstractDefaultCard(final String id,
-                               final String name,
-                               final String img,
-                               final int cost,
-                               final String rawDescription,
-                               final CardType type,
-                               final CardColor color,
-                               final CardRarity rarity,
-                               final CardTarget target) {
+    public AbstractModdedCard(final String id,
+                              final String name,
+                              final String img,
+                              final int cost,
+                              final String rawDescription,
+                              final CardType type,
+                              final CardColor color,
+                              final CardRarity rarity,
+                              final CardTarget target) {
 
         super(id, name, img, cost, rawDescription, type, color, rarity, target);
 
@@ -55,13 +55,13 @@ public abstract class AbstractDefaultCard extends CustomCard {
             secondMagicNumber = baseSecondMagicNumber; // Show how the number changes, as out of combat, the base number of a card is shown.
             isSecondMagicNumberModified = true; // Modified = true, color it green to highlight that the number is being changed.
         }
-        if (upgradedInvertedNumber) { // If we set upgradedDefaultSecondMagicNumber = true in our card.
-            invertedNumber = baseInvertedNumber; // Show how the number changes, as out of combat, the base number of a card is shown.
-            isInvertedNumberModified = true; // Modified = true, color it green to highlight that the number is being changed.
-        }
         if (upgradedThirdMagicNumber) { // If we set upgradedDefaultSecondMagicNumber = true in our card.
             thirdMagicNumber = baseThirdMagicNumber; // Show how the number changes, as out of combat, the base number of a card is shown.
             isThirdMagicNumberModified = true; // Modified = true, color it green to highlight that the number is being changed.
+        }
+        if (upgradedInvertedNumber) { // If we set upgradedDefaultSecondMagicNumber = true in our card.
+            invertedNumber = baseInvertedNumber; // Show how the number changes, as out of combat, the base number of a card is shown.
+            isInvertedNumberModified = true; // Modified = true, color it green to highlight that the number is being changed.
         }
     }
 
@@ -71,15 +71,26 @@ public abstract class AbstractDefaultCard extends CustomCard {
         upgradedSecondMagicNumber = true; // Upgraded = true - which does what the above method does.
     }
 
+    public void upgradeThirdMagicNumber(int amount) { // If we're upgrading (read: changing) the number. Note "upgrade" and NOT "upgraded" - 2 different things. One is a boolean, and then this one is what you will usually use - change the integer by how much you want to upgrade.
+        baseThirdMagicNumber += amount; // Upgrade the number by the amount you provide in your card.
+        thirdMagicNumber = baseThirdMagicNumber; // Set the number to be equal to the base value.
+        upgradedThirdMagicNumber = true; // Upgraded = true - which does what the above method does.
+    }
+
     public void upgradeInvertedNumber(int amount) { // If we're upgrading (read: changing) the number. Note "upgrade" and NOT "upgraded" - 2 different things. One is a boolean, and then this one is what you will usually use - change the integer by how much you want to upgrade.
         baseInvertedNumber += amount; // Upgrade the number by the amount you provide in your card.
         invertedNumber = baseInvertedNumber; // Set the number to be equal to the base value.
         upgradedInvertedNumber = true; // Upgraded = true - which does what the above method does.
     }
 
-    public void upgradeThirdMagicNumber(int amount) { // If we're upgrading (read: changing) the number. Note "upgrade" and NOT "upgraded" - 2 different things. One is a boolean, and then this one is what you will usually use - change the integer by how much you want to upgrade.
-        baseThirdMagicNumber += amount; // Upgrade the number by the amount you provide in your card.
-        thirdMagicNumber = baseThirdMagicNumber; // Set the number to be equal to the base value.
-        upgradedThirdMagicNumber = true; // Upgraded = true - which does what the above method does.
+    @Override
+    public void resetAttributes() {
+        this.secondMagicNumber = this.baseSecondMagicNumber;
+        this.isSecondMagicNumberModified = false;
+        this.thirdMagicNumber = this.baseThirdMagicNumber;
+        this.isThirdMagicNumberModified = false;
+        this.invertedNumber = this.baseInvertedNumber;
+        this.isInvertedNumberModified = false;
+        super.resetAttributes();
     }
 }

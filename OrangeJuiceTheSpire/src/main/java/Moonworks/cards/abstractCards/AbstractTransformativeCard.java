@@ -122,8 +122,8 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
         }
 
         //All Star Breaker cards will be at least AbstractDefaultCard. Not all cards will be though (Prismatic Shard).
-        if (tempCard instanceof AbstractDefaultCard) {
-            reinitializeExtras((AbstractDefaultCard) tempCard);
+        if (tempCard instanceof AbstractModdedCard) {
+            reinitializeExtras((AbstractModdedCard) tempCard);
         }
         //TODO Make this not needed
         if (tempCard instanceof CompletionReward) {
@@ -131,7 +131,7 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
         }
     }
 
-    public void reinitializeExtras(AbstractDefaultCard defaultCard) {
+    public void reinitializeExtras(AbstractModdedCard defaultCard) {
         this.secondMagicNumber = defaultCard.secondMagicNumber;
         this.baseSecondMagicNumber = defaultCard.baseSecondMagicNumber;
         this.upgradedSecondMagicNumber = defaultCard.upgradedSecondMagicNumber;
@@ -149,8 +149,8 @@ public abstract class AbstractTransformativeCard extends AbstractDynamicCard {
         this.draw = card.draw;
         this.discard = card.discard;
         //All Star Breaker cards will be at least AbstractDefaultCard. Not all cards will be though (Prismatic Shard).
-        if (tempCard instanceof AbstractDefaultCard) {
-            reinitializeExtras((AbstractDefaultCard) tempCard);
+        if (tempCard instanceof AbstractModdedCard) {
+            reinitializeExtras((AbstractModdedCard) tempCard);
         }
     }
 

@@ -2,9 +2,11 @@ package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.patches.PiercingPatches;
 import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -18,9 +20,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class LongDistanceShot extends AbstractNormaAttentiveCard {
+public class LongDistanceShot extends AbstractNormaAttentiveCard implements RangedAttack {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -128,5 +133,21 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard {
     @Override
     public AbstractCard makeCopy() {
         return new LongDistanceShot(copy);
+    }
+
+    @Override
+    public List<String> getCardDescriptors() {
+        List<String> tags = new ArrayList<>();
+        tags.add(rangedTag);
+        tags.addAll(super.getCardDescriptors());
+        return tags;
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        List<TooltipInfo> compoundList = new ArrayList<>();
+        compoundList.add(rangedTooltipInfo);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 }

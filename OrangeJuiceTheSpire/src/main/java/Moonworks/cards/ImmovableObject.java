@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.powers.ImmobilePower;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -44,10 +45,16 @@ public class ImmovableObject extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        //Gain block
         this.addToBot(new GainBlockAction(p, block));
-        this.addToBot(new ApplyPowerAction(p, p, new BlurPower(p, magicNumber)));
-        this.addToBot(new ApplyPowerAction(p, p, new EntanglePower(p)));
-        this.addToBot(new ApplyPowerAction(p, p, new EntanglePower(p)));
+
+        //Removed this is lieu of a new power that does the same thing basically...
+        //this.addToBot(new ApplyPowerAction(p, p, new BlurPower(p, magicNumber)));
+        //this.addToBot(new ApplyPowerAction(p, p, new EntanglePower(p)));
+        //this.addToBot(new ApplyPowerAction(p, p, new EntanglePower(p)));
+
+        //Apply our Immobile power, it acts as a combination Blur and Entangle. Unlike entangle, Ranged attacks can still be played.
+        this.addToBot(new ApplyPowerAction(p, p, new ImmobilePower(p, magicNumber)));
     }
 
     // Upgraded stats.

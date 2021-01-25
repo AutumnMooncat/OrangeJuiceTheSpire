@@ -258,5 +258,19 @@
       "magical_memories"
     ],
     "DESCRIPTION": "At the beginning of your turn, choose 1 of 3 #yMagical cards, add it to your hand."
+  },
+  {
+    "NAMES": [
+      "Immobile",
+      "immobile"
+    ],
+    "DESCRIPTION": "Block is not removed at the start of your turn, but you may only play #yAttack cards if they are #yRanged."
+  },
+  {
+    "NAMES": [
+      "Ranged",
+      "ranged"
+    ],
+    "DESCRIPTION": "Ranged attacks do not trigger #yThorns and can be played while #yImmobile."
   }
 ]

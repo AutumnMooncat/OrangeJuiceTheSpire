@@ -191,7 +191,7 @@
     "NAME": "Go Away",
     "DESCRIPTION": "Ethereal. NL The target is moonworks:Stunned for a turn. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "The target is moonworks:Stunned for a turn. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["The target is removed from combat. NL The target will randomly reappear on a new floor."]
+    "EXTENDED_DESCRIPTION": ["Currently Removed"]
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
@@ -206,7 +206,7 @@
   },
   "Moonworks:ImmovableObject": {
     "NAME": "Immovable Object",
-    "DESCRIPTION": "Gain !B! Block. NL Block is not removed, but you may not play any Attack cards, for the next !M! turns. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! moonworks:Immobile. NL Exhaust."
   },
   "Moonworks:ImOnFire": {
     "NAME": "I'm On Fire!",
@@ -259,7 +259,7 @@
   "Moonworks:MagicalMassacre": {
     "NAME": "Magical Massacre",
     "DESCRIPTION": "Remove !M! % of the target's max HP. NL Gain !Moonworks:SecondMagic! moonworks:Steady. NL Purge.",
-    "EXTENDED_DESCRIPTION": ["-X % removed and -X Steady."]
+    "EXTENDED_DESCRIPTION": ["-X % removed and -X *Steady."]
   },
   "Moonworks:MagicalRevenge": {
     "NAME": "Magical Revenge",
@@ -368,8 +368,8 @@
   },
   "Moonworks:SelfDestruct": {
     "NAME": "Self Destruct",
-    "DESCRIPTION": "Gain !B! Block. NL Lose half your HP. Deal this amount to ALL enemies.",
-    "EXTENDED_DESCRIPTION": ["Gain 10 temporary HP."]
+    "DESCRIPTION": "Take !Moonworks:InvertedNumber! damage. NL Deal !D! damage to ALL enemies. NL Block is !Moonworks:SecondMagic! times more effective at reducing the self damage. NL Can be played while *Entangled.",
+    "EXTENDED_DESCRIPTION": ["-X self damage."]
   },
   "Moonworks:ShieldCounter": {
     "NAME": "Shield Counter",

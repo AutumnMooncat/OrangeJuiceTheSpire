@@ -117,5 +117,9 @@
                 "NAME": "Magical Memories",
                 "DESCRIPTIONS": ["At the beginning of your turn, choose 1 of 3 #yMagical cards, add it to your hand.",
                         "At the beginning of your turn, choose 1 of 3 #yupgraded #yMagical cards, add it to your hand."]
+        },
+        "Moonworks:ImmobilePower": {
+                "NAME": "Immobile",
+                "DESCRIPTIONS": ["Block is not removed at the start of your turn, but you may only play #yAttack cards if they are #yRanged.", "I can only play Ranged attacks!"]
         }
 }

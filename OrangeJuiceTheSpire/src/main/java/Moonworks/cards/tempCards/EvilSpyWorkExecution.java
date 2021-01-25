@@ -3,6 +3,7 @@ package Moonworks.cards.tempCards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
+import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.characters.TheStarBreaker;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class EvilSpyWorkExecution extends AbstractTempCard {
+public class EvilSpyWorkExecution extends AbstractTempCard implements RangedAttack {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -88,5 +89,21 @@ public class EvilSpyWorkExecution extends AbstractTempCard {
             upgradeDamage(UPGRADE_PLUS_DMG);
             initializeDescription();
         }
+    }
+
+    @Override
+    public List<String> getCardDescriptors() {
+        List<String> tags = new ArrayList<>();
+        tags.add(rangedTag);
+        tags.addAll(super.getCardDescriptors());
+        return tags;
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        List<TooltipInfo> compoundList = new ArrayList<>();
+        compoundList.add(rangedTooltipInfo);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 }

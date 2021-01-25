@@ -3,7 +3,9 @@ package Moonworks.cards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ExtendedPhotonRifleAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.characters.TheStarBreaker;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -12,9 +14,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class ExtendedPhotonRifle extends AbstractDynamicCard {
+public class ExtendedPhotonRifle extends AbstractDynamicCard implements RangedAttack {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -127,5 +132,21 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard {
             //rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }
+    }
+
+    @Override
+    public List<String> getCardDescriptors() {
+        List<String> tags = new ArrayList<>();
+        tags.add(rangedTag);
+        tags.addAll(super.getCardDescriptors());
+        return tags;
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        List<TooltipInfo> compoundList = new ArrayList<>();
+        compoundList.add(rangedTooltipInfo);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 }

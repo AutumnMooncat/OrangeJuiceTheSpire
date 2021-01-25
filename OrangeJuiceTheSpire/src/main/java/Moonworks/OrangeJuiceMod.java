@@ -111,7 +111,7 @@ public class OrangeJuiceMod implements
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "The Star Breaker";
     private static final String AUTHOR = "Mistress Alison";
-    private static final String DESCRIPTION = "Adds Star Breaker (and cards) from 100% Orange Juice! NL Probably not balanced. Might not even run properly. NL Im so sorry.";
+    private static final String DESCRIPTION = "Adds Star Breaker (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!";
     
     // =============== INPUT TEXTURE LOCATION =================
     
@@ -337,7 +337,7 @@ public class OrangeJuiceMod implements
             e.printStackTrace();
         }
 
-        theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(PRE_BATTLE_TALK_PROBABILITY_SETTING));
+        theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_PROBABILITY_SETTING, PRE_BATTLE_TALK_PROBABILITY_SETTING);
         try {
             SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.

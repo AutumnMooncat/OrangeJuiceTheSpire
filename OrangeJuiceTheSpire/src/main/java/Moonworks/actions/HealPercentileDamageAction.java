@@ -33,7 +33,10 @@ public class HealPercentileDamageAction extends AbstractGameAction {
         if (this.duration == 0.1F && this.target != null) {
             AbstractDungeon.effectList.add(new FlashAtkImgEffect(this.target.hb.cX, this.target.hb.cY, attackEffect));
             this.target.damage(this.info);
-            AbstractDungeon.actionManager.addToBottom(new HealAction(source, source, (int)(target.lastDamageTaken*healPercentile/100F)));
+            int healAmount = (int)(target.lastDamageTaken*healPercentile/100F);
+            if (healAmount > 0) {
+                AbstractDungeon.actionManager.addToBottom(new HealAction(source, source, healAmount));
+            }
         }
         this.tickDuration();
     }

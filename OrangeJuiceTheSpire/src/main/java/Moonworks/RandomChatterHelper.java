@@ -94,10 +94,19 @@ public class RandomChatterHelper {
         return KOTextContainer.EXTENDED_DESCRIPTION[MathUtils.random(0, KOTextContainer.EXTENDED_DESCRIPTION.length-1)];
     }
 
-    public static void showChatter(String chatterText, int probability, boolean conditional) {
+    /**
+     *
+     * @param chatterText - The string to say if we show text
+     * @param probability - The chance we actually talk
+     * @param conditional - If we actually will show text or not. Mainly used for config stuff
+     * @return - Returns true if we talked or false if we did not. Can be used to have additional conditionals on chat
+     */
+    public static boolean showChatter(String chatterText, int probability, boolean conditional) {
         if(conditional && MathUtils.random(1, 100) <= probability) {
             AbstractDungeon.effectList.add(new SpeechBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 2.0f, chatterText, true));
             //AbstractDungeon.actionManager.addToTop(new TalkAction(true, chatterText, 0.0f, 2.0f));
+            return true;
         }
+        return false;
     }
 }

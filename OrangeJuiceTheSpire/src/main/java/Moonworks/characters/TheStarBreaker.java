@@ -494,7 +494,11 @@ public class TheStarBreaker extends CustomPlayer {
 
     @Override
     public void heal(int healAmount) {
-        RandomChatterHelper.showChatter(RandomChatterHelper.getHealingText(), damagedTalkProbability, enableDamagedBattleTalkEffect); //Technically changes your hp, lol
+        if (healAmount > 0) {
+            if (RandomChatterHelper.showChatter(RandomChatterHelper.getHealingText(), damagedTalkProbability, enableDamagedBattleTalkEffect)){ //Technically changes your hp, lol
+                playAnimation("happy");
+            }
+        }
         super.heal(healAmount);
     }
 

@@ -118,7 +118,8 @@ public class OrangeJuiceMod implements
     // Colors (RGB)
     // Character Color
     //public static final Color DEFAULT_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
-    public static final Color WHITE_ICE = CardHelper.getColor(221.0f, 249.0f, 241.0f);
+    //public static final Color WHITE_ICE = CardHelper.getColor(221.0f, 249.0f, 241.0f);
+    public static final Color WHITE_ICE = CardHelper.getColor(225.0f, 243.0f, 250.0f);
     
     // Potion Colors in RGB
     public static final Color OJ_POTION_LIQUID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Orange

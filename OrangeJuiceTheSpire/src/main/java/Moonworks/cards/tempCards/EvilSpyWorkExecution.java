@@ -5,16 +5,21 @@ import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.patches.RangedPatches;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AutoplayField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +77,27 @@ public class EvilSpyWorkExecution extends AbstractTempCard implements RangedAtta
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //this.purgeOnUse = getNormaLevel() < 3 || AbstractDungeon.cardRandomRng.random(1, 2) != 1;
-        this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, true));
+        //Thanks to it being ranged damage, I'd need to rewrite the entire DamageAll action, or break it down into single hits for each enemy
+        //this.addToBot(new DamageAllEnemiesAction(p, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, true));
+
+        //A for loop rather than for-each would be more reasonable. Oh well.
+        int i = 0;
+        //Loop through every monster and hit them with the appropriate damage value
+        for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
+            if (!aM.isDeadOrEscaped()) {
+                DamageInfo rangedDamage = new DamageInfo(p, multiDamage[i], damageTypeForTurn);
+                RangedPatches.RangedField.ranged.set(rangedDamage, true);
+                this.addToBot(new DamageAction(aM, rangedDamage, AbstractGameAction.AttackEffect.FIRE, true));
+            }
+            i++;
+        }
+
+        //Ensure powers that care about hitting all targets function properly
+        for (AbstractPower pow : p.powers) {
+            pow.onDamageAllEnemies(this.multiDamage);
+        }
+
+        //Draw a new card
         this.addToBot(new DrawCardAction(magicNumber));
     }
 

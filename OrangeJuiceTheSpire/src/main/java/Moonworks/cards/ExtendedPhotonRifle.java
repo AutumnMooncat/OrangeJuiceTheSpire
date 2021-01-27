@@ -5,6 +5,7 @@ import Moonworks.actions.ExtendedPhotonRifleAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.patches.RangedPatches;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -74,7 +75,9 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard implements RangedAt
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ExtendedPhotonRifleAction(p, m, new DamageInfo(p, damage, damageTypeForTurn), magicNumber, this.freeToPlayOnce, this.energyOnUse));
+        DamageInfo rangedDamage = new DamageInfo(p, damage, damageTypeForTurn);
+        RangedPatches.RangedField.ranged.set(rangedDamage, true);
+        this.addToBot(new ExtendedPhotonRifleAction(p, m, rangedDamage, magicNumber, this.freeToPlayOnce, this.energyOnUse));
     }
 
     public void applyPowers() {

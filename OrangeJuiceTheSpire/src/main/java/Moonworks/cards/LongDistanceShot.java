@@ -4,6 +4,7 @@ import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.patches.PiercingPatches;
+import Moonworks.patches.RangedPatches;
 import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
@@ -92,7 +93,9 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard implements Rang
     public void use(AbstractPlayer p, AbstractMonster m) {
         int block = m.currentBlock;
         int piercing = Math.min(block, damage);
-        this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
+        DamageInfo rangedDamage = new DamageInfo(p, damage, damageTypeForTurn);
+        RangedPatches.RangedField.ranged.set(rangedDamage, true);
+        this.addToBot(new DamageAction(m, rangedDamage, AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
         if (piercing > 0) {
             //this.addToBot(new LoseHPAction(m, p, piercing));
             DamageInfo pierceDamage = new DamageInfo(p, damage, DamageInfo.DamageType.HP_LOSS);

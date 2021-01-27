@@ -11,6 +11,7 @@ import Moonworks.cards.trapCards.*;
 import Moonworks.relics.*;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.brashmonkey.spriter.Player;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
@@ -21,9 +22,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -34,6 +37,7 @@ import org.apache.logging.log4j.Logger;
 import Moonworks.OrangeJuiceMod;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.*;
 import static Moonworks.characters.TheStarBreaker.Enums.COLOR_WHITE_ICE;
@@ -402,6 +406,20 @@ public class TheStarBreaker extends CustomPlayer {
                 AbstractGameAction.AttackEffect.FIRE,
                 AbstractGameAction.AttackEffect.FIRE,
                 AbstractGameAction.AttackEffect.FIRE};
+    }
+
+    @Override
+    public Texture getCutsceneBg() {
+        return ImageMaster.loadImage("MoonworksResources/images/scene/greyBg.jpg");
+    }
+
+    @Override
+    public List<CutscenePanel> getCutscenePanels() {
+        List<CutscenePanel> panels = new ArrayList<>();
+        panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker1.png", "ATTACK_MAGIC_FAST_3"));
+        panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker2.png"));
+        panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker3.png", "CEILING_BOOM_3"));
+        return panels;
     }
 
     // Should return a string containing what text is shown when your character is

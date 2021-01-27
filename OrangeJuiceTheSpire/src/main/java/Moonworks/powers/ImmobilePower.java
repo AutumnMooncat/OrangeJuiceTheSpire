@@ -4,11 +4,13 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.interfaces.RangedAttack;
 import basemod.interfaces.CloneablePowerInterface;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BlurPower;
@@ -106,7 +108,12 @@ public class ImmobilePower extends AbstractTrapPower implements CloneablePowerIn
         super.atStartOfTurn();
         flash();
         if (amount == 1) {
-            this.owner.powers.remove(invisibleRef);
+            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                public void update() {
+                    owner.powers.remove(invisibleRef);
+                    this.isDone = true;
+                }});
+
             this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
         }
         this.addToBot(new ReducePowerAction(this.owner, this.owner, this, 1));

@@ -417,7 +417,7 @@ public class TheStarBreaker extends CustomPlayer {
     public List<CutscenePanel> getCutscenePanels() {
         List<CutscenePanel> panels = new ArrayList<>();
         panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker1.png", "ATTACK_MAGIC_FAST_3"));
-        panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker2.png"));
+        panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker2.png", "TURN_EFFECT"));
         panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker3.png", "CEILING_BOOM_3"));
         return panels;
     }

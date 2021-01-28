@@ -98,7 +98,7 @@ public class Accelerator extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!upgraded) {
             //this.isInnate = true;
-            rawDescription = UPGRADE_DESCRIPTION;
+            //rawDescription = UPGRADE_DESCRIPTION;
             upgradeName();
             //upgradeBaseCost(UPGRADE_REDUCED_COST);
             upgradeMagicNumber(UPGRADE_PLUS_STACKS);

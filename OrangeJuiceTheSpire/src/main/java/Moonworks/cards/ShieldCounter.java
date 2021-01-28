@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -67,8 +68,20 @@ public class ShieldCounter extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        //Gain the Block
         this.addToBot(new GainBlockAction(p, block));
-        this.addToBot(new ApplyPowerAction(p, p, new ShieldCounterPower(p, TURNS, getNormaLevel() >= NORMA_LEVELS[0]))); //Retain if we pass the check
+
+        //Determine if we will retain or not
+        boolean retain = getNormaLevel() >= NORMA_LEVELS[0];
+
+        //If we already have this power, and we are retaining, update the power so it retains (in case we previously applied this power without retain)
+        AbstractPower pow = p.getPower(ShieldCounterPower.POWER_ID);
+        if (retain && pow instanceof ShieldCounterPower) { //instanceof covers null check and safety to cast
+            ((ShieldCounterPower) pow).setRetain(true);
+        }
+
+        //Apply the power
+        this.addToBot(new ApplyPowerAction(p, p, new ShieldCounterPower(p, TURNS, retain))); //Retain if we pass the check
     }
 
     //Upgraded stats.

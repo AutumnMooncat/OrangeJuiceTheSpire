@@ -80,6 +80,10 @@ public class ShieldCounterPower extends AbstractTrapPower implements CloneablePo
         }
     }
 
+    public void setRetain(boolean retain) {
+        this.retain = retain;
+    }
+
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {

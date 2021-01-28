@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,18 +12,22 @@ import java.util.List;
 public abstract class AbstractMagicalCard extends AbstractNormaAttentiveCard {
 
     private static ArrayList<TooltipInfo> MagicalTooltip;
+    private static final int MAGICAL_COST = -2; //Ensure the card doesnt ave an energy icon
+    public CardRarity displayRarity;
 
-    public AbstractMagicalCard(String id, String img, int cost, CardType type, CardColor color, CardTarget target) {
-        this(id, img, cost, type, color, target, null);
+    public AbstractMagicalCard(String id, String img, CardType type, CardColor color, CardRarity rarity, CardTarget target) {
+        this(id, img, type, color, rarity, target, null);
     }
 
-    public AbstractMagicalCard(String id, String img, int cost, CardType type, CardColor color, CardTarget target, Integer[] normaLevels) {
-        super(id, img, cost, type, color, CardRarity.SPECIAL, target, normaLevels);
+    public AbstractMagicalCard(String id, String img, CardType type, CardColor color, CardRarity rarity, CardTarget target, Integer[] normaLevels) {
+        super(id, img, MAGICAL_COST, type, color, CardRarity.SPECIAL, target, normaLevels);
+        this.displayRarity = rarity;
+        this.setDisplayBannerRarity(displayRarity);
         this.purgeOnUse = true;
         if (type == CardType.ATTACK) {
-            setBackgroundTexture(OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE, OrangeJuiceMod.TEMP_ATTACK_WHITE_ICE_PORTRAIT);
-        } else { //We dont support temp powers because oops
-            setBackgroundTexture(OrangeJuiceMod.TEMP_SKILL_WHITE_ICE, OrangeJuiceMod.TEMP_SKILL_WHITE_ICE_PORTRAIT);
+            setBackgroundTexture(OrangeJuiceMod.MAGIC_ATTACK_WHITE_ICE, OrangeJuiceMod.MAGIC_ATTACK_WHITE_ICE_PORTRAIT);
+        } else if (type != CardType.POWER) { //Power is handled automatically, we just expressly want to do nothing
+            setBackgroundTexture(OrangeJuiceMod.MAGIC_SKILL_WHITE_ICE, OrangeJuiceMod.MAGIC_SKILL_WHITE_ICE_PORTRAIT);
         }
     }
 
@@ -45,6 +50,7 @@ public abstract class AbstractMagicalCard extends AbstractNormaAttentiveCard {
         return compoundList;
     }
 
+    /*
     //Inverse the Norma effects here
     public void flashNormaColor(boolean increase){
         if (increase) {
@@ -53,5 +59,5 @@ public abstract class AbstractMagicalCard extends AbstractNormaAttentiveCard {
             this.flash(new Color(16711935)); //COLOR.GREEN
 
         }
-    }
+    }*/
 }

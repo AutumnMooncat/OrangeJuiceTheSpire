@@ -1,5 +1,6 @@
 package Moonworks.cards.abstractCards;
 import basemod.abstracts.CustomCard;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 public abstract class AbstractModdedCard extends CustomCard {
 
@@ -93,4 +94,88 @@ public abstract class AbstractModdedCard extends CustomCard {
         this.isInvertedNumberModified = false;
         super.resetAttributes();
     }
+
+    public void setDisplayBannerRarity(CardRarity rarity) {
+        switch(rarity) {
+            case BASIC:
+            case CURSE:
+            case SPECIAL:
+            case COMMON:
+                this.bannerSmallRegion = ImageMaster.CARD_BANNER_COMMON;
+                this.bannerLargeRegion = ImageMaster.CARD_BANNER_COMMON_L;
+                /*switch(this.type) {
+                    case ATTACK:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_ATTACK_COMMON;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
+                        break;
+                    case POWER:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_POWER_COMMON;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_POWER_COMMON_L;
+                        break;
+                    default:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_SKILL_COMMON;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
+                }*/
+
+                /*this.frameMiddleRegion = ImageMaster.CARD_COMMON_FRAME_MID;
+                this.frameLeftRegion = ImageMaster.CARD_COMMON_FRAME_LEFT;
+                this.frameRightRegion = ImageMaster.CARD_COMMON_FRAME_RIGHT;
+                this.frameMiddleLargeRegion = ImageMaster.CARD_COMMON_FRAME_MID_L;
+                this.frameLeftLargeRegion = ImageMaster.CARD_COMMON_FRAME_LEFT_L;
+                this.frameRightLargeRegion = ImageMaster.CARD_COMMON_FRAME_RIGHT_L;*/
+                break;
+            case UNCOMMON:
+                this.bannerSmallRegion = ImageMaster.CARD_BANNER_UNCOMMON;
+                this.bannerLargeRegion = ImageMaster.CARD_BANNER_UNCOMMON_L;
+                /*switch(this.type) {
+                    case ATTACK:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_ATTACK_UNCOMMON;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_ATTACK_UNCOMMON_L;
+                        break;
+                    case POWER:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_POWER_UNCOMMON;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_POWER_UNCOMMON_L;
+                        break;
+                    default:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_SKILL_UNCOMMON;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_SKILL_UNCOMMON_L;
+                }*/
+
+                /*this.frameMiddleRegion = ImageMaster.CARD_UNCOMMON_FRAME_MID;
+                this.frameLeftRegion = ImageMaster.CARD_UNCOMMON_FRAME_LEFT;
+                this.frameRightRegion = ImageMaster.CARD_UNCOMMON_FRAME_RIGHT;
+                this.frameMiddleLargeRegion = ImageMaster.CARD_UNCOMMON_FRAME_MID_L;
+                this.frameLeftLargeRegion = ImageMaster.CARD_UNCOMMON_FRAME_LEFT_L;
+                this.frameRightLargeRegion = ImageMaster.CARD_UNCOMMON_FRAME_RIGHT_L;*/
+                break;
+            case RARE:
+                this.bannerSmallRegion = ImageMaster.CARD_BANNER_RARE;
+                this.bannerLargeRegion = ImageMaster.CARD_BANNER_RARE_L;
+                /*switch(this.type) {
+                    case ATTACK:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_ATTACK_RARE;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_ATTACK_RARE_L;
+                        break;
+                    case POWER:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_POWER_RARE;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_POWER_RARE_L;
+                        break;
+                    default:
+                        this.frameSmallRegion = ImageMaster.CARD_FRAME_SKILL_RARE;
+                        this.frameLargeRegion = ImageMaster.CARD_FRAME_SKILL_RARE_L;
+                }*/
+
+                /*this.frameMiddleRegion = ImageMaster.CARD_RARE_FRAME_MID;
+                this.frameLeftRegion = ImageMaster.CARD_RARE_FRAME_LEFT;
+                this.frameRightRegion = ImageMaster.CARD_RARE_FRAME_RIGHT;
+                this.frameMiddleLargeRegion = ImageMaster.CARD_RARE_FRAME_MID_L;
+                this.frameLeftLargeRegion = ImageMaster.CARD_RARE_FRAME_LEFT_L;
+                this.frameRightLargeRegion = ImageMaster.CARD_RARE_FRAME_RIGHT_L;*/
+                break;
+            default:
+                customBannerHook(rarity);
+        }
+    }
+
+    public void customBannerHook(CardRarity rarity) {}
 }

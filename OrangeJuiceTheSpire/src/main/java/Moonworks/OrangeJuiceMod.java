@@ -167,16 +167,16 @@ public class OrangeJuiceMod implements
     //private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8.png";
     //private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/Starbreaker8bg.png";
     private static final String STARBREAKER_PORTRAIT = "MoonworksResources/images/charSelect/StarbreakerScaled.png";
-    public static final String STARBREAKER_SHOULDER_1 = "MoonworksResources/images/char/defaultCharacter/shoulderclean.png"; //
-    public static final String STARBREAKER_SHOULDER_2 = "MoonworksResources/images/char/defaultCharacter/shoulder2clean.png";
-    public static final String STARBREAKER_CORPSE = "MoonworksResources/images/char/defaultCharacter/SBKOSmall.png"; //
+    public static final String STARBREAKER_SHOULDER_1 = "MoonworksResources/images/char/starBreaker/shoulderclean.png"; //
+    public static final String STARBREAKER_SHOULDER_2 = "MoonworksResources/images/char/starBreaker/shoulder2clean.png";
+    public static final String STARBREAKER_CORPSE = "MoonworksResources/images/char/starBreaker/SBKOSmall.png"; //
     
     //Mod Badge - A small icon that appears in the mod settings menu next to your mod.
     public static final String BADGE_IMAGE = "MoonworksResources/images/Badge.png";
     
     // Atlas and JSON files for the Animations
-    public static final String THE_DEFAULT_SKELETON_ATLAS = "MoonworksResources/images/char/defaultCharacter/skeleton.atlas";
-    public static final String THE_DEFAULT_SKELETON_JSON = "MoonworksResources/images/char/defaultCharacter/skeleton.json";
+    public static final String THE_DEFAULT_SKELETON_ATLAS = "MoonworksResources/images/char/starBreaker/skeleton.atlas";
+    public static final String THE_DEFAULT_SKELETON_JSON = "MoonworksResources/images/char/starBreaker/skeleton.json";
     
     // =============== MAKE IMAGE PATHS =================
     
@@ -602,7 +602,7 @@ public class OrangeJuiceMod implements
                         e.printStackTrace();
                     }
                 });
-        currentYposition -= spacingY;
+        //currentYposition -= spacingY;
 
         settingsPanel.addUIElement(enableSelfDamageButton); // Add the button to the settings panel. Button is a go.
         settingsPanel.addUIElement(enableStrongerWantedButton); // Add the button to the settings panel. Button is a go.

@@ -83,13 +83,13 @@ public class TheStarBreaker extends CustomPlayer {
 
     // =============== STRINGS =================
 
-    private static final String ID = makeID("DefaultCharacter");
+    private static final String ID = makeID("StarBreaker");
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
 
     //private static final String defaultAnim = "MoonworksResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml";
-    private static final String ANIM_FILE = "MoonworksResources/images/char/defaultCharacter/Spriter/StarbreakerStuff2.scml";
+    private static final String ANIM_FILE = "MoonworksResources/images/char/starBreaker/Spriter/StarbreakerStuff2.scml";
 
     //private static final SpriterAnimation defaultAnimation = new SpriterAnimation(defaultAnim);
 
@@ -103,17 +103,17 @@ public class TheStarBreaker extends CustomPlayer {
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
     public static final String[] orbTextures = {
-            "MoonworksResources/images/char/defaultCharacter/orb/layer1star4.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer2star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer3star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer4star4.png", //
-            "MoonworksResources/images/char/defaultCharacter/orb/layer5star4.png", //
-            "MoonworksResources/images/char/defaultCharacter/orb/layer6star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer1star4d.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer2star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer3star.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer4star4d.png",
-            "MoonworksResources/images/char/defaultCharacter/orb/layer5star4d.png",};
+            "MoonworksResources/images/char/starBreaker/orb/layer1star4.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer2star.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer3star.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer4star4.png", //
+            "MoonworksResources/images/char/starBreaker/orb/layer5star4.png", //
+            "MoonworksResources/images/char/starBreaker/orb/layer6star.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer1star4d.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer2star.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer3star.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer4star4d.png",
+            "MoonworksResources/images/char/starBreaker/orb/layer5star4d.png",};
 
     //public static final float[] layerSpeeds = {-20.0F, 20.0F, -40.0F, 40.0F, 360.0F};
     public static final float[] layerSpeeds = {-20.0F, 20.0F, -40.0F, 40.0F, 0.0F};
@@ -124,7 +124,7 @@ public class TheStarBreaker extends CustomPlayer {
 
     public TheStarBreaker(String name, PlayerClass setClass) {
         //super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxm.png", null, idleAnimation);
-        super(name, setClass, orbTextures, "MoonworksResources/images/char/defaultCharacter/orb/vfxstar.png", layerSpeeds, new CustomSpriterAnimation(ANIM_FILE));
+        super(name, setClass, orbTextures, "MoonworksResources/images/char/starBreaker/orb/vfxstar.png", layerSpeeds, new CustomSpriterAnimation(ANIM_FILE));
 
         Player.PlayerListener listener = new CustomAnimationListener(this);
         ((CustomSpriterAnimation)this.animation).myPlayer.addListener(listener);

@@ -77,7 +77,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
     public CloudOfSeagulls() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.cardsToPreview = new JonathanRush();
-        baseDamage = damage = DAMAGE;
+        thirdMagicNumber = baseThirdMagicNumber = DAMAGE;
         magicNumber = baseMagicNumber = GULLS_ADDED;
         secondMagicNumber = baseSecondMagicNumber = HITS;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
@@ -156,7 +156,7 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
                 }
 
                 //Do the damage
-                DamageInfo fixedDamage = new DamageInfo(p, damage, damageTypeForTurn);
+                DamageInfo fixedDamage = new DamageInfo(p, thirdMagicNumber, damageTypeForTurn);
                 FixedPatches.FixedField.fixed.set(fixedDamage, true);
                 this.addToBot(new DamageAction(t, fixedDamage, hasThorns ? AbstractGameAction.AttackEffect.SLASH_HORIZONTAL : AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
 
@@ -179,21 +179,13 @@ public class CloudOfSeagulls extends AbstractNormaAttentiveCard {
         }
     }
 
-    //Stops powers from effecting the card
-    @Override
-    public void applyPowers() {}
-
-    //Don't let damage be modified
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) {}
-
     //Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
             cardsToPreview.upgrade();
-            //upgradeDamage(UPGRADE_PLUS_DAMAGE);
+            //upgradeThirdMagicNumber(UPGRADE_PLUS_DAMAGE);
             upgradeSecondMagicNumber(UPGRADE_PLUS_HITS);
             if (!enableSelfDamage) {
                 target = CardTarget.ALL_ENEMY;

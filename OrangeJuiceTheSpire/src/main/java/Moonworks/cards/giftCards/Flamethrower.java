@@ -59,7 +59,7 @@ public class Flamethrower extends AbstractGiftCard {
     public Flamethrower(int currentUses, boolean checkedGolden) {
 
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, USES, currentUses, checkedGolden);
-        this.damage = this.baseDamage = DAMAGE;
+        this.magicNumber = this.baseMagicNumber = DAMAGE;
         this.damageType = DamageInfo.DamageType.THORNS;
 
     }
@@ -71,7 +71,7 @@ public class Flamethrower extends AbstractGiftCard {
         if(isActive() && c != this) { //Dont activate when playing itself
 
             //Define a damage info and set Fixed to true
-            DamageInfo fixedDamage = new DamageInfo(AbstractDungeon.player, damage, damageTypeForTurn);
+            DamageInfo fixedDamage = new DamageInfo(AbstractDungeon.player, magicNumber, damageTypeForTurn);
             FixedPatches.FixedField.fixed.set(fixedDamage, true);
 
             //If we actually had a monster that our card was played on, hit them
@@ -85,21 +85,12 @@ public class Flamethrower extends AbstractGiftCard {
         }
     }
 
-    //Ensures we do not so anything to change our fixed damage
-    @Override
-    public void applyPowers() {}
-
-    //Don't let damage be modified
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) {}
-
-
     //Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeDamage(UPGRADE_PLUS_DAMAGE);
+            upgradeMagicNumber(UPGRADE_PLUS_DAMAGE);
             //upgradeDefaultSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }

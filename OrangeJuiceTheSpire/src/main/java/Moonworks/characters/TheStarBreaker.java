@@ -2,13 +2,19 @@ package Moonworks.characters;
 
 import Moonworks.CustomAnimationListener;
 import Moonworks.CustomSpriterAnimation;
+import Moonworks.OrangeJuiceMod;
 import Moonworks.RandomChatterHelper;
-import Moonworks.cards.*;
-import Moonworks.cards.giftCards.*;
+import Moonworks.cards.Ambush;
+import Moonworks.cards.Defend;
+import Moonworks.cards.LongDistanceShot;
+import Moonworks.cards.Strike;
+import Moonworks.cards.giftCards.RedAndBlue;
 import Moonworks.cards.tempCards.LeapThroughTime;
 import Moonworks.cards.tempCards.StarBlastingLight;
-import Moonworks.cards.trapCards.*;
-import Moonworks.relics.*;
+import Moonworks.cards.trapCards.StarBlastingFuse;
+import Moonworks.relics.BrokenBomb;
+import Moonworks.relics.Homemark;
+import Moonworks.vfx.StarBreakerVictoryEffect;
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,9 +38,9 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import Moonworks.OrangeJuiceMod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -420,6 +426,11 @@ public class TheStarBreaker extends CustomPlayer {
         panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker2.png", "TURN_EFFECT"));
         panels.add(new CutscenePanel("MoonworksResources/images/scene/starbreaker3.png", "CEILING_BOOM_3"));
         return panels;
+    }
+
+    @Override
+    public void updateVictoryVfx(ArrayList<AbstractGameEffect> effects) {
+        effects.add(new StarBreakerVictoryEffect());
     }
 
     // Should return a string containing what text is shown when your character is

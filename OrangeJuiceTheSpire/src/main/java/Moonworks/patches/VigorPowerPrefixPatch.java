@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
-
+/*
 @SpirePatch(
         clz = VigorPower.class, //This is the class you're patching.
         method = "onUseCard" //This is the name of the method of that class that you're patching.
@@ -23,4 +23,4 @@ public class VigorPowerPrefixPatch
         }
         return SpireReturn.Continue(); //This allows you to either return early, change the value returned, or just continue like this.
     }
-}
+}*/

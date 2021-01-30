@@ -23,14 +23,13 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
     private final boolean upgrade;
     private static final UIStrings uiStrings;
     public static final String[] TEXT;
-    private final Map<AbstractCard, CardGroup> map = new HashMap<>();
+    private final Map<AbstractCard, CardGroup> locationMap = new HashMap<>();
+    private final Map<AbstractCard, AbstractCard> cloneMap = new HashMap<>();
     private final SubspaceTunnel subspaceTunnel;
     private final int handIndex;
-    private final Map<AbstractCard, Color> colorMap = new HashMap<>();
     private static final Color drawPileBlue = new Color(0.2F, 0.9F, 1.0F, 0.25F);
     private static final Color discardPileRed = new Color(-16776961);
     private static final Color exhaustPilePurple = new Color(-1608453889);
-    private static final boolean doColors = false;
 
     public ReplaceCardFromAnywhere(SubspaceTunnel subspaceTunnel, int handIndex) {
         this(subspaceTunnel, handIndex, false);
@@ -58,13 +57,12 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             //This should be randomized so the player cant figure out the upcoming card order
             for (AbstractCard card : p.drawPile.group) {
                 if (!(card instanceof SubspaceTunnel)) {
-                    if (doColors) {
-                        colorMap.put(card, card.glowColor.cpy());
-                        card.glowColor = new Color(drawPileBlue);
-                        card.beginGlowing();
-                    }
-                    tempCards.addToRandomSpot(card);
-                    map.put(card, p.drawPile);
+                    AbstractCard clone = card.makeStatEquivalentCopy();
+                    clone.glowColor = drawPileBlue.cpy();
+                    clone.beginGlowing();
+                    tempCards.addToTop(clone);
+                    cloneMap.put(clone, card);
+                    locationMap.put(card, p.drawPile);
                 }
             }
             tempCards.sortAlphabetically(true);
@@ -76,13 +74,12 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             //If they happened to have a duplicate card in the draw pile, they can now tell the difference hopefully
             for (AbstractCard card : p.discardPile.group) {
                 if (!(card instanceof SubspaceTunnel)) {
-                    if (doColors) {
-                        colorMap.put(card, card.glowColor.cpy());
-                        card.glowColor = new Color(discardPileRed);
-                        card.beginGlowing();
-                    }
-                    tempCards.addToTop(card);
-                    map.put(card, p.discardPile);
+                    AbstractCard clone = card.makeStatEquivalentCopy();
+                    clone.glowColor = discardPileRed.cpy();
+                    clone.beginGlowing();
+                    tempCards.addToTop(clone);
+                    cloneMap.put(clone, card);
+                    locationMap.put(card, p.discardPile);
                 }
             }
             tempCards.sortAlphabetically(true);
@@ -92,13 +89,12 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             tempCards.clear();
             for (AbstractCard card : p.exhaustPile.group) {
                 if (!(card instanceof SubspaceTunnel)) {
-                    if (doColors) {
-                        colorMap.put(card, card.glowColor.cpy());
-                        card.glowColor = new Color(exhaustPilePurple);
-                        card.beginGlowing();
-                    }
-                    tempCards.addToTop(card);
-                    map.put(card, p.exhaustPile);
+                    AbstractCard clone = card.makeStatEquivalentCopy();
+                    clone.glowColor = exhaustPilePurple.cpy();
+                    clone.beginGlowing();
+                    tempCards.addToTop(clone);
+                    cloneMap.put(clone, card);
+                    locationMap.put(card, p.exhaustPile);
                 }
             }
             tempCards.sortAlphabetically(true);
@@ -113,23 +109,20 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             }
             this.tickDuration();
         } else {
-            if (doColors) {
-                //Restore glow colors
-                for (AbstractCard card : allCards.group) {
-                    card.glowColor = colorMap.get(card);
-                    card.stopGlowing();
-                }
-                colorMap.clear();
-            }
             //Do our stuff
             if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-                for (AbstractCard swappedCard : AbstractDungeon.gridSelectScreen.selectedCards) {
+                for (AbstractCard cloneCard : AbstractDungeon.gridSelectScreen.selectedCards) {
+                    AbstractCard swappedCard = cloneMap.get(cloneCard);
+                    //swappedCard.lighten(true);
+                    swappedCard.unfadeOut();
+                    //cloneCard.stopGlowing();
+                    //swappedCard.stopGlowing();
                     if (this.upgrade && swappedCard.canUpgrade()) {
                         swappedCard.upgrade();
                     }
                     swappedCard.costForTurn = 0;
                     swappedCard.isCostModifiedForTurn = true;
-                    int pileIndex = map.get(swappedCard).group.indexOf(swappedCard); //Get index of the new card in its old pile
+                    int pileIndex = locationMap.get(swappedCard).group.indexOf(swappedCard); //Get index of the new card in its old pile
 
                     //Take the new card out of its old pile and put it in the hand now
                     if (handIndex >= 0 && handIndex <= p.hand.group.size())
@@ -140,45 +133,45 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
                     {
                         p.hand.addToTop(swappedCard);
                     }
-                    map.get(swappedCard).removeCard(swappedCard);
+                    locationMap.get(swappedCard).removeCard(swappedCard);
 
                     //Reset the old card so its not glowy and stuff
                     resetCardActionsStuff();
 
                     //Put the old card where the new one was
 
-                    CardGroup target = map.get(swappedCard);
+                    CardGroup targetGroup = locationMap.get(swappedCard);
 
                     if (pileIndex < 0)
                         pileIndex = 0;
 
-                    if (target == AbstractDungeon.player.drawPile) {
+                    if (targetGroup == AbstractDungeon.player.drawPile) {
                         subspaceTunnel.shrink();
                         subspaceTunnel.darken(false);
                         AbstractDungeon.getCurrRoom().souls.onToDeck(subspaceTunnel, true, true);
-                    } else if (target == AbstractDungeon.player.discardPile) {
+                    } else if (targetGroup == AbstractDungeon.player.discardPile) {
                         subspaceTunnel.shrink();
                         subspaceTunnel.darken(false);
                         AbstractDungeon.getCurrRoom().souls.discard(subspaceTunnel, true);
-                    } else if (target == AbstractDungeon.player.exhaustPile) {
+                    } else if (targetGroup == AbstractDungeon.player.exhaustPile) {
                         AbstractDungeon.effectList.add(new ExhaustCardEffect(subspaceTunnel));
                     } else {
                         //Something wrong happened, just continue on as usual
                         subspaceTunnel.success = false;
                     }
                     if(subspaceTunnel.success) {
-                        if (pileIndex <= target.group.size())
+                        if (pileIndex <= targetGroup.group.size())
                         {
-                            target.group.add(pileIndex, subspaceTunnel);
+                            targetGroup.group.add(pileIndex, subspaceTunnel);
                         }
                         else
                         {
-                            target.group.add(0, subspaceTunnel);
+                            targetGroup.group.add(0, subspaceTunnel);
                         }
                     }
                 }
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
-                map.clear();
+                locationMap.clear();
             }
             this.tickDuration();
             this.isDone = true;

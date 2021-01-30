@@ -120,6 +120,12 @@ public class OrangeJuiceMod implements
     //public static final Color DEFAULT_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
     //public static final Color WHITE_ICE = CardHelper.getColor(221.0f, 249.0f, 241.0f);
     public static final Color WHITE_ICE = CardHelper.getColor(225.0f, 243.0f, 250.0f);
+    public static final Color ATTACK_ORANGE = CardHelper.getColor(162.0f, 97.0f, 28.0f);
+    public static final Color SKILL_GREEN = CardHelper.getColor(44.0f, 134.0f, 46.0f);
+    public static final Color POWER_BLUE = CardHelper.getColor(46.0f, 91.0f, 138.0f);
+    public static final Color TEMP_RED = CardHelper.getColor(145.0f, 33.0f, 31.0f);
+    public static final Color GIFT_PINK = CardHelper.getColor(135.0f, 45.0f, 134.0f);
+    public static final Color TRAP_PURPLE = CardHelper.getColor(87.0f, 42.0f, 182.0f);
     
     // Potion Colors in RGB
     public static final Color OJ_POTION_LIQUID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Orange
@@ -136,10 +142,12 @@ public class OrangeJuiceMod implements
     // Card backgrounds - The actual rectangular card.
     private static final String ATTACK_WHITE_ICE = "MoonworksResources/images/512/bg_attack_coloured.png"; //
     public static final String TEMP_ATTACK_WHITE_ICE = "MoonworksResources/images/512/bg_attack_coloured_temp.png"; //
+    public static final String MAGIC_ATTACK_WHITE_ICE = "MoonworksResources/images/512/bg_attack_coloured_magic.png"; //
     private static final String SKILL_WHITE_ICE = "MoonworksResources/images/512/bg_skill_coloured.png"; //
     public static final String GIFT_WHITE_ICE = "MoonworksResources/images/512/bg_skill_coloured_gift.png"; //
     public static final String TRAP_WHITE_ICE = "MoonworksResources/images/512/bg_skill_coloured_trap.png"; //
     public static final String TEMP_SKILL_WHITE_ICE = "MoonworksResources/images/512/bg_skill_coloured_temp.png"; //
+    public static final String MAGIC_SKILL_WHITE_ICE = "MoonworksResources/images/512/bg_skill_coloured_magic.png"; //
     private static final String POWER_WHITE_ICE = "MoonworksResources/images/512/bg_power_coloured.png"; //
     
     //private static final String ENERGY_ORB_WHITE_ICE = "MoonworksResources/images/512/card_orb.png"; //
@@ -151,10 +159,12 @@ public class OrangeJuiceMod implements
     
     private static final String ATTACK_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_attack_coloured.png"; //
     public static final String TEMP_ATTACK_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_attack_coloured_temp.png"; //
+    public static final String MAGIC_ATTACK_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_attack_coloured_magic.png"; //
     private static final String SKILL_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_skill_coloured.png"; //
     public static final String GIFT_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_skill_coloured_gift.png"; //
     public static final String TRAP_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_skill_coloured_trap.png"; //
     public static final String TEMP_SKILL_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_skill_coloured_temp.png"; //
+    public static final String MAGIC_SKILL_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_skill_coloured_magic.png"; //
     private static final String POWER_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/bg_power_coloured.png"; //
     //private static final String ENERGY_ORB_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/card_orb.png"; //
     //private static final String ENERGY_ORB_WHITE_ICE_PORTRAIT = "MoonworksResources/images/1024/card_orb_star.png"; //

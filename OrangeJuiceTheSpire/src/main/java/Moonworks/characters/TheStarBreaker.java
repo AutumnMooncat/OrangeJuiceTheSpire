@@ -8,6 +8,9 @@ import Moonworks.cards.Ambush;
 import Moonworks.cards.Defend;
 import Moonworks.cards.LongDistanceShot;
 import Moonworks.cards.Strike;
+import Moonworks.cards.abstractCards.AbstractGiftCard;
+import Moonworks.cards.abstractCards.AbstractTempCard;
+import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.cards.giftCards.RedAndBlue;
 import Moonworks.cards.tempCards.LeapThroughTime;
 import Moonworks.cards.tempCards.StarBlastingLight;
@@ -54,6 +57,7 @@ import static Moonworks.characters.TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
 public class TheStarBreaker extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
+    private Color lastCardColor = WHITE_ICE;
 
     // =============== CHARACTER ENUMERATORS =================
     // These are enums for your Characters color (both general color and for the card library) as well as
@@ -356,7 +360,13 @@ public class TheStarBreaker extends CustomPlayer {
     // Should return a color object to be used to color the trail of moving cards
     @Override
     public Color getCardTrailColor() {
-        return OrangeJuiceMod.WHITE_ICE.cpy();
+        return lastCardColor.cpy();
+    }
+
+    @Override
+    public void applyEndOfTurnTriggers() {
+        lastCardColor = WHITE_ICE;
+        super.applyEndOfTurnTriggers();
     }
 
     // Should return a BitmapFont object that you can use to customize how your
@@ -411,6 +421,9 @@ public class TheStarBreaker extends CustomPlayer {
         return new AbstractGameAction.AttackEffect[]{
                 AbstractGameAction.AttackEffect.FIRE,
                 AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.FIRE,
                 AbstractGameAction.AttackEffect.FIRE};
     }
 
@@ -456,24 +469,34 @@ public class TheStarBreaker extends CustomPlayer {
             case ATTACK:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getAttackText(), cardTalkProbability, enableCardBattleTalkEffect);
                 playAnimation("attack");
+                lastCardColor = ATTACK_ORANGE;
                 break;
             case SKILL:
                 if (!(c instanceof StarBlastingLight) && !(c instanceof StarBlastingFuse) && !(c instanceof LeapThroughTime)) {
                     RandomChatterHelper.showChatter(RandomChatterHelper.getSkillText(), cardTalkProbability, enableCardBattleTalkEffect);
                 }
                 playAnimation("skill");
-                //This can be compressed into default, but will stay like this for if I make more animations
+                lastCardColor = SKILL_GREEN;
                 break;
             case POWER:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getPowerText(), cardTalkProbability, enableCardBattleTalkEffect);
                 playAnimation("happy");
+                lastCardColor = POWER_BLUE;
                 break;
             case STATUS:
             case CURSE:
             default:
                 RandomChatterHelper.showChatter(RandomChatterHelper.getSkillText(), cardTalkProbability, enableCardBattleTalkEffect);
                 playAnimation("skill");
+                lastCardColor = WHITE_ICE;
                 break;
+        }
+        if (c instanceof AbstractTempCard) {
+            lastCardColor = TEMP_RED;
+        } else if (c instanceof AbstractGiftCard) {
+            lastCardColor = GIFT_PINK;
+        } else if (c instanceof AbstractTrapCard) {
+            lastCardColor = TRAP_PURPLE;
         }
     }
 

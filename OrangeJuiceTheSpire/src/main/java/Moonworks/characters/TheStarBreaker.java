@@ -9,6 +9,7 @@ import Moonworks.cards.Defend;
 import Moonworks.cards.LongDistanceShot;
 import Moonworks.cards.Strike;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
+import Moonworks.cards.abstractCards.AbstractMagicalCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.cards.giftCards.RedAndBlue;
@@ -497,6 +498,8 @@ public class TheStarBreaker extends CustomPlayer {
             lastCardColor = GIFT_PINK;
         } else if (c instanceof AbstractTrapCard) {
             lastCardColor = TRAP_PURPLE;
+        } else if (c instanceof AbstractMagicalCard) {
+            lastCardColor = POWER_BLUE;
         }
     }
 

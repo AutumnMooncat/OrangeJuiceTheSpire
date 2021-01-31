@@ -26,13 +26,13 @@ public class RegenActionPrefixPatch
     {
         //To make sure it doesn't interfere with other mods
         if(AbstractDungeon.player.chosenClass == TheStarBreaker.Enums.THE_STARBREAKER) {
-            logger.info("Setting up Regen");
+            //logger.info("Setting up Regen");
             if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
                 if(!__instance.target.isPlayer) {
                     AbstractPower p = __instance.target.getPower("Regeneration");
                     if (p != null) {
                         --p.amount;
-                        if (p.amount == 0) {
+                        if (p.amount <= 0) {
                             __instance.target.powers.remove(p);
                         } else {
                             p.updateDescription();

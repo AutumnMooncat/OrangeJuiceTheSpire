@@ -339,7 +339,8 @@
   },
   "Moonworks:QuickRestoration": {
     "NAME": "Quick Restoration",
-    "DESCRIPTION": "Gain !B! Block !M! times."
+    "DESCRIPTION": "Gain !B! Block !M! times.",
+    "EXTENDED_DESCRIPTION": ["-1 Block, but gain Block +1 time."]
   },
   "Moonworks:RagingMadness": {
     "NAME": "Raging Madness",

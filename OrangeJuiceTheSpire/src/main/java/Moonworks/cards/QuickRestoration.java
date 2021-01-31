@@ -1,19 +1,17 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cardModifiers.NormaDynvarModifier;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.TemporaryDexterityPower;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class QuickRestoration extends AbstractDynamicCard {
+public class QuickRestoration extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -47,14 +45,18 @@ public class QuickRestoration extends AbstractDynamicCard {
     private static final int BLOCKS = 2;
     private static final int UPGRADE_PLUS_BLOCKS = 1;
 
+    private static final Integer[] NORMA_LEVELS = {3};
+
     // /STAT DECLARATION/
 
 
     public QuickRestoration() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
         this.block = this.baseBlock = BASE_BLOCK;
         this.magicNumber = this.baseMagicNumber = BLOCKS;
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.BLOCKMOD, -1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], null));
 
     }
 

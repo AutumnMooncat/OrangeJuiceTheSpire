@@ -1,9 +1,15 @@
 {
   "Moonworks:RestoreGift": {
-    "TEXT": ["Select a Gift to restore to your draw pile."]
+    "TEXT": ["Select a Gift to restore to your Draw Pile."]
   },
   "Moonworks:FetchFromAnywhere": {
     "TEXT": ["Select a card to add to your hand. All Draw Pile cards are shown before Discard Pile and then Exhaust Pile cards"]
+  },
+  "Moonworks:ChooseMagic": {
+    "TEXT": ["Choose 1 of 3 Magical Memories to add to your Discard Pile."]
+  },
+  "Moonworks:ChooseMemory": {
+    "TEXT": ["Choose "," card(s) to turn into Memories."]
   },
   "Moonworks:ModConfigSeagulls": {
     "TEXT": ["Allow Cloud Of Seagulls to still hit the player even when upgraded. Default: false."]

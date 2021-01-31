@@ -1,9 +1,8 @@
 {
   "Moonworks:Accelerator": {
     "NAME": "Accelerator",
-    "DESCRIPTION": "Whenever a card is created in combat, create an additional copy of it. Has *exceptions.",
-    "UPGRADE_DESCRIPTION": "Whenever a card is created in combat, create !M! additional copies of it. Has *exceptions.",
-    "EXTENDED_DESCRIPTION": ["Accelerator Exceptions", "Does not apply to #yStatus, #yCurse, or #yMagical cards.","If available, use an extra [E] to also upgrade all newly created cards."]
+    "DESCRIPTION": "Gain !M! *Accelerator.",
+    "EXTENDED_DESCRIPTION": ["Accelerator", "Whenever a card is created in combat, create an extra copy of it. NL Does not apply to #yStatus, #yCurse, or #yMagical cards.","If available, use an extra [E] to also upgrade all newly created cards."]
   },
   "Moonworks:AccelHyper": {
     "NAME": "Accel Hyper",
@@ -84,15 +83,14 @@
   },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "Cloud of Seagulls",
-    "DESCRIPTION": "Deal !D! moonworks:Fixed damage to a random target !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Deal !D! moonworks:Fixed damage to a random enemy !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush+ into your draw pile.",
-    "EXTENDED_DESCRIPTION": ["Draw 1 card.","Deal !D! damage to a random target. NL Shuffle !M! *Jonathan *Rush+ into your draw pile."]
+    "DESCRIPTION": "Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random target !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random enemy !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush+ into your draw pile.",
+    "EXTENDED_DESCRIPTION": ["Draw 1 card.","Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random target. NL Shuffle !M! *Jonathan *Rush+ into your draw pile."]
   },
   "Moonworks:CompletionReward": {
     "NAME": "Completion Reward",
-    "DESCRIPTION": "Deals damage for every card played this combat. moonworks:Reset. NL (Deals !D! damage.)",
-    "UPGRADE_DESCRIPTION": "Deals damage for every card played this combat. Half moonworks:Reset. NL (Deals !D! damage.)",
-    "EXTENDED_DESCRIPTION": ["+3 damage."]
+    "DESCRIPTION": "Deals damage for every card played this combat. NL (Deals !D! damage.)",
+    "EXTENDED_DESCRIPTION": ["+6 damage."]
   },
   "Moonworks:CookingTime": {
     "NAME": "Cooking Time",
@@ -102,6 +100,11 @@
   "Moonworks:CrystalBarrier": {
     "NAME": "Crystal Barrier",
     "DESCRIPTION": "Block is not removed at the start of your turn. NL Gain !M! *Plated *Armor."
+  },
+  "Moonworks:DarkSideOfBusiness": {
+    "NAME": "Dark Side of Business",
+    "DESCRIPTION": "Lose all *Norma. NL Choose 1 of 3 moonworks:Magical cards with charges equal to the amount of *Norma lost. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Lose all *Norma. NL Choose 1 of 3 upgraded moonworks:Magical cards with charges equal to the amount of *Norma lost. NL Exhaust."
   },
   "Moonworks:Dash": {
     "NAME": "Dash!",
@@ -118,6 +121,11 @@
     "NAME": "Deploy Bits",
     "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor.",
     "EXTENDED_DESCRIPTION": ["-3 Bits, but Bit distribution is now moonworks:Optimized."]
+  },
+  "Moonworks:DesperateModification": {
+    "NAME": "Desperate Modification",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy intends to attack you, gain !M! Block and Exhaust instead.",
+    "EXTENDED_DESCRIPTION": ["Gain !B! Block. NL Exhaust."]
   },
   "Moonworks:DevilHand": {
     "NAME": "Devil Hand",
@@ -168,7 +176,7 @@
   },
   "Moonworks:Flamethrower": {
     "NAME": "Flamethrower",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !D! moonworks:Fixed damage to an enemy. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !M! moonworks:Fixed *Damage to an enemy. NL On Play: Discard.",
     "EXTENDED_DESCRIPTION": ["Your Flamethrower is out of fuel."]
   },
   "Moonworks:ForcedRevival": {
@@ -192,6 +200,11 @@
     "DESCRIPTION": "Ethereal. NL The target is moonworks:Stunned for a turn. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "The target is moonworks:Stunned for a turn. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Currently Removed"]
+  },
+  "Moonworks:GoldenEgg": {
+    "NAME": "Golden Egg",
+    "DESCRIPTION": "Gain !B! Block. NL Shuffle a random *Attack into your draw pile.",
+    "EXTENDED_DESCRIPTION": ["Add the card to your hand instead."]
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
@@ -253,23 +266,23 @@
   },
   "Moonworks:MagicalInferno": {
     "NAME": "Magical Inferno",
-    "DESCRIPTION": "Deal !D! moonworks:Splash *Damage to ALL enemies. NL Gain !M! Vigor. NL Purge.",
-    "EXTENDED_DESCRIPTION": ["-X damage and -X Vigor."]
+    "DESCRIPTION": "Deal !D! moonworks:Splash *Damage to ALL enemies. NL Gain !M! Vigor. NL Exhaustive !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["True Magical Inferno"]
   },
   "Moonworks:MagicalMassacre": {
     "NAME": "Magical Massacre",
-    "DESCRIPTION": "Remove !M! % of the target's max HP. NL Gain !Moonworks:SecondMagic! moonworks:Steady. NL Purge.",
-    "EXTENDED_DESCRIPTION": ["-X % removed and -X *Steady."]
+    "DESCRIPTION": "The healthiest enemy loses !M! HP and max HP. NL Gain !Moonworks:SecondMagic! moonworks:Steady. NL Exhaustive !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["True Magical Massacre"]
   },
   "Moonworks:MagicalRevenge": {
     "NAME": "Magical Revenge",
-    "DESCRIPTION": "Deal !Moonworks:SecondMagic! % of your missing HP as damage. NL Heal for !M! % the damage dealt. NL Purge.",
-    "EXTENDED_DESCRIPTION": ["-3X % dealt."]
+    "DESCRIPTION": "Deal !D! % of your missing HP as moonworks:Revenge *Damage with !M! % moonworks:Life_Steal. NL (Deals !Moonworks:SecondMagic! damage.) NL Exhaustive !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["True Magical Revenge"]
   },
   "Moonworks:MeltingMemories": {
     "NAME": "Melting Memories",
-    "DESCRIPTION": "Lose all *Norma. Gain moonworks:Magical_Memories equal to the amount lost. NL Regain 1 lost *Norma per turn.",
-    "UPGRADE_DESCRIPTION": "Lose all *Norma. Gain moonworks:Magical_Memories equal to the amount lost. NL The added cards will be upgraded. NL Regain 1 lost *Norma per turn."
+    "DESCRIPTION": "Lose all *Norma. NL Gain moonworks:Magical_Memories equal to the amount lost. NL Regain 1 lost *Norma per turn.",
+    "UPGRADE_DESCRIPTION": "Lose all *Norma. NL Gain moonworks:Magical_Memories equal to the amount lost. NL The added cards will be upgraded. NL Regain 1 lost *Norma per turn."
   },
   "Moonworks:Mimic": {
     "NAME": "Mimic",
@@ -324,6 +337,10 @@
     "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards. NL If both cards drawn are the same type, repeat this *effect next turn.",
     "EXTENDED_DESCRIPTION": ["Heal !Moonworks:SecondMagic! HP if unblocked damage was dealt."]
   },
+  "Moonworks:QuickRestoration": {
+    "NAME": "Quick Restoration",
+    "DESCRIPTION": "Gain !B! Block !M! times."
+  },
   "Moonworks:RagingMadness": {
     "NAME": "Raging Madness",
     "DESCRIPTION": "Whenever you receive unblocked damage, gain !M! Strength.",
@@ -344,6 +361,10 @@
     "DESCRIPTION": "Add a copy of the !M! most recent cards in your discard pile to your hand. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Retain. NL Add a copy of the !M! most recent cards in your discard pile to your hand. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Gain [E]."]
+  },
+  "Moonworks:Rival": {
+    "NAME": "Rival",
+    "DESCRIPTION": "The healthiest enemy becomes your moonworks:Rival."
   },
   "Moonworks:RocketCannon": {
     "NAME": "Rocket Cannon",
@@ -368,7 +389,7 @@
   },
   "Moonworks:SelfDestruct": {
     "NAME": "Self Destruct",
-    "DESCRIPTION": "Take !Moonworks:InvertedNumber! damage. NL Deal !D! damage to ALL enemies. NL Block is !Moonworks:SecondMagic! times more effective at reducing the self damage. NL Can be played while *Entangled.",
+    "DESCRIPTION": "Take !Moonworks:InvertedNumber! moonworks:Fixed *Damage. NL Deal !D! damage to ALL enemies. NL Block is !Moonworks:SecondMagic! times more effective at reducing the self damage. NL Can be played while *Entangled.",
     "EXTENDED_DESCRIPTION": ["-X self damage."]
   },
   "Moonworks:ShieldCounter": {
@@ -446,6 +467,11 @@
   "Moonworks:WeAreWaruda": {
     "NAME": "We Are Waruda",
     "DESCRIPTION": "Remove all debuffs from ALL targets. NL Apply all removed debuffs to one target. NL Exhaust."
+  },
+  "Moonworks:WhimsicalWindmill": {
+    "NAME": "Whimsical Windmill",
+    "DESCRIPTION": "At the beginning of your turn, gain energy for each enemy who attacked you last turn.",
+    "UPGRADE_DESCRIPTION": "Innate. NL At the beginning of your turn, gain energy for each enemy who attacked you last turn."
   },
   "Moonworks:WindyEnchantment": {
     "NAME": "Windy Enchantment",

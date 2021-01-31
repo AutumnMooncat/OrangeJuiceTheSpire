@@ -95,7 +95,7 @@
         },
         "Moonworks:ShieldCounterPower": {
                 "NAME": "Shield Counter",
-                "DESCRIPTIONS": ["This turn,","For the next #b","turns,"," any attack you fully block is reflected onto the attacker."," NL If you still have Block at the end of the turn, you do not lose a stack of Shield Counter."]
+                "DESCRIPTIONS": ["This turn,","For the next #b"," turns,"," any attack you fully block is reflected onto the attacker."," NL If you still have Block at the end of the turn, you do not lose a stack of Shield Counter."]
         },
         "Moonworks:BlastOffPower": {
                 "NAME": "Blast Off!",
@@ -115,11 +115,23 @@
         },
         "Moonworks:MeltingMemoriesPower": {
                 "NAME": "Magical Memories",
-                "DESCRIPTIONS": ["At the beginning of your turn, choose 1 of 3 #yMagical cards, add it to your hand.",
-                        "At the beginning of your turn, choose 1 of 3 #yupgraded #yMagical cards, add it to your hand."]
+                "DESCRIPTIONS": ["Choose up to ", " cards to turn into memories. ",
+                        "There are no #yMemories in play. ",
+                        "Play the #yeffect of any #yMemories that are in your hand at the beginning of your turn. #yMemories are not exempt from #yExhaustive behaviours.",
+                        "Memory of ",
+                        "An active moonworks:Memory. NL ","A forgotten moonworks:Memory. NL "]
         },
         "Moonworks:ImmobilePower": {
                 "NAME": "Immobile",
                 "DESCRIPTIONS": ["Block is not removed at the start of your turn, but you may only play #yAttack cards if they are #yRanged.", "I can only play Ranged attacks!"]
+        },
+        "Moonworks:RivalPower": {
+                "NAME": "Rival",
+                "DESCRIPTIONS": [" is your #yRival. NL Attacks against your #yRival deal #b", "% additional damage. This amount increases by #b","% if your Rival attacked you last turn."]
+        },
+        "Moonworks:WhimsicalWindmillPower": {
+                "NAME": "Whimsical Windmill",
+                "DESCRIPTIONS": ["At the beginning of your turn, gain #b"," energy for each enemy who attacked you last turn.",
+                        " NL You will currently gain #b"," energy next turn."]
         }
 }

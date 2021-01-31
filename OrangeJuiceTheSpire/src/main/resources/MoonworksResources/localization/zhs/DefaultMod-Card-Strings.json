@@ -170,7 +170,7 @@
   },
   "Moonworks:Flamethrower": {
     "NAME": "喷射火焰",
-    "DESCRIPTION": " moonworks:礼物卡余额 ： !Moonworks:SecondMagic! . NL 在手牌中: 每打出1张牌, 对一名敌人造成 !D! 点 moonworks:固定 伤害. NL 打出: 弃置.",
+    "DESCRIPTION": " moonworks:礼物卡余额 ： !Moonworks:SecondMagic! . NL 在手牌中: 每打出1张牌, 对一名敌人造成 !M! 点 moonworks:固定 伤害. NL 打出: 弃置.",
     "UPGRADE_DESCRIPTION": "喷火器燃料耗尽.",
     "EXTENDED_DESCRIPTION": [":我无法打出这张牌."]
   },

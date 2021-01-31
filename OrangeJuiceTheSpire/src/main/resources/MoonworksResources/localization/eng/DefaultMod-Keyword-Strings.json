@@ -249,7 +249,14 @@
       "Magical",
       "magical"
     ],
-    "DESCRIPTION": "This card inversely scales with Norma and can not be obtained from normal card-drops."
+    "DESCRIPTION": "#yMagical cards are created by spending #yNorma #yLevels and gain charges for each #yLevel spent. One #yNorma is regained each time a #yMagical card expends a charge."
+  },
+  {
+    "NAMES": [
+      "Memory",
+      "memory"
+    ],
+    "DESCRIPTION": "This card is connected to a #bPower and is #yUnplayable. If this is your hand after the draw phase, it's effect is #yAutoplayed."
   },
   {
     "PROPER_NAME": "Magical Memories",
@@ -257,7 +264,7 @@
       "Magical Memories",
       "magical_memories"
     ],
-    "DESCRIPTION": "At the beginning of your turn, choose 1 of 3 #yMagical cards, add it to your hand."
+    "DESCRIPTION": "Choose as many #ynon-exhausted #bAttack and #bSkill cards as #yNorma was lost and convert them to #yMemories. They become #yUnplayable, but their effect is #yAutoplayed at no cost if they are in your hand after the draw phase."
   },
   {
     "NAMES": [
@@ -272,5 +279,27 @@
       "ranged"
     ],
     "DESCRIPTION": "Ranged attacks do not trigger #yThorns and can be played while #yImmobile."
+  },
+  {
+    "NAMES": [
+      "Revenge",
+      "revenge"
+    ],
+    "DESCRIPTION": "This effect is #b50% stronger if used on the last enemy who attacked you."
+  },
+  {
+    "PROPER_NAME": "Life Steal",
+    "NAMES": [
+      "Life Steal",
+      "life_steal"
+    ],
+    "DESCRIPTION": "Heal HP when dealing unblocked damage."
+  },
+  {
+    "NAMES": [
+      "Rival",
+      "rival"
+    ],
+    "DESCRIPTION": "Attacks against your Rival deal #b10% additional damage. Increases by #b10% if your Rival attacked you last turn."
   }
 ]

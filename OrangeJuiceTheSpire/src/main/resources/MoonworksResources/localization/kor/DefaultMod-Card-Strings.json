@@ -169,7 +169,7 @@
   },
   "Moonworks:Flamethrower": {
     "NAME": "화염방사기",
-    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 카드를 사용할 때 마다 적에게 !D! moonworks:고정 피해를 줍니다. NL 사용 시 이 카드를 버립니다.",
+    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 카드를 사용할 때 마다 적에게 !M! moonworks:고정 피해를 줍니다. NL 사용 시 이 카드를 버립니다.",
     "EXTENDED_DESCRIPTION": ["화염방사기의 연료가 다 떨어졌습니다."]
   },
   "Moonworks:ForcedRevival": {

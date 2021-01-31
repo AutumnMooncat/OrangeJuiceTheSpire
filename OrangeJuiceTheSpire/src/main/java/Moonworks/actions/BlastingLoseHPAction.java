@@ -27,7 +27,7 @@ public class BlastingLoseHPAction extends AbstractGameAction {
     }
 
     public void update() {
-        if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+        if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT || target == null) {
             this.isDone = true;
         } else {
             if (this.duration == 0.1F && this.target.currentHealth > 0) {

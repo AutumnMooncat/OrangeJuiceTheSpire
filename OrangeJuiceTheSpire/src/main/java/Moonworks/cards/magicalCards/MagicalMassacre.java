@@ -1,10 +1,19 @@
 package Moonworks.cards.magicalCards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.actions.BlastingLoseHPAction;
 import Moonworks.cards.abstractCards.AbstractMagicalCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.NormaPower;
+import Moonworks.powers.SteadyPower;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.ExhaustiveField;
+import com.evacipated.cardcrawl.mod.stslib.variables.ExhaustiveVariable;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -31,46 +40,57 @@ public class MagicalMassacre extends AbstractMagicalCard {
 
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.SPECIAL;
-    private static final CardTarget TARGET = CardTarget.ENEMY;
+    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardTarget TARGET = CardTarget.ALL_ENEMY;
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int HP_LOSS = 8;
-    private static final int UPGRADE_PLUS_HP_LOSS = 2;
+    private static final int UPGRADE_PLUS_HP_LOSS = 4;
 
-    private static final int STEADY = 2;
-    private static final int UPGRADE_PLUS_STEADY = 1;
+    private static final int STEADY = 5;
+    private static final int UPGRADE_PLUS_STEADY = 2;
 
     private static final Integer[] NORMA_LEVELS = {-1};
     // /STAT DECLARATION/
 
 
     public MagicalMassacre() {
-        super(ID, IMG, TYPE, COLOR, TARGET);
+        this(0);
+    }
+
+    public MagicalMassacre(int normaLevel) {
+        this(normaLevel, normaLevel);
+    }
+
+    public MagicalMassacre(int currentCharges, int maxCharges) {
+        super(ID, IMG, TYPE, COLOR, RARITY, TARGET, currentCharges, maxCharges);
         magicNumber = baseMagicNumber = HP_LOSS;
         secondMagicNumber = baseSecondMagicNumber = STEADY;
-
-        /*if (AbstractDungeon.player != null) {
-            magicNumber = Math.max(0, baseMagicNumber - getNormaLevel());
-            secondMagicNumber = Math.max(0, baseSecondMagicNumber - getNormaLevel());
-            isMagicNumberModified = magicNumber != baseMagicNumber;
-            isSecondMagicNumberModified = secondMagicNumber != baseSecondMagicNumber;
-        }
-
-        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, -1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
-        */
     }
 
     // Actions the card should do.
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        //Grab a random target
+        AbstractMonster target = AbstractDungeon.getRandomMonster();
 
-    @Override
-    public void calculateCardDamage(AbstractMonster mo) {}
+        //Check if there is a healthier target
+        for (AbstractMonster mon : AbstractDungeon.getMonsters().monsters) {
+            if (!mon.isDeadOrEscaped() && mon.currentHealth > target.currentHealth) {
+                target = mon;
+            }
+        }
 
-    @Override
-    public void applyPowers() {}
+        //Blast em
+        this.addToBot(new BlastingLoseHPAction(p, target, magicNumber, AbstractGameAction.AttackEffect.FIRE));
+
+        //Apply Steady
+        this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, secondMagicNumber)));
+
+        //Regain 1 Norma
+        this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, NORMA_RECHARGE)));
+    }
 
     //Upgraded stats.
     @Override
@@ -79,15 +99,12 @@ public class MagicalMassacre extends AbstractMagicalCard {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_HP_LOSS);
             upgradeSecondMagicNumber(UPGRADE_PLUS_STEADY);
-
-            /*if (AbstractDungeon.player != null) {
-                magicNumber = Math.max(0, baseMagicNumber - getNormaLevel());
-                secondMagicNumber = Math.max(0, baseSecondMagicNumber - getNormaLevel());
-                isMagicNumberModified = magicNumber != baseMagicNumber;
-                isSecondMagicNumberModified = secondMagicNumber != baseSecondMagicNumber;
-            }*/
-
             initializeDescription();
         }
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new MagicalMassacre(ExhaustiveField.ExhaustiveFields.exhaustive.get(this), ExhaustiveField.ExhaustiveFields.baseExhaustive.get(this));
     }
 }

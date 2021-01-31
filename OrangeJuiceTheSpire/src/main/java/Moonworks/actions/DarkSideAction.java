@@ -1,41 +1,33 @@
-package Moonworks.actions;//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+package Moonworks.actions;
 
-
-import Moonworks.cards.tempCards.MagicalInferno;
-import Moonworks.cards.tempCards.MagicalMassacre;
-import Moonworks.cards.tempCards.MagicalRevenge;
+import Moonworks.cards.magicalCards.MagicalInferno;
+import Moonworks.cards.magicalCards.MagicalMassacre;
+import Moonworks.cards.magicalCards.MagicalRevenge;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction.ActionType;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.AbstractCard.CardType;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
-import java.util.ArrayList;
-import java.util.Iterator;
 
-public class MeltingMemoriesAction extends AbstractGameAction {
+import java.util.ArrayList;
+
+public class DarkSideAction extends AbstractGameAction {
     private boolean retrieveCard = false;
     private final boolean upgrade;
+    private final int charges;
 
-    public MeltingMemoriesAction() {
-        this.actionType = ActionType.CARD_MANIPULATION;
-        this.duration = Settings.ACTION_DUR_FAST;
-        this.amount = 1;
-        this.upgrade = false;
+    public DarkSideAction(int charges) {
+        this(false, charges);
     }
 
-    public MeltingMemoriesAction(boolean upgrade) {
+    public DarkSideAction(boolean upgrade, int charges) {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_FAST;
         this.amount = 1;
+        this.charges = charges;
         this.upgrade = upgrade;
     }
 
@@ -77,9 +69,9 @@ public class MeltingMemoriesAction extends AbstractGameAction {
 
     private ArrayList<AbstractCard> generateCardChoices() {
         ArrayList<AbstractCard> cardList = new ArrayList<>();
-        cardList.add(new MagicalInferno());
-        cardList.add(new MagicalMassacre());
-        cardList.add(new MagicalRevenge());
+        cardList.add(new MagicalInferno(charges));
+        cardList.add(new MagicalMassacre(charges));
+        cardList.add(new MagicalRevenge(charges));
 
         return cardList;
     }

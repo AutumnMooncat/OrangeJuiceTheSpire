@@ -1,11 +1,10 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.actions.MeltingMemoriesAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.cards.tempCards.MagicalInferno;
-import Moonworks.cards.tempCards.MagicalMassacre;
-import Moonworks.cards.tempCards.MagicalRevenge;
+import Moonworks.cards.magicalCards.MagicalInferno;
+import Moonworks.cards.magicalCards.MagicalMassacre;
+import Moonworks.cards.magicalCards.MagicalRevenge;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.MeltingMemoriesPower;
 import Moonworks.powers.NormaGainPower;
@@ -50,20 +49,11 @@ public class MeltingMemories extends AbstractDynamicCard {
 
     private static final int COST = 3;
 
-    private static float duration = 0;
-    private static int state = 0;
-
-    private final ArrayList<AbstractCard> previews = new ArrayList<>();
     // /STAT DECLARATION/
 
 
     public MeltingMemories() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        previews.add(new MagicalInferno());
-        previews.add(new MagicalMassacre());
-        previews.add(new MagicalRevenge());
-        this.cardsToPreview = previews.get(state);
-
     }
 
     // Actions the card should do.
@@ -91,26 +81,12 @@ public class MeltingMemories extends AbstractDynamicCard {
 
     }
 
-    @Override
-    public void update() {
-        super.update();
-        duration += Gdx.graphics.getDeltaTime();
-        if (duration > 2.0f) {
-            state = (state + 1) % previews.size();
-            cardsToPreview = previews.get(state);
-            duration = 0.0f;
-        }
-    }
-
     //Upgraded stats.
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
             rawDescription = UPGRADE_DESCRIPTION;
-            for (AbstractCard card : previews) {
-                card.upgrade();
-            }
             initializeDescription();
         }
     }

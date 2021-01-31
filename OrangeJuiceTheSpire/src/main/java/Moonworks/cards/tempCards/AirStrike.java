@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +80,10 @@ public class AirStrike extends AbstractTempCard {
                     }
                 }
             }
+        }
+
+        for (AbstractPower pow : p.powers) {
+            pow.onDamageAllEnemies(multiDamage);
         }
     }
 

@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.FragileExhaustOnDrawAction;
 import Moonworks.actions.WitherExhaustImmediatelyAction;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import basemod.BaseMod;
 import basemod.abstracts.AbstractCardModifier;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SneckoField;
 import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
@@ -23,19 +24,19 @@ public class CorruptedModifier extends AbstractCardModifier {
         BLANK {
             @Override
             public String toString() {
-                return "Blank";
+                return BaseMod.getKeywordTitle("Blank");
             }
         }, //does nothing
         VOIDING {
             @Override
             public String toString() {
-                return "moonworks:voiding";
+                return BaseMod.getKeywordTitle("moonworks:voiding");
             }
         }, //Lower energy when drawn
         REDUCE {
             @Override
             public String toString() {
-                return "moonworks:reduced";
+                return BaseMod.getKeywordTitle("moonworks:reduced");
             }
         }, //Lower base values by 1
         SNECKO {
@@ -53,7 +54,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         DEGRADE {
             @Override
             public String toString() {
-                return "moonworks:degraded";
+                return BaseMod.getKeywordTitle("moonworks:degraded");
             }
         }, //Damage Block and Magic number all go down, Done
         EXHAUST {
@@ -71,19 +72,19 @@ public class CorruptedModifier extends AbstractCardModifier {
         FRAGILE {
             @Override
             public String toString() {
-                return "moonworks:fragile";
+                return BaseMod.getKeywordTitle("moonworks:fragile");
             }
         }, //Card is now exhaust and ethereal
         CORRUPTDESC {
             @Override
             public String toString() {
-                return "Error";
+                return "";
             }
         }, //Description becomes corrupted text, effects masterdeck
         CORRUPTFULL {
             @Override
             public String toString() {
-                return "Error";
+                return "";
             }
         }, //Name and Description become corrupted text, effects masterdeck
         PURGING {
@@ -95,7 +96,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         WITHER {
             @Override
             public String toString() {
-                return "moonworks:withering";
+                return BaseMod.getKeywordTitle("moonworks:withering");
             }
         }
     }

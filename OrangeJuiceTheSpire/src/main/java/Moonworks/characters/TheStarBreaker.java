@@ -370,6 +370,13 @@ public class TheStarBreaker extends CustomPlayer {
         super.applyEndOfTurnTriggers();
     }
 
+    @Override
+    public void onVictory() {
+        //OrangeJuiceMod.logger.info("Test");
+        lastCardColor = WHITE_ICE;
+        super.onVictory();
+    }
+
     // Should return a BitmapFont object that you can use to customize how your
     // energy is displayed from within the energy orb.
     @Override

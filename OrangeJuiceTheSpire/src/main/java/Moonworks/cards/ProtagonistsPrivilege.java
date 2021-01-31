@@ -1,4 +1,4 @@
-package Moonworks.cards.cutCards;
+package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ProtagonistsPrivilegeAction;
@@ -12,11 +12,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-@AutoAdd.Ignore
+
 public class ProtagonistsPrivilege extends AbstractNormaAttentiveCard {
 
     // TEXT DECLARATION

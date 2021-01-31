@@ -374,6 +374,9 @@ public class TheStarBreaker extends CustomPlayer {
     public void onVictory() {
         //OrangeJuiceMod.logger.info("Test");
         lastCardColor = WHITE_ICE;
+        if (RandomChatterHelper.showChatter(RandomChatterHelper.getBattleEndText(), preTalkProbability, enablePreBattleTalkEffect)) {
+            playAnimation("happy");
+        }
         super.onVictory();
     }
 

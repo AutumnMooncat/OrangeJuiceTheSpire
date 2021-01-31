@@ -1,9 +1,13 @@
 package Moonworks.cards;
 
 import Moonworks.actions.FindAndReplaceCardAction;
+import Moonworks.cardModifiers.MemoryModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.powers.interfaces.AssociateableInterface;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -59,7 +63,14 @@ public class DevilHand extends AbstractDynamicCard {
         super.onRetained();
         //int index = AbstractDungeon.player.hand.group.indexOf(this);
         //this.addToBot(new TransformCardInHandAction(index, cardsToPreview.makeStatEquivalentCopy()));
-        this.addToBot(new FindAndReplaceCardAction(this, cardsToPreview.makeStatEquivalentCopy()));
+        AbstractCard newCard = cardsToPreview.makeStatEquivalentCopy();
+        OrangeJuiceMod.logger.info(CardModifierManager.modifiers(this));
+        if (CardModifierManager.hasModifier(this, MemoryModifier.ID)) {
+            CardModifierManager.addModifier(newCard, new MemoryModifier(false));
+            //AssociateableInterface.cards.add(newCard);
+            AssociateableInterface.cards.remove(this);
+        }
+        this.addToBot(new FindAndReplaceCardAction(this, newCard));
     }
 
     // Actions the card should do.

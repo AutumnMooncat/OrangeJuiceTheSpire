@@ -1,12 +1,18 @@
 package Moonworks.cards;
 
 import Moonworks.actions.FindAndReplaceCardAction;
+import Moonworks.cardModifiers.MemoryModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.patches.MemoryAssociationPatch;
+import Moonworks.powers.interfaces.AssociateableInterface;
+import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -66,7 +72,14 @@ public class AngelHand extends AbstractDynamicCard {
         super.onRetained();
         //int index = AbstractDungeon.player.hand.group.indexOf(this);
         //this.addToBot(new TransformCardInHandAction(index, cardsToPreview.makeStatEquivalentCopy()));
-        this.addToBot(new FindAndReplaceCardAction(this, cardsToPreview.makeStatEquivalentCopy()));
+        AbstractCard newCard = cardsToPreview.makeStatEquivalentCopy();
+        //OrangeJuiceMod.logger.info(CardModifierManager.modifiers(this));
+        if (CardModifierManager.hasModifier(this, MemoryModifier.ID)) {
+            CardModifierManager.addModifier(newCard, new MemoryModifier(false));
+            //AssociateableInterface.cards.add(newCard);
+            AssociateableInterface.cards.remove(this);
+        }
+        this.addToBot(new FindAndReplaceCardAction(this, newCard));
     }
 
     //Upgraded stats.

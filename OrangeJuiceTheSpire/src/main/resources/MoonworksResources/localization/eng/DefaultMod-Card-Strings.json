@@ -43,6 +43,11 @@
     "DESCRIPTION": "Raise your *Norma level by !Moonworks:SecondMagic!. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Don't exhaust, draw !M! cards.","Draw !M! cards."]
   },
+  "Moonworks:BeastWitch": {
+    "NAME": "Beast Witch",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! temporary Strength. NL Returns to your hand when played.",
+    "EXTENDED_DESCRIPTION": ["+2 damage."]
+  },
   "Moonworks:BeyondHell": {
     "NAME": "Beyond Hell",
     "DESCRIPTION": "Gain !M! Vigor for every !Moonworks:InvertedNumber! missing HP. NL Exhaust.",

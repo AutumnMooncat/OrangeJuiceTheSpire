@@ -42,7 +42,7 @@ public class BlueCrowTheSecond extends AbstractNormaAttentiveCard {
 
     private static final int COST = 1;
 
-    private static final int INITIAL_VALS = 0;
+    private static final int INITIAL_VALS = 1;
 
     private boolean preview = false;
 
@@ -58,8 +58,6 @@ public class BlueCrowTheSecond extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //Grab the number of cards in our hand
-        int effect = p.hand.size();
 
         //Deal damage
         this.addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
@@ -70,18 +68,18 @@ public class BlueCrowTheSecond extends AbstractNormaAttentiveCard {
 
     @Override
     public void applyPowers() {
+        baseDamage = baseBlock = AbstractDungeon.player.hand.size();
         super.applyPowers();
-        block += AbstractDungeon.player.hand.size();
-        damage += AbstractDungeon.player.hand.size();
+        baseDamage = baseBlock = 1;
         isBlockModified = block != baseBlock;
         isDamageModified = damage != baseDamage;
     }
 
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
+        baseDamage = baseBlock = AbstractDungeon.player.hand.size();
         super.calculateCardDamage(mo);
-        block += AbstractDungeon.player.hand.size();
-        damage += AbstractDungeon.player.hand.size();
+        baseDamage = baseBlock = 1;
         isBlockModified = block != baseBlock;
         isDamageModified = damage != baseDamage;
     }

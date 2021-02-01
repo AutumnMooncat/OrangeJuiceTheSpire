@@ -31,7 +31,7 @@
   "Moonworks:Assault": {
     "NAME": "Assault",
     "DESCRIPTION": "Deal !D! moonworks:Piercing *Damage.",
-    "EXTENDED_DESCRIPTION": ["*Pierce an additional time."]
+    "EXTENDED_DESCRIPTION": ["The *Pierce effect will be twice as strong."]
   },
   "Moonworks:AwakeningOfTalent": {
     "NAME": "Awakening Of Talent",

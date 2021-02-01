@@ -63,12 +63,10 @@ public class Assault extends AbstractNormaAttentiveCard {
 
         //If we have any piercing to do, do it
         if (blockDelta > 0) {
-            int numPierces = getNormaLevel() >= NORMA_LEVELS[0] ? 2 : 1;
-            for (int i = 0 ; i < numPierces ; i++) {
-                DamageInfo pierceDamage = new DamageInfo(p, blockDelta, DamageInfo.DamageType.HP_LOSS);
-                PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
-                this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
-            }
+            int multi = getNormaLevel() >= NORMA_LEVELS[0] ? 2 : 1;
+            DamageInfo pierceDamage = new DamageInfo(p, blockDelta * multi, DamageInfo.DamageType.HP_LOSS);
+            PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
+            this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
         }
     }
 

@@ -6,6 +6,7 @@ import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.patches.RangedPatches;
+import Moonworks.powers.TemporaryStrengthPower;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -82,37 +83,34 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard implements RangedAt
 
     public void applyPowers() {
         AbstractPower strength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
-        //AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
-        //int vigorAmount = 0;
         if (strength != null) {
             strength.amount *= this.secondMagicNumber;
         }
-        /*if (vigor != null) {
-            vigorAmount = vigor.amount;
-            vigor.amount = 0;
-        }*/
+
+        AbstractPower tempStrength = AbstractDungeon.player.getPower(TemporaryStrengthPower.POWER_ID);
+        if (tempStrength != null) {
+            tempStrength.amount *= this.secondMagicNumber;
+        }
 
         super.applyPowers();
 
         if (strength != null) {
             strength.amount /= this.secondMagicNumber;
         }
-        /*if (vigor != null) {
-            vigor.amount = vigorAmount;
-        }*/
+        if (tempStrength != null) {
+            tempStrength.amount /= this.secondMagicNumber;
+        }
 
     }
 
     public void calculateCardDamage(AbstractMonster m) {
         AbstractPower strength = AbstractDungeon.player.getPower(StrengthPower.POWER_ID);
-        AbstractPower vigor = AbstractDungeon.player.getPower(VigorPower.POWER_ID);
-        int vigorAmount = 0;
         if (strength != null) {
             strength.amount *= this.secondMagicNumber;
         }
-        if (vigor != null) {
-            vigorAmount = vigor.amount;
-            vigor.amount = 0;
+        AbstractPower tempStrength = AbstractDungeon.player.getPower(TemporaryStrengthPower.POWER_ID);
+        if (tempStrength != null) {
+            tempStrength.amount *= this.secondMagicNumber;
         }
 
         super.calculateCardDamage(m);
@@ -120,8 +118,8 @@ public class ExtendedPhotonRifle extends AbstractDynamicCard implements RangedAt
         if (strength != null) {
             strength.amount /= this.secondMagicNumber;
         }
-        if (vigor != null) {
-            vigor.amount = vigorAmount;
+        if (tempStrength != null) {
+            tempStrength.amount /= this.secondMagicNumber;
         }
     }
 

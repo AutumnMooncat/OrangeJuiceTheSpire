@@ -117,6 +117,10 @@
     "DESCRIPTION": "Gain !B! Block.",
     "EXTENDED_DESCRIPTION": ["+1 Block.", "+1 Block."]
   },
+  "Moonworks:DeltaField": {
+    "NAME": "Delta Field",
+    "DESCRIPTION": "Deal !D! damage. The enemy loses !M! temporary Strength."
+  },
   "Moonworks:DeployBits": {
     "NAME": "Deploy Bits",
     "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor.",
@@ -347,6 +351,11 @@
     "DESCRIPTION": "Whenever you receive unblocked damage, gain !M! Strength.",
     "UPGRADE_DESCRIPTION": "Innate. NL Whenever you receive unblocked damage, gain !M! Strength.",
     "EXTENDED_DESCRIPTION": ["Gain twice the Strength."]
+  },
+  "Moonworks:RainbowColoredCircle": {
+    "NAME": "Rainbow-Colored Circle",
+    "DESCRIPTION": "Convert !M! Block into moonworks:Steady.",
+    "EXTENDED_DESCRIPTION": ["+4 Block Conversion and *Optimize.","Optimized","This card always converts at least #b5 #yBlock, but it will convert more, determined by your current #yBlock and the intent of your enemies."]
   },
   "Moonworks:RedAndBlue": {
     "NAME": "Red And Blue",

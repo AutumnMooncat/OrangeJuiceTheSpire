@@ -9,7 +9,7 @@
     "TEXT": ["Choose 1 of 3 Magical Memories to add to your Discard Pile."]
   },
   "Moonworks:ChooseMemory": {
-    "TEXT": ["Choose "," card(s) to turn into Memories."]
+    "TEXT": ["Choose up to "," card(s) to turn into Memories."]
   },
   "Moonworks:ModConfigSeagulls": {
     "TEXT": ["Allow Cloud Of Seagulls to still hit the player even when upgraded. Default: false."]

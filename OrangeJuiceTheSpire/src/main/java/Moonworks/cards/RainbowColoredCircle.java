@@ -53,6 +53,8 @@ public class RainbowColoredCircle extends AbstractNormaAttentiveCard {
 
     private static final int ENSURED_CONVERSION = 5;
 
+    private static final int BONUS = 4;
+
     private static final Integer[] NORMA_LEVELS = {2};
     private ArrayList<TooltipInfo> OptimizationTooltip;
 
@@ -63,7 +65,7 @@ public class RainbowColoredCircle extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
         this.magicNumber = this.baseMagicNumber = BLOCK_REMOVAL;
-        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 4, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, BONUS, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -96,7 +98,7 @@ public class RainbowColoredCircle extends AbstractNormaAttentiveCard {
             //Figure out how much block we have left over after taking 5 away, compare it to the damage we expect to take
             int deltaBlock = Math.max(0, AbstractDungeon.player.currentBlock - totalDmg - ENSURED_CONVERSION);
             //Determine our amount we will actually remove. Will always take at least the ensured amount, assuming we actually HAVE block that is
-            magicNumber = Math.min(Math.min(baseMagicNumber, ENSURED_CONVERSION + deltaBlock), AbstractDungeon.player.currentBlock);
+            magicNumber = Math.min(Math.min(baseMagicNumber+BONUS, ENSURED_CONVERSION + deltaBlock), AbstractDungeon.player.currentBlock);
         } else {
             //Our amount to convert is either the full amount or whatever we actually have to convert, much easier to compute
             magicNumber = Math.min(baseMagicNumber, AbstractDungeon.player.currentBlock);

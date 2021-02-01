@@ -156,6 +156,8 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             //l.normaAutoPlay = true;
             //AutoplayField.autoplay.set(l, true);
             l.unfadeOut();
+            l.unhover();
+            l.lighten(true);
             AbstractDungeon.player.hand.addToTop(l);
             LDSMap.get(l).removeCard(l);
         }

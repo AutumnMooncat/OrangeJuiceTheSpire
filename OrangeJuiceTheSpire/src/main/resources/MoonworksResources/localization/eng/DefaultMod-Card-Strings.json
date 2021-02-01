@@ -76,6 +76,12 @@
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Take 4 damage at the beginning of your turn, but for each Attack played heal !M! HP. NL On Play: Discard.",
     "EXTENDED_DESCRIPTION": ["Your Bloodlust has subsided."]
   },
+  "Moonworks:BlueCrowTheSecond": {
+    "NAME": "Blue Crow",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Increases for each card in your hand.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Deal !D! damage. NL Gain !B! Block. NL Increases for each card in your hand.",
+    "EXTENDED_DESCRIPTION": ["Blue Crow the Second"]
+  },
   "Moonworks:CastOff": {
     "NAME": "Cast Off",
     "DESCRIPTION": "Lose all Block. NL Gain Vigor equal to the amount of Block lost. NL Exhaust.",

@@ -19,10 +19,6 @@ public class DarkSideAction extends AbstractGameAction {
     private final boolean upgrade;
     private final int charges;
 
-    public DarkSideAction(int charges) {
-        this(false, charges);
-    }
-
     public DarkSideAction(boolean upgrade, int charges) {
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_FAST;

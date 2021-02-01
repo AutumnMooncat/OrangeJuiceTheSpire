@@ -88,7 +88,7 @@ public class DarkSideOfBusiness extends AbstractDynamicCard {
             //this.addToBot(new ApplyPowerAction(p, p, new NormaGainPower(p, normaLevels)));
 
             //Add the power that gives us the Magical cards
-            this.addToBot(new DarkSideAction(normaLevels));
+            this.addToBot(new DarkSideAction(upgraded, normaLevels));
         }
 
     }

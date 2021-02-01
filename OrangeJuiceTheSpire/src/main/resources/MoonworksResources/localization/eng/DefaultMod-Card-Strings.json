@@ -369,7 +369,7 @@
     "EXTENDED_DESCRIPTION": ["+4 Block Conversion and *Optimize.","Optimized","This card always converts at least #b5 #yBlock, but it will convert more, determined by your current #yBlock and the intent of your enemies."]
   },
   "Moonworks:RedAndBlue": {
-    "NAME": "Red And Blue",
+    "NAME": "Red & Blue",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! Vigor and !M! moonworks:Steady at the beginning of your turn. NL On Play: Discard.",
     "EXTENDED_DESCRIPTION": ["Red and Blue are taking a break."]
   },
@@ -488,6 +488,11 @@
   "Moonworks:WeAreWaruda": {
     "NAME": "We Are Waruda",
     "DESCRIPTION": "Remove all debuffs from ALL targets. NL Apply all removed debuffs to one target. NL Exhaust."
+  },
+  "Moonworks:WhiteChristsmasher": {
+    "NAME": "White Christsmasher",
+    "DESCRIPTION": "Deal !D! damage twice. NL If you are holding *Red *& *Blue, this instead hits ALL enemies.",
+    "EXTENDED_DESCRIPTION": ["True White Christsmasher","Deal !D! damage to ALL enemies twice."]
   },
   "Moonworks:WhimsicalWindmill": {
     "NAME": "Whimsical Windmill",

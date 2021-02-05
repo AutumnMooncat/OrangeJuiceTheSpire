@@ -46,7 +46,7 @@ public class TransmutativeModifier extends AbstractCardModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return BaseMod.getKeywordTitle("moonworks:transformative") + " NL " + rawDescription;
+        return OrangeJuiceMod.getModID().toLowerCase()+":"+BaseMod.getKeywordTitle("moonworks:transformative") + " NL " + rawDescription;
     }
 
     @Override

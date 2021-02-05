@@ -9,10 +9,8 @@ import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
@@ -49,7 +47,7 @@ public class BeastWitch extends AbstractNormaAttentiveCard {
     private static final int DAMAGE = 5;
     private static final int UPGRADE_PLUS_DAMAGE = 2;
 
-    private static final int TEMP_STR = 1;
+    private static final int TEMP_STR = 2;
     private static final int UPGRADE_PLUS_TEMP_STR = 1;
 
     private static final Integer[] NORMA_LEVELS = {2};
@@ -59,10 +57,9 @@ public class BeastWitch extends AbstractNormaAttentiveCard {
 
 
     public BeastWitch() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.damage = this.baseDamage = DAMAGE;
         this.magicNumber = this.baseMagicNumber = TEMP_STR;
-        this.returnToHand = true;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.DAMAGEMOD, 2, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
 
     }
@@ -82,6 +79,8 @@ public class BeastWitch extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
+            //this.returnToHand = true;
+            //rawDescription = UPGRADE_DESCRIPTION;
             //upgradeDamage(UPGRADE_PLUS_DAMAGE);
             upgradeMagicNumber(UPGRADE_PLUS_TEMP_STR);
             initializeDescription();

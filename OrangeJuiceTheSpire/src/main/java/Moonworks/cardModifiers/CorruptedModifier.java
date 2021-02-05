@@ -24,19 +24,19 @@ public class CorruptedModifier extends AbstractCardModifier {
         BLANK {
             @Override
             public String toString() {
-                return BaseMod.getKeywordTitle("Blank");
+                return OrangeJuiceMod.getModID().toLowerCase()+":"+BaseMod.getKeywordTitle("Blank");
             }
         }, //does nothing
         VOIDING {
             @Override
             public String toString() {
-                return BaseMod.getKeywordTitle("moonworks:voiding");
+                return OrangeJuiceMod.getModID().toLowerCase()+":"+BaseMod.getKeywordTitle("moonworks:voiding");
             }
         }, //Lower energy when drawn
         REDUCE {
             @Override
             public String toString() {
-                return BaseMod.getKeywordTitle("moonworks:reduced");
+                return OrangeJuiceMod.getModID().toLowerCase()+":"+BaseMod.getKeywordTitle("moonworks:reduced");
             }
         }, //Lower base values by 1
         SNECKO {
@@ -54,7 +54,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         DEGRADE {
             @Override
             public String toString() {
-                return BaseMod.getKeywordTitle("moonworks:degraded");
+                return OrangeJuiceMod.getModID().toLowerCase()+":"+BaseMod.getKeywordTitle("moonworks:degraded");
             }
         }, //Damage Block and Magic number all go down, Done
         EXHAUST {
@@ -72,7 +72,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         FRAGILE {
             @Override
             public String toString() {
-                return BaseMod.getKeywordTitle("moonworks:fragile");
+                return OrangeJuiceMod.getModID().toLowerCase()+":"+BaseMod.getKeywordTitle("moonworks:fragile");
             }
         }, //Card is now exhaust and ethereal
         CORRUPTDESC {
@@ -96,7 +96,7 @@ public class CorruptedModifier extends AbstractCardModifier {
         WITHER {
             @Override
             public String toString() {
-                return BaseMod.getKeywordTitle("moonworks:withering");
+                return OrangeJuiceMod.getModID().toLowerCase()+":"+BaseMod.getKeywordTitle("moonworks:withering");
             }
         }
     }

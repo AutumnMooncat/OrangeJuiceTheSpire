@@ -1,6 +1,7 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.actions.ConvertMemoryAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.magicalCards.MagicalInferno;
 import Moonworks.cards.magicalCards.MagicalMassacre;
@@ -47,13 +48,15 @@ public class MeltingMemories extends AbstractDynamicCard {
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 3;
+    private static final int COST = 2;
+    private static final int AMOUNT = 1;
 
     // /STAT DECLARATION/
 
 
     public MeltingMemories() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
+        this.magicNumber = this.baseMagicNumber = AMOUNT;
     }
 
     // Actions the card should do.
@@ -64,7 +67,7 @@ public class MeltingMemories extends AbstractDynamicCard {
         //Get our Norma power, if it exists
         AbstractPower normaPower = p.getPower(NormaPower.POWER_ID);
 
-        //Get our norma level, or 0 if we dont have the power
+        //Get our norma level, or 0 if we don't have the power
         int normaLevels = normaPower != null ? normaPower.amount : 0;
 
         //If our norma is greater than 0...
@@ -74,11 +77,10 @@ public class MeltingMemories extends AbstractDynamicCard {
 
             //Add the power to restore our lost Norma
             this.addToBot(new ApplyPowerAction(p, p, new NormaGainPower(p, normaLevels)));
-
-            //Add the power that gives us the Magical cards
-            this.addToBot(new ApplyPowerAction(p, p, new MeltingMemoriesPower(p, normaLevels, upgraded)));
         }
 
+        //Apply the power
+        this.addToBot(new ApplyPowerAction(p, p, new MeltingMemoriesPower(p, magicNumber, upgraded)));
     }
 
     //Upgraded stats.

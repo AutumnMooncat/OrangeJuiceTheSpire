@@ -1,9 +1,8 @@
 package Moonworks.cardModifiers;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.patches.MemoryAssociationPatch;
 import Moonworks.patches.TypeOverridePatch;
-import Moonworks.powers.MeltingMemoriesPower;
+import Moonworks.powers.BookOfMemoriesPower;
 import Moonworks.powers.interfaces.AssociateableInterface;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
@@ -16,9 +15,9 @@ import org.apache.logging.log4j.Logger;
 public class MemoryModifier extends AbstractCardModifier {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
     public static final String ID = OrangeJuiceMod.makeID("MemoryModifier");
-    public static final String MEMORY_OF = MeltingMemoriesPower.DESCRIPTIONS[4];
-    public static final String ACTIVE_DESC = MeltingMemoriesPower.DESCRIPTIONS[5];
-    public static final String EXHAUST_DESC = MeltingMemoriesPower.DESCRIPTIONS[6];
+    public static final String MEMORY_OF = BookOfMemoriesPower.DESCRIPTIONS[4];
+    public static final String ACTIVE_DESC = BookOfMemoriesPower.DESCRIPTIONS[5];
+    public static final String EXHAUST_DESC = BookOfMemoriesPower.DESCRIPTIONS[6];
     private String oldName;
     private int oldCost;
     private static final int UNPLAYABLE_COST = -2;
@@ -37,7 +36,6 @@ public class MemoryModifier extends AbstractCardModifier {
         modifyBackground(card);
         modifyType(card);
         super.onInitialApplication(card);
-        AssociateableInterface.cards.add(card);
 
         /*if (card instanceof AngelHand || card instanceof DevilHand) {
             if (card.cardsToPreview != null) {
@@ -79,6 +77,12 @@ public class MemoryModifier extends AbstractCardModifier {
             return EXHAUST_DESC + rawDescription;
         }
         return ACTIVE_DESC + rawDescription;
+    }
+
+    @Override
+    public void onExhausted(AbstractCard card) {
+        this.exhausted = true;
+        super.onExhausted(card);
     }
 
     //Can not play a Memory card

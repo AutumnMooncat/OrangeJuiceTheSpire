@@ -115,6 +115,10 @@
         },
         "Moonworks:MeltingMemoriesPower": {
                 "NAME": "Magical Memories",
+                "DESCRIPTIONS": ["The first card you play each turn is converted into a #yMemory.", "The first #b", " cards you play each turn are converted into #yMemories."]
+        },
+        "Moonworks:BookOfMemoriesPower": {
+                "NAME": "Book of Memories",
                 "DESCRIPTIONS": ["Choose up to ", " cards to turn into memories. ",
                         "There are no #yMemories in play. ",
                         "Play the #yeffect of any #yMemories that are in your hand at the beginning of your turn. #yMemories are not exempt from #yExhaustive behaviours.",

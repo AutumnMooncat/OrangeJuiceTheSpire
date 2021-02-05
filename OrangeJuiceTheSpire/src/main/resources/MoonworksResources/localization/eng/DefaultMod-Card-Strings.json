@@ -45,7 +45,8 @@
   },
   "Moonworks:BeastWitch": {
     "NAME": "Beast Witch",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! temporary Strength. NL Returns to your hand when played.",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! temporary Strength.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! temporary Strength. NL Returns to your hand when played.",
     "EXTENDED_DESCRIPTION": ["+2 damage."]
   },
   "Moonworks:BeyondHell": {
@@ -130,7 +131,7 @@
   },
   "Moonworks:DeltaField": {
     "NAME": "Delta Field",
-    "DESCRIPTION": "Deal !D! damage. The enemy loses !M! temporary Strength."
+    "DESCRIPTION": "ALL enemies gain !M! Vulnerable and lose !Moonworks:SecondMagic! temporary Strength."
   },
   "Moonworks:DeployBits": {
     "NAME": "Deploy Bits",
@@ -405,8 +406,8 @@
   },
   "Moonworks:SealedMemories": {
     "NAME": "Sealed Memories",
-    "DESCRIPTION": "Retain. NL End your turn. NL Retain your hand and [E] this turn. NL Block is not removed at the start of your next turn.",
-    "UPGRADE_DESCRIPTION": "Innate. Retain. NL End your turn. NL Retain your hand and [E] this turn. NL Block is not removed at the start of your next turn."
+    "DESCRIPTION": "Convert a card in your hand into a moonworks:Memory. NL Retain your hand this turn.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Convert a card in your hand into a moonworks:Memory. NL Retain your hand this turn."
   },
   "Moonworks:SelfDestruct": {
     "NAME": "Self Destruct",

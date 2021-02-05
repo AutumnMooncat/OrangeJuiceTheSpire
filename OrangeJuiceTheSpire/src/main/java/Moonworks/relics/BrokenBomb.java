@@ -1,9 +1,11 @@
 package Moonworks.relics;
 
 import Moonworks.cards.tempCards.StarBlastingLight;
+import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.NormaPower;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -46,7 +48,16 @@ public class BrokenBomb extends CustomRelic {
                 this.flash();
                 this.pulse = false;
                 this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NormaPower(AbstractDungeon.player, 1)));
-                AbstractDungeon.actionManager.addToBottom(new TalkAction(true, DESCRIPTIONS[1], 0.4f, 2.0f));
+                this.addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        if (AbstractDungeon.player instanceof TheStarBreaker) {
+                            ((TheStarBreaker) AbstractDungeon.player).playAnimation("happy");
+                        }
+                        this.isDone = true;
+                    }
+                });
+                this.addToBot(new TalkAction(true, DESCRIPTIONS[1], 0.4f, 2.0f));
                 AbstractDungeon.player.hand.refreshHandLayout();
                 if (AbstractDungeon.player.hasPower("MasterRealityPower")) {
                     starBlastingLight.upgrade();

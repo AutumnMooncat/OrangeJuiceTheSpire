@@ -97,7 +97,7 @@ public class MagicalMassacre extends AbstractMagicalCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeMagicNumber(UPGRADE_PLUS_HP_LOSS);
+            upgradeDamage(UPGRADE_PLUS_HP_LOSS);
             upgradeSecondMagicNumber(UPGRADE_PLUS_STEADY);
             initializeDescription();
         }

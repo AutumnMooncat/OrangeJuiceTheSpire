@@ -1,6 +1,8 @@
 package Moonworks.cards;
 
+import Moonworks.actions.ApplyAndUpdateMemoriesAction;
 import Moonworks.actions.FindAndReplaceCardAction;
+import Moonworks.actions.RemoveAndUpdateMemoriesAction;
 import Moonworks.cardModifiers.MemoryModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.powers.interfaces.AssociateableInterface;
@@ -66,9 +68,8 @@ public class DevilHand extends AbstractDynamicCard {
         AbstractCard newCard = cardsToPreview.makeStatEquivalentCopy();
         OrangeJuiceMod.logger.info(CardModifierManager.modifiers(this));
         if (CardModifierManager.hasModifier(this, MemoryModifier.ID)) {
-            CardModifierManager.addModifier(newCard, new MemoryModifier(false));
-            //AssociateableInterface.cards.add(newCard);
-            AssociateableInterface.cards.remove(this);
+            this.addToBot(new ApplyAndUpdateMemoriesAction(newCard));
+            this.addToBot(new RemoveAndUpdateMemoriesAction(this));
         }
         this.addToBot(new FindAndReplaceCardAction(this, newCard));
     }

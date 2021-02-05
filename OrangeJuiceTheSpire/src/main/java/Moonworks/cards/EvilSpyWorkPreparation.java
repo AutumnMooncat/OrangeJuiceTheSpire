@@ -41,7 +41,7 @@ public class EvilSpyWorkPreparation extends AbstractDynamicCard {
     }
     @Override
     public float getTitleFontSize() {
-        return 17F;
+        return 16F;
     }
 
     // Actions the card should do.

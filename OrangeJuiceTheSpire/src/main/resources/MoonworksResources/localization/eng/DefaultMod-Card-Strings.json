@@ -290,7 +290,7 @@
   },
   "Moonworks:MagicalMassacre": {
     "NAME": "Magical Massacre",
-    "DESCRIPTION": "The healthiest enemy loses !M! HP and max HP. NL Gain !Moonworks:SecondMagic! moonworks:Steady. NL Exhaustive !stslib:ex!.",
+    "DESCRIPTION": "The healthiest enemy loses !D! HP and max HP. NL Gain !Moonworks:SecondMagic! moonworks:Steady. NL Exhaustive !stslib:ex!.",
     "EXTENDED_DESCRIPTION": ["True Magical Massacre"]
   },
   "Moonworks:MagicalRevenge": {

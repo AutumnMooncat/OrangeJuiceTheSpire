@@ -83,8 +83,8 @@
   },
   "Moonworks:BlueCrowTheSecond": {
     "NAME": "Blue Crow",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Increases for each card in your hand.",
-    "UPGRADE_DESCRIPTION": "Retain. NL Deal !D! damage. NL Gain !B! Block. NL Increases for each card in your hand.",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL Gains +2 Block for each *Attack in your hand.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Deal !D! damage. NL Gain !B! Block. NL Gains +2 Block for each *Attack in your hand.",
     "EXTENDED_DESCRIPTION": ["Blue Crow the Second"]
   },
   "Moonworks:CastOff": {

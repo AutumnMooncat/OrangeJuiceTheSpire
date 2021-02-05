@@ -6,6 +6,7 @@ import Moonworks.characters.TheStarBreaker;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -42,7 +43,11 @@ public class BlueCrowTheSecond extends AbstractNormaAttentiveCard {
 
     private static final int COST = 1;
 
-    private static final int INITIAL_VALS = 1;
+    private static final int BASE_DAMAGE = 6;
+    private static final int UPGRADE_PLUS_BASE_DAMAGE = 2;
+
+    private static final int DAMAGE_PER_ATTACK = 1;
+    private static final int BLOCK_PER_ATTACK = 2;
 
     private boolean preview = false;
 
@@ -51,8 +56,8 @@ public class BlueCrowTheSecond extends AbstractNormaAttentiveCard {
 
     public BlueCrowTheSecond() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        this.block = this.baseBlock = INITIAL_VALS;
-        this.damage = this.baseDamage = INITIAL_VALS;
+        this.block = this.baseBlock = BLOCK_PER_ATTACK; //Default to 2 since this counts as an attack and will always be at least 2.
+        this.damage = this.baseDamage = BASE_DAMAGE;
     }
 
     // Actions the card should do.
@@ -68,20 +73,28 @@ public class BlueCrowTheSecond extends AbstractNormaAttentiveCard {
 
     @Override
     public void applyPowers() {
-        baseDamage = baseBlock = AbstractDungeon.player.hand.size();
+        baseBlock = attacksInHand() * BLOCK_PER_ATTACK;
         super.applyPowers();
-        baseDamage = baseBlock = 1;
+        baseBlock = BLOCK_PER_ATTACK;
         isBlockModified = block != baseBlock;
-        isDamageModified = damage != baseDamage;
     }
 
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
-        baseDamage = baseBlock = AbstractDungeon.player.hand.size();
+        baseBlock = attacksInHand() * BLOCK_PER_ATTACK;
         super.calculateCardDamage(mo);
-        baseDamage = baseBlock = 1;
+        baseBlock = BLOCK_PER_ATTACK;
         isBlockModified = block != baseBlock;
-        isDamageModified = damage != baseDamage;
+    }
+
+    public int attacksInHand() {
+        int attacks = 0;
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c.type == CardType.ATTACK) {
+                attacks++;
+            }
+        }
+        return attacks;
     }
 
     @Override

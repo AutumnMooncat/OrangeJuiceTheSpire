@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -80,6 +81,7 @@ public class StarBlastingLight extends AbstractTempCard {
         TALK_TEXT = cardStrings.EXTENDED_DESCRIPTION[AbstractDungeon.cardRandomRng.random(1, 3)];
         this.addToBot(new VFXAction(p, new ScreenOnFireEffect(), 0.0F));
         this.addToBot(new TalkAction(true, TALK_TEXT, 0.4f, 2.0f));
+        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.LOW, ScreenShake.ShakeDur.XLONG, false);
         //logger.info("Magic: "+magicNumber+". Base Magic: "+baseMagicNumber+".");
         //logger.info("Second: "+ secondMagicNumber +". Base Second: "+ baseSecondMagicNumber +".");
         int hits = AbstractDungeon.cardRandomRng.random(magicNumber, secondMagicNumber);

@@ -41,10 +41,11 @@ public class ApplyAndUpdateMemoriesAction extends AbstractGameAction {
             //We already have the power, update the list
             if (pow instanceof BookOfMemoriesPower) {
                 ((BookOfMemoriesPower) pow).addCardsToSet(cardsToAdd);
+                pow.flash();
+            } else {
+                //Apply the power. If we didn't have it, this will initialize it with our list
+                this.addToBot(new ApplyPowerAction(p, p, new BookOfMemoriesPower(p, cardsToAdd)));
             }
-
-            //Apply the power. If we didn't have it, this will initialize it with our list
-            this.addToBot(new ApplyPowerAction(p, p, new BookOfMemoriesPower(p, cardsToAdd)));
         }
 
         //Finish the action

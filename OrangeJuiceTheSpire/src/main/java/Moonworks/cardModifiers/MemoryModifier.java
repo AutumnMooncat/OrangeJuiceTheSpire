@@ -29,6 +29,7 @@ public class MemoryModifier extends AbstractCardModifier {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
+        //logger.info("Appled Memory Mod to "+card);
         oldName = card.name;
         oldCost = card.cost;
         modifyCost(card);

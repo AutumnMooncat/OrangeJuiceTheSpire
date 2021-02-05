@@ -2,18 +2,14 @@ package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ApplyAndUpdateMemoriesAction;
-import Moonworks.actions.ConvertMemoryAction;
-import Moonworks.cardModifiers.MemoryModifier;
-import Moonworks.patches.MemoryAssociationPatch;
-import basemod.helpers.CardModifierManager;
 import basemod.interfaces.CloneablePowerInterface;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+
+import static Moonworks.powers.BookOfMemoriesPower.getViability;
 
 public class MeltingMemoriesPower extends AbstractPower implements CloneablePowerInterface {
 
@@ -50,12 +46,9 @@ public class MeltingMemoriesPower extends AbstractPower implements CloneablePowe
         updateDescription();
     }
 
-    /*
-    @Override
-    public void atStartOfTurnPostDraw() {
-        super.atStartOfTurnPostDraw();
-        this.addToBot(new ConvertMemoryAction(amount, upgrade));
-    }*/
+    public void setUpgrade(boolean upgrade) {
+        this.upgrade = upgrade;
+    }
 
     @Override
     public void atEndOfRound() {
@@ -67,7 +60,10 @@ public class MeltingMemoriesPower extends AbstractPower implements CloneablePowe
     public void onAfterCardPlayed(AbstractCard usedCard) {
         super.onAfterCardPlayed(usedCard);
         if (cardsPlayed < amount) {
-            this.addToBot(new ApplyAndUpdateMemoriesAction(usedCard));
+            if (getViability(usedCard) && usedCard.canUpgrade()) {
+                usedCard.upgrade();
+                this.addToBot(new ApplyAndUpdateMemoriesAction(usedCard));
+            }
             cardsPlayed++;
         }
     }

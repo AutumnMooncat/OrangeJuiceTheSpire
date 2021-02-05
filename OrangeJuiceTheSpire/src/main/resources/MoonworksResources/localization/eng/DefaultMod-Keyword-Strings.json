@@ -256,15 +256,7 @@
       "Memory",
       "memory"
     ],
-    "DESCRIPTION": "This card is connected to a #bPower and is #yUnplayable. If this is your hand after the draw phase, it's effect is #yAutoplayed."
-  },
-  {
-    "PROPER_NAME": "Magical Memories",
-    "NAMES": [
-      "Magical Memories",
-      "magical_memories"
-    ],
-    "DESCRIPTION": "Choose as many #ynon-exhausted #bAttack and #bSkill cards as #yNorma was lost and convert them to #yMemories. They become #yUnplayable, but their effect is #yAutoplayed at no cost if they are in your hand after the draw phase."
+    "DESCRIPTION": "If a #yMemory is your hand after the draw phase, it's effect is #yAutoplayed. It is otherwise #yUnplayable."
   },
   {
     "NAMES": [

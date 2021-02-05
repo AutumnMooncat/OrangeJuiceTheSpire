@@ -46,7 +46,6 @@
   "Moonworks:BeastWitch": {
     "NAME": "Beast Witch",
     "DESCRIPTION": "Deal !D! damage. NL Gain !M! temporary Strength.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! temporary Strength. NL Returns to your hand when played.",
     "EXTENDED_DESCRIPTION": ["+2 damage."]
   },
   "Moonworks:BeyondHell": {
@@ -180,7 +179,11 @@
   },
   "Moonworks:ExtendedPhotonRifle": {
     "NAME": "Extended Photon Rifle",
-    "DESCRIPTION": "Deal !D! damage X times. Strength is !Moonworks:SecondMagic! times more effective for this card."
+    "DESCRIPTION": "Deal !D! damage X times. NL Strength is !Moonworks:SecondMagic! times more effective for this card."
+  },
+  "Moonworks:ExtraordinarySpecs": {
+    "NAME": "Extraordinary Specs",
+    "DESCRIPTION": "Gain !M! temporary Strength and Dexterity. NL Draw !Moonworks:SecondMagic! card. NL Exhaust."
   },
   "Moonworks:FinalBattle": {
     "NAME": "Final Battle",
@@ -297,8 +300,9 @@
   },
   "Moonworks:MeltingMemories": {
     "NAME": "Melting Memories",
-    "DESCRIPTION": "Lose all *Norma. NL Gain moonworks:Magical_Memories equal to the amount lost. NL Regain 1 lost *Norma per turn.",
-    "UPGRADE_DESCRIPTION": "Lose all *Norma. NL Gain moonworks:Magical_Memories equal to the amount lost. NL The added cards will be upgraded. NL Regain 1 lost *Norma per turn."
+    "DESCRIPTION": "Lose all *Norma. NL The first card you play each turn is *Converted into a moonworks:Memory. NL Regain 1 lost *Norma per turn.",
+    "UPGRADE_DESCRIPTION": "Lose all *Norma. NL The first card you play each turn is *Converted into a moonworks:Memory then upgraded. NL Regain 1 lost *Norma per turn.",
+    "EXTENDED_DESCRIPTION": ["Memory Conversion","Viable cards for conversion are #yAttack and #ySkill cards that cost #b1 #bor #bmore energy. Conversion fails if a card is not viable."]
   },
   "Moonworks:Mimic": {
     "NAME": "Mimic",
@@ -406,8 +410,9 @@
   },
   "Moonworks:SealedMemories": {
     "NAME": "Sealed Memories",
-    "DESCRIPTION": "Convert a card in your hand into a moonworks:Memory. NL Retain your hand this turn.",
-    "UPGRADE_DESCRIPTION": "Retain. NL Convert a card in your hand into a moonworks:Memory. NL Retain your hand this turn."
+    "DESCRIPTION": "*Convert up to 1 card in your hand into a moonworks:Memory. NL Retain your hand this turn.",
+    "UPGRADE_DESCRIPTION": "Retain. NL *Convert up to 1 card in your hand into a moonworks:Memory. NL Retain your hand this turn.",
+    "EXTENDED_DESCRIPTION": ["Memory Conversion","Viable cards for conversion are #yAttack and #ySkill cards that cost #b1 #bor #bmore energy."]
   },
   "Moonworks:SelfDestruct": {
     "NAME": "Self Destruct",

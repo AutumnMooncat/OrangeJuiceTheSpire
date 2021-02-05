@@ -37,7 +37,6 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
     //private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
-    public boolean upgrade;
     private final HashSet<AbstractCard> cards = new HashSet<>();
 
     public BookOfMemoriesPower(final AbstractPlayer owner, HashSet<AbstractCard> cards) {
@@ -73,6 +72,8 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
             MemoryAssociationPatch.MemoryAssociation.associations.get(card).add(this);
         }
         this.cards.addAll(cards);
+        updateDescription();
+        //flash();
     }
 
     public void removeCardsFromSet(HashSet<AbstractCard> cards) {
@@ -80,13 +81,14 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
             MemoryAssociationPatch.MemoryAssociation.associations.get(card).remove(this);
         }
         this.cards.removeAll(cards);
+        updateDescription();
+        //flash();
     }
 
     @Override
     public void atStartOfTurnPostDraw() {
-        OrangeJuiceMod.logger.info("Num cards: "+cards.size());
-        OrangeJuiceMod.logger.info("Cards: "+cards.toString());
-        super.atStartOfTurnPostDraw();
+        //OrangeJuiceMod.logger.info("Num cards: "+cards.size());
+        //OrangeJuiceMod.logger.info("Cards: "+cards.toString());
 
         for (AbstractCard card : cards) {
 
@@ -109,7 +111,7 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
                             card.applyPowers();
                             card.calculateCardDamage(t);
 
-                            OrangeJuiceMod.logger.info("Using Memory: "+card);
+                            //OrangeJuiceMod.logger.info("Using Memory: "+card);
 
                             //Flash the card the color of a Power
                             card.flash(OrangeJuiceMod.POWER_BLUE.cpy());
@@ -135,6 +137,8 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
                 }
             });
         }
+
+        super.atStartOfTurnPostDraw();
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
@@ -154,6 +158,6 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
     }
 
     public static boolean getViability(AbstractCard c) {
-        return (c.type != AbstractCard.CardType.POWER && c.type != AbstractCard.CardType.STATUS && c.type != AbstractCard.CardType.CURSE && !(c instanceof AbstractGiftCard) && !(c instanceof AbstractTempCard) && c.cost >= 0);
+        return (c.type != AbstractCard.CardType.POWER && c.type != AbstractCard.CardType.STATUS && c.type != AbstractCard.CardType.CURSE && !(c instanceof AbstractGiftCard) && !(c instanceof AbstractTempCard) && c.cost > 0);
     }
 }

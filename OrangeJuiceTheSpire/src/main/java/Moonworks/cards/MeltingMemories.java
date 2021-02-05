@@ -1,29 +1,23 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.actions.ConvertMemoryAction;
-import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.cards.magicalCards.MagicalInferno;
-import Moonworks.cards.magicalCards.MagicalMassacre;
-import Moonworks.cards.magicalCards.MagicalRevenge;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.MeltingMemoriesPower;
 import Moonworks.powers.NormaGainPower;
 import Moonworks.powers.NormaPower;
-import com.badlogic.gdx.Gdx;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class MeltingMemories extends AbstractDynamicCard {
+public class MeltingMemories extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -36,8 +30,7 @@ public class MeltingMemories extends AbstractDynamicCard {
     public static final String ID = OrangeJuiceMod.makeID(MeltingMemories.class.getSimpleName());
     public static final String IMG = makeCardPath("MeltingMemories.png");
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+    private static ArrayList<TooltipInfo> ConversionTooltip;
     // /TEXT DECLARATION/
 
 
@@ -59,6 +52,18 @@ public class MeltingMemories extends AbstractDynamicCard {
         this.magicNumber = this.baseMagicNumber = AMOUNT;
     }
 
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        if (ConversionTooltip == null)
+        {
+            ConversionTooltip = new ArrayList<>();
+            ConversionTooltip.add(new TooltipInfo(EXTENDED_DESCRIPTION[0], EXTENDED_DESCRIPTION[1]));
+        }
+        List<TooltipInfo> compoundList = new ArrayList<>(ConversionTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
+    }
+
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -77,6 +82,14 @@ public class MeltingMemories extends AbstractDynamicCard {
 
             //Add the power to restore our lost Norma
             this.addToBot(new ApplyPowerAction(p, p, new NormaGainPower(p, normaLevels)));
+        }
+
+        //Get the power to see if we already have it
+        AbstractPower pow = p.getPower(MeltingMemoriesPower.POWER_ID);
+
+        //If we have it already, we might need to update if it should upgrade cards, since this wont update in StackPower
+        if (upgraded && pow instanceof MeltingMemoriesPower) {
+            ((MeltingMemoriesPower) pow).setUpgrade(true);
         }
 
         //Apply the power

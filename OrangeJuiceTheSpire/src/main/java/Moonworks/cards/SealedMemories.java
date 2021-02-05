@@ -3,8 +3,10 @@ package Moonworks.cards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ConvertMemoryAction;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.MeltingMemoriesPower;
+import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,9 +18,12 @@ import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import com.megacrit.cardcrawl.powers.EquilibriumPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class SealedMemories extends AbstractDynamicCard {
+public class SealedMemories extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -30,8 +35,8 @@ public class SealedMemories extends AbstractDynamicCard {
 
     public static final String ID = OrangeJuiceMod.makeID(SealedMemories.class.getSimpleName());
     public static final String IMG = makeCardPath("SealedMemories.png");
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
-    public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+
+    private static ArrayList<TooltipInfo> ConversionTooltip;
 
     // /TEXT DECLARATION/
 
@@ -75,6 +80,18 @@ public class SealedMemories extends AbstractDynamicCard {
         /*
         this.addToBot(new ApplyPowerAction(p, p, new EnergizedBluePower(p, EnergyPanel.totalCount-this.cost)));
         this.addToBot(new PressEndTurnButtonAction());*/
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        if (ConversionTooltip == null)
+        {
+            ConversionTooltip = new ArrayList<>();
+            ConversionTooltip.add(new TooltipInfo(EXTENDED_DESCRIPTION[0], EXTENDED_DESCRIPTION[1]));
+        }
+        List<TooltipInfo> compoundList = new ArrayList<>(ConversionTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 
     //Upgraded stats.

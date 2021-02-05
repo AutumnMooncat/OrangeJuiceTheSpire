@@ -65,7 +65,7 @@ public class MagicalMassacre extends AbstractMagicalCard {
 
     public MagicalMassacre(int currentCharges, int maxCharges) {
         super(ID, IMG, TYPE, COLOR, RARITY, TARGET, currentCharges, maxCharges);
-        magicNumber = baseMagicNumber = HP_LOSS;
+        damage = baseDamage = HP_LOSS;
         secondMagicNumber = baseSecondMagicNumber = STEADY;
     }
 
@@ -83,7 +83,7 @@ public class MagicalMassacre extends AbstractMagicalCard {
         }
 
         //Blast em
-        this.addToBot(new BlastingLoseHPAction(p, target, magicNumber, AbstractGameAction.AttackEffect.FIRE));
+        this.addToBot(new BlastingLoseHPAction(p, target, damage, AbstractGameAction.AttackEffect.FIRE));
 
         //Apply Steady
         this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, secondMagicNumber)));

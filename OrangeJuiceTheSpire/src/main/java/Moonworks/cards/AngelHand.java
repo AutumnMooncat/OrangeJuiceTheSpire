@@ -5,8 +5,6 @@ import Moonworks.actions.FindAndReplaceCardAction;
 import Moonworks.actions.RemoveAndUpdateMemoriesAction;
 import Moonworks.cardModifiers.MemoryModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.patches.MemoryAssociationPatch;
-import Moonworks.powers.interfaces.AssociateableInterface;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,7 +12,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 

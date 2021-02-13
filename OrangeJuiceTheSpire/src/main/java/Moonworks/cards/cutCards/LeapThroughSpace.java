@@ -1,11 +1,11 @@
-package Moonworks.cards;
+package Moonworks.cards.cutCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.cards.tempCards.LeapThroughTime;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.TemporalAnchorPower;
 import Moonworks.relics.WarpPanel;
+import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,7 +14,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-
+@Deprecated
+@AutoAdd.Ignore
 public class LeapThroughSpace extends AbstractDynamicCard {
 
     // TEXT DECLARATION

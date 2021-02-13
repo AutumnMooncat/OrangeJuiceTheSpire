@@ -1,20 +1,15 @@
-package Moonworks.cards.tempCards;
+package Moonworks.cards.cutCards;
 
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.CorruptedModifier;
-import Moonworks.cards.LeapThroughSpace;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
-import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.TemporalAnchorPower;
 import Moonworks.relics.WarpPanel;
-import basemod.BaseMod;
+import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
-import basemod.helpers.TooltipInfo;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
-import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -25,11 +20,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.IntenseZoomEffect;
@@ -37,14 +30,13 @@ import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-
+@Deprecated
+@AutoAdd.Ignore
 public class LeapThroughTime extends AbstractTempCard {
 
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());

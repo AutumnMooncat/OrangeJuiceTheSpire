@@ -1,7 +1,7 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.LeapThroughSpace;
+import Moonworks.cards.cutCards.LeapThroughSpace;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-
+@Deprecated
 public class TemporalAnchorPower extends TwoAmountPower implements CloneablePowerInterface {
     public AbstractCreature source;
     public static final String POWER_ID = OrangeJuiceMod.makeID("TemporalAnchorPower");

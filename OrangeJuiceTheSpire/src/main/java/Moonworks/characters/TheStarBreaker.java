@@ -13,7 +13,6 @@ import Moonworks.cards.abstractCards.AbstractMagicalCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
 import Moonworks.cards.giftCards.RedAndBlue;
-import Moonworks.cards.tempCards.LeapThroughTime;
 import Moonworks.cards.tempCards.StarBlastingLight;
 import Moonworks.cards.trapCards.StarBlastingFuse;
 import Moonworks.relics.BrokenBomb;
@@ -483,7 +482,7 @@ public class TheStarBreaker extends CustomPlayer {
                 lastCardColor = ATTACK_ORANGE;
                 break;
             case SKILL:
-                if (!(c instanceof StarBlastingLight) && !(c instanceof StarBlastingFuse) && !(c instanceof LeapThroughTime)) {
+                if (!(c instanceof StarBlastingLight) && !(c instanceof StarBlastingFuse)) {
                     RandomChatterHelper.showChatter(RandomChatterHelper.getSkillText(), cardTalkProbability, enableCardBattleTalkEffect);
                 }
                 playAnimation("skill");

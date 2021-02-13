@@ -1,7 +1,6 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.LeapThroughSpace;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

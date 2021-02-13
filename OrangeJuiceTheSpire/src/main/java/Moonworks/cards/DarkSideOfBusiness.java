@@ -64,7 +64,7 @@ public class DarkSideOfBusiness extends AbstractDynamicCard {
         previews.add(new MagicalRevenge());
         this.cardsToPreview = previews.get(state);
         this.exhaust = true;
-
+        //update(); //This does not fix scv
     }
 
     // Actions the card should do.
@@ -102,6 +102,11 @@ public class DarkSideOfBusiness extends AbstractDynamicCard {
             cardsToPreview = previews.get(state);
             duration = 0.0f;
         }
+    }
+
+    @Override
+    public float getTitleFontSize() {
+        return 20F;
     }
 
     //Upgraded stats.

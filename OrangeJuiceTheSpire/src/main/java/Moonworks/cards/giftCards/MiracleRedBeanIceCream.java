@@ -54,7 +54,7 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
         this.magicNumber = this.baseMagicNumber = TEMP_STR;
         this.heal = this.baseHeal = HEAL;
         this.tags.add(CardTags.HEALING);
-
+        this.exhaust = true;
     }
 
     @Override
@@ -88,7 +88,6 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.secondMagicNumber = 0;
-        this.exhaust = true;
         this.rawDescription = this.spentDescription;
         super.use(p, m); //This will handle our update description
     }

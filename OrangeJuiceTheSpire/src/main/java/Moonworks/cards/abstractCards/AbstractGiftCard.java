@@ -80,7 +80,7 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         this.checkedGolden = checkedGolden;
         this.ignoreGolden = ignoreGolden;
         this.selfRetain = true; //Let it retain N times
-        this.isEthereal = true; //Then it is ethereal
+        //this.isEthereal = true; //Then it is ethereal
         setBackgroundTexture(OrangeJuiceMod.GIFT_WHITE_ICE, OrangeJuiceMod.GIFT_WHITE_ICE_PORTRAIT);
         initializeDescription();
     }

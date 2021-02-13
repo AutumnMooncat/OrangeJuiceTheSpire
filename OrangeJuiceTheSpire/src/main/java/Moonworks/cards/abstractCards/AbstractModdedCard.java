@@ -1,5 +1,6 @@
 package Moonworks.cards.abstractCards;
 import basemod.abstracts.CustomCard;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 
 public abstract class AbstractModdedCard extends CustomCard {
@@ -48,6 +49,8 @@ public abstract class AbstractModdedCard extends CustomCard {
         isSecondMagicNumberModified = false;
         isThirdMagicNumberModified = false;
         isInvertedNumberModified = false;
+
+        CommonKeywordIconsField.useIcons.set(this, true);
     }
 
     public void displayUpgrades() { // Display the upgrade - when you click a card to upgrade it

@@ -27,7 +27,6 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
     public int count;
-    public boolean bonusDraw;
     public boolean gotBonus = false;
 
     // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.
@@ -35,13 +34,12 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
     //private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
-    public TreasureThiefPower(final AbstractCreature owner, final int amount, boolean bonusDraw) {
+    public TreasureThiefPower(final AbstractCreature owner, final int amount) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
         this.amount = amount;
-        this.bonusDraw = bonusDraw;
         count = 0;
 
         type = PowerType.BUFF;
@@ -54,16 +52,6 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
         //this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
 
         updateDescription();
-    }
-
-    @Override
-    public void stackPower(int stackAmount) {
-        super.stackPower(stackAmount);
-        if(!bonusDraw && AbstractDungeon.player.hasPower(NormaPower.POWER_ID)) {
-            if(AbstractDungeon.player.getPower(NormaPower.POWER_ID).amount >= 3) {
-                this.bonusDraw = true;
-            }
-        }
     }
 
     /*
@@ -87,18 +75,13 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
     public int onAttacked(DamageInfo info, int damageAmount) {
         if(!this.owner.isDeadOrEscaped()) {
             if(count < amount){
-                int extra = 0;
                 this.flash();
                 this.count++;
-                if (bonusDraw && !gotBonus) {
-                    extra = AbstractDungeon.cardRandomRng.random(0, 1);
-                    this.gotBonus = true;
-                }
                 //If the target takes damage while it isnt the players turn (thorns, etc.) gain next turn draw power instead of an actual card
                 if (AbstractDungeon.actionManager.turnHasEnded) {
                     this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DrawCardNextTurnPower(AbstractDungeon.player, 1)));
                 } else {
-                    this.addToBot(new DrawCardAction(1+extra));
+                    this.addToBot(new DrawCardAction(1));
                 }
             }
             updateDescription();
@@ -124,6 +107,6 @@ public class TreasureThiefPower extends AbstractTrapPower implements CloneablePo
 
     @Override
     public AbstractPower makeCopy() {
-        return new TreasureThiefPower(owner, amount, bonusDraw);
+        return new TreasureThiefPower(owner, amount);
     }
 }

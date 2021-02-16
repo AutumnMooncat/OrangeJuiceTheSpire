@@ -5,6 +5,7 @@ import Moonworks.cards.interfaces.RangedAttack;
 import basemod.interfaces.CloneablePowerInterface;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -35,7 +36,8 @@ public class ImmobilePower extends AbstractTrapPower implements CloneablePowerIn
 
         //Acts as a safety net incase some other powers removes Immobile and this isn't also removed at the same time
         private void removeMe() {
-            this.owner.powers.remove(this);
+            this.addToTop(new RemoveSpecificPowerAction(owner, owner, this));
+            //this.owner.powers.remove(this);
         }
 
         //This will activate before the next turn, so block should hopefully not stick next round
@@ -66,8 +68,8 @@ public class ImmobilePower extends AbstractTrapPower implements CloneablePowerIn
 
         this.owner = owner;
         this.invisibleRef = new InvisibleBlurPower(owner);
-        //this.addToBot(new ApplyPowerAction(owner, owner, invisibleRef));
-        this.owner.powers.add(invisibleRef);
+        this.addToBot(new ApplyPowerAction(owner, owner, invisibleRef));
+        //this.owner.powers.add(invisibleRef);
         this.amount = amount;
 
         type = PowerType.BUFF;
@@ -108,12 +110,7 @@ public class ImmobilePower extends AbstractTrapPower implements CloneablePowerIn
         super.atStartOfTurn();
         flash();
         if (amount == 1) {
-            AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-                public void update() {
-                    owner.powers.remove(invisibleRef);
-                    this.isDone = true;
-                }});
-
+            this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, invisibleRef));
             this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
         }
         this.addToBot(new ReducePowerAction(this.owner, this.owner, this, 1));

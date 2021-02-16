@@ -4,10 +4,7 @@ import Moonworks.CustomAnimationListener;
 import Moonworks.CustomSpriterAnimation;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.RandomChatterHelper;
-import Moonworks.cards.Ambush;
-import Moonworks.cards.Defend;
-import Moonworks.cards.LongDistanceShot;
-import Moonworks.cards.Strike;
+import Moonworks.cards.*;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.cards.abstractCards.AbstractMagicalCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
@@ -489,6 +486,7 @@ public class TheStarBreaker extends CustomPlayer {
                 lastCardColor = SKILL_GREEN;
                 break;
             case POWER:
+                if (!(c instanceof LeapThroughSpacetime) && !(c instanceof LeapThroughSpacetime.LeapThroughSpace) && !(c instanceof LeapThroughSpacetime.LeapThroughTime))
                 RandomChatterHelper.showChatter(RandomChatterHelper.getPowerText(), cardTalkProbability, enableCardBattleTalkEffect);
                 playAnimation("happy");
                 lastCardColor = POWER_BLUE;

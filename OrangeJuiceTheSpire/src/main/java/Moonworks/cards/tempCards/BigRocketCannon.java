@@ -87,7 +87,7 @@ public class BigRocketCannon extends AbstractTempCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //rawDescription = UPGRADE_DESCRIPTION;
+            rawDescription = UPGRADE_DESCRIPTION;
             this.cardsToPreview.upgrade();
             upgradeDamage(UPGRADE_PLUS_DMG);
             initializeDescription();

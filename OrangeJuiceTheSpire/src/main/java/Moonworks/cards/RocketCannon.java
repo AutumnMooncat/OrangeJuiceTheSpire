@@ -64,6 +64,7 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.cardsToPreview.upgrade();
+            rawDescription = UPGRADE_DESCRIPTION;
             this.upgradeDamage(UPGRADE_PLUS_DAMAGE);
             this.initializeDescription();
         }

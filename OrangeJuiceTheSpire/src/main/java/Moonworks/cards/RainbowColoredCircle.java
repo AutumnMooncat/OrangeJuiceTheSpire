@@ -4,6 +4,7 @@ import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.ShieldCounterPower;
 import Moonworks.powers.SteadyPower;
 import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,11 +73,14 @@ public class RainbowColoredCircle extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //Lose the appropriate amount of Block
-        this.addToBot(new LoseBlockAction(p, p, magicNumber));
+        //If we actually have something to do...
+        if (magicNumber > 0) {
+            //Lose the appropriate amount of Block
+            this.addToBot(new LoseBlockAction(p, p, magicNumber));
 
-        //Gain that much Steady
-        this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
+            //Gain that much Steady
+            this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, magicNumber)));
+        }
     }
 
     @Override
@@ -94,6 +99,11 @@ public class RainbowColoredCircle extends AbstractNormaAttentiveCard {
                     }
                     totalDmg += Math.max(0, dmg);
                 }
+            }
+            //Add an extra "expected damage" if we have Shield Counter so we don't lose the rollover
+            AbstractPower pow = AbstractDungeon.player.getPower(ShieldCounterPower.POWER_ID);
+            if (pow instanceof ShieldCounterPower && ((ShieldCounterPower) pow).getRetain()) {
+                totalDmg++;
             }
             //Figure out how much block we have left over after taking 5 away, compare it to the damage we expect to take
             int deltaBlock = Math.max(0, AbstractDungeon.player.currentBlock - totalDmg - ENSURED_CONVERSION);

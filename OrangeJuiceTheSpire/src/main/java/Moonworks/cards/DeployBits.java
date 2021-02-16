@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.powers.ShieldCounterPower;
 import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.characters.TheStarBreaker;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
@@ -76,6 +78,13 @@ public class DeployBits extends AbstractNormaAttentiveCard {
                     dmgSum += Math.max(0, dmg);
                 }
             }
+
+            //Add an extra "expected damage" if we have Shield Counter so we don't lose the rollover
+            AbstractPower pow = AbstractDungeon.player.getPower(ShieldCounterPower.POWER_ID);
+            if (pow instanceof ShieldCounterPower && ((ShieldCounterPower) pow).getRetain()) {
+                dmgSum++;
+            }
+
             dmgSum = Math.max(0, dmgSum - p.currentBlock);
             this.block = Math.min(dmgSum, bits);
         } else {

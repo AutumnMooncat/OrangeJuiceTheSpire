@@ -38,8 +38,8 @@ public class Heat300PercentPower extends AbstractTrapPower implements CloneableP
      * @param owner - Who has the power
      * @param amount - How many turns the power will be active for
      */
-    public Heat300PercentPower(final AbstractCreature owner, final int amount) {
-        this(owner, amount, 30);
+    public Heat300PercentPower(final AbstractCreature owner, final AbstractCreature source, final int amount) {
+        this(owner, source, amount, 30);
     }
 
     /**
@@ -48,11 +48,12 @@ public class Heat300PercentPower extends AbstractTrapPower implements CloneableP
      * @param amount - How many turns the power will be active for
      * @param dmgPercent - An int holding the percentile increase. For a 50% increase enter 50, etc.
      */
-    public Heat300PercentPower(final AbstractCreature owner, final int amount, final int dmgPercent) {
+    public Heat300PercentPower(final AbstractCreature owner, final AbstractCreature source, final int amount, final int dmgPercent) {
         name = NAME;
         ID = POWER_ID;
 
         this.owner = owner;
+        this.source = source;
         this.amount = amount;
         this.dmgPercent = dmgPercent;
 
@@ -130,6 +131,6 @@ public class Heat300PercentPower extends AbstractTrapPower implements CloneableP
 
     @Override
     public AbstractPower makeCopy() {
-        return new Heat300PercentPower(owner, amount);
+        return new Heat300PercentPower(owner, source, amount);
     }
 }

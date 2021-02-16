@@ -66,7 +66,7 @@ public class Heat300Percent extends AbstractTrapCard {
         AbstractPower pow = p.getPower(Heat300PercentPower.POWER_ID);
 
         //Apply the power, this wont update the dmg % if we play it again once we pass our Norma check
-        this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, this.magicNumber, dmgPercent)));
+        this.addToBot(new ApplyPowerAction(m, p, new Heat300PercentPower(m, p, this.magicNumber, dmgPercent)));
 
         //This covers null checks, as null will not be an instance of the power, lol.
         //Update the powers damage increase if we already have it

@@ -1,7 +1,7 @@
 package Moonworks.patches;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.cards.tempCards.LeapThroughTime;
+//import Moonworks.cards.cutCards.LeapThroughTime;
 import Moonworks.cards.magicalCards.MagicalInferno;
 import Moonworks.cards.magicalCards.MagicalMassacre;
 import Moonworks.cards.magicalCards.MagicalRevenge;
@@ -52,7 +52,7 @@ public class AcceleratorPatches {
                     AbstractCard c = (AbstractCard) ReflectionHacks.getPrivate(__instance, __instance.getClass(), "card");
                     if (c.type != AbstractCard.CardType.STATUS && c.type != AbstractCard.CardType.CURSE
                             && !(c instanceof MagicalInferno) && !(c instanceof MagicalRevenge) && !(c instanceof MagicalMassacre)
-                            && !(c instanceof LeapThroughTime)
+                            /*&& !(c instanceof LeapThroughTime)*/
                             && AcceleratorDuplicateField.acceleratorDuplicate.get(__instance).equals(Boolean.FALSE)) {
                         for (int i = 0 ; i < p.amount ; i++) {
                             AbstractCard temp = c.makeStatEquivalentCopy();

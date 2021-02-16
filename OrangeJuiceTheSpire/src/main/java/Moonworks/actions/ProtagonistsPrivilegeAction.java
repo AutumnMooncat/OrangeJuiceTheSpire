@@ -57,7 +57,7 @@ public class ProtagonistsPrivilegeAction extends AbstractGameAction {
         final boolean[] outOfCards = {false};
 
         for (int i = 0; i < amount ; i++) {
-            OrangeJuiceMod.logger.info("Draw #: "+(i+1)+"/"+(amount));
+            //OrangeJuiceMod.logger.info("Draw #: "+(i+1)+"/"+(amount));
 
             //Shuffle if we need to
             this.addToBot(new AbstractGameAction() {
@@ -65,26 +65,26 @@ public class ProtagonistsPrivilegeAction extends AbstractGameAction {
                 boolean shuffled = false;
                 public void update() {
                     if(!checkShuffle) {
-                        OrangeJuiceMod.logger.info("Do we need to shuffle?");
+                        //OrangeJuiceMod.logger.info("Do we need to shuffle?");
                         if (AbstractDungeon.player.drawPile.size() == 0) {
-                            OrangeJuiceMod.logger.info("No cards in draw pile.");
+                            //OrangeJuiceMod.logger.info("No cards in draw pile.");
                             if (AbstractDungeon.player.discardPile.size() == 0) {
-                                OrangeJuiceMod.logger.info("No cards in discard either, stopping.");
+                                //OrangeJuiceMod.logger.info("No cards in discard either, stopping.");
                                 outOfCards[0] = true;
                             } else {
-                                OrangeJuiceMod.logger.info("Shuffling.");
+                                //OrangeJuiceMod.logger.info("Shuffling.");
                                 this.addToTop(new EmptyDeckShuffleAction());
                                 shuffled = true;
                             }
                         }
                         checkShuffle = true;
                     }
-                    OrangeJuiceMod.logger.info("Waiting for shuffle check.");
+                    //OrangeJuiceMod.logger.info("Waiting for shuffle check.");
                     this.isDone = !shuffled || !SoulGroup.isActive();
                 }});
 
             if (outOfCards[0]) {
-                OrangeJuiceMod.logger.info("No cards left to draw");
+                //OrangeJuiceMod.logger.info("No cards left to draw");
                 break;
             }
 
@@ -92,7 +92,7 @@ public class ProtagonistsPrivilegeAction extends AbstractGameAction {
             this.addToBot(new AbstractGameAction() {
                 public void update() {
                     if (!outOfCards[0]) {
-                        OrangeJuiceMod.logger.info("Cards in Draw: "+AbstractDungeon.player.drawPile.size()+". Cards in Discard: "+AbstractDungeon.player.discardPile.size());
+                        //OrangeJuiceMod.logger.info("Cards in Draw: "+AbstractDungeon.player.drawPile.size()+". Cards in Discard: "+AbstractDungeon.player.discardPile.size());
                         cardCheckArray.add(AbstractDungeon.player.drawPile.getTopCard());
                     }
                     this.isDone = true;
@@ -102,7 +102,7 @@ public class ProtagonistsPrivilegeAction extends AbstractGameAction {
             this.addToBot(new AbstractGameAction() {
                 public void update() {
                     if (!outOfCards[0]) {
-                        OrangeJuiceMod.logger.info("Card Draw: " + AbstractDungeon.player.drawPile.getTopCard() +". Type: "+AbstractDungeon.player.drawPile.getTopCard().type);
+                        //OrangeJuiceMod.logger.info("Card Draw: " + AbstractDungeon.player.drawPile.getTopCard() +". Type: "+AbstractDungeon.player.drawPile.getTopCard().type);
                         this.addToTop(new DrawCardAction(1));
                     }
                     this.isDone = true;
@@ -126,23 +126,23 @@ public class ProtagonistsPrivilegeAction extends AbstractGameAction {
     }
 
     private boolean checkAddedCards() {
-        OrangeJuiceMod.logger.info("Check size: "+cardCheckArray.size());
+        //OrangeJuiceMod.logger.info("Check size: "+cardCheckArray.size());
         boolean botherChecking = cardCheckArray.size() > 1; //We cant have 2 cards be the same if we drew less than 2 cards
         if (botherChecking) {
             AbstractCard.CardType firstType = cardCheckArray.get(0).type; //Get the type of the first card
-            OrangeJuiceMod.logger.info("First Type: "+firstType);
+            //OrangeJuiceMod.logger.info("First Type: "+firstType);
             for (AbstractCard c : cardCheckArray) {
                 //Loop through all the cards, if we find 2 are different break
-                OrangeJuiceMod.logger.info("Does "+firstType+" match "+c.type+"?");
+                //OrangeJuiceMod.logger.info("Does "+firstType+" match "+c.type+"?");
                 if (firstType != c.type) {
-                    OrangeJuiceMod.logger.info("No");
+                    //OrangeJuiceMod.logger.info("No");
                     botherChecking = false;
                     break;
                 }
             }
 
         }
-        OrangeJuiceMod.logger.info("Passed check? "+botherChecking);
+        //OrangeJuiceMod.logger.info("Passed check? "+botherChecking);
         cardCheckArray.clear();
         return botherChecking;
     }

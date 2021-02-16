@@ -98,10 +98,10 @@ public class ProtagonistsPrivilegePower extends AbstractPower implements Cloneab
     @Override
     public void atStartOfTurnPostDraw() {
         super.atStartOfTurnPostDraw();
-        OrangeJuiceMod.logger.info("Protag Power starting up. # stacks: " + damageArray.size());
+        //OrangeJuiceMod.logger.info("Protag Power starting up. # stacks: " + damageArray.size());
         int oldStacks = damageArray.size();
         for (int i = 0 ; i < oldStacks ; i++) {
-            OrangeJuiceMod.logger.info("Protag Power entering loop. Index: " + i +". Current size: "+ damageArray.size());
+            //OrangeJuiceMod.logger.info("Protag Power entering loop. Index: " + i +". Current size: "+ damageArray.size());
             int finalI = i;
 
             //Flash
@@ -120,9 +120,9 @@ public class ProtagonistsPrivilegePower extends AbstractPower implements Cloneab
                     //If its null, dead, or otherwise gone, grab a new target.
                     //If the card has a null target to begin with, that it ought not interact with what we pass into the use function
                     //Still grab a non-null target anyway for safety
-                    if (t == null || t.isDeadOrEscaped() || !AbstractDungeon.getMonsters().monsters.contains(t)) {
+                    if (t == null || t.isDeadOrEscaped() || t.currentHealth <= 0 || !AbstractDungeon.getMonsters().monsters.contains(t)) {
                         t = AbstractDungeon.getRandomMonster();
-                        OrangeJuiceMod.logger.info("Protag Power grabbed new target. Monster: " + t);
+                        //OrangeJuiceMod.logger.info("Protag Power grabbed new target. Monster: " + t);
                     }
 
                     damageArray.get(finalI).isDone = false;
@@ -149,7 +149,7 @@ public class ProtagonistsPrivilegePower extends AbstractPower implements Cloneab
 
             //Do the draw action and recover
             this.addToBot(new ProtagonistsPrivilegeAction(drawArray.get(finalI), reapplyPower, decrementPower));
-            OrangeJuiceMod.logger.info("Protag Power new size: "+amount);
+            //OrangeJuiceMod.logger.info("Protag Power new size: "+amount);
             updateDescription();
         }
         /*

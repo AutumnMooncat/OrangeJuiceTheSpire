@@ -6,6 +6,7 @@ import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.characters.TheStarBreaker;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,7 +57,8 @@ public class SweetBattle extends AbstractGiftCard {
     public void triggerWhenDrawn() {
         super.triggerWhenDrawn();
         if(isActive(true)) {
-            this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
+            this.addToBot(new MakeTempCardInHandAction(cardsToPreview.makeStatEquivalentCopy()));
+            //this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
             this.applyEffect();
         }
     }
@@ -65,7 +67,8 @@ public class SweetBattle extends AbstractGiftCard {
     public void atTurnStartPreDraw() {
         super.atTurnStartPreDraw();
         if (isActive()) {
-            this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
+            this.addToBot(new MakeTempCardInHandAction(cardsToPreview.makeStatEquivalentCopy()));
+            //this.addToBot(new MakeTempCardInDrawPileAction(cardsToPreview.makeStatEquivalentCopy(), 1, true, true));
             this.applyEffect();
         }
     }
@@ -75,8 +78,9 @@ public class SweetBattle extends AbstractGiftCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //this.cardsToPreview.upgrade();
-            upgradeSecondMagicNumber(UPGRADE_PLUS_USES);
+            this.cardsToPreview.upgrade();
+            rawDescription = UPGRADE_DESCRIPTION;
+            //upgradeSecondMagicNumber(UPGRADE_PLUS_USES);
             initializeDescription();
         }
     }

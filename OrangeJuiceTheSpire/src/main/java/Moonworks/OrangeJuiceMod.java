@@ -34,15 +34,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Properties;
 
-//TODO: DON'T MASS RENAME/REFACTOR
-//TODO: DON'T MASS RENAME/REFACTOR
-//TODO: DON'T MASS RENAME/REFACTOR
-//TODO: DON'T MASS RENAME/REFACTOR
+//Done: DON'T MASS RENAME/REFACTOR
+//Done: DON'T MASS RENAME/REFACTOR
+//Done: DON'T MASS RENAME/REFACTOR
+//Done: DON'T MASS RENAME/REFACTOR
 // Please don't just mass replace "theDefault" with "yourMod" everywhere.
 // It'll be a bigger pain for you. You only need to replace it in 3 places.
 // I comment those places below, under the place where you set your ID.
 
-//TODO: FIRST THINGS FIRST: RENAME YOUR PACKAGE AND ID NAMES FIRST-THING!!!
+//Done: FIRST THINGS FIRST: RENAME YOUR PACKAGE AND ID NAMES FIRST-THING!!!
 // Right click the package (Open the project pane on the left. Folder with black dot on it. The name's at the very top) -> Refactor -> Rename, and name it whatever you wanna call your mod.
 // Scroll down in this file. Change the ID from "theDefault:" to "yourModName:" or whatever your heart desires (don't use spaces). Dw, you'll see it.
 // In the JSON strings (resources>localization>eng>[all them files] make sure they all go "yourModName:" rather than "theDefault". You can ctrl+R to replace in 1 file, or ctrl+shift+r to mass replace in specific files/directories (Be careful.).
@@ -238,7 +238,7 @@ public class OrangeJuiceMod implements
       
         setModID("Moonworks");
         // cool
-        // TODO: NOW READ THIS!!!!!!!!!!!!!!!:
+        // Done: NOW READ THIS!!!!!!!!!!!!!!!:
         
         // 1. Go to your resources folder in the project panel, and refactor> rename theDefaultResources to
         // yourModIDResources.

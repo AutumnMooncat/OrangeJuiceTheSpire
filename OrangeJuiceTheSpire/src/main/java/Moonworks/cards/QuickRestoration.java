@@ -41,6 +41,7 @@ public class QuickRestoration extends AbstractNormaAttentiveCard {
     private static final int COST = 1;
 
     private static final int BASE_BLOCK = 3;
+    private static final int UPGRADE_PLUS_BLOCK = 2;
 
     private static final int BLOCKS = 2;
     private static final int UPGRADE_PLUS_BLOCKS = 1;
@@ -74,8 +75,8 @@ public class QuickRestoration extends AbstractNormaAttentiveCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //upgradeBlock(UPGRADE_PLUS_BLOCK);
-            upgradeMagicNumber(UPGRADE_PLUS_BLOCKS);
+            upgradeBlock(UPGRADE_PLUS_BLOCK);
+            //upgradeMagicNumber(UPGRADE_PLUS_BLOCKS);
             initializeDescription();
         }
     }

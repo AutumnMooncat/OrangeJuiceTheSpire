@@ -1,29 +1,33 @@
 package Moonworks.cards;
 
-import Moonworks.cardModifiers.NormaDynvarModifier;
-import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
-import Moonworks.powers.AcceleratorPower;
-import basemod.BaseMod;
-import basemod.helpers.CardModifierManager;
-import basemod.helpers.TooltipInfo;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cardModifiers.NormaDynvarModifier;
+import Moonworks.cards.abstractCards.AbstractModdedCard;
+import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
-import com.megacrit.cardcrawl.powers.DrawPower;
+import Moonworks.powers.AcceleratorPower;
+import Moonworks.powers.LeapThroughTimePower;
+import basemod.AutoAdd;
+import basemod.helpers.CardModifierManager;
+import basemod.helpers.ModalChoice;
+import basemod.helpers.ModalChoiceBuilder;
+import basemod.helpers.TooltipInfo;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.MasterRealityPower;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class Accelerator extends AbstractNormaAttentiveCard {
+public class Accelerator extends AbstractNormaAttentiveCard implements ModalChoice.Callback{
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -35,6 +39,7 @@ public class Accelerator extends AbstractNormaAttentiveCard {
 
     public static final String ID = OrangeJuiceMod.makeID(Accelerator.class.getSimpleName());
     public static final String IMG = makeCardPath("Accelerator.png");
+    public static final String IMG2 = makeCardPath("AcceleratorMix.png");
 
     private static ArrayList<TooltipInfo> ExceptionsTooltip;
     // /TEXT DECLARATION/
@@ -52,6 +57,8 @@ public class Accelerator extends AbstractNormaAttentiveCard {
 
     private static final int STACKS = 1;
     private static final int UPGRADE_PLUS_STACKS = 1;
+
+    private ModalChoice modal;
 
     private static final Integer[] NORMA_LEVELS = {5};
 
@@ -82,14 +89,19 @@ public class Accelerator extends AbstractNormaAttentiveCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new AcceleratorPower(p, magicNumber)));
-        if (getNormaLevel() >= NORMA_LEVELS[0]) {
-            if (this.freeToPlayOnce || EnergyPanel.totalCount >= 3) {
-                if (!this.freeToPlayOnce) {
-                    p.energy.use(1);
-                }
-                this.addToBot(new ApplyPowerAction(p, p, new MasterRealityPower(p)));
-            }
+        //Check if there is reason to open the modal option
+        if (getNormaLevel() >= NORMA_LEVELS[0] && (this.freeToPlayOnce || EnergyPanel.totalCount >= this.costForTurn + 1)) {
+            AbstractCard option1 = new AcceleratorOption1(name, magicNumber);
+            AbstractCard option2 = new AcceleratorOption2(name, magicNumber, freeToPlayOnce);
+            modal = new ModalChoiceBuilder()
+                    .setCallback(this)
+                    .addOption(option1)
+                    .addOption(option2)
+                    .create();
+
+            modal.open();
+        } else {
+            this.addToBot(new ApplyPowerAction(p, p, new AcceleratorPower(p, magicNumber)));
         }
     }
 
@@ -103,6 +115,60 @@ public class Accelerator extends AbstractNormaAttentiveCard {
             //upgradeBaseCost(UPGRADE_REDUCED_COST);
             upgradeMagicNumber(UPGRADE_PLUS_STACKS);
             initializeDescription();
+        }
+    }
+
+    @Override
+    public void optionSelected(AbstractPlayer p, AbstractMonster m, int i) {
+
+    }
+
+    @AutoAdd.Ignore
+    private class AcceleratorOption1 extends AbstractModdedCard {
+        public AcceleratorOption1(String name, int amount) {
+            super(AcceleratorOption1.class.getSimpleName(), name, IMG, -2, EXTENDED_DESCRIPTION[3], CardType.POWER, COLOR, CardRarity.SPECIAL, CardTarget.NONE);
+            this.magicNumber = this.baseMagicNumber = amount;
+        }
+
+        @Override
+        public void upgrade() {}
+
+        @Override
+        public void use(AbstractPlayer p, AbstractMonster m) {
+            this.addToBot(new ApplyPowerAction(p, p, new AcceleratorPower(p, magicNumber)));
+        }
+
+        @Override
+        public AbstractCard makeCopy() {
+            return new AcceleratorOption1(name, magicNumber);
+        }
+    }
+
+    @AutoAdd.Ignore
+    private class AcceleratorOption2 extends AbstractModdedCard {
+
+        private final boolean free;
+        public AcceleratorOption2(String name, int amount, boolean free) {
+            super(AcceleratorOption2.class.getSimpleName(), name, IMG2, -2, EXTENDED_DESCRIPTION[4], CardType.POWER, COLOR, CardRarity.SPECIAL, CardTarget.NONE);
+            this.magicNumber = this.baseMagicNumber = amount;
+            this.free = free;
+        }
+
+        @Override
+        public void upgrade() {}
+
+        @Override
+        public void use(AbstractPlayer p, AbstractMonster m) {
+            this.addToBot(new ApplyPowerAction(p, p, new AcceleratorPower(p, magicNumber)));
+            if (!free) {
+                this.addToBot(new LoseEnergyAction(1));
+            }
+            this.addToBot(new ApplyPowerAction(p, p, new MasterRealityPower(p)));
+        }
+
+        @Override
+        public AbstractCard makeCopy() {
+            return new AcceleratorOption2(name, magicNumber, freeToPlayOnce);
         }
     }
 }

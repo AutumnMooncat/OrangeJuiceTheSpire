@@ -76,7 +76,7 @@ public class AirStrike extends AbstractTempCard {
                 this.addToBot(new DamageAction(aM, new DamageInfo(p, multiDamage[index], damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE, true));
                 for (AbstractMonster aM2: AbstractDungeon.getMonsters().monsters) {
                     if (aM2 != aM && !aM2.isDeadOrEscaped()) {
-                        this.addToBot(new DamageAction(aM2, new DamageInfo(p, multiDamage[index]/2, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE, true));
+                        this.addToBot(new DamageAction(aM2, new DamageInfo(p, multiDamage[index]/2, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
                     }
                 }
             }

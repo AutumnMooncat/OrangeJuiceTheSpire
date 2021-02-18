@@ -74,7 +74,7 @@ public class BigRocketCannon extends AbstractTempCard {
         //this.addToBot(new DamageAllButOneEnemyAction(p, m, this.multiDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE, true));
         for (AbstractMonster aM: AbstractDungeon.getMonsters().monsters) {
             if (aM != m) {
-                this.addToBot(new DamageAction(aM, new DamageInfo(p, damage/2, damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE, true));
+                this.addToBot(new DamageAction(aM, new DamageInfo(p, damage/2, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE, true));
             }
         }
         /* int[] test = {damage}; // Bad. causes crashing and sadness

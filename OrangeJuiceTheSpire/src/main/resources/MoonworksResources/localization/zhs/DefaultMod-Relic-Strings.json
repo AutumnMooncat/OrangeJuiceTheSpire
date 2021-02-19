@@ -69,12 +69,39 @@
     "DESCRIPTIONS": [
       "每场战斗开始时拥有 #yNorma #b",". 在战斗外右击它可以花费 #b"," #y金币永久提高一级效果，最高可以到 #b5 级。"
     ]
-  },
-  "Moonworks:WarpPanel": {
-    "NAME": "传送格子",
-    "FLAVOR": "真是一次幸运的掷骰！",
+  },"Moonworks:HealPanel": {
+  "NAME": "Heal Panel",
+  "FLAVOR": "Recommended by 0 out of 1 doctors wearing lab coats. NL Part 1 of a series, can you collect them all?",
+  "DESCRIPTIONS": [
+    "Whenever you gain a #ymoonworks:Norma level, heal #b1 HP."
+  ]
+},
+  "Moonworks:BonusPanel": {
+    "NAME": "Panel Panel",
+    "FLAVOR": "Tiny, but stars are stars. NL Part 2 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      " #r偏差 不再会高于 80。"
+      "Whenever you gain a #ymoonworks:Norma level, gain #b1 energy."
+    ]
+  },
+  "Moonworks:DrawPanel": {
+    "NAME": "Draw Panel",
+    "FLAVOR": "Imagine only being able to hold 3 cards in your hand... NL Part 3 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #ymoonworks:Norma level, draw #b1 card."
+    ]
+  },
+  "Moonworks:DamagePanel": {
+    "NAME": "Damage Panel",
+    "FLAVOR": "Ouch! What did I just step on? NL Part 4 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #ymoonworks:Norma level, deal #b7 damage to ALL enemies."
+    ]
+  },
+  "Moonworks:HomePanel": {
+    "NAME": "Home Panel",
+    "FLAVOR": "If you get homesick, just step on it. NL The final panel, at last!",
+    "DESCRIPTIONS": [
+      "Doubles the effectiveness of all other Panels."
     ]
   }
 }

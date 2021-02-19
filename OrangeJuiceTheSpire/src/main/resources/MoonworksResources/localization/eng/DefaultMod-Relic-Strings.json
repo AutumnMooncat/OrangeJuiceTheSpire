@@ -68,11 +68,39 @@
       "Start every combat with #yNorma #b",". Right click when out of combat to spend #b"," #yGold to permanently raise this effect, up to a maximum of #b5."
     ]
   },
-  "Moonworks:WarpPanel": {
-    "NAME": "Warp Panel",
-    "FLAVOR": "What a lucky roll!",
+  "Moonworks:HealPanel": {
+    "NAME": "Heal Panel",
+    "FLAVOR": "Recommended by 0 out of 1 doctors wearing lab coats. Part 1 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      "#rDivergence will no longer stack higher than 80."
+      "Whenever you gain a #ymoonworks:Norma level, heal #b1 HP."
+    ]
+  },
+  "Moonworks:BonusPanel": {
+    "NAME": "Panel Panel",
+    "FLAVOR": "Tiny, but stars are stars. Part 2 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #ymoonworks:Norma level, gain #b1 energy."
+    ]
+  },
+  "Moonworks:DrawPanel": {
+    "NAME": "Draw Panel",
+    "FLAVOR": "Imagine only being able to hold 3 cards in your hand... Part 3 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #ymoonworks:Norma level, draw #b1 card."
+    ]
+  },
+  "Moonworks:DamagePanel": {
+    "NAME": "Damage Panel",
+    "FLAVOR": "Ouch! What did I just step on? Part 4 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #ymoonworks:Norma level, deal #b7 damage to ALL enemies."
+    ]
+  },
+  "Moonworks:HomePanel": {
+    "NAME": "Home Panel",
+    "FLAVOR": "If you get homesick, just step on it. Part 5 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "#ymoonworks:Norma levels require #b2 less cards to achieve."
     ]
   }
 }

@@ -5,6 +5,7 @@ import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.NormaPower;
 import Moonworks.util.interfaces.NormaAttentiveObject;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -20,8 +21,8 @@ import static Moonworks.OrangeJuiceMod.*;
 public class NormaHelper {
     //Holds how many skills we need to play for a Norma level
     private static final int NORMAL_DENOMINATOR = 10;
-    //Hows how many cards of ANY type we need to play for a Normal level
-    private static final int UPGRADE_DENOMINATOR = 12;
+    //Hows how many cards of ANY type we need to play for a Normal level in addition to the normal denominator
+    private static final int UPGRADE_PLUS_DENOMINATOR = 2;
     //How high our Norma can go normally
     public static final int MAX_NORMA = 5;
 
@@ -79,7 +80,7 @@ public class NormaHelper {
         }
     }
 
-    //TODO patch deleteSave to reset norma vars if needed (Assume it is)
+    //Reset and save norma vars when we die or otherwise delete our save file
     @SpirePatch(
             clz = SaveAndContinue.class, //This is the class you're patching.
             method = "deleteSave" //This is the name of the method of that class that you're patching.
@@ -95,7 +96,7 @@ public class NormaHelper {
         }
     }
 
-    //TODO patch save to save norma vars
+    //Save norma vars
     @SpirePatch(
             clz = SaveAndContinue.class, //This is the class you're patching.
             method = "save" //This is the name of the method of that class that you're patching.
@@ -110,7 +111,7 @@ public class NormaHelper {
         }
     }
 
-    //TODO patch load to load our norma vars
+    //Load our norma vars
     @SpirePatch(
             clz = SaveAndContinue.class, //This is the class you're patching.
             method = "loadSaveFile", //This is the name of the method of that class that you're patching.
@@ -125,7 +126,7 @@ public class NormaHelper {
             return SpireReturn.Continue();
         }
     }
-    //TODO save norma
+    //Save norma values. Called when the game is saved or when the savefile is deleted
     private static void saveNormaVars(AbstractPlayer p) {
         try {
             SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", normaBackupVars);
@@ -138,7 +139,7 @@ public class NormaHelper {
             e.printStackTrace();
         }
     }
-    //TODO load norma
+    //Load norma values. Called on loading saved game
     private static void loadNormaVars(AbstractPlayer p) {
         try {
             SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", normaBackupVars);
@@ -195,6 +196,7 @@ public class NormaHelper {
     }
 
     public static void resetVars(AbstractPlayer p) {
+        //Reset all values to the initial amounts
         NormaVars.skillsOnly.set(p, Boolean.TRUE);
         NormaVars.numerator.set(p, 0);
         NormaVars.denominator.set(p, NORMAL_DENOMINATOR);
@@ -202,8 +204,33 @@ public class NormaHelper {
     }
 
     public static void upgradeNormaConditions(AbstractPlayer p) {
-        NormaVars.skillsOnly.set(p, Boolean.FALSE);
-        NormaVars.denominator.set(p, UPGRADE_DENOMINATOR);
+        //Ensure this can only be applied once, in case we somehow try to upgrade twice
+        if (NormaVars.skillsOnly.get(p)) {
+            NormaVars.skillsOnly.set(p, Boolean.FALSE);
+            modifyNormaDenominator(p, UPGRADE_PLUS_DENOMINATOR);
+        }
+    }
+
+    public static void modifyNormaDenominator(AbstractPlayer p, int amount) {
+        //Modfy denominator, but dont let it go below 1;
+        int d = NormaVars.denominator.get(p);
+        //Check if this would make us gain a normal level, if so, set our numerator to 1 card away instead
+        NormaVars.denominator.set(p, Math.max(1, d + amount));
+        int n = NormaVars.numerator.get(p);
+        if (n >= NormaVars.denominator.get(p)) {
+            NormaVars.numerator.set(p, NormaVars.denominator.get(p)-1);
+        }
+        //Hack an update by changing the values by 0
+        for (AbstractRelic r : p.relics) {
+            if (r instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) r).onGainNormaCharge(NormaVars.numerator.get(p), 0);
+            }
+        }
+        for (AbstractPower power : p.powers) {
+            if (power instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) power).onGainNormaCharge(NormaVars.numerator.get(p), 0);
+            }
+        }
     }
 
     public static void gainNormaCharge(AbstractPlayer p) {
@@ -211,7 +238,9 @@ public class NormaHelper {
     }
 
     public static void gainNormaCharges(AbstractPlayer p, int i) {
-        NormaVars.numerator.set(p, NormaVars.numerator.get(p) + i);
+        int n = NormaVars.numerator.get(p);
+        //If we passed negative charges, we don't go below 0.
+        NormaVars.numerator.set(p, Math.max(0, n + i));
         checkRollover(p);
         for (AbstractRelic r : p.relics) {
             if (r instanceof NormaAttentiveObject) {
@@ -241,20 +270,44 @@ public class NormaHelper {
     }
 
     public static void applyNormaPower(AbstractPlayer p, int i) {
+        //First assume we dont have Norma
         int current = 0;
+        //Then grab the power and the amount we actually have if we do have the power
         AbstractPower pow = p.getPower(NormaPower.POWER_ID);
         if (pow instanceof NormaPower) {
             current = pow.amount;
         }
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NormaPower(p, i)));
-        for (AbstractRelic r : p.relics) {
-            if (r instanceof NormaAttentiveObject) {
-                ((NormaAttentiveObject) r).onGainNorma(current+i, i);
-            }
-        }
-        for (AbstractPower power : p.powers) {
-            if (power instanceof NormaAttentiveObject) {
-                ((NormaAttentiveObject) power).onGainNorma(current+i, i);
+        //Ensure we wont overflow
+        i = Math.min(i, MAX_NORMA - current);
+        //Add 1 norma level at a time
+        if (i > 0) {
+            for (int j = 0 ; j < i ; j++) {
+                //Update relics
+                AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        for (AbstractRelic r : p.relics) {
+                            if (r instanceof NormaAttentiveObject) {
+                                ((NormaAttentiveObject) r).onGainNorma(NormaVars.numerator.get(p)+1, 1);
+                            }
+                        }
+                        this.isDone = true;
+                    }
+                });
+                //Update powers
+                AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        for (AbstractPower power : p.powers) {
+                            if (power instanceof NormaAttentiveObject) {
+                                ((NormaAttentiveObject) power).onGainNorma(NormaVars.numerator.get(p)+1, 1);
+                            }
+                        }
+                        this.isDone = true;
+                    }
+                });
+                //Actually apply the Norma level
+                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NormaPower(p, i)));
             }
         }
     }

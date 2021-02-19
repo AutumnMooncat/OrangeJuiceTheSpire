@@ -67,12 +67,39 @@
     "DESCRIPTIONS": [
       "#y노르마 #b"," 레벨로 전투를 시작합니다. 전투 중이 아닐때 우클릭 하여 #b"," #y골드를 소모하고 영구적으로 레벨을 #b1 증가시켜, 최대 #b5 까지 증가시킵니다."
     ]
-  },
-  "Moonworks:WarpPanel": {
-    "NAME": "워프 패널",
-    "FLAVOR": "주사위운이 정말 좋네요!",
+  },"Moonworks:HealPanel": {
+  "NAME": "Heal Panel",
+  "FLAVOR": "Recommended by 0 out of 1 doctors wearing lab coats. NL Part 1 of a series, can you collect them all?",
+  "DESCRIPTIONS": [
+    "Whenever you gain a #ymoonworks:Norma level, heal #b1 HP."
+  ]
+},
+  "Moonworks:BonusPanel": {
+    "NAME": "Panel Panel",
+    "FLAVOR": "Tiny, but stars are stars. NL Part 2 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      "#r발산 이 80 이상으로 쌓이지 않습니다."
+      "Whenever you gain a #ymoonworks:Norma level, gain #b1 energy."
+    ]
+  },
+  "Moonworks:DrawPanel": {
+    "NAME": "Draw Panel",
+    "FLAVOR": "Imagine only being able to hold 3 cards in your hand... NL Part 3 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #ymoonworks:Norma level, draw #b1 card."
+    ]
+  },
+  "Moonworks:DamagePanel": {
+    "NAME": "Damage Panel",
+    "FLAVOR": "Ouch! What did I just step on? NL Part 4 of a series, can you collect them all?",
+    "DESCRIPTIONS": [
+      "Whenever you gain a #ymoonworks:Norma level, deal #b7 damage to ALL enemies."
+    ]
+  },
+  "Moonworks:HomePanel": {
+    "NAME": "Home Panel",
+    "FLAVOR": "If you get homesick, just step on it. NL The final panel, at last!",
+    "DESCRIPTIONS": [
+      "Doubles the effectiveness of all other Panels."
     ]
   }
 }

@@ -221,7 +221,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             }
             return;
         }
-        if (stackAmount > 0 && amount < 5) {
+        if (stackAmount > 0) {
             autoPlayLDS();
         }
         if(!broken) {

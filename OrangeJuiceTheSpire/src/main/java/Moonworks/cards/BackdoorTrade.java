@@ -5,6 +5,7 @@ import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.NormaPower;
+import Moonworks.util.NormaHelper;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -59,9 +60,8 @@ public class BackdoorTrade extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //this.addToBot(new LoseHPAction(p, p, magicNumber));
-        if (getNormaLevel() < NORMA_LEVELS[0]) {
-            this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, secondMagicNumber), secondMagicNumber));
-        } else {
+        NormaHelper.applyNormaPower(p);
+        if (getNormaLevel() >= NORMA_LEVELS[0]) {
             this.addToBot(new DrawCardAction(magicNumber));
         }
         this.initializeDescription();

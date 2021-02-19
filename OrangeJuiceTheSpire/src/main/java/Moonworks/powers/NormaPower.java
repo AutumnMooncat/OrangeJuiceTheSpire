@@ -3,6 +3,8 @@ package Moonworks.powers;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.LongDistanceShot;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.util.NormaHelper;
+import Moonworks.util.interfaces.NormaAttentiveObject;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -29,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class NormaPower extends AbstractPower implements CloneablePowerInterface {
+public class NormaPower extends AbstractPower implements CloneablePowerInterface, NormaAttentiveObject {
 
     public static final String POWER_ID = OrangeJuiceMod.makeID("NormaPower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -38,6 +40,9 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
 
     public boolean broken;
     public boolean safeBreak;
+
+    private final Color redColor = new Color(1.0F, 0.0F, 0.0F, 1.0F);
+    private final Color greenColor = new Color(0.0F, 1.0F, 0.0F, 1.0F);
 
     // We create 2 new textures *Using This Specific Texture Loader* - an 84x84 image and a 32x32 one.
     // There's a fallback "missing texture" image, so the game shouldn't crash if you accidentally put a non-existent file.
@@ -87,14 +92,21 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
 
     @Override
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+        //Determine what color to use
+        Color detC = broken ? redColor : greenColor;
+        //Determine how many cards to next Norma Level
+        int i = NormaHelper.getDenominator(AbstractDungeon.player) - NormaHelper.getNumerator(AbstractDungeon.player);
+        //Render our Norma Level
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, detC);
+        //Render the number of cards we need or just a random character if broken.
         if (broken) {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, new Color(1.0F, 0.0F, 0.0F, 1.0F));
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, getRandomString(AbstractDungeon.cardRandomRng.random(1, 1)), x, y+15.0F, this.fontScale, detC);
         } else {
-            super.renderAmount(sb, x, y , c);
-            if (this.amount == 0) {
-                FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x, y, this.fontScale, new Color(0.0F, 1.0F, 0.0F, 1.0F));
-            }
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(i), x, y+15.0F, this.fontScale, detC);
         }
+        //Show how close we are to the next Norma Level
+        //FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.numerator), x-20, y+15, this.fontScale, detC);
+        //FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.denominator - this.numerator), x-20, y, this.fontScale, detC);
     }
     private void applyBrokenEffects() {
         int hpLoss = AbstractDungeon.cardRandomRng.random(10, 15);
@@ -119,16 +131,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         }
     }
 
-    /*
-    //Play LDS cards, also do this in stack
-    @Override
-    public void onInitialApplication() {
-        super.onInitialApplication();
-        if (amount > 0) {
-            autoPlayLDS();
-        }
-    }*/
-
+    //TODO refactor this into AbstractNormaAttentiveCard by giving it an onGainNorma() hook
     private void autoPlayLDS() {
         //Make a map of the cards and where they came from
         Map<LongDistanceShot, CardGroup> LDSMap = new HashMap<>();
@@ -228,8 +231,8 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             boolean flashCards = (increase && amount < 5) || (!increase && amount > 0);
             int offset = increase ? 0 : 1;
             super.stackPower(stackAmount);
-            if (amount > 5) {
-                amount = 5;
+            if (amount > NormaHelper.MAX_NORMA) {
+                amount = NormaHelper.MAX_NORMA;
             }
             if (amount < 0) {
                 amount = 0;
@@ -237,6 +240,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             name = NAME + " " + amount;
             updateDescription();
 
+            //TODO refactor this into AbstractNormaAttentiveCard by giving it an onGainNorma() hook
             if(flashCards){
                 for (AbstractCard c : AbstractDungeon.player.hand.group) {
                     if (c instanceof AbstractNormaAttentiveCard) {
@@ -252,17 +256,33 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
+        StringBuilder sb = new StringBuilder();
+        int i = NormaHelper.getDenominator(AbstractDungeon.player) - NormaHelper.getNumerator(AbstractDungeon.player);
+        boolean skillsOnly = NormaHelper.getSkillsOnly(AbstractDungeon.player);
         if (!broken) {
-            description = DESCRIPTIONS[0];
+            sb.append(DESCRIPTIONS[0]).append(DESCRIPTIONS[2]);
+            sb.append(i);
+            sb.append(i == 1 ? (skillsOnly ? DESCRIPTIONS[3] : DESCRIPTIONS[5])
+                             : (skillsOnly ? DESCRIPTIONS[4] : DESCRIPTIONS[6]));
         } else {
             //description = DESCRIPTIONS[1];
-            description = "#r"+getRandomString(AbstractDungeon.cardRandomRng.random(18, 18));
+             sb.append("#r").append(getRandomString(AbstractDungeon.cardRandomRng.random(18, 18)));
         }
-
+        description = sb.toString();
     }
 
     @Override
     public AbstractPower makeCopy() {
         return new NormaPower(owner, amount, broken);
+    }
+
+    @Override
+    public void onGainNorma(int current, int increasedBy) {
+        updateDescription();
+    }
+
+    @Override
+    public void onGainNormaCharge(int current, int increasedBy) {
+        updateDescription();
     }
 }

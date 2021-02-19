@@ -77,6 +77,7 @@ public class OrangeJuiceMod implements
 
     // Mod-settings settings. This is if you want an on/off savable button
     public static Properties theStarBreakerDefaultSettings = new Properties();
+    public static Properties normaBackupVars = new Properties();
 
     public static final String ENABLE_SELFDAMAGE_SETTING = "enableSelfDamage";
     public static boolean enableSelfDamage = false; // The boolean we'll be setting on/off (true/false)
@@ -106,7 +107,13 @@ public class OrangeJuiceMod implements
 
     public static final String PRE_BATTLE_TALK_PROBABILITY_SETTING = "preTalkProbability";
     private static final int BASE_PRE_TALK_PROBABILITY = 75;
-    public static int preTalkProbability = BASE_PRE_TALK_PROBABILITY; //Out of 100
+   public static int preTalkProbability = BASE_PRE_TALK_PROBABILITY; //Out of 100
+
+    public static final String NORMA_NUMERATOR = "normaNumerator";
+    public static final String NORMA_DENOMINATOR = "normaDenominator";
+    public static final String NORMA_BASE = "normaBase";
+    public static final String NORMA_SKILLS_ONLY = "normaSkillsOnly";
+
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "The Star Breaker";
@@ -348,7 +355,7 @@ public class OrangeJuiceMod implements
             e.printStackTrace();
         }
 
-        theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_PROBABILITY_SETTING, PRE_BATTLE_TALK_PROBABILITY_SETTING);
+        theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(BASE_PRE_TALK_PROBABILITY));
         try {
             SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
@@ -359,6 +366,11 @@ public class OrangeJuiceMod implements
         }
 
         logger.info("Done adding mod settings");
+
+        normaBackupVars.setProperty(NORMA_NUMERATOR, String.valueOf(0));
+        normaBackupVars.setProperty(NORMA_DENOMINATOR, String.valueOf(10));
+        normaBackupVars.setProperty(NORMA_BASE, String.valueOf(0));
+        normaBackupVars.setProperty(NORMA_SKILLS_ONLY, "FALSE");
         
     }
     

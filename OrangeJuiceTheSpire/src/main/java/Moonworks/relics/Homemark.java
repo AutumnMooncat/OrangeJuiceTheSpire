@@ -1,12 +1,12 @@
 package Moonworks.relics;
 
 import Moonworks.RandomChatterHelper;
-import Moonworks.actions.NormaBreakAction;
-import Moonworks.powers.NormaPower;
+import Moonworks.util.interfaces.NormaAttentiveObject;
+import Moonworks.util.NormaHelper;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -15,7 +15,7 @@ import Moonworks.util.TextureLoader;
 
 import static Moonworks.OrangeJuiceMod.*;
 
-public class Homemark extends CustomRelic implements ClickableRelic { // You must implement things you want to use from StSlib
+public class Homemark extends CustomRelic implements ClickableRelic, NormaAttentiveObject { // You must implement things you want to use from StSlib
     /*
      * https://github.com/daviscook477/BaseMod/wiki/Custom-Relics
      * StSLib for Clickable Relics
@@ -30,49 +30,51 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("Homemark.png"));
 
     private static final int COST = 120;
-    public static boolean broken = false;
 
     public Homemark() {
         super(ID, IMG, OUTLINE, RelicTier.STARTER, LandingSound.CLINK);
+        if (AbstractDungeon.player != null) {
+            this.counter = NormaHelper.getBaseNorma(AbstractDungeon.player);
+        }
     }
 
 
     @Override
     public void onRightClick() {// On right click
+        //If we are not in combat...
         if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
-            if (!broken && counter < 5 && AbstractDungeon.player.gold >= COST) {
-                if(this.counter == -1){
-                    this.counter = 0;
-                }
-                this.counter++;
-                AbstractDungeon.player.loseGold(COST);
+            AbstractPlayer p = AbstractDungeon.player;
+            //If we havent hit the max and we have enough money
+            if (NormaHelper.canUpgradeBase(p) && canAfford()) {
+                //Increment base norma
+                NormaHelper.upgradeBase(p);
+                //Spend gold
+                p.loseGold(COST);
+                //Say stuff
                 RandomChatterHelper.showChatter(RandomChatterHelper.getHomemarkText(), preTalkProbability, enablePreBattleTalkEffect);
+                //Grab updated description
                 this.description = this.getUpdatedDescription();
+                //Clear tips and reapply them so it uses our updated number
                 this.tips.clear();
                 this.tips.add(new PowerTip(this.name, this.description));
                 this.initializeTips();
-                if(this.counter == 5){
-                    stopPulse();
-                }
             }
         }
     }
 
-    //This was a horrible idea, lol
-    public void breakHomemark() {
-        broken = true;
-        this.counter = 6;
-        this.description = this.getUpdatedDescription();
-        this.tips.clear();
-        this.tips.add(new PowerTip(this.name, this.description));
-        this.initializeTips();
-        beginPulse();
+    private boolean canAfford() {
+        return AbstractDungeon.player.gold >= COST;
+    }
+
+    private boolean canUpgrade() {
+        return NormaHelper.canUpgradeBase(AbstractDungeon.player);
     }
 
     @Override
     public void onEquip() {
         super.onEquip();
-        if (!pulse && AbstractDungeon.player.gold >= COST && counter < 5) {
+        //Pulse if norma can be upgraded and we can afford it
+        if (!pulse && canAfford() && canUpgrade()) {
             beginLongPulse();
         }
     }
@@ -80,7 +82,8 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     @Override
     public void onGainGold() {
         super.onGainGold();
-        if (!pulse && AbstractDungeon.player.gold >= COST && counter < 5) {
+        //Pulse if norma can be upgraded and we can afford it
+        if (!pulse && canAfford() && canUpgrade()) {
             beginLongPulse();
         }
     }
@@ -88,7 +91,8 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     @Override
     public void onLoseGold() {
         super.onLoseGold();
-        if(AbstractDungeon.player.gold < COST) {
+        //Stop pulsing if we cant afford it
+        if(!canAfford()) {
             stopPulse();
         }
     }
@@ -96,33 +100,39 @@ public class Homemark extends CustomRelic implements ClickableRelic { // You mus
     @Override
     public void onSpendGold() {
         super.onSpendGold();
-        if(AbstractDungeon.player.gold < COST) {
+        //Stop pulsing if we cant afford it
+        if(!canAfford()) {
             stopPulse();
         }
     }
 
-    // Flash at the start of Battle.
     @Override
     public void atBattleStartPreDraw() {
+        //Stop flashing when combat starts
         stopPulse();
-        if(!broken) {
-            //if (counter > 0) {
-                flash();
-                this.addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new NormaPower(AbstractDungeon.player, Math.max(counter,0))));
-            //}
-        } else {
-            this.addToBot(new NormaBreakAction(AbstractDungeon.player, false));
-        }
-
     }
 
     // Description
     @Override
     public String getUpdatedDescription() {
-        if (broken) {
-            return "What have you done?";
+        int i = 0;
+        if (AbstractDungeon.player != null) {
+            i = NormaHelper.getBaseNorma(AbstractDungeon.player);
         }
-        return DESCRIPTIONS[0] + Math.max(0, counter) + DESCRIPTIONS[1] + COST + DESCRIPTIONS[2];
+        this.counter = i;
+        return DESCRIPTIONS[0] + i + DESCRIPTIONS[1] + COST + DESCRIPTIONS[2];
     }
 
+    @Override
+    public void onGainNorma(int current, int increasedBy) {
+        //Grab new counter value
+        this.counter = NormaHelper.getBaseNorma(AbstractDungeon.player);
+        //Don't pulse if it cant go any higher
+        if(!NormaHelper.canUpgradeBase(AbstractDungeon.player)){
+            stopPulse();
+        }
+    }
+
+    @Override
+    public void onGainNormaCharge(int current, int increasedBy) {}
 }

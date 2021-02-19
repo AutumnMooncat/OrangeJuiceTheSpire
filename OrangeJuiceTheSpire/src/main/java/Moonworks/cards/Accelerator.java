@@ -6,6 +6,7 @@ import Moonworks.cards.abstractCards.AbstractModdedCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.AcceleratorPower;
+import Moonworks.powers.FreeCardPower;
 import Moonworks.powers.LeapThroughTimePower;
 import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
@@ -90,9 +91,10 @@ public class Accelerator extends AbstractNormaAttentiveCard implements ModalChoi
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         //Check if there is reason to open the modal option
+        boolean freePower = p.hasPower(FreeCardPower.POWER_ID);
         if (getNormaLevel() >= NORMA_LEVELS[0] && (this.freeToPlayOnce || EnergyPanel.totalCount >= this.costForTurn + 1)) {
             AbstractCard option1 = new AcceleratorOption1(name, magicNumber);
-            AbstractCard option2 = new AcceleratorOption2(name, magicNumber, freeToPlayOnce);
+            AbstractCard option2 = new AcceleratorOption2(name, magicNumber, freeToPlayOnce || freePower);
             modal = new ModalChoiceBuilder()
                     .setCallback(this)
                     .addOption(option1)

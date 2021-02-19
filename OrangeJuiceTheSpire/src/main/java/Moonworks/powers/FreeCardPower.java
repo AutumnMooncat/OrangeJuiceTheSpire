@@ -42,17 +42,8 @@ public class FreeCardPower extends AbstractPower implements CloneablePowerInterf
         updateDescription();
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        if (!card.purgeOnUse && this.amount > 0 && card.cost > 0 && card.costForTurn > 0 && !card.freeToPlayOnce) {
-            this.addToTop(new GainEnergyAction(Math.min(card.cost,card.costForTurn)));
-            this.flash();
-            --this.amount;
-            if (this.amount == 0) {
-                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-            }
-        }
-
-    }
+    //Functionality (almost) entirely provided by FreeCardPrefixPatch
+    //Exceptions: Accelerator has to manually calculate whether it should spend the extra energy
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override

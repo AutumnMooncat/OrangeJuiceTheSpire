@@ -54,15 +54,6 @@ public class AnotherUltimateWeaponAction extends AbstractGameAction {
             if (!this.freeToPlayOnce) {
                 this.p.energy.use(EnergyPanel.totalCount);
             }
-            if(this.p.hasPower(FreeCardPower.POWER_ID)) {
-                AbstractPower pow = this.p.getPower(FreeCardPower.POWER_ID);
-                this.addToTop(new GainEnergyAction(currentE));
-                pow.flash();
-                pow.amount--;
-                if (pow.amount == 0) {
-                    this.addToTop(new RemoveSpecificPowerAction(pow.owner, pow.owner, pow.ID));
-                }
-            }
         }
 
         this.isDone = true;

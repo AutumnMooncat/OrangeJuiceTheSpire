@@ -1,21 +1,17 @@
 package Moonworks.cards;
 
-import Moonworks.cardModifiers.CorruptedModifier;
+import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.characters.TheStarBreaker;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import Moonworks.OrangeJuiceMod;
-import Moonworks.characters.TheStarBreaker;
-import com.megacrit.cardcrawl.powers.*;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 // "How come this card extends CustomCard and not DynamicCard like all the rest?"

@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Random;
-
+@Deprecated
 public class CorruptedModifier extends AbstractCardModifier {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
     private static final int MAX = CorruptionEffects.values().length;

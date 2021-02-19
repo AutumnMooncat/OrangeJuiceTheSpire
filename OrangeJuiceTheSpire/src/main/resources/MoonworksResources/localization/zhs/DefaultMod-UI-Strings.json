@@ -22,5 +22,11 @@
   },
   "Moonworks:ModConfigGullVFXButton": {
     "TEXT": ["启用海鸥遗物的演出效果. 默认: 是."]
+  },
+  "Moonworks:ChooseMagic": {
+    "TEXT": ["Choose 1 of 3 Magical Memories to add to your Discard Pile."]
+  },
+  "Moonworks:ChooseMemory": {
+    "TEXT": ["Choose up to "," card(s) to turn into Memories."]
   }
 }

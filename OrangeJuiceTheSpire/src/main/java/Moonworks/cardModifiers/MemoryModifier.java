@@ -3,7 +3,7 @@ package Moonworks.cardModifiers;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.patches.TypeOverridePatch;
 import Moonworks.powers.BookOfMemoriesPower;
-import Moonworks.powers.interfaces.AssociateableInterface;
+import Moonworks.util.MemoryHelper;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.abstracts.AbstractCardModifier;
@@ -15,9 +15,11 @@ import org.apache.logging.log4j.Logger;
 public class MemoryModifier extends AbstractCardModifier {
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
     public static final String ID = OrangeJuiceMod.makeID("MemoryModifier");
-    public static final String MEMORY_OF = BookOfMemoriesPower.DESCRIPTIONS[4];
-    public static final String ACTIVE_DESC = BookOfMemoriesPower.DESCRIPTIONS[5];
-    public static final String EXHAUST_DESC = BookOfMemoriesPower.DESCRIPTIONS[6];
+    public static final String MEMORY_OF = BookOfMemoriesPower.DESCRIPTIONS[7];
+    public static final String ACTIVE_DESC = BookOfMemoriesPower.DESCRIPTIONS[8];
+    public static final String EXHAUST_DESC = BookOfMemoriesPower.DESCRIPTIONS[9];
+    public static final String COOLDOWN_DESC1 = BookOfMemoriesPower.DESCRIPTIONS[10];
+    public static final String COOLDOWN_DESC2 = BookOfMemoriesPower.DESCRIPTIONS[11];
     private String oldName;
     private int oldCost;
     private static final int UNPLAYABLE_COST = -2;
@@ -62,7 +64,7 @@ public class MemoryModifier extends AbstractCardModifier {
         if (card instanceof CustomCard) {
             if (card.type == AbstractCard.CardType.ATTACK) {
                 ((CustomCard) card).setBackgroundTexture(OrangeJuiceMod.MAGIC_ATTACK_WHITE_ICE, OrangeJuiceMod.MAGIC_ATTACK_WHITE_ICE_PORTRAIT);
-            } else if (card.type != AbstractCard.CardType.POWER) { //Power is handled automatically, we just expressly want to do nothing
+            } else if (card.type != AbstractCard.CardType.POWER) { //Power is already blue, we just expressly want to do nothing
                 ((CustomCard) card).setBackgroundTexture(OrangeJuiceMod.MAGIC_SKILL_WHITE_ICE, OrangeJuiceMod.MAGIC_SKILL_WHITE_ICE_PORTRAIT);
             }
         }
@@ -74,10 +76,15 @@ public class MemoryModifier extends AbstractCardModifier {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        if (exhausted) {
-            return EXHAUST_DESC + rawDescription;
+        StringBuilder sb = new StringBuilder();
+        if (MemoryHelper.isExhausted(card)) {
+            sb.append(EXHAUST_DESC);
+        } else if (MemoryHelper.isReadyToUse(card)) {
+            sb.append(ACTIVE_DESC);
+        } else {
+            sb.append(COOLDOWN_DESC1).append(MemoryHelper.getCooldown(card)).append(COOLDOWN_DESC2);
         }
-        return ACTIVE_DESC + rawDescription;
+        return sb.toString() + rawDescription;
     }
 
     @Override

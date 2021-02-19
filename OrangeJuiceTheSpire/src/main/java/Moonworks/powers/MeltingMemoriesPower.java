@@ -24,7 +24,7 @@ public class MeltingMemoriesPower extends AbstractPower implements CloneablePowe
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
     public boolean upgrade;
-    private int cardsPlayed;
+    public int cardsPlayed;
 
 
     public MeltingMemoriesPower(final AbstractCreature owner, final int amount, final boolean upgrade) {
@@ -39,7 +39,7 @@ public class MeltingMemoriesPower extends AbstractPower implements CloneablePowe
         isTurnBased = false;
 
         // We load those txtures here.
-        this.loadRegion("establishment");
+        this.loadRegion("ritual"); //establishment
         //this.region128 = new TextureAtlas.AtlasRegion(tex84, 0, 0, 84, 84);
         //this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
 
@@ -60,8 +60,10 @@ public class MeltingMemoriesPower extends AbstractPower implements CloneablePowe
     public void onAfterCardPlayed(AbstractCard usedCard) {
         super.onAfterCardPlayed(usedCard);
         if (cardsPlayed < amount) {
-            if (getViability(usedCard) && usedCard.canUpgrade()) {
-                usedCard.upgrade();
+            if (getViability(usedCard)) {
+                if (upgrade && usedCard.canUpgrade()) {
+                    usedCard.upgrade();
+                }
                 this.addToBot(new ApplyAndUpdateMemoriesAction(usedCard));
             }
             cardsPlayed++;
@@ -71,11 +73,16 @@ public class MeltingMemoriesPower extends AbstractPower implements CloneablePowe
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
+        StringBuilder sb = new StringBuilder();
         if (amount == 1) {
-            description = DESCRIPTIONS[0];
+            sb.append(DESCRIPTIONS[0]);
         } else {
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2];
+            sb.append(DESCRIPTIONS[1]).append(amount).append(DESCRIPTIONS[2]);
         }
+        if (upgrade) {
+            sb.append(DESCRIPTIONS[3]);
+        }
+        description = sb.toString();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package Moonworks.actions;
 
 import Moonworks.powers.BookOfMemoriesPower;
+import Moonworks.util.MemoryHelper;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,15 +19,26 @@ public class ApplyAndUpdateMemoriesAction extends AbstractGameAction {
     private final AbstractPlayer p = AbstractDungeon.player;
 
     public ApplyAndUpdateMemoriesAction(ArrayList<AbstractCard> cards) {
+        //For each card...
         for (AbstractCard c : cards) {
+            //If it is viable to add...
             if (getViability(c)) {
+                //Set the default values for cooldown and active
+                MemoryHelper.convertMemory(c);
+
+                //Add it to the list of cards
                 cardsToAdd.add(c);
             }
         }
     }
 
     public ApplyAndUpdateMemoriesAction(AbstractCard card) {
+        //If it is viable to add...
         if (getViability(card)) {
+            //Set the default values for cooldown and active
+            MemoryHelper.convertMemory(card);
+
+            //Add it to the list of cards
             cardsToAdd.add(card);
         }
     }

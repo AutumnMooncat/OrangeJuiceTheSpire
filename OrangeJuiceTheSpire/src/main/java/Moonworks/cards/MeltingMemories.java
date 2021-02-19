@@ -3,6 +3,7 @@ package Moonworks.cards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
+import Moonworks.powers.BookOfMemoriesPower;
 import Moonworks.powers.MeltingMemoriesPower;
 import Moonworks.powers.NormaGainPower;
 import Moonworks.powers.NormaPower;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
@@ -83,6 +85,16 @@ public class MeltingMemories extends AbstractNormaAttentiveCard {
             //Add the power to restore our lost Norma
             this.addToBot(new ApplyPowerAction(p, p, new NormaGainPower(p, normaLevels)));
         }
+
+        //See if we already have Book of Memories, if so we don't need to apply it here
+        AbstractPower book = p.getPower(BookOfMemoriesPower.POWER_ID);
+
+        //Apply it if we don't have it
+        if (!(book instanceof BookOfMemoriesPower)) {
+            //Just give it an empty set for now
+            this.addToBot(new ApplyPowerAction(p, p, new BookOfMemoriesPower(p, new HashSet<>())));
+        }
+
 
         //Get the power to see if we already have it
         AbstractPower pow = p.getPower(MeltingMemoriesPower.POWER_ID);

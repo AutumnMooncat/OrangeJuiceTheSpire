@@ -5,7 +5,6 @@ import Moonworks.actions.FindAndReplaceCardAction;
 import Moonworks.actions.RemoveAndUpdateMemoriesAction;
 import Moonworks.cardModifiers.MemoryModifier;
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
-import Moonworks.powers.interfaces.AssociateableInterface;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;

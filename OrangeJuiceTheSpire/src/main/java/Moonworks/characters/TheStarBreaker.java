@@ -202,104 +202,6 @@ public class TheStarBreaker extends CustomPlayer {
 
         //*/
 
-        //* Testing Cards
-
-        //*Gift Cards
-
-        //retVal.add(Bloodlust.ID);
-        //retVal.add(Flamethrower.ID);
-        //retVal.add(LuckyCharm.ID);
-        //retVal.add(MiracleRedBeanIceCream.ID);
-        //retVal.add(MiracleRedBeanIceCream.ID);
-        //retVal.add(RedAndBlue.ID);
-        //retVal.add(UnluckyCharm.ID);
-        //retVal.add(WindyEnchantment.ID);
-
-        //*/
-
-        //*Trap Cards
-
-        //retVal.add(BigBangBell.ID);
-        //retVal.add(EvilMastermind.ID);
-        //retVal.add(GoAway.ID);
-        //retVal.add(Heat300Percent.ID);
-        //retVal.add(PlushieMaster.ID);
-        //retVal.add(Poppoformation.ID);
-        //retVal.add(StarBlastingFuse.ID);
-        //retVal.add(TreasureThief.ID);
-        //retVal.add(Wanted.ID);
-
-        //*/
-
-        //Normal Cards
-
-        //retVal.add(Accelerator.ID);
-        //retVal.add(AccelHyper.ID);
-        //retVal.add(AirStrike.ID);
-        //retVal.add(AngelHand.ID);
-        //retVal.add(AnotherUltimateWeapon.ID);
-        //retVal.add(Assault.ID);
-        //retVal.add(AwakeningOfTalent.ID);
-        //retVal.add(BackdoorTrade.ID);
-        //retVal.add(BeyondHell.ID);
-        //retVal.add(BigMagnum.ID);
-        //retVal.add(BigRocketCannon.ID);
-        //retVal.add(BindingChains.ID);
-        //retVal.add(Blazing.ID);
-        //retVal.add(CastOff.ID);
-        //retVal.add(CloudOfSeagulls.ID);
-        //retVal.add(CompletionReward.ID);
-        //retVal.add(CookingTime.ID);
-        //retVal.add(CrystalBarrier.ID);
-        //retVal.add(Dash.ID);
-        //retVal.add(DeployBits.ID);
-        //retVal.add(DevilHand.ID);
-        //retVal.add(Dinner.ID);
-        //retVal.add(EvilSpyWorkPreparation.ID);
-        //retVal.add(ExtendedPhotonRifle.ID);
-        //retVal.add(FinalBattle.ID);
-        //retVal.add(FinalSurgery.ID);
-        //retVal.add(ForcedRevival.ID);
-        //retVal.add(FullSpeedAlicianrone.ID);
-        //retVal.add(Gamble.ID);
-        //retVal.add(HolyNight.ID);
-        //retVal.add(ImmovableObject.ID);
-        //retVal.add(ImOnFire.ID);
-        //retVal.add(IndiscriminateFireSupport.ID);
-        //retVal.add(IntelligenceOfficer.ID);
-        //retVal.add(JonathanRush.ID);
-        //retVal.add(LeapThroughSpace.ID);
-        //retVal.add(LulusLuckyEgg.ID);
-        //retVal.add(MagicalInferno.ID);
-        //retVal.add(MagicalMassacre.ID);
-        //retVal.add(MagicalRevenge.ID);
-        //retVal.add(MeltingMemories.ID);
-        //retVal.add(MetallicMonocoque.ID);
-        //retVal.add(MiracleWalker.ID);
-        //retVal.add(MixPhenomenon.ID);
-        //retVal.add(NicePresent.ID);
-        //retVal.add(OutOfAmmo.ID);
-        //retVal.add(PortablePudding.ID);
-        //retVal.add(RagingMadness.ID);
-        //retVal.add(ReflectiveShell.ID);
-        //retVal.add(ReproductionOfRecords.ID);
-        //retVal.add(RocketCannon.ID);
-        //retVal.add(SakisCookie.ID);
-        //retVal.add(ScrambledEve.ID);
-        //retVal.add(SealedMemories.ID);
-        //retVal.add(SelfDestruct.ID);
-        //retVal.add(ShieldCounter.ID);
-        //retVal.add(SinkOrSwim.ID);
-        //retVal.add(StiffCrystal.ID);
-        //retVal.add(SubspaceTunnel.ID);
-        //retVal.add(TacticalRetreat.ID);
-        //retVal.add(Ubiquitous.ID);
-        //retVal.add(UnpaidWork.ID);
-        //retVal.add(WeAreWaruda.ID);
-        //retVal.add(x16BigRocket.ID);
-
-        //*/
-
         //logger.info("Starter Deck, crash?");
         return retVal;
     }
@@ -309,18 +211,9 @@ public class TheStarBreaker extends CustomPlayer {
         ArrayList<String> retVal = new ArrayList<>();
 
         retVal.add(BrokenBomb.ID);
-        //retVal.add(GoldenDie.ID);
-        //retVal.add(PlaceholderRelic.ID);
-        //retVal.add(PlaceholderRelic2.ID);
-        //retVal.add(DefaultClickableRelic.ID);
-        //retVal.add(LittleGull.ID);
         retVal.add(Homemark.ID);
 
         UnlockTracker.markRelicAsSeen(BrokenBomb.ID);
-        //UnlockTracker.markRelicAsSeen(PlaceholderRelic.ID);
-        //UnlockTracker.markRelicAsSeen(PlaceholderRelic2.ID);
-        //UnlockTracker.markRelicAsSeen(DefaultClickableRelic.ID);
-        //UnlockTracker.markRelicAsSeen(LittleGull.ID);
         UnlockTracker.markRelicAsSeen(Homemark.ID);
 
         //logger.info("Starter Relic, crash?");

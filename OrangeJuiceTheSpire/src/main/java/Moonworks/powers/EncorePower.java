@@ -1,6 +1,7 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.patches.FreeCardPrefixPatch;
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -62,6 +63,14 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
 
     public void onEnergyRecharge() {
         super.onEnergyRecharge();
+        //Make sure nothing can use energy until all our actions are done
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                FreeCardPrefixPatch.FreeCardField.free.set(AbstractDungeon.player, true);
+                this.isDone = true;
+            }
+        });
 
         for (int i = 0 ; i < Math.min(amount, cardArray.size()) ; i++) {
 
@@ -89,11 +98,13 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
                     }
                     if (t != null) {
                         //Calculate the stuff
-                        cardArray.get(finalI).applyPowers();
-                        cardArray.get(finalI).calculateCardDamage(t);
+                        AbstractCard c = cardArray.get(finalI);
+                        c.applyPowers();
+                        c.calculateCardDamage(t);
 
                         //Use the card on the (new) target
-                        cardArray.get(finalI).use(AbstractDungeon.player, t);
+                        c.use(AbstractDungeon.player, t);
+
                     }
 
                     //End Action
@@ -117,6 +128,15 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
 
                 //End Action
                 this.isDone = true;
+
+                //Remove the lock on energy not being able to be used
+                this.addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        FreeCardPrefixPatch.FreeCardField.free.set(AbstractDungeon.player, false);
+                        this.isDone = true;
+                    }
+                });
             }
         });
     }

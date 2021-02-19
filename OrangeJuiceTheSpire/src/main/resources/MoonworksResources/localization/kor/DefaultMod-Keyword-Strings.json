@@ -113,7 +113,7 @@
       "plushie_mark",
       "plushie_marks"
     ],
-    "DESCRIPTION": "표식이 찍힌 대상을 공격 할 때, NL 6 이하의 피해를 주면 7로 증가시키고 #y관통 합니다. NL 7 이상의 피해를 주면 임시체력 을 3 얻습니다. NL 이후 표식이 1 감소합니다."
+    "DESCRIPTION": "대상에게 6 이하의 피해를 주면 7로 증가시키고 #y관통 합니다. NL #y관통 하지 못했을 경우, 임시체력 을 3 얻습니다. NL 공격 시 마다 표식이 1 감소합니다."
   },
   {
     "NAMES": [
@@ -236,5 +236,62 @@
       "pierce"
     ],
     "DESCRIPTION": "상대의 방어도에 피해를 주면, 그 만큼 대상의 체력을 감소시킵니다."
+  },
+  {
+    "NAMES": [
+      "오버히트",
+      "overheat"
+    ],
+    "DESCRIPTION": "이 적을 대상으로 하는 공격이 #y관통 합니다. NL 이 적에게 #b방어도 가 없을 경우, 받는 피해가 #b30% 증가합니다."
+  },
+  {
+    "NAMES": [
+      "매지컬",
+      "magical" ],
+    "DESCRIPTION": "#y매지컬 카드는 #y노르마 #y레벨 을 소모하여 생성되며, 소모한 #y레벨 만큼의 스톡을 갖습니다. #y매지컬 카드의 스톡이 소모될 때 마다 #y노르마 레벨이 복구됩니다."
+  },
+  {
+    "NAMES": [
+      "기억",
+      "memory",
+      "memories"
+    ],
+    "DESCRIPTION": "#y기억 은 전투가 종료될 때 까지 덱에서 제외되지만, #y같은 #y계열의 카드가 사용 될 때 마다 비용 없이 #y자동사용됩니다. 이후 카드의 원래 비용에 따른 #b대기시간 이 적용됩니다."
+  },
+  {
+    "NAMES": [
+      "이동불가",
+      "immobile"
+    ],
+    "DESCRIPTION": "턴 시작시 방어도가 사라지지 않지만, #y원거리 인 #y공격 카드만 사용할 수 있습니다."
+  },
+  {
+    "NAMES": [
+      "원거리",
+      "ranged"
+    ],
+    "DESCRIPTION": "원거리 공격은 #y가시 를 발동시키지 않으며 #y이동불가 상태에서도 사용할 수 있습니다."
+  },
+  {
+    "NAMES": [
+      "복수",
+      "revenge"
+    ],
+    "DESCRIPTION": "가장 최근에 자신을 공격한 적을 대상으로 효과가 #b50% 증가합니다."
+  },
+  {
+    "PROPER_NAME": "생명흡수",
+    "NAMES": [
+      "생명흡수",
+      "life_steal"
+    ],
+    "DESCRIPTION": "막히지 않은 피해만큼 체력을 회복합니다."
+  },
+  {
+    "NAMES": [
+      "라이벌",
+      "rival"
+    ],
+    "DESCRIPTION": "Attacks against your Rival deal #b10% additional damage. Increases by #b10% if your Rival attacked you last turn."
   }
 ]

@@ -42,7 +42,7 @@
     "NAME": "Broken Bomb",
     "FLAVOR": "This looks dangerous.",
     "DESCRIPTIONS": [
-      "Every #b10th #ySkill you play raises your #ymoonworks:Norma by #b1 and adds #b1 #yStar #yBlasting #yLight to your hand.",
+      "Add #b1 #yStar #yBlasting #yLight to your hand each time you gain a #ymoonworks:Norma level. NL Note: By default, every #b10th #ySkill you play raises your #Norma by #b1.",
       "It's time to say goodbye."
     ]
   },
@@ -50,7 +50,7 @@
     "NAME": "SB Bomb",
     "FLAVOR": "Don't drop this.",
     "DESCRIPTIONS": [
-      "Every #b12th card you play raises your #ymoonworks:Norma by #b1 and adds #b1 #yStar #yBlasting #yLight to your hand.",
+      "Add #b1 #yStar #yBlasting #yLight to your hand each time you gain a #ymoonworks:Norma level. NL Every #b12th #ycard you play raises your #Norma by #b1 instead.",
       "It's time to say goodbye."
     ]
   },

@@ -254,9 +254,10 @@
   {
     "NAMES": [
       "Memory",
-      "memory"
+      "memory",
+      "memories"
     ],
-    "DESCRIPTION": "If a #yMemory is your hand after the draw phase, it's effect is #yAutoplayed. It is otherwise #yUnplayable."
+    "DESCRIPTION": "A converted #yMemory is removed from play, but it's effect #yautoplayed at no cost when other cards of the #ysame #ytype are played. A turn based #bcooldown relative to it's original cost is then applied."
   },
   {
     "NAMES": [

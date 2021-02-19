@@ -5,7 +5,7 @@
         },
         "Moonworks:Heat300PercentPower": {
                 "NAME": "히트 300%",
-                "DESCRIPTIONS": ["다음 #b", " 회 동안 얻는 모든 방어도를 제거합니다.", " 회 동안 얻는 모든 방어도를 제거합니다."]
+                "DESCRIPTIONS": ["다음 #b", " 회 동안..."," 회 동안..."," NL 이 적을 대상으로 하는 공격이 #y관통 합니다. NL 이 적에게 #b방어도 가 없을 경우, 받는 피해가 #b","% 증가합니다."]
         },
         "Moonworks:FreeCardPower": {
                 "NAME": "카드 환급",
@@ -108,5 +108,41 @@
         "Moonworks:ProtagonistsPrivilegePower": {
                 "NAME": "주인공의 특권",
                 "DESCRIPTIONS": ["턴 시작시, 피해를 #b"," 주고 카드를 #b"," 장 뽑습니다. 뽑은 두 카드의 종류가 같을 경우, 이 #y효과를 다음 턴에도 반복합니다."]
+        },
+        "Moonworks:NormaGainPower": {
+                "NAME": "노르마 달성",
+                "DESCRIPTIONS": ["턴 시작시, 노르마가 #b1 오릅니다."]
+        },
+        "Moonworks:MeltingMemoriesPower": {
+                "NAME": "Magical Quill",
+                "DESCRIPTIONS": ["The first card you play each turn is converted into a #yMemory.",
+                        "The first #b", " cards you play each turn are converted into #yMemories.",
+                        "The converted cards will be #yupgraded."]
+        },
+        "Moonworks:BookOfMemoriesPower": {
+                "NAME": "Book of Memories",
+                "DESCRIPTIONS": ["Play the #yeffect of an active #yMemory when you play a card of the same type.",
+                        " NL There are no #yMemories in play. ",
+                        " NL  NL Click to view a list of all #yMemories.",
+                        ": Ready",
+                        ": Exhausted",
+                        ": Cooldown: ",
+                        ", Uses: ",
+                        "Memory of ", "An active moonworks:Memory. NL ","A forgotten moonworks:Memory. NL ",
+                        "moonworks:Memory Cooldown: ",". NL ",
+                        "Viewing Memory List."]
+        },
+        "Moonworks:ImmobilePower": {
+                "NAME": "Immobile",
+                "DESCRIPTIONS": ["Block is not removed at the start of your turn, but you may only play #yAttack cards if they are #yRanged.", "I can only play Ranged attacks!"]
+        },
+        "Moonworks:RivalPower": {
+                "NAME": "Rival",
+                "DESCRIPTIONS": [" is your #yRival. NL Attacks against your #yRival deal #b", "% additional damage. This amount increases by #b","% if your Rival attacked you last turn."]
+        },
+        "Moonworks:WhimsicalWindmillPower": {
+                "NAME": "Whimsical Windmill",
+                "DESCRIPTIONS": ["At the beginning of your turn, gain #b"," energy for each enemy who attacked you last turn.",
+                        " NL You will currently gain #b"," energy next turn."]
         }
 }

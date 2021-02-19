@@ -71,7 +71,8 @@
         },
         "Moonworks:NormaPower": {
                 "NAME": "Norma",
-                "DESCRIPTIONS": ["Norma levels provide buffs to various cards and stacks up to Norma 5.", "...What have you done?"]
+                "DESCRIPTIONS": ["Norma levels provide buffs to various cards and stacks up to Norma 5.", "...What have you done?",
+                        " NL Gain #b1 Norma after playing another #b"," skill."," skills."," card."," cards."]
         },
         "Moonworks:SteadyPower": {
                 "NAME": "Steady",
@@ -114,16 +115,23 @@
                 "DESCRIPTIONS": ["At the beginning of your turn, gain #b1 Norma."]
         },
         "Moonworks:MeltingMemoriesPower": {
-                "NAME": "Melting Memories",
-                "DESCRIPTIONS": ["The first card you play each turn is converted into a #yMemory.", "The first #b", " cards you play each turn are converted into #yMemories."]
+                "NAME": "Magical Quill",
+                "DESCRIPTIONS": ["The first card you play each turn is converted into a #yMemory.",
+                        "The first #b", " cards you play each turn are converted into #yMemories.",
+                        "The converted cards will be #yupgraded."]
         },
         "Moonworks:BookOfMemoriesPower": {
                 "NAME": "Book of Memories",
-                "DESCRIPTIONS": ["Choose up to ", " cards to turn into memories. ",
-                        "There are no #yMemories in play. ",
-                        "Play the #yeffect of any #yMemories that are in your hand at the beginning of your turn. #yMemories are not exempt from #yExhaustive behaviours.",
-                        "Memory of ",
-                        "An active moonworks:Memory. NL ","A forgotten moonworks:Memory. NL "]
+                "DESCRIPTIONS": ["Play the #yeffect of an active #yMemory when you play a card of the same type.",
+                        " NL There are no #yMemories in play. ",
+                        " NL  NL Click to view a list of all #yMemories.",
+                        ": Ready",
+                        ": Exhausted",
+                        ": Cooldown: ",
+                        ", Uses: ",
+                        "Memory of ", "An active moonworks:Memory. NL ","A forgotten moonworks:Memory. NL ",
+                        "moonworks:Memory Cooldown: ",". NL ",
+                        "Viewing Memory List."]
         },
         "Moonworks:ImmobilePower": {
                 "NAME": "Immobile",
@@ -137,5 +145,19 @@
                 "NAME": "Whimsical Windmill",
                 "DESCRIPTIONS": ["At the beginning of your turn, gain #b"," energy for each enemy who attacked you last turn.",
                         " NL You will currently gain #b"," energy next turn."]
+        },
+        "Moonworks:LeapThroughSpacePower": {
+                "NAME": "Leap Through Space",
+                "DESCRIPTIONS": ["Click to view what cards you will draw next turn. NL  NL You may add any to your current hand at the cost of #b1 less draw next turn per card added this way.",
+                        "Viewing cards that will be drawn next turn. You may select any to add to your hand.",
+                        " NL You will draw #b"," less card next turn."," less cards next turn."]
+        },
+        "Moonworks:LeapThroughTimePower": {
+                "NAME": "Leap Through Time",
+                "DESCRIPTIONS": ["Click to borrow energy from your next turn."," NL  NL You will start next turn with #b"," less energy."]
+        },
+        "Moonworks:HolyNightPower": {
+                "NAME": "Holy Night",
+                "DESCRIPTIONS": ["Click to spend #b1 energy and draw #b2 cards. NL  NL Uses remaining this turn: #b",".","unlimited."]
         }
 }

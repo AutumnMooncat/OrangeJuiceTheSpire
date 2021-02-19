@@ -1,9 +1,8 @@
 ﻿{
   "Moonworks:Accelerator": {
     "NAME": "액셀러레이터",
-    "DESCRIPTION": "전투 중에 카드를 생성할 때 마다, 그 카드를 1 장 추가로 생성합니다. *예외 존재.",
-    "UPGRADE_DESCRIPTION": "전투 중에 카드를 생성할 때 마다, 그카드를 !M! 장 추가로 생성합니다. *예외 존재.",
-    "EXTENDED_DESCRIPTION": ["액셀러레이터 예외 대상","#y상태이상, #y저주, 혹은 #y매지컬 카드에는 적용되지 않습니다.","가능하다면, 추가로 [E] 를 사용하여 복사한 모든 카드를 강화합니다."]
+    "DESCRIPTION": "*액셀러레이터 를 !M! 얻습니다.",
+    "EXTENDED_DESCRIPTION": ["액셀러레이터", "전투 중에 카드를 생성할 때 마다 그 카드를 1 장 추가로 생성합니다. NL #y상태이상, #y저주, 혹은 #y매지컬 카드에는 적용되지 않습니다. ","가능하다면, 추가로 [E] 를 사용하여 복사한 모든 카드를 강화합니다."]
   },
   "Moonworks:AccelHyper": {
     "NAME": "액셀 하이퍼",
@@ -12,12 +11,12 @@
   },
   "Moonworks:AirStrike": {
     "NAME": "공중 폭격",
-    "DESCRIPTION": "모든 적에게 !D! moonworks:광역 *피해 를 줍니다. NL Purge."
+    "DESCRIPTION": "모든 적에게 !D! moonworks:확산 *피해 를 줍니다. NL Purge."
   },
   "Moonworks:Ambush": {
     "NAME": "기습",
     "DESCRIPTION": "취약 을 !M! 부여합니다.. NL 그 뒤 피해를 !D! 줍니다.",
-    "EXTENDED_DESCRIPTION": ["이 공격은 방어도 를 무시합니다."]
+    "EXTENDED_DESCRIPTION": ["이 공격이 moonworks:관통 합니다."]
   },
   "Moonworks:AngelHand": {
     "NAME": "앤젤 핸드",
@@ -31,8 +30,8 @@
   },
   "Moonworks:Assault": {
     "NAME": "돌격",
-    "DESCRIPTION": " !D! 의 moonworks:고정 피해 를 줍니다. NL 이 공격은 방어도 를 무시합니다.",
-    "EXTENDED_DESCRIPTION": ["피해가 2 증가합니다."]
+    "DESCRIPTION": "moonworks:관통 *피해 를 !D! 줍니다.",
+    "EXTENDED_DESCRIPTION": ["*관통 의 효과가 두 배가 됩니다."]
   },
   "Moonworks:AwakeningOfTalent": {
     "NAME": "재능 각성",
@@ -43,6 +42,11 @@
     "NAME": "뒷거래",
     "DESCRIPTION": "*노르마 레벨을 !Moonworks:SecondMagic! 만큼 올립니다. NL 소멸.",
     "EXTENDED_DESCRIPTION": ["소멸 하지 않고, 카드를 !M! 장 뽑습니다","카드를 !M! 장 뽑습니다."]
+  },
+  "Moonworks:BeastWitch": {
+    "NAME": "야수 마녀",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 임시 힘 을 !M! 얻습니다.",
+    "EXTENDED_DESCRIPTION": ["피해가 2 증가합니다."]
   },
   "Moonworks:BeyondHell": {
     "NAME": "수라장 모드",
@@ -61,16 +65,22 @@
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "빅 로켓포",
-    "DESCRIPTION": "moonworks:광역 *피해 를 !D! 줍니다. NL *공중 *폭격 한 장을 [#FFF6E2]뽑을 카드 더미에 섞어 넣습니다. NL Purge."
+    "DESCRIPTION": "moonworks:확산 *피해 를 !D! 줍니다. NL *공중 *폭격 한 장을 [#FFF6E2]뽑을 카드 더미에 섞어 넣습니다. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "속박의 사슬",
-    "DESCRIPTION": "적의 힘 을 이번 턴 동안 !M! 낮춥니다. moonworks:광역. NL 이번 전투 동안 효과가 4 감소합니다.",
+    "DESCRIPTION": "적의 힘 을 이번 턴 동안 !M! 낮춥니다. moonworks:확산. NL 이번 전투 동안 효과가 4 감소합니다.",
     "EXTENDED_DESCRIPTION": ["부식된 사슬","사슬이 거의 완전히 바스라져 버렸습니다.","I can't play this card."]
   },
   "Moonworks:Blazing": {
     "NAME": "블레이징!",
     "DESCRIPTION": "턴 시작시, 힘 을 !M! 얻고 민첩 이 !Moonworks:SecondMagic! 됩니다."
+  },
+  "Moonworks:BlueCrowTheSecond": {
+    "NAME": "블루 크로우",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 방어도 를 !B! 얻습니다. NL 손에 있는 *공격 카드 한 장당 얻는 방어도가 2 증가합니다.",
+    "UPGRADE_DESCRIPTION": "보존. NL 피해를 !D! 줍니다. NL 방어도 를 !B! 얻습니다. NL 손에 있는 *공격 카드 한 장당 얻는 방어도가 2 증가합니다.",
+    "EXTENDED_DESCRIPTION": ["블루 크로우 더 세컨드"]
   },
   "Moonworks:Bloodlust": {
     "NAME": "피의 욕망",
@@ -103,6 +113,11 @@
     "NAME": "수정 방벽",
     "DESCRIPTION": "턴 시작시에 방어도 가 사라지지 않습니다. NL *판금 *갑옷 을 !M! 얻습니다."
   },
+  "Moonworks:DarkSideOfBusiness": {
+    "NAME": "어둠의 자금조달",
+    "DESCRIPTION": "*노르마 를 전부 잃습니다. NL 잃은 *노르마 만큼의 스톡을 가진  moonworks:매지컬 카드 3장 중 1장을 선택합니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "*노르마 를 전부 잃습니다. NL 잃은 *노르마 만큼의 사용 횟수를 가진 강화된 moonworks:매지컬 카드 3장 중 1장을 선택합니다. NL 소멸."
+  },
   "Moonworks:Dash": {
     "NAME": "대시!",
     "DESCRIPTION": "[E] 를 얻습니다. NL 소멸.",
@@ -114,10 +129,19 @@
     "DESCRIPTION": "방어도 를 !B! 얻습니다.",
     "EXTENDED_DESCRIPTION": ["방어도 가 1 증가합니다.", "방어도 가 1 증가합니다."]
   },
+  "Moonworks:DeltaField": {
+    "NAME": "델타 필드",
+    "DESCRIPTION": "모든 적에게 취약 을 !M! 부여하고 임시 힘 을 !Moonworks:SecondMagic! 감소시킵니다."
+  },
   "Moonworks:DeployBits": {
     "NAME": "비트 전개",
     "DESCRIPTION": "총 !Moonworks:SecondMagic! 의 방어도 와 활력 을 무작위로 분배하여 얻습니다.",
     "EXTENDED_DESCRIPTION": ["비트가 3개 감소하지만 비트 분배가 moonworks:최적화 됩니다."]
+  },
+  "Moonworks:DesperateModification": {
+    "NAME": "막장 개조",
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 적이 공격할 의도가 있다면 대신 방어도 를 !M! 얻고 소멸 합니다.",
+    "EXTENDED_DESCRIPTION": ["방어도 를 !B! 얻습니다. NL 소멸."]
   },
   "Moonworks:DevilHand": {
     "NAME": "데빌 핸드",
@@ -159,13 +183,17 @@
     "NAME": "연장 포톤 라이플",
     "DESCRIPTION": "피해를 !D! 만큼 X 회 줍니다. 이 카드는 힘 을 !Moonworks:SecondMagic! 배로 적용받습니다."
   },
+  "Moonworks:ExtraordinarySpecs": {
+    "NAME": "Extraordinary Specs",
+    "DESCRIPTION": "Gain !M! temporary Strength and Dexterity. NL Draw !Moonworks:SecondMagic! card. NL Exhaust."
+  },
   "Moonworks:FinalBattle": {
     "NAME": "파이널 배틀",
     "DESCRIPTION": "다음 !M! 턴 동안, 모두의 공격이 두배의 피해를 줍니다."
   },
   "Moonworks:FinalSurgery": {
     "NAME": "마무리 수술",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 적이 취약 상태라면, 한번 더 피해를 !D! 줍니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 적이 취약 혹은 moonworks:오버히트 상태라면, 한번 더 피해를 !D! 줍니다."
   },
   "Moonworks:Flamethrower": {
     "NAME": "화염방사기",
@@ -194,10 +222,15 @@
     "UPGRADE_DESCRIPTION": "이번 턴 동안 대상을 moonworks:기절 시킵니다. NL 소멸.",
     "EXTENDED_DESCRIPTION": ["대상을 전투에서 제외합니다. NL 대상이 무작위 층에서 다시 나타납니다."]
   },
+  "Moonworks:GoldenEgg": {
+    "NAME": "황금알",
+    "DESCRIPTION": "방어도 를 !B! 얻습니다. NL 무작위 *공격 카드를 뽑을 카드 더미에 섞어 넣습니다.",
+    "EXTENDED_DESCRIPTION": ["카드를 섞는 대신 손에 가져옵니다."]
+  },
   "Moonworks:Heat300Percent": {
     "NAME": "히트 300%",
-    "DESCRIPTION": "다음에 얻는 방어도 를 제거합니다.",
-    "EXTENDED_DESCRIPTION": ["다음에 얻는 방어도 를 2 번 제거합니다."]
+    "DESCRIPTION": "moonworks:오버히트 를 !M! 부여합니다. NL 소멸.",
+    "EXTENDED_DESCRIPTION": ["부여한 *오버히트 의 50%를 무작위 대상에게 추가로 부여합니다."]
   },
   "Moonworks:HolyNight": {
     "NAME": "거룩한 밤",
@@ -228,14 +261,17 @@
     "DESCRIPTION": "Autoplay. NL 무작위 적에게 피해를 !D! 줍니다. NL 이번 전투 동안 모든 *조나단 *러쉬 의 피해가 !M! 증가합니다.",
     "UPGRADE_DESCRIPTION": "Autoplay. NL 무작위 적에게 피해를 !D! 줍니다. NL 이번 전투 동안 모든 *조나단 *러쉬 의 피해가 !M! 증가합니다."
   },
+  "Moonworks:LeapThroughSpacetime": {
+    "NAME": "Leap Through Spacetime",
+    "DESCRIPTION": "Choose 1: NL Leap Through Space. NL Leap Through Time."
+  },
   "Moonworks:LeapThroughSpace": {
-    "NAME": "공간 도약",
-    "DESCRIPTION": "!M! 의 moonworks:발산 을 가진 moonworks:시간의닻 을 설치합니다. NL 뽑을 카드 더미에 *시간 *도약 을 1 장 섞어 넣습니다."
+    "NAME": "Leap Through Space",
+    "DESCRIPTION": "You can see what cards you will draw next turn. You may freely add any to your hand, at the cost of 1 less draw next turn."
   },
   "Moonworks:LeapThroughTime": {
-    "NAME": "시간 도약",
-    "DESCRIPTION": "moonworks:시간의닻 을 설치했을 때의 개인 시간대로 되돌아갑니다. NL 이 카드를 사용하기 전까지, 매 턴 마다 moonworks:발산 이 !M! 증가합니다.",
-    "EXTENDED_DESCRIPTION": ["어디든 좋아, 일은 끝나지 않았는걸.", "도약한다!", "어디로 보내려는 거야?"]
+    "NAME": "Leap Through Time",
+    "DESCRIPTION": "You can see the next intents for ALL enemies."
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "원거리 사격",
@@ -250,24 +286,28 @@
   },
   "Moonworks:LulusLuckyEgg": {
     "NAME": "룰루의 럭키 에그",
-    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 다음 세 효과중 하나가 무작위로 발동합니다 NL 카드를 !M! 장 뽑습니다. NL 방어도 가 !M! 배 증가합니다. NL 임시 민첩 을 !M! 얻습니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 다음 세 효과중 하나가 무작위로 발동합니다 NL 카드를 !M! 장 뽑습니다. NL 이제 방어도를 !M! 회 얻습니다. NL 임시 민첩 을 !M! 얻습니다."
   },
   "Moonworks:MagicalInferno": {
     "NAME": "매지컬 인페르노",
-    "DESCRIPTION": "살아있는 적 하나마다 모든 적에게 피해를 !D! 줍니다. NL Purge."
+    "DESCRIPTION": "모든 적에게 !D! moonworks:확산 *피해 를 줍니다. NL 활력 을 !M! 얻습니다. NL Exhaustive !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["진 매지컬 인페르노"]
   },
   "Moonworks:MagicalMassacre": {
     "NAME": "살육 마법",
-    "DESCRIPTION": "대상의 최대체력의 !M! % 만큼 체력을 감소시킵니다 . NL Purge."
+    "DESCRIPTION": "체력이 가장 높은 적이 체력과 최대 체력을 !M! 잃습니다. NL moonworks:굳건함 을 !Moonworks:SecondMagic! 얻습니다. NL Exhaustive !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["진 살육마법"]
   },
   "Moonworks:MagicalRevenge": {
     "NAME": "매지컬 리벤지",
-    "DESCRIPTION": "잃은 체력 만큼 피해를 줍니다. NL 준 피해의 !M! % 만큼 체력을 회복합니다. NL Purge."
+    "DESCRIPTION": "잃은 체력의 !D! % 만큼의 moonworks:복수 피해를 주고 !M! % 만큼 moonworks:생명흡수 합니다. NL (피해를 !Moonworks:SecondMagic! 줍니다.) NL Exhaustive !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["진 매지컬 리벤지"]
   },
   "Moonworks:MeltingMemories": {
     "NAME": "녹아가는 기억",
-    "DESCRIPTION": "세 종류의 매지컬 카드 중 한 장을 선택해 손에 가져옵니다. NL 소멸.",
-    "UPGRADE_DESCRIPTION": "세 종류의 강화된 매지컬 카드 중 한 장을 선택해 손에 가져옵니다. NL 소멸."
+    "DESCRIPTION": "*노르마 를 전부 잃습니다. NL 매 턴 처음 사용하는 카드가 moonworks:기억 으로 *전환 됩니다. NL 매 턴 마다 *노르마 를 0 씩 복구합니다",
+    "UPGRADE_DESCRIPTION": "*노르마 를 전부 잃습니다. NL 매 턴 처음 사용하는 카드가 moonworks:기억 으로 *전환 된 뒤 강화됩니다. NL 매 턴 마다 *노르마 를 0 씩 복구합니다",
+    "EXTENDED_DESCRIPTION": ["기억 전환","비용이 1 이상인 #y공격 또는 #y스킬 카드만 전환할 수 있습니다. 전환 가능한 카드가 아닐 경우 전환은 실패합니다."]
   },
   "Moonworks:Mimic": {
     "NAME": "흉내내기",
@@ -322,11 +362,21 @@
     "DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 뽑은 두 카드의 종류가 같으면, 이 *효과 를 다음 턴에도 발동시킵니다.",
     "EXTENDED_DESCRIPTION": ["막히지 않은 피해를 주면 체력을 !Moonworks:SecondMagic! 회복합니다."]
   },
+  "Moonworks:QuickRestoration": {
+    "NAME": "순간 재생",
+    "DESCRIPTION": "방어도 를 !B! 만큼 !M! 번 얻습니다.",
+    "EXTENDED_DESCRIPTION": ["얻는 방어도가 1 줄어들지만, 얻는 횟수가 1 늘어납니다."]
+  },
   "Moonworks:RagingMadness": {
     "NAME": "뚜껑 폭발",
     "DESCRIPTION": "막히지 않은 피해를 받을 때 마다 힘 을 !M! 얻습니다.",
     "UPGRADE_DESCRIPTION": "선천성. NL 막히지 않은 피해를 받을 때 마다 힘 을 !M! 얻습니다.",
     "EXTENDED_DESCRIPTION": ["얻는 힘 이 2배가 됩니다."]
+  },
+  "Moonworks:RainbowColoredCircle": {
+    "NAME": "Rainbow-Colored Circle",
+    "DESCRIPTION": "Convert !M! Block into moonworks:Steady.",
+    "EXTENDED_DESCRIPTION": ["+4 Block Conversion and *Optimize.","Optimized","This card always converts at least #b5 #yBlock, but it will convert more, determined by your current #yBlock and the intent of your enemies."]
   },
   "Moonworks:RedAndBlue": {
     "NAME": "아카와 아오",
@@ -342,6 +392,10 @@
     "DESCRIPTION": "버린 카드 더미 맨 위의 카드 !M! 장을 복사해 손에 가져옵니다. NL 소멸.",
     "UPGRADE_DESCRIPTION": "보존. NL 버린 카드 더미 맨 위의 카드 !M! 장을 복사해 손에 가져옵니다. NL 소멸.",
     "EXTENDED_DESCRIPTION": ["[E] 를 얻습니다."]
+  },
+  "Moonworks:Rival": {
+    "NAME": "라이벌",
+    "DESCRIPTION": "체력이 가장 높은 적이 당신의 moonworks:라이벌 이 됩니다."
   },
   "Moonworks:RocketCannon": {
     "NAME": "로켓포",
@@ -361,13 +415,19 @@
   },
   "Moonworks:SealedMemories": {
     "NAME": "기억 봉인",
-    "DESCRIPTION": "보존. NL 턴을 종료합니다. NL 손패와 [E] 를 이번 턴 동안 보존 합니다. NL 다음 턴 시작 시 방어도 가 사라지지 않습니다.",
-    "UPGRADE_DESCRIPTION": "선천성. 보존. NL 턴을 종료합니다. NL 손패와 [E] 를 이번 턴 동안 보존 합니다. NL 다음 턴 시작 시 방어도 가 사라지지 않습니다."
+    "DESCRIPTION": "손에 있는 카드를 1 장 까지 선택해 *전환 합니다. NL 이번 턴 동안 손패를 보존합니다.",
+    "UPGRADE_DESCRIPTION": "보존. NL 손에 있는 카드를 1 장 까지 선택해 *전환 합니다. NL 이번 턴 동안 손패를 보존합니다.",
+    "EXTENDED_DESCRIPTION": ["기억 전환","비용이 1 이상인 #y공격 또는 #y스킬 카드만 전환할 수 있습니다."]
   },
   "Moonworks:SelfDestruct": {
     "NAME": "자폭",
-    "DESCRIPTION": "방어도 를 !B! 얻습니다. NL 체력을 절반 잃습니다. 모든 적에게 잃은 체력 만큼 피해를 줍니다.",
-    "EXTENDED_DESCRIPTION": ["임시체력 을 10 얻습니다."]
+    "DESCRIPTION": "moonworks:고정 *피해 를 !Moonworks:InvertedNumber! 받습니다. NL 모든 적에게 피해를 !D! 줍니다. NL 자가 피해에는 방어도 가 !Moonworks:SecondMagic! 배 더 효과적입니다. NL *속박 중에도 사용할 수 있습니다.",
+    "EXTENDED_DESCRIPTION": ["자가 피해가 X 감소합니다."]
+  },
+  "Moonworks:SeriousBattle": {
+    "NAME": "진검 승부",
+    "DESCRIPTION": "대상에게 무작위 !M! 장의 moonworks:기억 효과를 발동시킵니다.",
+    "UPGRADE_DESCRIPTION": "대상에게 선택한 최대 !M! 장의 moonworks:기억 효과를 발동시킵니다."
   },
   "Moonworks:ShieldCounter": {
     "NAME": "실드 반전",
@@ -444,6 +504,16 @@
   "Moonworks:WeAreWaruda": {
     "NAME": "우리는 와루다",
     "DESCRIPTION": "모든 대상의 해로운 효과를 제거합니다. NL 제거된 효과를 한 대상에게 모두 부여합니다. NL 소멸."
+  },
+  "Moonworks:WhiteChristsmasher": {
+    "NAME": "화이트 크리스매셔",
+    "DESCRIPTION": "피해를 !D! 만큼 2번 줍니다. NL 손에  *아카와 *아오 가 있을 경우, 이 피해를 모든 적에게 줍니다.",
+    "EXTENDED_DESCRIPTION": ["진 화이트 크리스매셔","모든 적에게 피해를 !D! 만큼 2번 줍니다."]
+  },
+  "Moonworks:WhimsicalWindmill": {
+    "NAME": "변덕쟁이 풍차",
+    "DESCRIPTION": "턴 시작 시, 이전 턴에 자신을 공격한 적의 수 만큼 추가로 에너지 를 얻습니다.",
+    "UPGRADE_DESCRIPTION": "선천성. NL 턴 시작 시, 이전 턴에 자신을 공격한 적의 수 만큼 추가로 에너지 를 얻습니다."
   },
   "Moonworks:WindyEnchantment": {
     "NAME": "질풍의 인챈트",

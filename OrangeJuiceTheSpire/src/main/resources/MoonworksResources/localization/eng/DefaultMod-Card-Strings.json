@@ -2,7 +2,9 @@
   "Moonworks:Accelerator": {
     "NAME": "Accelerator",
     "DESCRIPTION": "Gain !M! *Accelerator.",
-    "EXTENDED_DESCRIPTION": ["Accelerator", "Whenever a card is created in combat, create an extra copy of it. NL Does not apply to #yStatus, #yCurse, or #yMagical cards.","If available, use an extra [E] to also upgrade all newly created cards."]
+    "EXTENDED_DESCRIPTION": ["Accelerator", "Whenever a card is created in combat, create an extra copy of it. NL Does not apply to #yStatus, #yCurse, or #yMagical cards.",
+      "Optional: Spend [E] to also Upgrade all newly created cards.",
+      "Gain !M! *Accelerator.","Spend [E] . NL Gain !M! *Accelerator. NL Whenever a card is created during combat, Upgrade it."]
   },
   "Moonworks:AccelHyper": {
     "NAME": "Accel Hyper",
@@ -60,12 +62,13 @@
   },
   "Moonworks:BigMagnum": {
     "NAME": "Big Magnum",
-    "DESCRIPTION": "Lose !Moonworks:InvertedNumber! HP. NL Gain !M! Vigor. NL Gain !Moonworks:SecondMagic! Strength. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["+X Strength.","Bigger Magnum","Biggest Magnum"]
+    "DESCRIPTION": "Exhaust 1 card. NL Gain !M! Vigor. NL Increase this card's Vigor gain by !Moonworks:SecondMagic! this combat. NL Can be upgraded 5 times.",
+    "EXTENDED_DESCRIPTION": ["+4 Vigor if you exhaust an *Attack.","Bigger Magnum","Biggest Magnum","Biggester Magnum","Biggestest Magnum","Biggestestest Magnum","Select a card to exhaust."]
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "Big Rocket Cannon",
-    "DESCRIPTION": "Deal !D! moonworks:Splash *Damage. NL Shuffle 1 *Air *Strike into your [#FFF6E2]draw pile. NL Purge."
+    "DESCRIPTION": "Deal !D! moonworks:Splash *Damage. NL Shuffle 1 *Air *Strike into your [#FFF6E2]draw pile. NL Purge.",
+    "UPGRADE_DESCRIPTION": "Deal !D! moonworks:Splash *Damage. NL Shuffle 1 *Air *Strike+ into your [#FFF6E2]draw pile. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "Binding Chains",
@@ -135,7 +138,7 @@
   "Moonworks:DeployBits": {
     "NAME": "Deploy Bits",
     "DESCRIPTION": "Gain a total of !Moonworks:SecondMagic! randomly distributed Block and Vigor.",
-    "EXTENDED_DESCRIPTION": ["-3 Bits, but Bit distribution is now moonworks:Optimized."]
+    "EXTENDED_DESCRIPTION": ["Bit distribution is now moonworks:Optimized."]
   },
   "Moonworks:DesperateModification": {
     "NAME": "Desperate Modification",
@@ -232,9 +235,9 @@
   },
   "Moonworks:HolyNight": {
     "NAME": "Holy Night",
-    "DESCRIPTION": "At the start of your turn, draw !M! additional card.",
-    "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, draw !M! additional card.",
-    "EXTENDED_DESCRIPTION": ["If available, use an extra [E] to double the effect."]
+    "DESCRIPTION": "Once per turn, you may spend [E] to draw 2 cards.",
+    "UPGRADE_DESCRIPTION": "Innate. NL Once per turn, you may spend [E] to draw 2 cards.",
+    "EXTENDED_DESCRIPTION": ["Uses per turn becomes unlimited."]
   },
   "Moonworks:ImmovableObject": {
     "NAME": "Immovable Object",
@@ -259,14 +262,27 @@
     "DESCRIPTION": "Autoplay. NL Deal !D! damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!.",
     "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!."
   },
-  "Moonworks:LeapThroughSpace": {
+  "Moonworks:LeapThroughSpaceOLD": {
     "NAME": "Leap Through Space",
     "DESCRIPTION": "Create a moonworks:Temporal_Anchor with a moonworks:Divergence of !M!. NL Add 1 *Leap *Through *Time to the bottom of your draw pile."
   },
-  "Moonworks:LeapThroughTime": {
+  "Moonworks:LeapThroughTimeOLD": {
     "NAME": "Leap Through Time",
     "DESCRIPTION": "Rewind your personal timeline to when your moonworks:Temporal_Anchor was created. NL Each turn, moonworks:Divergence increases by !M! until this card is played.",
     "EXTENDED_DESCRIPTION": ["Wherever I end up, I know what to do.", "Leaping!", "Where are you taking me to?"]
+  },
+  "Moonworks:LeapThroughSpacetime": {
+    "NAME": "Leap Through Spacetime",
+    "DESCRIPTION": "Choose one effect: NL You can borrow *Energy from your next turn. NL You can borrow *Cards from your next turn.",
+    "EXTENDED_DESCRIPTION": ["Leap Through..."," Space!"," Time!"]
+  },
+  "Moonworks:LeapThroughSpace": {
+    "NAME": "Leap Through Space",
+    "DESCRIPTION": "You can see what cards you will draw next turn. You may borrow any, at the cost of 1 less draw next turn each."
+  },
+  "Moonworks:LeapThroughTime": {
+    "NAME": "Leap Through Time",
+    "DESCRIPTION": "You can borrow [E] from the future, at the cost of not having it next turn."
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "Long-Distance Shot",
@@ -395,12 +411,13 @@
   "Moonworks:RocketCannon": {
     "NAME": "Rocket Cannon",
     "DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Big *Rocket *Cannon into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Shuffle !M! *Big *Rocket *Cannon+ into your draw pile.",
     "EXTENDED_DESCRIPTION": ["Shuffle an additional card."]
   },
   "Moonworks:SakisCookie": {
     "NAME": "Saki's Cookie",
-    "DESCRIPTION": "Trigger 1 of 3 effects: NL Heal !M! HP. NL Gain !Moonworks:ThirdMagic! Vigor. NL Gain !Moonworks:ThirdMagic! moonworks:Steady. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["Effect will be *Optimized","Cookie Optimization","Healing will always be chosen if it needed. NL Steady will be chosen over Vigor if there is enemy intending to attack and a block card is in your hand."]
+    "DESCRIPTION": "Heal !M! HP. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Also draw 1 card."]
   },
   "Moonworks:ScrambledEve": {
     "NAME": "Scrambled Eve",
@@ -418,6 +435,11 @@
     "NAME": "Self Destruct",
     "DESCRIPTION": "Take !Moonworks:InvertedNumber! moonworks:Fixed *Damage. NL Deal !D! damage to ALL enemies. NL Block is !Moonworks:SecondMagic! times more effective at reducing the self damage. NL Can be played while *Entangled.",
     "EXTENDED_DESCRIPTION": ["-X self damage."]
+  },
+  "Moonworks:SeriousBattle": {
+    "NAME": "Serious Battle",
+    "DESCRIPTION": "Trigger the effect of any !M! random moonworks:Memory on the target.",
+    "UPGRADE_DESCRIPTION": "Trigger the effect of any !M! random moonworks:Memories on the target."
   },
   "Moonworks:ShieldCounter": {
     "NAME": "Shield Counter",
@@ -455,7 +477,8 @@
   },
   "Moonworks:SweetBattle": {
     "NAME": "Sweet Battle",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Shuffle 1 *Saki's *Cookie into your draw pile. NL In Hand: *Saki's *Cookies gain +2 to their effect and moonworks:Auto_Consume when drawn. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Add 1 *Saki's *Cookie to your hand. NL On Play: Discard.",
+    "UPGRADE_DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Add 1 *Saki's *Cookie+ to your hand. NL On Play: Discard.",
     "EXTENDED_DESCRIPTION": ["Your sugar rush has faded."]
   },
   "Moonworks:TacticalRetreat": {
@@ -465,8 +488,8 @@
   },
   "Moonworks:TreasureThief": {
     "NAME": "Treasure Thief",
-    "DESCRIPTION": "Once per turn, the next time you damage this target, draw !M! card. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["Once per turn, there is a 50% chance to draw and extra card when you damage the target."]
+    "DESCRIPTION": "Once per turn, when you damage this target, draw 1 card. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Effect works twice per turn instead."]
   },
   "Moonworks:Ubiquitous": {
     "NAME": "Ubiquitous",

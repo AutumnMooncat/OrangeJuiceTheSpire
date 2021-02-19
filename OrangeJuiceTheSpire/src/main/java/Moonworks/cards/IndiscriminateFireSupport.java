@@ -40,8 +40,8 @@ public class IndiscriminateFireSupport extends AbstractNormaAttentiveCard {
 
     private static final int COST = -1;
 
-    private static final int DAMAGE = 8;
-    private static final int UPGRADE_PLUS_DAMAGE = 4;
+    private static final int DAMAGE = 7;
+    private static final int UPGRADE_PLUS_DAMAGE = 3;
 
     private static final int DAZED = 2;
     private static final int UPGRADE_PLUS_DAZED = 1;

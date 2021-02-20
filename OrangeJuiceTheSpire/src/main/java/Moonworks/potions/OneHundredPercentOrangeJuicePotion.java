@@ -3,6 +3,8 @@ package Moonworks.potions;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.NormaBreakAction;
 import Moonworks.powers.NormaPower;
+import basemod.BaseMod;
+import basemod.abstracts.CustomPotion;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -18,7 +20,7 @@ import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 
 import java.util.ArrayList;
 
-public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
+public class OneHundredPercentOrangeJuicePotion extends CustomPotion {
 
 
     public static final String POTION_ID = OrangeJuiceMod.makeID("OneHundredPercentOrangeJuicePotion");
@@ -32,33 +34,10 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
     public OneHundredPercentOrangeJuicePotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
         super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.BOTTLE, PotionColor.ENERGY);
-        
-        // Potency is the damage/magic number equivalent of potions.
-        potency = getPotency();
-        
-        // Initialize the Description
-        description = DESCRIPTIONS[0];
-        
-       // Do you throw this potion at an enemy or do you just consume it.
-        isThrown = false;
-        // Initialize the on-hover name + description
-        tips.add(new PowerTip(name, description));
-        tips.add(new PowerTip(NormaPower.NAME,NormaPower.DESCRIPTIONS[0]));
-        
-    }
-    // See that description? It has DESCRIPTIONS[1] instead of just hard-coding the "text " + potency + " more text" inside.
-    // DO NOT HARDCODE YOUR STRINGS ANYWHERE, it's really bad practice to have "Strings" in your code:
 
-    /*
-     * 1. It's bad for if somebody likes your mod enough (or if you decide) to translate it.
-     * Having only the JSON files for translation rather than 15 different instances of "Dexterity" in some random cards is A LOT easier.
-     *
-     * 2. You don't have a centralised file for all strings for easy proof-reading. If you ever want to change a string
-     * you don't have to go through all your files individually/pray that a mass-replace doesn't screw something up.
-     *
-     * 3. Without hardcoded strings, editing a string doesn't require a compile, saving you time (unless you clean+package).
-     *
-     */
+        // Do you throw this potion at an enemy or do you just consume it.
+        isThrown = false;
+    }
 
     @Override
     public void use(AbstractCreature target) {
@@ -66,29 +45,28 @@ public class OneHundredPercentOrangeJuicePotion extends AbstractPotion {
         AbstractPlayer p = AbstractDungeon.player;
         this.addToBot(new NormaBreakAction(p, upgraded));
     }
-    
-    @Override
-    public AbstractPotion makeCopy() {
-        return new OneHundredPercentOrangeJuicePotion();
-    }
 
     // This is your potency.
     @Override
     public int getPotency(final int ascensionLevel) {
     AbstractPlayer p = AbstractDungeon.player;
         if (p != null && p.hasRelic("SacredBark")) {
-            upgradePotion();
+            upgraded = true;
         }
         return 6;
     }
 
-    public void upgradePotion()
-    {
-        upgraded = true;
-        //description = DESCRIPTIONS[1]; //Took away permannt Norma 6, becasue fuck
-        //potency += 6; //using upgraded boolean instead, this does nothing
-        //tips = new ArrayList<>();
-        //tips.add(new PowerTip(name, description));
-        //tips.add(new PowerTip(NormaPower.NAME,NormaPower.DESCRIPTIONS[0]));
+    @Override
+    public void initializeData() {
+        potency = getPotency();
+        description = potionStrings.DESCRIPTIONS[0] + potency + (upgraded ? potionStrings.DESCRIPTIONS[2] : potionStrings.DESCRIPTIONS[1]);
+        tips.clear();
+        tips.add(new PowerTip(name, description));
+        tips.add(new PowerTip(NormaPower.NAME,NormaPower.DESCRIPTIONS[0]));
+    }
+
+    @Override
+    public AbstractPotion makeCopy() {
+        return new OneHundredPercentOrangeJuicePotion();
     }
 }

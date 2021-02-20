@@ -1,5 +1,6 @@
 package Moonworks;
 
+import Moonworks.potions.*;
 import Moonworks.relics.*;
 import Moonworks.variables.DefaultInvertedNumber;
 import Moonworks.variables.ThirdMagicNumber;
@@ -22,7 +23,6 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.potions.OneHundredPercentOrangeJuicePotion;
 import Moonworks.util.IDCheckDontTouchPls;
 import Moonworks.util.TextureLoader;
 import Moonworks.variables.DefaultCustomVariable;
@@ -136,9 +136,33 @@ public class OrangeJuiceMod implements
     
     // Potion Colors in RGB
     public static final Color OJ_POTION_LIQUID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Orange
-    public static final Color OJ_POTION_HYBRID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Darker Orange
-    public static final Color OJ_POTION_SPOTS = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Lighter Orange
-    
+    public static final Color OJ_POTION_HYBRID = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+    public static final Color OJ_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color VIGOR_POTION_LIQUID = CardHelper.getColor(227, 91, 0); // Orange/Red
+    public static final Color VIGOR_POTION_HYBRID = CardHelper.getColor(255, 102, 0); // Lighter Orange/Red
+    public static final Color VIGOR_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color STEADY_POTION_LIQUID = CardHelper.getColor(23, 130, 191); // Blue
+    public static final Color STEADY_POTION_HYBRID = CardHelper.getColor(0, 162, 255); // Lighter Blue
+    public static final Color STEADY_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color CHAIN_POTION_LIQUID = CardHelper.getColor(99, 61, 61); // Reddish Grey
+    public static final Color CHAIN_POTION_HYBRID = CardHelper.getColor(133, 131, 131); // Lighter Gray
+
+    public static final Color NORMA_POTION_LIQUID = CardHelper.getColor(209, 150, 0); // Orange
+    public static final Color NORMA_POTION_HYBRID = CardHelper.getColor(255, 183, 0); // Oranger
+    public static final Color NORMA_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color LUBRICANT_POTION_LIQUID = CardHelper.getColor(110, 60, 0); // Orange
+    public static final Color LUBRICANT_POTION_HYBRID = CardHelper.getColor(82, 45, 0); // Dark Copper
+    public static final Color LUBRICANT_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color CRYSTAL_POTION_LIQUID = CardHelper.getColor(147, 173, 184); // Grey Blue
+    public static final Color CRYSTAL_POTION_HYBRID = CardHelper.getColor(182, 224, 242); // White Ice
+    public static final Color CRYSTAL_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+
     // ONCE YOU CHANGE YOUR MOD ID (BELOW, YOU CAN'T MISS IT) CHANGE THESE PATHS!!!!!!!!!!!
     // ONCE YOU CHANGE YOUR MOD ID (BELOW, YOU CAN'T MISS IT) CHANGE THESE PATHS!!!!!!!!!!!
     // ONCE YOU CHANGE YOUR MOD ID (BELOW, YOU CAN'T MISS IT) CHANGE THESE PATHS!!!!!!!!!!!
@@ -674,7 +698,12 @@ public class OrangeJuiceMod implements
         // just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT".
         // Remember, you can press ctrl+P inside parentheses like addPotions)
         BaseMod.addPotion(OneHundredPercentOrangeJuicePotion.class, OJ_POTION_LIQUID, OJ_POTION_HYBRID, OJ_POTION_SPOTS, OneHundredPercentOrangeJuicePotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
-        
+        BaseMod.addPotion(VigorPotion.class, VIGOR_POTION_LIQUID, VIGOR_POTION_HYBRID, VIGOR_POTION_SPOTS, VigorPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(SteadyPotion.class, STEADY_POTION_LIQUID, STEADY_POTION_HYBRID, STEADY_POTION_SPOTS, SteadyPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(LiquidChainsPotion.class, CHAIN_POTION_LIQUID, CHAIN_POTION_HYBRID, null, LiquidChainsPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(NormaPotion.class, NORMA_POTION_LIQUID, NORMA_POTION_HYBRID, NORMA_POTION_SPOTS, NormaPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(LubricantPotion.class, LUBRICANT_POTION_LIQUID, LUBRICANT_POTION_HYBRID, LUBRICANT_POTION_SPOTS, LubricantPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(CrystalPotion.class, CRYSTAL_POTION_LIQUID, CRYSTAL_POTION_HYBRID, CRYSTAL_POTION_SPOTS, CrystalPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
         logger.info("Done editing potions");
     }
     

@@ -1,7 +1,32 @@
 {
-"Moonworks:OneHundredPercentOrangeJuicePotion": {
-        "NAME": "100% Orange Juice",
-        "DESCRIPTIONS": ["Achieve Norma #r6. Receive #gincredible #gpower that you #rcannot #rsafely #rcontain.",
-                         "Achieve Norma #r6. Receive #gincredible #gpower that you can #ralmost #rsafely #rcontain."]
-}
+  "Moonworks:OneHundredPercentOrangeJuicePotion": {
+    "NAME": "100% Orange Juice",
+    "DESCRIPTIONS": ["Achieve Norma #r",". Receive #gincredible #gpower that you #rcannot #rsafely #rcontain.",
+      ". Receive #gincredible #gpower that you can #ralmost #rsafely #rcontain."]
+  },
+  "Moonworks:VigorPotion": {
+    "NAME": "Vigor Potion",
+    "DESCRIPTIONS": ["Gain #b"," #yVigor."]
+  },
+  "Moonworks:SteadyPotion": {
+    "NAME": "Steady Potion",
+    "DESCRIPTIONS": ["Gain #b"," #ySteady."]
+  },
+  "Moonworks:LiquidChainsPotion": {
+    "NAME": "Liquid Chains",
+    "DESCRIPTIONS": ["Target loses #b"," temporary #yStrength."]
+  },
+  "Moonworks:NormaPotion": {
+    "NAME": "Norma Potion",
+    "DESCRIPTIONS": ["Generate #b1 Norma for the next #b"," turns."]
+  },
+  "Moonworks:LubricantPotion": {
+    "NAME": "Lubricant",
+    "DESCRIPTIONS": ["Apply #b"," #yVulnerable. #ySplash."]
+  },
+  "Moonworks:CrystalPotion": {
+    "NAME": "Crystal Potion",
+    "DESCRIPTIONS": ["Gain #b"," #yCrystallize."]
+  }
+
 }

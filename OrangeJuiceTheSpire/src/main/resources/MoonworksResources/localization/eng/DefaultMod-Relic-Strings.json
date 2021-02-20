@@ -42,7 +42,7 @@
     "NAME": "Broken Bomb",
     "FLAVOR": "This looks dangerous.",
     "DESCRIPTIONS": [
-      "Add #b1 #yStar #yBlasting #yLight to your hand each time you gain a #ymoonworks:Norma level. NL Note: By default, every #b10th #ySkill you play raises your #Norma by #b1.",
+      "Add #b1 #yStar #yBlasting #yLight to your hand each time you generate #ymoonworks:Norma. NL Note: By default, every #b10th #ySkill you play raises your #Norma by #b1.",
       "It's time to say goodbye."
     ]
   },
@@ -50,7 +50,7 @@
     "NAME": "SB Bomb",
     "FLAVOR": "Don't drop this.",
     "DESCRIPTIONS": [
-      "Add #b1 #yStar #yBlasting #yLight to your hand each time you gain a #ymoonworks:Norma level. NL Every #b12th #ycard you play raises your #Norma by #b1 instead.",
+      "Add #b1 #yStar #yBlasting #yLight to your hand each time you generate #ymoonworks:Norma. NL Every #b12th #ycard you play raises your #Norma by #b1 instead.",
       "It's time to say goodbye."
     ]
   },
@@ -72,35 +72,42 @@
     "NAME": "Heal Panel",
     "FLAVOR": "Recommended by 0 out of 1 doctors wearing lab coats. Part 1 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, heal #b1 HP."
+      "Whenever you generate #ymoonworks:Norma, heal #b1 HP."
     ]
   },
   "Moonworks:BonusPanel": {
-    "NAME": "Panel Panel",
-    "FLAVOR": "Tiny, but stars are stars. Part 2 of a series, can you collect them all?",
+    "NAME": "Bonus Panel",
+    "FLAVOR": "Tiny, but stars are stars. Part 3 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, gain #b1 energy."
+      "Whenever you generate #ymoonworks:Norma, gain #b1 energy."
     ]
   },
   "Moonworks:DrawPanel": {
     "NAME": "Draw Panel",
-    "FLAVOR": "Imagine only being able to hold 3 cards in your hand... Part 3 of a series, can you collect them all?",
+    "FLAVOR": "Imagine only being able to hold 3 cards in your hand... Part 5 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, draw #b1 card."
+      "Whenever you generate #ymoonworks:Norma, draw #b1 card."
     ]
   },
   "Moonworks:DamagePanel": {
     "NAME": "Damage Panel",
-    "FLAVOR": "Ouch! What did I just step on? Part 4 of a series, can you collect them all?",
+    "FLAVOR": "\"Ouch! What did I just step on?\" Part 4 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, deal #b7 damage to ALL enemies."
+      "Whenever you generate #ymoonworks:Norma, deal #b7 damage to ALL enemies."
     ]
   },
   "Moonworks:HomePanel": {
     "NAME": "Home Panel",
-    "FLAVOR": "If you get homesick, just step on it. Part 5 of a series, can you collect them all?",
+    "FLAVOR": "If you get homesick, just step on it. Part 2 of a series, can you collect them all?",
     "DESCRIPTIONS": [
       "#ymoonworks:Norma levels require #b2 less cards to achieve."
+    ]
+  },
+  "Moonworks:NeutralPanel": {
+    "NAME": "Tabula Rasa",
+    "FLAVOR": "It is both empty, yet full of pure potentiality.",
+    "DESCRIPTIONS": [
+      "Copies the effect of a Panel relic you own. Right click to cycle between effects."," Currently copying the effect of ","."
     ]
   }
 }

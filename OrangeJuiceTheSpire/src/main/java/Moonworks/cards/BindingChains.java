@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.powers.TemporaryStrengthPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -77,10 +78,24 @@ public class BindingChains extends AbstractDynamicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(!decayed) {
+            this.addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    CardCrawlGame.sound.play("POWER_SHACKLE", 0.05F);
+                    this.isDone = true;
+                }
+            });
             this.addToBot(new ApplyPowerAction(m, p, new TemporaryStrengthPower(m, -magicNumber)));
             for (AbstractMonster aM: AbstractDungeon.getMonsters().monsters)
             {
                 if (aM != m) {
+                    this.addToBot(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            CardCrawlGame.sound.play("POWER_SHACKLE", 0.05F);
+                            this.isDone = true;
+                        }
+                    });
                     this.addToBot(new ApplyPowerAction(aM, p, new TemporaryStrengthPower(aM, -magicNumber/2)));
                 }
             }

@@ -76,7 +76,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
     public void breakNorma(boolean upgraded) {
         safeBreak = upgraded;
         broken = true;
-        amount = 6;
+        amount = upgraded ? 12 : 6;
         name = NAME + " #r" + amount;
         fontScale = 0.0F;
         this.addToBot(new ApplyPowerAction(owner, owner, new VulnerablePower(owner, safeBreak ? 2 : 10, false)));

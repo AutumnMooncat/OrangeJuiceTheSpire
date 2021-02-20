@@ -294,5 +294,12 @@
       "rival"
     ],
     "DESCRIPTION": "Attacks against your Rival deal #b10% additional damage. Increases by #b10% if your Rival attacked you last turn."
+  },
+  {
+    "NAMES": [
+      "Crystallize",
+      "crystallize"
+    ],
+    "DESCRIPTION": "Negates a debuff. Block is retained for a turn when a debuff is negated."
   }
 ]

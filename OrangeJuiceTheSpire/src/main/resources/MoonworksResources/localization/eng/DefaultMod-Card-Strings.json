@@ -42,8 +42,8 @@
   },
   "Moonworks:BackdoorTrade": {
     "NAME": "Backdoor Trade",
-    "DESCRIPTION": "Raise your *Norma level by !Moonworks:SecondMagic!. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["Don't exhaust, draw !M! cards.","Draw !M! cards."]
+    "DESCRIPTION": "Gain !Moonworks:SecondMagic! moonworks:Norma. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["Don't exhaust, draw !M! cards.","Gain !Moonworks:SecondMagic! moonworks:Norma."]
   },
   "Moonworks:BeastWitch": {
     "NAME": "Beast Witch",
@@ -286,7 +286,7 @@
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "Long-Distance Shot",
-    "DESCRIPTION": "Deal !D! moonworks:Piercing *Damage. NL Draw this card whenever you gain a *Norma level.",
+    "DESCRIPTION": "Deal !D! moonworks:Piercing *Damage. NL Draw this card whenever you generate a *Norma level.",
     "EXTENDED_DESCRIPTION": ["Ethereal. NL Deal !D! moonworks:Piercing *Damage. NL Exhaust.",
       "Draw !M! card if this effect has uses. Uses: !Moonworks:SecondMagic!."]
   },
@@ -463,7 +463,7 @@
   },
   "Moonworks:StiffCrystal": {
     "NAME": "Stiff Crystal",
-    "DESCRIPTION": "Gain !M! Artifact. NL Gain !B! Block. NL Exhaust.",
+    "DESCRIPTION": "Gain !M! moonworks:Crystallize. NL Gain !B! Block. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["+4 Block."]
   },
   "Moonworks:Strike": {
@@ -477,8 +477,8 @@
   },
   "Moonworks:SweetBattle": {
     "NAME": "Sweet Battle",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Add 1 *Saki's *Cookie to your hand. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Add 1 *Saki's *Cookie+ to your hand. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP. NL On Play: Discard.",
+    "UPGRADE_DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP. NL On Play: Discard.",
     "EXTENDED_DESCRIPTION": ["Your sugar rush has faded."]
   },
   "Moonworks:TacticalRetreat": {

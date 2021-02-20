@@ -159,5 +159,9 @@
         "Moonworks:HolyNightPower": {
                 "NAME": "Holy Night",
                 "DESCRIPTIONS": ["Click to spend #b1 energy and draw #b2 cards. NL  NL Uses remaining this turn: #b",".","unlimited."]
+        },
+        "Moonworks:CrystallizePower": {
+                "NAME": "Crystallize",
+                "DESCRIPTIONS": ["Negates #b"," debuff."," debuffs."," Block is not removed at the start of your turn when a debuff is negated."]
         }
 }

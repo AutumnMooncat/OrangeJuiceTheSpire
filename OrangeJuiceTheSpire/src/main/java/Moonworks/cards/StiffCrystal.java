@@ -2,6 +2,7 @@ package Moonworks.cards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.powers.CrystallizePower;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
@@ -37,9 +38,11 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
 
     private static final int COST = 1;
 
-    private static final int ARTIFACT = 1;
-    private static final int UPGRADE_PLUS_ARTIFACT = 1;
-    private static final int BLOCK = 0;
+    private static final int CRYSTAL = 1;
+    private static final int UPGRADE_PLUS_CRYSTAL = 1;
+
+    private static final int BLOCK = 1;
+    private static final int UPGRADE_PLUS_BLOCK = 6;
 
     private static final Integer[] NORMA_LEVELS = {1};
 
@@ -47,7 +50,7 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
 
     public StiffCrystal() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
-        magicNumber = baseMagicNumber = ARTIFACT;
+        magicNumber = baseMagicNumber = CRYSTAL;
         block = baseBlock = BLOCK;
         this.exhaust = true;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.BLOCKMOD, 4, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
@@ -57,7 +60,7 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new GainBlockAction(p, block));
-        this.addToBot(new ApplyPowerAction(p, p, new ArtifactPower(p, magicNumber)));
+        this.addToBot(new ApplyPowerAction(p, p, new CrystallizePower(p, magicNumber)));
     }
 
     // Upgraded stats.
@@ -66,7 +69,8 @@ public class StiffCrystal extends AbstractNormaAttentiveCard {
         if (!this.upgraded) {
             this.upgradeName();
             //rawDescription = UPGRADE_DESCRIPTION;
-            this.upgradeMagicNumber(UPGRADE_PLUS_ARTIFACT);
+            //this.upgradeMagicNumber(UPGRADE_PLUS_CRYSTAL);
+            this.upgradeBlock(UPGRADE_PLUS_BLOCK);
             this.initializeDescription();
         }
     }

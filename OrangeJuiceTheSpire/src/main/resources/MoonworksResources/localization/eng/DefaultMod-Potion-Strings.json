@@ -1,6 +1,6 @@
 {
-  "Moonworks:OneHundredPercentOrangeJuicePotion": {
-    "NAME": "100% Orange Juice",
+  "Moonworks:TwoHundredPercentOrangeJuicePotion": {
+    "NAME": "200% Orange Juice",
     "DESCRIPTIONS": ["Achieve Norma #r",". Receive #gincredible #gpower that you #rcannot #rsafely #rcontain.",
       ". Receive #gincredible #gpower that you can #ralmost #rsafely #rcontain."]
   },
@@ -27,6 +27,22 @@
   "Moonworks:CrystalPotion": {
     "NAME": "Crystal Potion",
     "DESCRIPTIONS": ["Gain #b"," #yCrystallize."]
+  },
+  "Moonworks:OneHundredPercentOrangeJuicePotion": {
+    "NAME": "100% Orange Juice",
+    "DESCRIPTIONS": ["Achieve Norma #b5. Heal #b"," HP."]
+  },
+  "Moonworks:BlastingPotion": {
+    "NAME": "Blasting Potion",
+    "DESCRIPTIONS": ["Apply #b"," #yBlasting #yLight. #ySplash."]
+  },
+  "Moonworks:RefundPotion": {
+    "NAME": "Refund Potion",
+    "DESCRIPTIONS": ["The next #b"," cards you play have their cost refunded."]
+  },
+  "Moonworks:OverloadPotion": {
+    "NAME": "Overload",
+    "DESCRIPTIONS": ["Multiply all your powers by #b","."]
   }
 
 }

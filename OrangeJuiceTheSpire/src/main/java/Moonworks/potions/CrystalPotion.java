@@ -24,7 +24,7 @@ public class CrystalPotion extends CustomPotion {
 
     public CrystalPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.FAIRY, PotionColor.FIRE);
+        super(NAME, POTION_ID, PotionRarity.RARE, PotionSize.FAIRY, PotionColor.FIRE);
 
         // Do you throw this potion at an enemy or do you just consume it.
         isThrown = false;
@@ -40,7 +40,7 @@ public class CrystalPotion extends CustomPotion {
     // This is your potency.
     @Override
     public int getPotency(final int ascensionLevel) {
-        return 1;
+        return 2;
     }
 
     @Override

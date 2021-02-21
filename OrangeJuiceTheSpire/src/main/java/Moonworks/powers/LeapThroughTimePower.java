@@ -76,9 +76,11 @@ public class LeapThroughTimePower extends AbstractPower implements CloneablePowe
     }
 
     public void restoreMaxEnergy() {
-        flash();
-        AbstractDungeon.player.energy.energy += energyBorrowed;
-        energyBorrowed = 0;
+        if (energyBorrowed > 0) {
+            flash();
+            AbstractDungeon.player.energy.energy += energyBorrowed;
+            energyBorrowed = 0;
+        }
         updateDescription();
     }
 

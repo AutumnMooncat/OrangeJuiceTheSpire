@@ -71,6 +71,15 @@ public class LeapThroughSpacePower extends AbstractPower implements CloneablePow
     }
 
     @Override
+    public void atStartOfTurn() {
+        super.atStartOfTurn();
+        //Flash to indicate that less cards are being drawn
+        if (takenCards > 0) {
+            flash();
+        }
+    }
+
+    @Override
     public void atStartOfTurnPostDraw() {
         super.atStartOfTurnPostDraw();
 

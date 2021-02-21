@@ -297,7 +297,8 @@
   },
   "Moonworks:LulusLuckyEgg": {
     "NAME": "Lulu's Lucky Egg",
-    "DESCRIPTION": "Gain !B! Block. NL Trigger 1 of 3 effects: NL Draw !M! cards. NL Gain Block !M! times instead. NL Gain !M! temporary Dexterity."
+    "DESCRIPTION": "Gain !B! Block. NL Trigger 1 of 3 effects: NL Draw !M! cards. NL Gain Block !M! times instead. NL Gain !M! temporary Dexterity.",
+    "EXTENDED_DESCRIPTION": ["Lulu's Luckiest Egg", "Gain !B! Block !M! times. NL Draw !M! cards. NL Gain !M! temporary Dexterity."]
   },
   "Moonworks:MagicalInferno": {
     "NAME": "Magical Inferno",

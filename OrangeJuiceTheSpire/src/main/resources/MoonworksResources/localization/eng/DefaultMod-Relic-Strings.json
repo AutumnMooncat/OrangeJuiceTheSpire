@@ -72,7 +72,7 @@
     "NAME": "Heal Panel",
     "FLAVOR": "Recommended by 0 out of 1 doctors wearing lab coats. Part 1 of a series, can you collect them all?",
     "DESCRIPTIONS": [
-      "Whenever you generate #ymoonworks:Norma, heal #b1 HP."
+      "Whenever you generate #ymoonworks:Norma, heal #b2 HP."
     ]
   },
   "Moonworks:BonusPanel": {
@@ -108,6 +108,64 @@
     "FLAVOR": "It is both empty, yet full of pure potentiality.",
     "DESCRIPTIONS": [
       "Copies the effect of a Panel relic you own. Right click to cycle between effects."," Currently copying the effect of ","."
+    ]
+  },
+  "Moonworks:OverturnedCard": {
+    "NAME": "Overturned Card",
+    "FLAVOR": "What could it be?",
+    "DESCRIPTIONS": [
+      "Upon pickup, remove a card from your deck. Whenever you generate #yNorma, add a temporary copy of this card to your hand."
+    ]
+  },
+  "Moonworks:BottledOrange": {
+    "NAME": "Bottled Orange",
+    "FLAVOR": "But why?",
+    "DESCRIPTIONS": [
+      "Upon pickup, choose a card. Whenever you generate #ymoonworks:Norma, move this card to your hand.",
+      "Choose a card for ",
+      "Whenever you generate #ymoonworks:Norma, move "," to your hand,"
+    ]
+  },
+  "Moonworks:FleetingButterfly": {
+    "NAME": "Fleeting Butterfly",
+    "FLAVOR": "Take a picture, it'll last longer.",
+    "DESCRIPTIONS": [
+      "The first card you play each combat is converted into a #ymoonworks:Memory."
+    ]
+  },
+  "Moonworks:Searchlight": {
+    "NAME": "Searchlight",
+    "FLAVOR": "It sees all.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, apply #b2 #ymoonworks:Overheat to the healthiest enemy."
+    ]
+  },
+  "Moonworks:SpareBit": {
+    "NAME": "Spare Bit",
+    "FLAVOR": "Not to be confused with a Sign Bit.",
+    "DESCRIPTIONS": [
+      "Upon pickup, obtain #b2 #yDeploy #yBits. All #yDeploy #yBits now increase bits by #b2 when played each combat."
+    ]
+  },
+  "Moonworks:StrangePresent": {
+    "NAME": "Strange Present",
+    "FLAVOR": "\"I wonder what's inside?\"",
+    "DESCRIPTIONS": [
+      "At the end of turn #b5, apply #b4 #yVulnerable and #yWeak to ALL enemies."
+    ]
+  },
+  "Moonworks:ScorchingSun": {
+    "NAME": "Scorching Sun",
+    "FLAVOR": "CAUTION: HOT",
+    "DESCRIPTIONS": [
+      "Whenever an attack deals unblocked damage, apply #b1 #ymoonworks:Blasting_Light."
+    ]
+  },
+  "Moonworks:TrulyGoldenEgg": {
+    "NAME": "A Truly Golden Egg",
+    "FLAVOR": "It's one in a million.",
+    "DESCRIPTIONS": [
+      "Upon pickup, obtain a unique version of #yLulu's #yLucky #yEgg and #yGolden #yEgg that have stronger effects."
     ]
   }
 }

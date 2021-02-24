@@ -13,7 +13,7 @@ import static Moonworks.OrangeJuiceMod.makeRelicPath;
 
 public class HealPanel extends CustomRelic implements NormaAttentiveObject {
 
-    private static final int DRAW = 1;
+    private static final int HEAL = 2;
 
     // ID, images, text.
     public static final String ID = OrangeJuiceMod.makeID("HealPanel");
@@ -34,11 +34,11 @@ public class HealPanel extends CustomRelic implements NormaAttentiveObject {
     }
 
     @Override
-    public void onGainNorma(int current, int increasedBy) {
-        this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, DRAW));
+    public void onGainNorma(int normaLevel, int increasedBy) {
+        this.addToBot(new HealAction(AbstractDungeon.player, AbstractDungeon.player, HEAL));
         flash();
     }
 
     @Override
-    public void onGainNormaCharge(int current, int increasedBy) {}
+    public void onGainNormaCharge(int numerator, int increasedBy) {}
 }

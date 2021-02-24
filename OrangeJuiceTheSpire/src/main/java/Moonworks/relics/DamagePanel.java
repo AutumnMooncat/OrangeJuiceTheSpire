@@ -36,11 +36,11 @@ public class DamagePanel extends CustomRelic implements NormaAttentiveObject {
     }
 
     @Override
-    public void onGainNorma(int current, int increasedBy) {
+    public void onGainNorma(int normaLevel, int increasedBy) {
         this.addToBot(new DamageAllEnemiesAction(AbstractDungeon.player, DAMAGE, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
         flash();
     }
 
     @Override
-    public void onGainNormaCharge(int current, int increasedBy) {}
+    public void onGainNormaCharge(int numerator, int increasedBy) {}
 }

@@ -31,11 +31,11 @@ public class DrawPanel extends CustomRelic implements NormaAttentiveObject {
     }
 
     @Override
-    public void onGainNorma(int current, int increasedBy) {
+    public void onGainNorma(int normaLevel, int increasedBy) {
         this.addToBot(new DrawCardAction(1));
         flash();
     }
 
     @Override
-    public void onGainNormaCharge(int current, int increasedBy) {}
+    public void onGainNormaCharge(int numerator, int increasedBy) {}
 }

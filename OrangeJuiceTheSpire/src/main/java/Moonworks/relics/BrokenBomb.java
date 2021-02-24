@@ -49,7 +49,7 @@ public class BrokenBomb extends CustomRelic implements NormaAttentiveObject {
 
 
     @Override
-    public void onGainNorma(int current, int increasedBy) {
+    public void onGainNorma(int normaLevel, int increasedBy) {
         //Create a card to add
         AbstractCard starBlastingLight = new StarBlastingLight();
         //Flash this relic
@@ -87,8 +87,8 @@ public class BrokenBomb extends CustomRelic implements NormaAttentiveObject {
     }
 
     @Override
-    public void onGainNormaCharge(int current, int increasedBy) {
-        this.counter = current;
+    public void onGainNormaCharge(int numerator, int increasedBy) {
+        this.counter = numerator;
         checkOneChargeAway();
     }
 

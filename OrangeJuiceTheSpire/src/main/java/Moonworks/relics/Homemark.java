@@ -124,7 +124,7 @@ public class Homemark extends CustomRelic implements ClickableRelic, NormaAttent
     }
 
     @Override
-    public void onGainNorma(int current, int increasedBy) {
+    public void onGainNorma(int normaLevel, int increasedBy) {
         //Grab new counter value
         this.counter = NormaHelper.getBaseNorma(AbstractDungeon.player);
         //Don't pulse if it cant go any higher
@@ -134,5 +134,5 @@ public class Homemark extends CustomRelic implements ClickableRelic, NormaAttent
     }
 
     @Override
-    public void onGainNormaCharge(int current, int increasedBy) {}
+    public void onGainNormaCharge(int numerator, int increasedBy) {}
 }

@@ -1,7 +1,12 @@
 package Moonworks.potions;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.powers.BookOfMemoriesPower;
+import Moonworks.powers.NormaPower;
+import Moonworks.util.NormaHelper;
 import basemod.abstracts.CustomPotion;
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,7 +16,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-
+//TODO this is likely to break so many modded things. Perhaps an entirely new effect is in order
 public class OverloadPotion extends CustomPotion {
 
 
@@ -34,7 +39,26 @@ public class OverloadPotion extends CustomPotion {
         this.getPotency(AbstractDungeon.ascensionLevel);
         AbstractPlayer p = AbstractDungeon.player;
         for (AbstractPower pow : p.powers) {
-            this.addToBot(new ApplyPowerAction(p, p, pow, pow.amount*potency));
+            //this.addToBot(new ApplyPowerAction(p, p, pow, pow.amount*potency));
+            this.addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if (pow instanceof BookOfMemoriesPower) {
+                        ((BookOfMemoriesPower) pow).duplicateMemories(1+potency);
+                        pow.updateDescription();
+                    } else if (pow instanceof NormaPower) {
+                        NormaHelper.applyNormaPowerNoTriggers(AbstractDungeon.player, pow.amount*potency);
+                    } else {
+                        pow.flash();
+                        pow.amount *= 1+potency;
+                        if (pow instanceof TwoAmountPower) {
+                            ((TwoAmountPower)pow).amount2 *= 1+potency;
+                        }
+                        pow.updateDescription();
+                    }
+                    this.isDone = true;
+                }
+            });
         }
     }
 

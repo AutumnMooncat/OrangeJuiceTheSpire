@@ -3,6 +3,7 @@ package Moonworks.cards;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.powers.ShieldCounterPower;
+import Moonworks.relics.SpareBit;
 import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -53,12 +54,11 @@ public class DeployBits extends AbstractNormaAttentiveCard {
 
     // /STAT DECLARATION/
 
-
     public DeployBits() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
         this.secondMagicNumber = this.baseSecondMagicNumber = STACKS;
-        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.SECONDMAGICMOD, -3, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 0, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
@@ -101,6 +101,13 @@ public class DeployBits extends AbstractNormaAttentiveCard {
             this.addToBot(new ApplyPowerAction(p, p, new VigorPower(p, magicNumber)));
         }
 
+        if (AbstractDungeon.player.hasRelic(SpareBit.ID)) {
+            AbstractDungeon.player.getRelic(SpareBit.ID).flash();
+            this.baseSecondMagicNumber += SpareBit.BONUS;
+            this.secondMagicNumber += SpareBit.BONUS;
+            this.isSecondMagicNumberModified = this.secondMagicNumber != this.baseSecondMagicNumber;
+            initializeDescription();
+        }
     }
 
     //Hopefully this works. Custom Intents that do damage might not work though.

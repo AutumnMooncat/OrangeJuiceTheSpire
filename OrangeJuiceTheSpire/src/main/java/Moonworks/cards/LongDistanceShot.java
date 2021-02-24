@@ -1,8 +1,11 @@
 package Moonworks.cards;
 
+import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.interfaces.NormaToHandObject;
 import Moonworks.cards.interfaces.RangedAttack;
+import Moonworks.characters.TheStarBreaker;
 import Moonworks.patches.PiercingPatches;
 import Moonworks.patches.RangedPatches;
 import basemod.BaseMod;
@@ -11,22 +14,19 @@ import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import Moonworks.OrangeJuiceMod;
-import Moonworks.characters.TheStarBreaker;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class LongDistanceShot extends AbstractNormaAttentiveCard implements RangedAttack {
+public class LongDistanceShot extends AbstractNormaAttentiveCard implements RangedAttack, NormaToHandObject {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards

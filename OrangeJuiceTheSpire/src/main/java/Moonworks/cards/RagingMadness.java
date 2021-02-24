@@ -40,23 +40,21 @@ public class RagingMadness extends AbstractNormaAttentiveCard {
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 2;
+    private static final int COST = 1;
     private static final int UPGRADE_COST = 1;
 
-    private static final int EFFECT = 1;
+    private static final int EFFECT = 2;
     private static final int UPGRADE_PLUS_EFFECT = 1;
 
     private static final Integer[] NORMA_LEVELS = {3};
 
     // /STAT DECLARATION/
 
-
     public RagingMadness() {
-
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = EFFECT;
         //this.tags.add(BaseModCardTags.FORM); //Tag your strike, defend and form cards so that they work correctly.
-        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 2, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
 
     }
 

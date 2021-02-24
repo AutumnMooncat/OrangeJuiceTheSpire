@@ -1,8 +1,13 @@
 package Moonworks.powers;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
@@ -26,6 +31,8 @@ public class BigBangBellPower extends AbstractTrapPower implements CloneablePowe
     //private static final Texture tex84 = TextureLoader.getTexture(makePowerPath("placeholder_power84.png"));
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
+    private static final float MULTI = 1.5f;
+
     public BigBangBellPower(final AbstractMonster owner, final AbstractCreature source, final int amount) {
         //logger.info("Poppo initializing on " + owner.toString());
         name = NAME;
@@ -46,6 +53,33 @@ public class BigBangBellPower extends AbstractTrapPower implements CloneablePowe
 
         updateDescription();
         //logger.info("Poppo initialized for " + this.target.toString());
+    }
+
+    @Override
+    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+        super.onAttack(info, damageAmount, target);
+        logger.info("On Attack. damageAmount: "+damageAmount+". info.output: "+info.output+". target: "+target);
+        //If they deal unblocked attack damage to ANY creature
+        if (damageAmount > 0) {
+            flash();
+            this.addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    CardCrawlGame.sound.play("ATTACK_FLAME_BARRIER", 0.05F);
+                    this.isDone = true;
+                }
+            });
+            this.addToBot(new DamageAction(owner, new DamageInfo(AbstractDungeon.player, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
+            this.addToBot(new RemoveSpecificPowerAction(owner, owner, this));
+        }
+    }
+
+    @Override
+    public void atEndOfRound() {
+        super.atEndOfRound();
+        flash();
+        this.amount *= MULTI;
+        updateDescription();
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))

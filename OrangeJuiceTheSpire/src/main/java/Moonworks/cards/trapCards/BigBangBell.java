@@ -1,12 +1,10 @@
 package Moonworks.cards.trapCards;
 
-import Moonworks.OrangeJuiceMod;
 import Moonworks.cardModifiers.NormaDynvarModifier;
-import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.abstractCards.AbstractTrapCard;
+import Moonworks.cards.interfaces.NormaToHandObject;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.BigBangBellPower;
-import basemod.BaseMod;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -20,7 +18,7 @@ import static Moonworks.OrangeJuiceMod.makeCardPath;
 import static Moonworks.OrangeJuiceMod.makeID;
 
 //@AutoAdd.Ignore
-public class BigBangBell extends AbstractTrapCard {
+public class BigBangBell extends AbstractTrapCard implements NormaToHandObject {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -50,6 +48,8 @@ public class BigBangBell extends AbstractTrapCard {
 
     private static final Integer[] NORMA_LEVELS = {3};
 
+    private static ArrayList<TooltipInfo> powerTooltip;
+
     // /STAT DECLARATION/
 
 
@@ -58,9 +58,21 @@ public class BigBangBell extends AbstractTrapCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.magicNumber = this.baseMagicNumber = STACKS;
         //this.retain = true;
-        //this.exhaust = true;
+        this.exhaust = true;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.MAGICMOD, 5, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
 
+    }
+
+    @Override
+    public List<TooltipInfo> getCustomTooltipsTop() {
+        if (powerTooltip == null)
+        {
+            powerTooltip = new ArrayList<>();
+            powerTooltip.add(new TooltipInfo(this.name, EXTENDED_DESCRIPTION[1]));
+        }
+        List<TooltipInfo> compoundList = new ArrayList<>(powerTooltip);
+        if (super.getCustomTooltipsTop() != null) compoundList.addAll(super.getCustomTooltipsTop());
+        return compoundList;
     }
 
     // Actions the card should do.

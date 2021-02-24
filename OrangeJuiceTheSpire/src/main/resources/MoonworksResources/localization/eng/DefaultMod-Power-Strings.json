@@ -59,7 +59,7 @@
         },
         "Moonworks:BigBangBellPower": {
                 "NAME": "Big Bang Bell",
-                "DESCRIPTIONS": ["The next time this target does not intent to attack, deals #b", " damage. This damage increases every turn until it is activated."]
+                "DESCRIPTIONS": ["The next time this target deals unblocked attack damage, it takes #b", " damage. This damage increases by #b50% every turn until it is activated."]
         },
         "Moonworks:WantedPower": {
                 "NAME": "Wanted",
@@ -67,7 +67,7 @@
         },
         "Moonworks:BlazingPower": {
                 "NAME": "Blazing!",
-                "DESCRIPTIONS": ["At the start of your turn, gain #b"," Strength and lose #b"," Dexterity."]
+                "DESCRIPTIONS": ["At the start of your turn, apply #b"," #yBlasting #yLight to ALL enemies and increase this amount by #b","."]
         },
         "Moonworks:NormaPower": {
                 "NAME": "Norma",

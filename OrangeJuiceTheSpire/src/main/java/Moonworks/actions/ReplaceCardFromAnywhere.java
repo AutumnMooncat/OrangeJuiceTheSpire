@@ -113,7 +113,8 @@ public class ReplaceCardFromAnywhere extends AbstractGameAction {
             if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
                 for (AbstractCard cloneCard : AbstractDungeon.gridSelectScreen.selectedCards) {
                     AbstractCard swappedCard = cloneMap.get(cloneCard);
-                    //swappedCard.lighten(true);
+                    //TODO fix this shit. Cards come back pure white sometimes
+                    swappedCard.lighten(true);
                     swappedCard.unfadeOut();
                     //cloneCard.stopGlowing();
                     //swappedCard.stopGlowing();

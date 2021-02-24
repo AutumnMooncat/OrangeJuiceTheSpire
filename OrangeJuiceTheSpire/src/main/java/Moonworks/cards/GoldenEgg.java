@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.unique.DiscoveryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -59,12 +60,10 @@ public class GoldenEgg extends AbstractNormaAttentiveCard {
 
     // /STAT DECLARATION/
 
-
     public GoldenEgg() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //this.block = this.baseBlock = BLOCK;
         this.block = this.baseBlock = BASE_BLOCK;
-        this.magicNumber = this.baseMagicNumber = CARDS;
         CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
@@ -74,7 +73,6 @@ public class GoldenEgg extends AbstractNormaAttentiveCard {
         //Gain block.
         this.addToBot(new GainBlockAction(p, p, block));
 
-        //Custom action
         this.addToBot(new AbstractGameAction() {
             @Override
             public void update() {
@@ -84,10 +82,10 @@ public class GoldenEgg extends AbstractNormaAttentiveCard {
                 //Add it...
                 if (getNormaLevel() >= NORMA_LEVELS[0]) {
                     //Directly to hand
-                    this.addToBot(new MakeTempCardInHandAction(attackCard));
+                    this.addToBot(new MakeTempCardInHandAction(attackCard, CARDS));
                 } else {
                     //Into the deck
-                    this.addToBot(new MakeTempCardInDrawPileAction(attackCard, 1, true, true));
+                    this.addToBot(new MakeTempCardInDrawPileAction(attackCard, CARDS, true, true));
                 }
 
                 //End the action

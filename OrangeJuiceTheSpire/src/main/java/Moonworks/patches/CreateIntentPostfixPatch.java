@@ -60,30 +60,9 @@ public class CreateIntentPostfixPatch
                     __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new VulnerablePower(p.owner, 1, false)));
                 }
             }
-            /*
-            switch (currentIntent) {
-                case ATTACK:
-                case ATTACK_BUFF:
-                case ATTACK_DEBUFF:
-                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new WeakPower(p.owner, 1, false)));
-                    break;
-                case ATTACK_DEFEND:
-                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new WeakPower(p.owner, 1, false)));
-                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new FrailPower(p.owner, 1, false)));
-                    break;
-                case DEFEND:
-                case DEFEND_DEBUFF:
-                case DEFEND_BUFF:
-                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new FrailPower(p.owner, 1, false)));
-                    break;
-                default:
-                    __instance.addToBot(new ApplyPowerAction(p.owner, AbstractDungeon.player, new VulnerablePower(p.owner, 1, false)));
-                    break;
-            }*/
-
         }
 
-        if (__instance.hasPower(BigBangBellPower.POWER_ID))
+        /*if (__instance.hasPower(BigBangBellPower.POWER_ID))
         {
             AbstractPower p = __instance.getPower(BigBangBellPower.POWER_ID);
             AbstractMonster.Intent currentIntent = __instance.intent;
@@ -99,21 +78,7 @@ public class CreateIntentPostfixPatch
                     AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(p.owner, p.owner, BigBangBellPower.POWER_ID));
                 }
             }
-            /*
-            switch (currentIntent) {
-                case ATTACK:
-                case ATTACK_BUFF:
-                case ATTACK_DEBUFF:
-                case ATTACK_DEFEND:
-                    p.amount *= 1.5F;
-                    p.updateDescription();
-                    break;
-                default:
-                    __instance.addToBot(new DamageAction(__instance, new DamageInfo(AbstractDungeon.player, p.amount, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
-                    AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(p.owner, p.owner, BigBangBellPower.POWER_ID));
-                    break;
-            }*/
-        }
+        }*/
         return SpireReturn.Continue(); //This allows you to either return early, change the value returned, or just continue like this.
     }
 }

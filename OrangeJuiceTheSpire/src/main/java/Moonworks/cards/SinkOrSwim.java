@@ -7,6 +7,8 @@ import Moonworks.powers.SinkOrSwimPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 //@AutoAdd.Ignore
@@ -41,9 +43,8 @@ public class SinkOrSwim extends AbstractDynamicCard {
 
     // /STAT DECLARATION/
 
-
+    //TODO balance test
     public SinkOrSwim() {
-
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = ENERGY;
         this.secondMagicNumber = this.baseSecondMagicNumber = DEBUFFS;
@@ -54,10 +55,10 @@ public class SinkOrSwim extends AbstractDynamicCard {
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new SinkOrSwimPower(p, this.magicNumber, this.secondMagicNumber)));
+        this.addToBot(new ApplyPowerAction(p, p, new SinkOrSwimPower(p, this.magicNumber)));
         //this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, defaultSecondMagicNumber, false)));
-        //this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, defaultSecondMagicNumber, false)));
-        //this.addToBot(new ApplyPowerAction(p, p, new FrailPower(p, defaultSecondMagicNumber, false)));
+        this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.secondMagicNumber, false)));
+        this.addToBot(new ApplyPowerAction(p, p, new FrailPower(p, this.secondMagicNumber, false)));
     }
 
     //Upgraded stats.

@@ -37,7 +37,7 @@ public class HolyNight extends AbstractNormaAttentiveCard {
 
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.RARE;
+    private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.POWER;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
@@ -49,7 +49,6 @@ public class HolyNight extends AbstractNormaAttentiveCard {
     private static final Integer[] NORMA_LEVELS = {3};
 
     // /STAT DECLARATION/
-
 
     public HolyNight() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);

@@ -5,6 +5,7 @@ import Moonworks.relics.*;
 import Moonworks.variables.DefaultInvertedNumber;
 import Moonworks.variables.ThirdMagicNumber;
 import basemod.*;
+import basemod.abstracts.CustomSavable;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -14,6 +15,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
@@ -135,9 +137,9 @@ public class OrangeJuiceMod implements
     public static final Color TRAP_PURPLE = CardHelper.getColor(87.0f, 42.0f, 182.0f);
     
     // Potion Colors in RGB
-    public static final Color OJ_POTION_LIQUID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Orange
-    public static final Color OJ_POTION_HYBRID = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
-    public static final Color OJ_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+    public static final Color OJ2_POTION_LIQUID = CardHelper.getColor(255, 128, 0); // Orange
+    public static final Color OJ2_POTION_HYBRID = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+    public static final Color OJ2_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
 
     public static final Color VIGOR_POTION_LIQUID = CardHelper.getColor(227, 91, 0); // Orange/Red
     public static final Color VIGOR_POTION_HYBRID = CardHelper.getColor(255, 102, 0); // Lighter Orange/Red
@@ -147,11 +149,11 @@ public class OrangeJuiceMod implements
     public static final Color STEADY_POTION_HYBRID = CardHelper.getColor(0, 162, 255); // Lighter Blue
     public static final Color STEADY_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
 
-    public static final Color CHAIN_POTION_LIQUID = CardHelper.getColor(99, 61, 61); // Reddish Grey
+    public static final Color CHAIN_POTION_LIQUID = CardHelper.getColor(99, 61, 61); // Reddish Gray
     public static final Color CHAIN_POTION_HYBRID = CardHelper.getColor(133, 131, 131); // Lighter Gray
 
-    public static final Color NORMA_POTION_LIQUID = CardHelper.getColor(209, 150, 0); // Orange
-    public static final Color NORMA_POTION_HYBRID = CardHelper.getColor(255, 183, 0); // Oranger
+    public static final Color NORMA_POTION_LIQUID = CardHelper.getColor(143, 255, 253); // Cyan
+    public static final Color NORMA_POTION_HYBRID = CardHelper.getColor(0, 255, 251); // Cyan
     public static final Color NORMA_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
 
     public static final Color LUBRICANT_POTION_LIQUID = CardHelper.getColor(110, 60, 0); // Orange
@@ -161,6 +163,22 @@ public class OrangeJuiceMod implements
     public static final Color CRYSTAL_POTION_LIQUID = CardHelper.getColor(147, 173, 184); // Grey Blue
     public static final Color CRYSTAL_POTION_HYBRID = CardHelper.getColor(182, 224, 242); // White Ice
     public static final Color CRYSTAL_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color OJ_POTION_LIQUID = CardHelper.getColor(255.0f, 187.0f, 0.0f); // Orange
+    public static final Color OJ_POTION_HYBRID = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+    public static final Color OJ_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color BLAST_POTION_LIQUID = CardHelper.getColor(191, 61, 0 ); // Pale Orange
+    public static final Color BLAST_POTION_HYBRID = CardHelper.getColor(255, 107, 38); // Light Red/Orange
+    public static final Color BLAST_POTION_SPOTS = new Color(0.0f, 0.0f, 0.0f, 0.0f); // Invisible
+
+    public static final Color REFUND_POTION_LIQUID = CardHelper.getColor(29, 184, 29 ); // Dark Green
+    public static final Color REFUND_POTION_HYBRID = CardHelper.getColor(0, 255, 0); // Green
+    public static final Color REFUND_POTION_SPOTS = CardHelper.getColor(157, 252, 157); // Lime Green
+
+    public static final Color OVERLOAD_POTION_LIQUID = CardHelper.getColor(0, 0, 0 ); // Black
+    public static final Color OVERLOAD_POTION_HYBRID = CardHelper.getColor(41, 41, 41); // Dark Dark Gray
+    public static final Color OVERLOAD_POTION_SPOTS = CardHelper.getColor(105, 105, 105); // Gray
 
 
     // ONCE YOU CHANGE YOUR MOD ID (BELOW, YOU CAN'T MISS IT) CHANGE THESE PATHS!!!!!!!!!!!
@@ -662,7 +680,13 @@ public class OrangeJuiceMod implements
         
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
-        
+        // =============== SAVABLES =================
+        logger.info("Preparing CustomSavables");
+
+
+
+        // =============== /SAVABLES/ =================
+
         // =============== EVENTS =================
         
         // This event will be exclusive to the City (act 2). If you want an event that's present at any
@@ -697,13 +721,18 @@ public class OrangeJuiceMod implements
         // Class Specific Potion. If you want your potion to not be class-specific,
         // just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT".
         // Remember, you can press ctrl+P inside parentheses like addPotions)
-        BaseMod.addPotion(OneHundredPercentOrangeJuicePotion.class, OJ_POTION_LIQUID, OJ_POTION_HYBRID, OJ_POTION_SPOTS, OneHundredPercentOrangeJuicePotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(TwoHundredPercentOrangeJuicePotion.class, OJ2_POTION_LIQUID, OJ2_POTION_HYBRID, OJ2_POTION_SPOTS, TwoHundredPercentOrangeJuicePotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
         BaseMod.addPotion(VigorPotion.class, VIGOR_POTION_LIQUID, VIGOR_POTION_HYBRID, VIGOR_POTION_SPOTS, VigorPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
         BaseMod.addPotion(SteadyPotion.class, STEADY_POTION_LIQUID, STEADY_POTION_HYBRID, STEADY_POTION_SPOTS, SteadyPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
         BaseMod.addPotion(LiquidChainsPotion.class, CHAIN_POTION_LIQUID, CHAIN_POTION_HYBRID, null, LiquidChainsPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
         BaseMod.addPotion(NormaPotion.class, NORMA_POTION_LIQUID, NORMA_POTION_HYBRID, NORMA_POTION_SPOTS, NormaPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
         BaseMod.addPotion(LubricantPotion.class, LUBRICANT_POTION_LIQUID, LUBRICANT_POTION_HYBRID, LUBRICANT_POTION_SPOTS, LubricantPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
         BaseMod.addPotion(CrystalPotion.class, CRYSTAL_POTION_LIQUID, CRYSTAL_POTION_HYBRID, CRYSTAL_POTION_SPOTS, CrystalPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(OneHundredPercentOrangeJuicePotion.class, OJ_POTION_LIQUID, OJ_POTION_HYBRID, OJ_POTION_SPOTS, OneHundredPercentOrangeJuicePotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(BlastingPotion.class, BLAST_POTION_LIQUID, BLAST_POTION_HYBRID, BLAST_POTION_SPOTS, BlastingPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(RefundPotion.class, REFUND_POTION_LIQUID, REFUND_POTION_HYBRID, REFUND_POTION_SPOTS, RefundPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+        BaseMod.addPotion(OverloadPotion.class, OVERLOAD_POTION_LIQUID, OVERLOAD_POTION_HYBRID, OVERLOAD_POTION_SPOTS, OverloadPotion.POTION_ID, TheStarBreaker.Enums.THE_STARBREAKER);
+
         logger.info("Done editing potions");
     }
     
@@ -737,6 +766,13 @@ public class OrangeJuiceMod implements
         BaseMod.addRelicToCustomPool(new DrawPanel(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
         BaseMod.addRelicToCustomPool(new DamagePanel(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
         BaseMod.addRelicToCustomPool(new HomePanel(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new Searchlight(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new ScorchingSun(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new TrulyGoldenEgg(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new StrangePresent(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new SpareBit(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new FleetingButterfly(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
+        BaseMod.addRelicToCustomPool(new BottledOrange(), TheStarBreaker.Enums.COLOR_WHITE_ICE);
 
         // This adds a relic to the Shared pool. Every character can find this relic.
         //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
@@ -753,6 +789,13 @@ public class OrangeJuiceMod implements
         UnlockTracker.markRelicAsSeen(DrawPanel.ID);
         UnlockTracker.markRelicAsSeen(DamagePanel.ID);
         UnlockTracker.markRelicAsSeen(HomePanel.ID);
+        UnlockTracker.markRelicAsSeen(Searchlight.ID);
+        UnlockTracker.markRelicAsSeen(ScorchingSun.ID);
+        UnlockTracker.markRelicAsSeen(TrulyGoldenEgg.ID);
+        UnlockTracker.markRelicAsSeen(StrangePresent.ID);
+        UnlockTracker.markRelicAsSeen(SpareBit.ID);
+        UnlockTracker.markRelicAsSeen(FleetingButterfly.ID);
+        UnlockTracker.markRelicAsSeen(BottledOrange.ID);
         logger.info("Done adding relics!");
     }
     

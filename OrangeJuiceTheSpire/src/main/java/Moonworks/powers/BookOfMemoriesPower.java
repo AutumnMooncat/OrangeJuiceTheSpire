@@ -3,9 +3,11 @@ package Moonworks.powers;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ConsumePurgeImmediatelyAction;
 import Moonworks.cardModifiers.MemoryModifier;
+import Moonworks.cards.SubspaceTunnel;
 import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.cards.abstractCards.AbstractTempCard;
 import Moonworks.cards.tempCards.SeriousBattle;
+import Moonworks.patches.relics.BottleFields;
 import Moonworks.util.MemoryHelper;
 import basemod.ClickableUIElement;
 import basemod.helpers.CardModifierManager;
@@ -52,6 +54,7 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
     private final CardGroup memories = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    private int cardsAdded;
 
     //private final HashSet<AbstractCard> cards = new HashSet<>();
 
@@ -152,15 +155,26 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
     @Override
     public void atStartOfTurn() {
         if (needNewCard()) {
-            this.addToTop(new MakeTempCardInHandAction(new SeriousBattle()));
+            addNewCardIfNeeded();
         }
         super.atStartOfTurn();
     }
 
     @Override
     public void onInitialApplication() {
-        this.addToTop(new MakeTempCardInHandAction(new SeriousBattle()));
+        addNewCardIfNeeded();
         super.onInitialApplication();
+    }
+
+    private void addNewCardIfNeeded() {
+        //this.addToTop(new MakeTempCardInHandAction(new SeriousBattle()));
+    }
+
+    public void duplicateMemories (int multiplier) {
+        if (multiplier > 1) {
+            //stuff
+            updateDescription();
+        }
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
@@ -204,7 +218,14 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
     }
 
     public static boolean getViability(AbstractCard c) {
-        return (c.type != AbstractCard.CardType.POWER && c.type != AbstractCard.CardType.STATUS && c.type != AbstractCard.CardType.CURSE && !(c instanceof AbstractGiftCard) && !(c instanceof AbstractTempCard) && c.cost >= 0);
+        return (c.type != AbstractCard.CardType.POWER &&
+                c.type != AbstractCard.CardType.STATUS &&
+                c.type != AbstractCard.CardType.CURSE &&
+                !(c instanceof AbstractGiftCard) &&
+                !(c instanceof AbstractTempCard) &&
+                !(c instanceof SubspaceTunnel) &&
+                !BottleFields.inBottledOrange.get(c) &&
+                c.cost >= 0);
     }
 
     public static boolean needNewCard() {
@@ -228,8 +249,8 @@ public class BookOfMemoriesPower extends AbstractPower implements CloneablePower
 
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
         super.renderAmount(sb, x, y, c);
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(MemoryHelper.getAllReady(memories, AbstractCard.CardType.ATTACK).size()), x, y + 15.0F, this.fontScale, ATTACK_COLOR);
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(MemoryHelper.getAllReady(memories, AbstractCard.CardType.SKILL).size()), x - 20.0F, y + 15.0F * Settings.scale, this.fontScale, SKILL_COLOR);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(MemoryHelper.getAllReady(memories, AbstractCard.CardType.ATTACK).size()), x, y + 15.0F * Settings.scale, this.fontScale, ATTACK_COLOR);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(MemoryHelper.getAllReady(memories, AbstractCard.CardType.SKILL).size()), x - 20.0F * Settings.scale, y + 15.0F * Settings.scale, this.fontScale, SKILL_COLOR);
     }
 
     @Override

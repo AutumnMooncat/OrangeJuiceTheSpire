@@ -39,11 +39,13 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
 
     private static final int COST = 0;
 
-    private static final int HEAL = 5;
-    private static final int UPGRADE_PLUS_HEAL = 3;
+    private static final int HEAL = 4;
+    private static final int UPGRADE_PLUS_HEAL = 2;
 
     private static final int ENERGY = 1;
     private static final int UPGRADE_PLUS_ENERGY = 1;
+
+    private static final int DEBUFF = 2;
 
     private static final Integer[] NORMA_LEVELS = {3};
 
@@ -53,21 +55,20 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
 
         magicNumber = baseMagicNumber = HEAL;
-        invertedNumber = baseInvertedNumber = ENERGY;
+        secondMagicNumber = baseSecondMagicNumber = ENERGY;
+        invertedNumber = baseInvertedNumber = DEBUFF;
         exhaust = true;
         this.tags.add(CardTags.HEALING);
-        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INVERTEDMOD, -1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        this.addToBot(new ApplyPowerAction(p, p, new VulnerablePower(p, this.invertedNumber, false)));
         this.addToBot(new HealAction(p, p, this.magicNumber));
-        this.addToBot(new GainEnergyAction(this.invertedNumber));
-        if (getNormaLevel() >= NORMA_LEVELS[0]) {
+        this.addToBot(new GainEnergyAction(this.secondMagicNumber));
+        if (invertedNumber > 0) {
             this.addToBot(new ApplyPowerAction(p, p, new WeakPower(p, this.invertedNumber, false)));
-            this.addToBot(new GainEnergyAction(this.invertedNumber));
         }
 
     }
@@ -79,7 +80,7 @@ public class ForcedRevival extends AbstractNormaAttentiveCard {
             this.upgradeName();
             rawDescription = UPGRADE_DESCRIPTION;
             this.upgradeMagicNumber(UPGRADE_PLUS_HEAL);
-            this.upgradeInvertedNumber(UPGRADE_PLUS_ENERGY);
+            this.upgradeSecondMagicNumber(UPGRADE_PLUS_ENERGY);
             this.initializeDescription();
         }
     }

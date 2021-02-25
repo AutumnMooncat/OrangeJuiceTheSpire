@@ -1,7 +1,7 @@
 package Moonworks.util.interfaces;
 
 public interface NormaAttentiveObject {
-    void onGainNorma(int current, int increasedBy);
+    void onGainNorma(int normaLevel, int increasedBy);
 
-    void onGainNormaCharge(int current, int increasedBy);
+    void onGainNormaCharge(int numerator, int increasedBy);
 }

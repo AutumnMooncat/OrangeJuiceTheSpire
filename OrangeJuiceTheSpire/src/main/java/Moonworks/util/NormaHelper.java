@@ -1,11 +1,12 @@
 package Moonworks.util;
 
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
+import Moonworks.cards.interfaces.NormaToHandObject;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.NormaPower;
 import Moonworks.util.interfaces.NormaAttentiveObject;
+import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -45,7 +46,6 @@ public class NormaHelper {
         public static SpireField<Boolean> skillsOnly = new SpireField<>(() -> Boolean.TRUE);
     }
 
-    //TODO Patch AbstractPlayer onUseCard to increase numerator if applicable
     @SpirePatch(
             clz = AbstractPlayer.class, //This is the class you're patching.
             method = "useCard" //This is the name of the method of that class that you're patching.
@@ -63,7 +63,6 @@ public class NormaHelper {
         }
     }
 
-    //TODO patch AbstractPlayer atBattleStart to apply Norma if we have a Norma card in our hand or just put that on StarB
     @SpirePatch(
             clz = AbstractPlayer.class, //This is the class you're patching.
             method = "applyStartOfCombatPreDrawLogic" //This is the name of the method of that class that you're patching.
@@ -221,16 +220,7 @@ public class NormaHelper {
             NormaVars.numerator.set(p, NormaVars.denominator.get(p)-1);
         }
         //Hack an update by changing the values by 0
-        for (AbstractRelic r : p.relics) {
-            if (r instanceof NormaAttentiveObject) {
-                ((NormaAttentiveObject) r).onGainNormaCharge(NormaVars.numerator.get(p), 0);
-            }
-        }
-        for (AbstractPower power : p.powers) {
-            if (power instanceof NormaAttentiveObject) {
-                ((NormaAttentiveObject) power).onGainNormaCharge(NormaVars.numerator.get(p), 0);
-            }
-        }
+        updateOnNormaCharge(p, 0);
     }
 
     public static void gainNormaCharge(AbstractPlayer p) {
@@ -242,27 +232,19 @@ public class NormaHelper {
         //If we passed negative charges, we don't go below 0.
         NormaVars.numerator.set(p, Math.max(0, n + i));
         checkRollover(p);
-        for (AbstractRelic r : p.relics) {
-            if (r instanceof NormaAttentiveObject) {
-                ((NormaAttentiveObject) r).onGainNormaCharge(NormaVars.numerator.get(p), i);
-            }
-        }
-        for (AbstractPower power : p.powers) {
-            if (power instanceof NormaAttentiveObject) {
-                ((NormaAttentiveObject) power).onGainNormaCharge(NormaVars.numerator.get(p), i);
-            }
-        }
+        updateOnNormaCharge(p, i);
     }
 
     public static void checkRollover(AbstractPlayer p) {
         if (NormaVars.numerator.get(p) >= NormaVars.denominator.get(p)) {
             NormaVars.numerator.set(p, NormaVars.numerator.get(p) - NormaVars.denominator.get(p));
             applyNormaPower(p);
+            checkRollover(p);
         }
     }
 
     public static void initializeNorma(AbstractPlayer p, int i) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NormaPower(p, i)));
+        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new NormaPower(p, i)));
     }
 
     public static void applyNormaPower(AbstractPlayer p) {
@@ -270,46 +252,13 @@ public class NormaHelper {
     }
 
     public static void applyNormaPower(AbstractPlayer p, int i) {
-        //First assume we dont have Norma
-        int current = 0;
-        //Then grab the power and the amount we actually have if we do have the power
-        AbstractPower pow = p.getPower(NormaPower.POWER_ID);
-        if (pow instanceof NormaPower) {
-            current = pow.amount;
-        }
-        //Ensure we wont overflow
-        i = Math.min(i, MAX_NORMA - current);
-        //Add 1 norma level at a time
-        if (i > 0) {
-            for (int j = 0 ; j < i ; j++) {
-                //Update relics
-                AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractRelic r : p.relics) {
-                            if (r instanceof NormaAttentiveObject) {
-                                ((NormaAttentiveObject) r).onGainNorma(NormaVars.numerator.get(p)+1, 1);
-                            }
-                        }
-                        this.isDone = true;
-                    }
-                });
-                //Update powers
-                AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        for (AbstractPower power : p.powers) {
-                            if (power instanceof NormaAttentiveObject) {
-                                ((NormaAttentiveObject) power).onGainNorma(NormaVars.numerator.get(p)+1, 1);
-                            }
-                        }
-                        this.isDone = true;
-                    }
-                });
-                //Actually apply the Norma level
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NormaPower(p, i)));
-            }
-        }
+        //Update all the things
+        updateOnNormaGain(p, i);
+        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new NormaPower(p, i)));
+    }
+
+    public static void applyNormaPowerNoTriggers(AbstractPlayer p, int i) {
+        AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(p, p, new NormaPower(p, i)));
     }
 
     public static int getBaseNorma(AbstractPlayer p) {
@@ -323,5 +272,84 @@ public class NormaHelper {
     }
     public static boolean getSkillsOnly(AbstractPlayer p) {
         return NormaVars.skillsOnly.get(p);
+    }
+    public static int getNormaLevel(AbstractPlayer p) {
+        return p.hasPower(NormaPower.POWER_ID) ? p.getPower(NormaPower.POWER_ID).amount : 0;
+    }
+
+    //We add i to this one because gaining Norma is an action that wont be completed before this code runs.
+    private static void updateOnNormaGain(AbstractPlayer p, int i) {
+        //Update relics
+        for (AbstractRelic r : p.relics) {
+            if (r instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) r).onGainNorma(Math.min(MAX_NORMA, getNormaLevel(p)+i), i);
+            }
+        }
+        //Update powers
+        for (AbstractPower power : p.powers) {
+            if (power instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) power).onGainNorma(Math.min(MAX_NORMA, getNormaLevel(p)+i), i);
+            }
+        }
+        //Update cards
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNorma(Math.min(MAX_NORMA, getNormaLevel(p)+i), i);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNorma(Math.min(MAX_NORMA, getNormaLevel(p)+i), i);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNorma(Math.min(MAX_NORMA, getNormaLevel(p)+i), i);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNorma(Math.min(MAX_NORMA, getNormaLevel(p)+i), i);
+            }
+        }
+        AbstractDungeon.actionManager.addToTop(new MoveCardsAction(AbstractDungeon.player.hand, AbstractDungeon.player.drawPile, c -> c instanceof NormaToHandObject, 99));
+        AbstractDungeon.actionManager.addToTop(new MoveCardsAction(AbstractDungeon.player.hand, AbstractDungeon.player.discardPile, c -> c instanceof NormaToHandObject, 99));
+        AbstractDungeon.actionManager.addToTop(new MoveCardsAction(AbstractDungeon.player.hand, AbstractDungeon.player.exhaustPile, c -> c instanceof NormaToHandObject, 99));
+    }
+    //We already updated the numerator in this case, so we don't need to add i to it.
+    private static void updateOnNormaCharge(AbstractPlayer p, int i) {
+        //Update relics
+        for (AbstractRelic r : p.relics) {
+            if (r instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) r).onGainNormaCharge(NormaVars.numerator.get(p), i);
+            }
+        }
+        //Update powers
+        for (AbstractPower power : p.powers) {
+            if (power instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) power).onGainNormaCharge(NormaVars.numerator.get(p), i);
+            }
+        }
+        //Update cards
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNormaCharge(NormaVars.numerator.get(p), i);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNormaCharge(NormaVars.numerator.get(p), i);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNormaCharge(NormaVars.numerator.get(p), i);
+            }
+        }
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            if (c instanceof NormaAttentiveObject) {
+                ((NormaAttentiveObject) c).onGainNormaCharge(NormaVars.numerator.get(p), i);
+            }
+        }
     }
 }

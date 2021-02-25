@@ -55,15 +55,14 @@ public class BlastingLightPower extends AbstractPower implements CloneablePowerI
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             this.flashWithoutSound();
             this.addToBot(new BlastingLoseHPAction(AbstractDungeon.player, this.owner, this.amount, AbstractGameAction.AttackEffect.FIRE));
-            this.amount++;
             int i = AbstractDungeon.cardRandomRng.random(1, 10);
-            if (this.amount > i) {
+            if (this.amount+1 > i) {
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));
             } else {
+                this.amount++;
                 updateDescription();
             }
         }
-
     }
 
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))

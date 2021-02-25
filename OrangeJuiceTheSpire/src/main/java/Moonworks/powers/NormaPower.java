@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
@@ -102,7 +103,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
         if (broken) {
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, getRandomString(AbstractDungeon.cardRandomRng.random(1, 1)), x, y+15.0F, this.fontScale, detC);
         } else {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(i), x, y+15.0F, this.fontScale, detC);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(i), x, y + 15F * Settings.scale, this.fontScale, detC);
         }
         //Show how close we are to the next Norma Level
         //FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.numerator), x-20, y+15, this.fontScale, detC);
@@ -129,44 +130,6 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
                 this.addToBot(new ApplyPowerAction(aM, owner, new BlastingLightPower(aM, hpLoss-artifactAmount), hpLoss-artifactAmount, true));
             }
         }
-    }
-
-    //TODO refactor this into AbstractNormaAttentiveCard by giving it an onGainNorma() hook
-    private void autoPlayLDS() {
-        //Make a map of the cards and where they came from
-        Map<LongDistanceShot, CardGroup> LDSMap = new HashMap<>();
-
-        //Find the ones that are more or less active
-        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
-            if (c instanceof LongDistanceShot) {
-                LDSMap.put((LongDistanceShot) c, AbstractDungeon.player.drawPile);
-            }
-        }
-        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
-            if (c instanceof LongDistanceShot) {
-                LDSMap.put((LongDistanceShot) c, AbstractDungeon.player.discardPile);
-            }
-        }
-        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
-            if (c instanceof LongDistanceShot) {
-                LDSMap.put((LongDistanceShot) c, AbstractDungeon.player.exhaustPile);
-            }
-        }
-
-        //Set them all to AutoPlay and move them to the hand
-        for (LongDistanceShot l : LDSMap.keySet()) {
-            //l.oldAutoPlayState = AutoplayField.autoplay.get(l);
-            //l.normaAutoPlay = true;
-            //AutoplayField.autoplay.set(l, true);
-            l.unfadeOut();
-            l.unhover();
-            l.lighten(true);
-            AbstractDungeon.player.hand.addToTop(l);
-            LDSMap.get(l).removeCard(l);
-        }
-
-        //Clear the map
-        LDSMap.clear();
     }
 
     @Override
@@ -222,7 +185,7 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
             return;
         }
         if (stackAmount > 0) {
-            autoPlayLDS();
+            //autoPlayLDS();
         }
         if(!broken) {
             //boolean flashCardsGreen = stackAmount > 0 && amount < 5; //If we are already at Norma 5, we don't want to flash the cards when we increase
@@ -277,12 +240,12 @@ public class NormaPower extends AbstractPower implements CloneablePowerInterface
     }
 
     @Override
-    public void onGainNorma(int current, int increasedBy) {
+    public void onGainNorma(int normaLevel, int increasedBy) {
         updateDescription();
     }
 
     @Override
-    public void onGainNormaCharge(int current, int increasedBy) {
+    public void onGainNormaCharge(int numerator, int increasedBy) {
         updateDescription();
     }
 }

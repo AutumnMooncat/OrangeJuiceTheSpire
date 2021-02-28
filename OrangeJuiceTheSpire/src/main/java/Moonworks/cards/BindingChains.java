@@ -31,9 +31,9 @@ public class BindingChains extends AbstractDynamicCard {
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
     //public static final String UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-    public static final String DECAYED_NAME = cardStrings.EXTENDED_DESCRIPTION[0];
-    public static final String DECAYED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[1];
-    public static final String DECAYED_USE = cardStrings.EXTENDED_DESCRIPTION[2];
+    //public static final String DECAYED_NAME = cardStrings.EXTENDED_DESCRIPTION[0];
+    //public static final String DECAYED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION[1];
+    //public static final String DECAYED_USE = cardStrings.EXTENDED_DESCRIPTION[2];
     // /TEXT DECLARATION/
 
 
@@ -45,65 +45,57 @@ public class BindingChains extends AbstractDynamicCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 1;
-    private static final int SHACKLES = 8;
-    private static final int UPGRADE_PLUS_SHACKLES = 4;
-    private static final int DEGRADE = -4;
+    private static final int SHACKLES = 6;
+    private static final int UPGRADE_PLUS_SHACKLES = 2;
 
-    private boolean decayed;
+    private static final int VULNERABLE = 1;
+    private static final int UPGRADE_PLUS_VULNERABLE = 1;
 
     // /STAT DECLARATION/
-
 
     public BindingChains() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
         this.magicNumber = this.baseMagicNumber = SHACKLES;
-        this.decayed = false;
-    }
-
-    public BindingChains(boolean decayed) {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = SHACKLES;
-        this.decayed = decayed;
-        if(decayed) {
-            this.name = DECAYED_NAME;
-            this.rawDescription = DECAYED_DESCRIPTION;
-            this.magicNumber = 0;
-            this.cost = -2;
-            this.target = CardTarget.NONE;
-            this.exhaust = true;
-        }
+        this.secondMagicNumber = this.baseSecondMagicNumber = VULNERABLE;
+        this.exhaust = true;
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(!decayed) {
-            this.addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    CardCrawlGame.sound.play("POWER_SHACKLE", 0.05F);
-                    this.isDone = true;
-                }
-            });
-            this.addToBot(new ApplyPowerAction(m, p, new TemporaryStrengthPower(m, -magicNumber)));
+        this.addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                CardCrawlGame.sound.play("POWER_SHACKLE", 0.05F);
+                this.isDone = true;
+            }
+        });
+        this.addToBot(new ApplyPowerAction(m, p, new TemporaryStrengthPower(m, -magicNumber)));
+        for (AbstractMonster aM: AbstractDungeon.getMonsters().monsters)
+        {
+            if (aM != m) {
+                this.addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        CardCrawlGame.sound.play("POWER_SHACKLE", 0.05F);
+                        this.isDone = true;
+                    }
+                });
+                this.addToBot(new ApplyPowerAction(aM, p, new TemporaryStrengthPower(aM, -magicNumber/2)));
+            }
+        }
+        this.addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, secondMagicNumber, false)));
+        if (secondMagicNumber/2 > 0) {
             for (AbstractMonster aM: AbstractDungeon.getMonsters().monsters)
             {
                 if (aM != m) {
-                    this.addToBot(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            CardCrawlGame.sound.play("POWER_SHACKLE", 0.05F);
-                            this.isDone = true;
-                        }
-                    });
-                    this.addToBot(new ApplyPowerAction(aM, p, new TemporaryStrengthPower(aM, -magicNumber/2)));
+                    this.addToBot(new ApplyPowerAction(aM, p, new VulnerablePower(aM, secondMagicNumber/2, false)));
                 }
             }
-            degrade();
         }
-
     }
 
+    /*
     private void degrade() {
         upgradeMagicNumber(DEGRADE);
         if(this.magicNumber <= 0) {
@@ -120,7 +112,7 @@ public class BindingChains extends AbstractDynamicCard {
             //this.isEthereal = true;
             this.exhaust = true;
         }
-    }
+    }*/
 
     //Upgraded stats.
     @Override
@@ -128,12 +120,8 @@ public class BindingChains extends AbstractDynamicCard {
         if (!upgraded) {
             upgradeName();
             upgradeMagicNumber(UPGRADE_PLUS_SHACKLES);
+            upgradeSecondMagicNumber(UPGRADE_PLUS_VULNERABLE);
             initializeDescription();
         }
-    }
-
-    @Override
-    public AbstractCard makeCopy() {
-        return new BindingChains(decayed);
     }
 }

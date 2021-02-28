@@ -31,7 +31,7 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
     private static final CardType TYPE = CardType.ATTACK;
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
-    private static final int COST = 1;
+    private static final int COST = 0;
 
     private static final int DAMAGE = 7;
     private static final int UPGRADE_PLUS_DAMAGE = 3;
@@ -42,6 +42,7 @@ public class RocketCannon extends AbstractNormaAttentiveCard {
 
     // /STAT DECLARATION/
 
+    //TODO test this buff
     public RocketCannon() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         this.cardsToPreview = new BigRocketCannon();

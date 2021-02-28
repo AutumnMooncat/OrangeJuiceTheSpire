@@ -1,6 +1,8 @@
 package Moonworks.powers;
 
 import basemod.interfaces.CloneablePowerInterface;
+import com.badlogic.gdx.graphics.Color;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -15,7 +17,7 @@ import Moonworks.OrangeJuiceMod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BigBangBellPower extends AbstractTrapPower implements CloneablePowerInterface {
+public class BigBangBellPower extends AbstractTrapPower implements CloneablePowerInterface, HealthBarRenderPower {
 
     public static final Logger logger = LogManager.getLogger(OrangeJuiceMod.class.getName());
 
@@ -32,6 +34,10 @@ public class BigBangBellPower extends AbstractTrapPower implements CloneablePowe
     //private static final Texture tex32 = TextureLoader.getTexture(makePowerPath("placeholder_power32.png"));
 
     private static final float MULTI = 1.5f;
+
+    private final Color hpBarColor = new Color(-65281);
+
+    private boolean queuedTrigger;
 
     public BigBangBellPower(final AbstractMonster owner, final AbstractCreature source, final int amount) {
         //logger.info("Poppo initializing on " + owner.toString());
@@ -60,8 +66,9 @@ public class BigBangBellPower extends AbstractTrapPower implements CloneablePowe
         super.onAttack(info, damageAmount, target);
         logger.info("On Attack. damageAmount: "+damageAmount+". info.output: "+info.output+". target: "+target);
         //If they deal unblocked attack damage to ANY creature
-        if (damageAmount > 0) {
+        if (damageAmount > 0 && !queuedTrigger) {
             flash();
+            queuedTrigger = true;
             this.addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
@@ -91,5 +98,15 @@ public class BigBangBellPower extends AbstractTrapPower implements CloneablePowe
     @Override
     public AbstractPower makeCopy() {
         return new BigBangBellPower(target, source, amount);
+    }
+
+    @Override
+    public int getHealthBarAmount() {
+        return amount;
+    }
+
+    @Override
+    public Color getColor() {
+        return hpBarColor;
     }
 }

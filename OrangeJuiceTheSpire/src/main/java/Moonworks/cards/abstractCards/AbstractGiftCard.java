@@ -255,6 +255,14 @@ public abstract class AbstractGiftCard extends AbstractNormaAttentiveCard {
         restoreGiftUses(gift, 0); //Just do a 0 call here since we dont both checking for non 0 anywhere, this ensures we stay at max capacity
     }
 
+    public static void bottledOrangeHelper(AbstractGiftCard gift) {
+        gift.secondMagicNumber = gift.baseSecondMagicNumber;
+        gift.checkedGolden = false; // Since we reset to base values, we want to check golden again
+        gift.modifyUses(0);
+        gift.unhover();
+        gift.unfadeOut();
+    }
+
     public static void recoverRandomExhaustedGift(int recoverAmount) {
         AbstractDungeon.actionManager.addToTop(new AbstractGameAction() {
             public void update() {

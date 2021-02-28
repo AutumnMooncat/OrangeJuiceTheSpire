@@ -24,7 +24,7 @@ public class NormaPotion extends CustomPotion {
 
     public NormaPotion() {
         // The bottle shape and inside is determined by potion size and color. The actual colors are the main DefaultMod.java
-        super(NAME, POTION_ID, PotionRarity.COMMON, PotionSize.BOTTLE, PotionColor.FIRE);
+        super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.BOTTLE, PotionColor.FIRE);
 
         // Do you throw this potion at an enemy or do you just consume it.
         isThrown = false;
@@ -40,7 +40,7 @@ public class NormaPotion extends CustomPotion {
     // This is your potency.
     @Override
     public int getPotency(final int ascensionLevel) {
-        return 2;
+        return 3;
     }
 
     @Override

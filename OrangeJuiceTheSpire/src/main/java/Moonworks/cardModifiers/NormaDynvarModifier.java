@@ -182,6 +182,12 @@ public class NormaDynvarModifier extends AbstractCardModifier {
                         bonus = allowNegatives || temp >= 0 ? temp : -Math.min(-temp, c.secondMagicNumber);
                     }
                     break;
+                case THIRDMAGICMOD:
+                    if (card instanceof AbstractModdedCard) {
+                        AbstractModdedCard c = (AbstractModdedCard) card;
+                        bonus = allowNegatives || temp >= 0 ? temp : -Math.min(-temp, c.thirdMagicNumber);
+                    }
+                    break;
                 case INVERTEDMOD:
                     if (card instanceof AbstractModdedCard) {
                         AbstractModdedCard c = (AbstractModdedCard) card;

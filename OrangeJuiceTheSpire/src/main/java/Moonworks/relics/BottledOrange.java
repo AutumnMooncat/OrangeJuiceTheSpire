@@ -1,6 +1,7 @@
 package Moonworks.relics;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cards.abstractCards.AbstractGiftCard;
 import Moonworks.cards.interfaces.NormaToHandObject;
 import Moonworks.patches.relics.BottleFields;
 import Moonworks.util.TextureLoader;
@@ -114,6 +115,11 @@ public class BottledOrange extends CustomRelic implements CustomBottleRelic, Nor
     @Override
     public void onGainNorma(int normaLevel, int increasedBy) {
         this.flash();
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            if (c instanceof AbstractGiftCard) {
+                AbstractGiftCard.bottledOrangeHelper((AbstractGiftCard) c);
+            }
+        }
         this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
         this.addToTop(new MoveCardsAction(AbstractDungeon.player.hand, AbstractDungeon.player.drawPile, c -> BottleFields.inBottledOrange.get(c) == true));
         this.addToTop(new MoveCardsAction(AbstractDungeon.player.hand, AbstractDungeon.player.discardPile, c -> BottleFields.inBottledOrange.get(c) == true));

@@ -52,6 +52,14 @@
             <systemPath>${Steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
             <!--<systemPath>${basedir}/../lib/StSLib.jar</systemPath>-->
         </dependency>
+        <dependency>
+            <groupId>com.evacipated.cardcrawl.mod</groupId>
+            <artifactId>WidePotions</artifactId>
+            <version>1.1.2</version>
+            <scope>system</scope>
+            <systemPath>${Steam.path}/workshop/content/646570/2368513093/WidePotions.jar</systemPath>
+            <!--<systemPath>${basedir}/../lib/StSLib.jar</systemPath>-->
+        </dependency>
     </dependencies>
 
 

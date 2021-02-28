@@ -12,6 +12,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.mod.widepotions.WidePotionsMod;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
@@ -489,6 +491,30 @@ public class OrangeJuiceMod implements
     
     @Override
     public void receivePostInitialize() {
+        //Add WidePotion Compatibility
+        if (Loader.isModLoaded("widepotions")) {
+
+            logger.info("Wide Potions: Detected. Shenanigans: Engaged.");
+
+            //Simple Potions
+
+            //WidePotionsMod.whitelistSimplePotion(TwoHundredPercentOrangeJuicePotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(VigorPotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(SteadyPotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(LiquidChainsPotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(NormaPotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(LubricantPotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(CrystalPotion.POTION_ID);
+            //WidePotionsMod.whitelistSimplePotion(OneHundredPercentOrangeJuicePotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(BlastingPotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(RefundPotion.POTION_ID);
+            WidePotionsMod.whitelistSimplePotion(OverloadPotion.POTION_ID);
+
+            //Complex Potions
+
+            //WidePotionsMod.whitelistComplexPotion(MyOtherPotion.POTION_ID, new WideMyOtherPotion());
+        }
+
         logger.info("Loading badge image and mod options");
         
         // Load the Mod Badge
@@ -776,7 +802,7 @@ public class OrangeJuiceMod implements
 
         // This adds a relic to the Shared pool. Every character can find this relic.
         //BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
-        
+
         // Mark relics as seen (the others are all starters so they're marked as seen in the character file
         //UnlockTracker.markRelicAsSeen(BottledPlaceholderRelic.ID);
         UnlockTracker.markRelicAsSeen(BrokenBomb.ID);

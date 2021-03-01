@@ -89,6 +89,7 @@ public class MiracleRedBeanIceCream extends AbstractGiftCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.secondMagicNumber = 0;
         this.rawDescription = this.spentDescription;
+        this.exhaust = true;
         super.use(p, m); //This will handle our update description
     }
 

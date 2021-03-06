@@ -5,23 +5,17 @@ import Moonworks.actions.HealPercentileDamageAction;
 import Moonworks.cards.abstractCards.AbstractMagicalCard;
 import Moonworks.cards.interfaces.RevengeAttack;
 import Moonworks.characters.TheStarBreaker;
-import Moonworks.powers.MeltingMemoriesPower;
-import Moonworks.powers.NormaPower;
-import com.badlogic.gdx.graphics.Color;
+import Moonworks.util.RevengeHelper;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.ExhaustiveField;
-import com.evacipated.cardcrawl.mod.stslib.variables.ExhaustiveVariable;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
@@ -59,10 +53,6 @@ public class MagicalRevenge extends AbstractMagicalCard implements RevengeAttack
 
     private static final int DEFAULT_DAMAGE = 0;
 
-    private static final Integer[] NORMA_LEVELS = {-1};
-
-    private boolean appliedRevengePower = false;
-
     // /STAT DECLARATION/
 
 
@@ -85,37 +75,18 @@ public class MagicalRevenge extends AbstractMagicalCard implements RevengeAttack
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        //Calculate damage based on missing hp
-        //int dmg = MathUtils.floor((p.maxHealth - p.currentHealth)*damage/100f);
-
         //Do the damage plus heal action
         this.addToBot(new HealPercentileDamageAction(p, m, new DamageInfo(p, secondMagicNumber, damageTypeForTurn), magicNumber, AbstractGameAction.AttackEffect.FIRE));
 
         //Regain 1 Norma
-        this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, NORMA_RECHARGE)));
+        restoreNorma();
     }
 
     @Override
     public void calculateCardDamage(AbstractMonster mo) {
         super.calculateCardDamage(mo);
-        if (RevengePower.lastAttacker == mo) {
-            damage = MathUtils.floor(damage*1.5f);
-            isDamageModified = damage != baseDamage;
-            //this.flash(Color.RED.cpy());
-            RevengeVFXContainer.flashVFX(this);
-        }
         secondMagicNumber = MathUtils.floor((AbstractDungeon.player.maxHealth - AbstractDungeon.player.currentHealth)*damage/100f);
         isSecondMagicNumberModified = secondMagicNumber != baseSecondMagicNumber;
-    }
-
-    @Override
-    public void update() {
-        if(!appliedRevengePower && AbstractDungeon.player != null) {
-            if (!AbstractDungeon.player.hasPower(RevengePower.POWER_ID)) {
-                applyRevengePower();
-            }
-        }
-        super.update();
     }
 
     //Upgraded stats.
@@ -132,14 +103,5 @@ public class MagicalRevenge extends AbstractMagicalCard implements RevengeAttack
     @Override
     public AbstractCard makeCopy() {
         return new MagicalRevenge(ExhaustiveField.ExhaustiveFields.exhaustive.get(this), ExhaustiveField.ExhaustiveFields.baseExhaustive.get(this));
-    }
-
-
-    @Override
-    public void applyRevengePower() {
-        if(!appliedRevengePower) {
-            AbstractDungeon.player.powers.add(new RevengePower(AbstractDungeon.player));
-            appliedRevengePower = true;
-        }
     }
 }

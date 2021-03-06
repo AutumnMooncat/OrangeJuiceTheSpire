@@ -89,7 +89,7 @@ public class MagicalMassacre extends AbstractMagicalCard {
         this.addToBot(new ApplyPowerAction(p, p, new SteadyPower(p, secondMagicNumber)));
 
         //Regain 1 Norma
-        this.addToBot(new ApplyPowerAction(p, p, new NormaPower(p, NORMA_RECHARGE)));
+        restoreNorma();
     }
 
     //Upgraded stats.

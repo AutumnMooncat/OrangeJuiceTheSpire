@@ -3,15 +3,12 @@ package Moonworks.cards;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.actions.ReproductionOfRecordsAction;
 import Moonworks.cardModifiers.NormaDynvarModifier;
-import Moonworks.cards.abstractCards.AbstractDynamicCard;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.defect.AggregateEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -39,7 +36,7 @@ public class ReproductionOfRecords extends AbstractNormaAttentiveCard {
 
     private static final int COST = 2;
 
-    private static final int CARDS = 2;
+    private static final int CARDS = 3;
 
     private static final Integer[] NORMA_LEVELS = {4};
 

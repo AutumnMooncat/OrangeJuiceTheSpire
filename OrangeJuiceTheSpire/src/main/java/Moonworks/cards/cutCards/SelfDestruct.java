@@ -1,16 +1,16 @@
-package Moonworks.cards;
+package Moonworks.cards.cutCards;
 
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.cards.interfaces.RangedAttack;
 import Moonworks.patches.PowerBypassHelper;
 import Moonworks.patches.RangedPatches;
+import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
-
+@AutoAdd.Ignore
 public class SelfDestruct extends AbstractNormaAttentiveCard implements RangedAttack {
 
     // TEXT DECLARATION
@@ -59,6 +59,7 @@ public class SelfDestruct extends AbstractNormaAttentiveCard implements RangedAt
 
     // /STAT DECLARATION/
 
+    //TODO new effect? Pull entirely?
     public SelfDestruct() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         //block = baseBlock = BLOCK;

@@ -52,6 +52,7 @@ public class WhiteChristsmasher extends AbstractNormaAttentiveCard {
 
     private final String NAME;
     private float fontSize = 17F;
+    private boolean flashed;
 
 
     // /STAT DECLARATION/
@@ -104,6 +105,10 @@ public class WhiteChristsmasher extends AbstractNormaAttentiveCard {
             this.loadCardImage(IMG2);
             this.rawDescription = EXTENDED_DESCRIPTION[1];
             this.name = EXTENDED_DESCRIPTION[0];
+            if (!flashed) {
+                flash();
+                flashed = true;
+            }
             //this.fontSize = 16F;
         } else {
             this.target = CardTarget.ENEMY;
@@ -112,6 +117,7 @@ public class WhiteChristsmasher extends AbstractNormaAttentiveCard {
             this.loadCardImage(IMG);
             this.rawDescription = DESCRIPTION;
             this.name = NAME;
+            flashed = false;
             //this.fontSize = 22F;
         }
     }

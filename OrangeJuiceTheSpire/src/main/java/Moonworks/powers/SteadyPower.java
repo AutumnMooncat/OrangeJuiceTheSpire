@@ -53,7 +53,7 @@ public class SteadyPower extends AbstractPower implements CloneablePowerInterfac
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.baseBlock > 0 && !(card instanceof RitualDagger)) {
             this.flash();
-            this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
+            this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));
         }
 
     }

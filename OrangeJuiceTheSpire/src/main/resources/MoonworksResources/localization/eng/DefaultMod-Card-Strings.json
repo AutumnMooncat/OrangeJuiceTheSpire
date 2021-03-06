@@ -57,8 +57,8 @@
   },
   "Moonworks:BigBangBell": {
     "NAME": "Big Bang Bell",
-    "DESCRIPTION": "The next time this target does not intend to attack, deal !M! damage. NL This damage exponentially increases every turn.",
-    "EXTENDED_DESCRIPTION": ["+5 base damage."]
+    "DESCRIPTION": "Apply !M! *Big *Bang *Bell. NL Draw this card whenever you generate a *Norma level. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["+5 base amount.","Deals damage the next time this target deals unblocked damage. NL This amount exponentially increases every turn."]
   },
   "Moonworks:BigMagnum": {
     "NAME": "Big Magnum",
@@ -67,21 +67,22 @@
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "Big Rocket Cannon",
-    "DESCRIPTION": "Deal !D! moonworks:Splash *Damage. NL Shuffle 1 *Air *Strike into your [#FFF6E2]draw pile. NL Purge.",
-    "UPGRADE_DESCRIPTION": "Deal !D! moonworks:Splash *Damage. NL Shuffle 1 *Air *Strike+ into your [#FFF6E2]draw pile. NL Purge."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Shuffle 1 *Air *Strike into your draw pile. NL Purge.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies. NL Shuffle 1 *Air *Strike+ into your draw pile. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "Binding Chains",
-    "DESCRIPTION": "Target loses !M! Strength this turn. moonworks:Splash. NL Decrease this card's effect by 4 this combat.",
+    "DESCRIPTION": "Target loses !M! Strength this turn and gains !Moonworks:SecondMagic! Vulnerable. moonworks:Splash. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Decayed Chains","The chains have decayed to almost nothingness.","I can't play this card."]
   },
   "Moonworks:Blazing": {
     "NAME": "Blazing!",
-    "DESCRIPTION": "At the start of your turn, gain !M! Strength and !Moonworks:SecondMagic! Dexterity."
+    "DESCRIPTION": "At the start of your turn, apply !M! moonworks:Blasting_Light to ALL enemies and increase this amount by !Moonworks:SecondMagic!.",
+    "EXTENDED_DESCRIPTION": [""]
   },
   "Moonworks:Bloodlust": {
     "NAME": "Bloodlust",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Take 4 damage at the beginning of your turn, but for each Attack played heal !M! HP. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon attacking, gain !M! temporary Strength for ALL attacks you make this turn.",
     "EXTENDED_DESCRIPTION": ["Your Bloodlust has subsided."]
   },
   "Moonworks:BlueCrowTheSecond": {
@@ -95,11 +96,16 @@
     "DESCRIPTION": "Lose all Block. NL Gain Vigor equal to the amount of Block lost. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Gain 5 moonworks:Steady."]
   },
+  "Moonworks:ChefSomeHelp": {
+    "NAME": "Chef, Please Help Me!",
+    "DESCRIPTION": "Deal !D! moonworks:Revenge *Damage. NL Deals double damage every !Moonworks:SecondMagic! times HP is lost this combat.",
+    "EXTENDED_DESCRIPTION": ["Manager, Please Help Me!","Deal !D! moonworks:Revenge *Damage. NL moonworks:Reset."]
+  },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "Cloud of Seagulls",
-    "DESCRIPTION": "Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random target !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush into your draw pile.",
-    "UPGRADE_DESCRIPTION": "Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random enemy !Moonworks:SecondMagic! times. NL Shuffle !M! *Jonathan *Rush+ into your draw pile.",
-    "EXTENDED_DESCRIPTION": ["Draw 1 card.","Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random target. NL Shuffle !M! *Jonathan *Rush+ into your draw pile."]
+    "DESCRIPTION": "Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random target !Moonworks:SecondMagic! times. NL Add !M! *Jonathan *Rush to your hand.",
+    "UPGRADE_DESCRIPTION": "Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random enemy !Moonworks:SecondMagic! times. NL Add !M! *Jonathan *Rush+ to your hand.",
+    "EXTENDED_DESCRIPTION": ["Draw 1 card.","Deal !Moonworks:ThirdMagic! moonworks:Fixed *Damage to a random target. NL Add !M! *Jonathan *Rush+ to your hand."]
   },
   "Moonworks:CompletionReward": {
     "NAME": "Completion Reward",
@@ -198,14 +204,14 @@
   },
   "Moonworks:Flamethrower": {
     "NAME": "Flamethrower",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !M! moonworks:Fixed *Damage to an enemy. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Upon playing a card, deal !M! moonworks:Fixed *Damage to an enemy.",
     "EXTENDED_DESCRIPTION": ["Your Flamethrower is out of fuel."]
   },
   "Moonworks:ForcedRevival": {
     "NAME": "Forced Revival",
-    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:InvertedNumber! Vulnerable. NL Exhaust.",
-    "EXTENDED_DESCRIPTION": ["Gain !Moonworks:InvertedNumber! Weak, but also twice the energy."]
+    "DESCRIPTION": "Heal !M! HP. NL Gain [E]. NL Gain !Moonworks:InvertedNumber! Weak. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Heal !M! HP. NL Gain [E] [E]. NL Gain !Moonworks:InvertedNumber! Weak. NL Exhaust.",
+    "EXTENDED_DESCRIPTION": ["-1 Weak."]
   },
   "Moonworks:FullSpeedAlicianrone": {
     "NAME": "Full Speed Alicianrone",
@@ -227,6 +233,10 @@
     "NAME": "Golden Egg",
     "DESCRIPTION": "Gain !B! Block. NL Shuffle a random *Attack into your draw pile.",
     "EXTENDED_DESCRIPTION": ["Add the card to your hand instead."]
+  },
+  "Moonworks:TrulyGoldenEgg": {
+    "NAME": "Truly Golden Egg",
+    "DESCRIPTION": "Gain !B! Block. NL Add 1 of 3 random Attack cards to your hand, it costs 0 this turn."
   },
   "Moonworks:Heat300Percent": {
     "NAME": "Heat 300%",
@@ -297,8 +307,11 @@
   },
   "Moonworks:LulusLuckyEgg": {
     "NAME": "Lulu's Lucky Egg",
-    "DESCRIPTION": "Gain !B! Block. NL Trigger 1 of 3 effects: NL Draw !M! cards. NL Gain Block !M! times instead. NL Gain !M! temporary Dexterity.",
-    "EXTENDED_DESCRIPTION": ["Lulu's Luckiest Egg", "Gain !B! Block !M! times. NL Draw !M! cards. NL Gain !M! temporary Dexterity."]
+    "DESCRIPTION": "Gain !B! Block. NL Trigger 1 of 3 effects: NL Draw !M! cards. NL Gain Block !M! times instead. NL Gain !M! temporary Dexterity."
+  },
+  "Moonworks:LulusLuckiestEgg": {
+    "NAME": "Lulu's Luckiest Egg",
+    "DESCRIPTION": "Gain !B! Block !M! times. NL Draw !M! cards. NL Gain !M! temporary Dexterity."
   },
   "Moonworks:MagicalInferno": {
     "NAME": "Magical Inferno",
@@ -328,8 +341,8 @@
   },
   "Moonworks:MetallicMonocoque": {
     "NAME": "Metallic Monocoque",
-    "DESCRIPTION": "Take !M! less *Direct damage. NL Take !Moonworks:SecondMagic! less *Indirect damage.",
-    "EXTENDED_DESCRIPTION": ["Direct vs. Indirect", "Generally speaking: NL If an enemy intends to attack you, that will be considered #yDirect damage. NL If you receive damage via thorns or self damaging cards, that will be considered #yIndirect damage."]
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Whenever you would lose HP, lose !M! less for all attacks in that turn.",
+    "EXTENDED_DESCRIPTION": ["Your monocoque is too damaged to be used."]
   },
   "Moonworks:MiracleRedBeanIceCream": {
     "NAME": "Red Bean Ice Cream",
@@ -361,9 +374,29 @@
     "DESCRIPTION": "Apply !M! moonworks:Plushie_Marks to random enemies.",
     "EXTENDED_DESCRIPTION": ["+2 Marks."]
   },
+  "Moonworks:PresentForYou": {
+    "NAME": "Present For You",
+    "DESCRIPTION": "Choose 1 effect: NL Shuffle !M! moonworks:Gift card into your draw pile. NL Shuffle !M! moonworks:Trap card into your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose 1 effect: NL Shuffle !M! moonworks:Gift cards into your draw pile. NL Shuffle !M! moonworks:Trap cards into your draw pile. NL Exhaust."
+  },
+  "Moonworks:NiceList": {
+    "NAME": "Nice List",
+    "DESCRIPTION": "Shuffle !M! moonworks:Gift card into your draw pile.",
+    "UPGRADE_DESCRIPTION": "Shuffle !M! moonworks:Gift cards into your draw pile."
+  },
+  "Moonworks:NaughtyList": {
+    "NAME": "Naughty List",
+    "DESCRIPTION": "Shuffle !M! moonworks:Trap card into your draw pile.",
+    "UPGRADE_DESCRIPTION": " Shuffle !M! moonworks:Trap cards into your draw pile."
+  },
   "Moonworks:Poppoformation": {
     "NAME": "Poppoformation",
     "DESCRIPTION": "The next !M! times each enemy makes an intent, apply Weak, Frail, or Vulnerable based on the intent."
+  },
+  "Moonworks:PoppoTheSnatcher": {
+    "NAME": "Poppo The Snatcher",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: If an enemy attempts to buff, the buff is applied to you instead.",
+    "EXTENDED_DESCRIPTION": ["Poppo is too tired for additional shenanigans."]
   },
   "Moonworks:PortablePudding": {
     "NAME": "Portable Pudding",
@@ -390,9 +423,13 @@
     "DESCRIPTION": "Convert !M! Block into moonworks:Steady.",
     "EXTENDED_DESCRIPTION": ["+4 Block Conversion and *Optimize.","Optimized","This card always converts at least #b5 #yBlock, but it will convert more, determined by your current #yBlock and the intent of your enemies."]
   },
+  "Moonworks:Rbits": {
+    "NAME": "Rbits",
+    "DESCRIPTION": "Gain !B! Block. NL Gain !M! moonworks:Steady."
+  },
   "Moonworks:RedAndBlue": {
     "NAME": "Red & Blue",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! Vigor and !M! moonworks:Steady at the beginning of your turn. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Gain !M! Vigor and !M! moonworks:Steady at the beginning of your turn.",
     "EXTENDED_DESCRIPTION": ["Red and Blue are taking a break."]
   },
   "Moonworks:ReflectiveShell": {
@@ -449,7 +486,7 @@
   },
   "Moonworks:SinkOrSwim": {
     "NAME": "Sink Or Swim",
-    "DESCRIPTION": "Gain [E] [E] at the start of every turn. NL Gain 1 Vulnerable, Weak, and Frail for the next !Moonworks:SecondMagic! turns."
+    "DESCRIPTION": "Gain [E] [E] at the start of every turn. NL Gain !Moonworks:SecondMagic! Weak and Frail."
   },
   "Moonworks:StarBlastingFuse": {
     "NAME": "Star Blasting Fuse",
@@ -478,8 +515,8 @@
   },
   "Moonworks:SweetBattle": {
     "NAME": "Sweet Battle",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP. NL On Play: Discard.",
-    "UPGRADE_DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP.",
+    "UPGRADE_DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP.",
     "EXTENDED_DESCRIPTION": ["Your sugar rush has faded."]
   },
   "Moonworks:TacticalRetreat": {
@@ -496,9 +533,14 @@
     "NAME": "Ubiquitous",
     "DESCRIPTION": "Hey! How did you get this card? NL It doesn't do anything good, that's for sure..."
   },
+  "Moonworks:UnforgivingAvenger": {
+    "NAME": "Unforgiving Avenger",
+    "DESCRIPTION": "Deal !D! moonworks:Revenge *Damage. NL Apply !M! Weak.",
+    "EXTENDED_DESCRIPTION": ["+2 damage."]
+  },
   "Moonworks:UnluckyCharm": {
     "NAME": "Unlucky Charm",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: ALL targets lose !Moonworks:InvertedNumber! temporary Dexterity. NL On Exhaust: Gain !M! Dexterity. NL This card can not be discarded by playing it.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL In Hand: Any debuffs applied to you are applied to ALL enemies.",
     "EXTENDED_DESCRIPTION": ["You are feeling a little luckier without this around."]
   },
   "Moonworks:UnpaidWork": {
@@ -531,7 +573,7 @@
   },
   "Moonworks:WindyEnchantment": {
     "NAME": "Windy Enchantment",
-    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Draw !M! card. NL On Play: Discard.",
+    "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw: Draw 2 cards. NL On Retain: Draw !M! card.",
     "EXTENDED_DESCRIPTION": ["Your tailwind has diminished."]
   },
   "Moonworks:x16BigRocket": {

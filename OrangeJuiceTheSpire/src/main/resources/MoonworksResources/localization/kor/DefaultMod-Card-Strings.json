@@ -2,7 +2,9 @@
   "Moonworks:Accelerator": {
     "NAME": "액셀러레이터",
     "DESCRIPTION": "*액셀러레이터 를 !M! 얻습니다.",
-    "EXTENDED_DESCRIPTION": ["액셀러레이터", "전투 중에 카드를 생성할 때 마다 그 카드를 1 장 추가로 생성합니다. NL #y상태이상, #y저주, 혹은 #y매지컬 카드에는 적용되지 않습니다. ","가능하다면, 추가로 [E] 를 사용하여 복사한 모든 카드를 강화합니다."]
+    "EXTENDED_DESCRIPTION": ["액셀러레이터", "전투 중에 카드를 생성할 때 마다, 그 카드를 한 장 복사합니다. NL #y상태이상, #y저주, 혹은 #y매지컬 카드에는 적용되지 않습니다.",
+      "선택사항: [E] 를 소모하여 복사한 모든 카드를 강화할 수 있습니다.",
+      "Gain !M! *액셀러레이터."," [E] 를 소모합니다. NL *액셀러레이터 를 !M! 얻습니다. NL 전투 중에 카드를 생성할 때 마다, 그 카드를 강화합니다."]
   },
   "Moonworks:AccelHyper": {
     "NAME": "액셀 하이퍼",
@@ -61,11 +63,12 @@
   "Moonworks:BigMagnum": {
     "NAME": "빅 매그넘",
     "DESCRIPTION": "체력을 !Moonworks:InvertedNumber! 잃습니다. NL 활력 을 !M! 얻습니다. NL 힘 을 !Moonworks:SecondMagic! 얻습니다. NL 소멸.",
-    "EXTENDED_DESCRIPTION": ["힘 을 추가로 X 얻습니다.","비빅 매그넘","비비빅 매그넘"]
+    "EXTENDED_DESCRIPTION": ["얻는 힘과 잃는 체력이 X 증가합니다.","비빅 매그넘","비비빅 매그넘"]
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "빅 로켓포",
-    "DESCRIPTION": "moonworks:확산 *피해 를 !D! 줍니다. NL *공중 *폭격 한 장을 [#FFF6E2]뽑을 카드 더미에 섞어 넣습니다. NL Purge."
+    "DESCRIPTION": "moonworks:확산 *피해 를 !D! 줍니다. NL *공중 *폭격 한 장을 [#FFF6E2]뽑을 카드 더미에 섞어 넣습니다. NL Purge.",
+    "UPGRADE_DESCRIPTION": "moonworks:확산 *피해 를 !D! 줍니다. NL 강화된 *공중 *폭격 한 장을 뽑을 드 더미에 섞어 넣습니다. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "속박의 사슬",
@@ -136,7 +139,7 @@
   "Moonworks:DeployBits": {
     "NAME": "비트 전개",
     "DESCRIPTION": "총 !Moonworks:SecondMagic! 의 방어도 와 활력 을 무작위로 분배하여 얻습니다.",
-    "EXTENDED_DESCRIPTION": ["비트가 3개 감소하지만 비트 분배가 moonworks:최적화 됩니다."]
+    "EXTENDED_DESCRIPTION": ["비트 분배가 moonworks:최적화 됩니다."]
   },
   "Moonworks:DesperateModification": {
     "NAME": "막장 개조",
@@ -184,8 +187,8 @@
     "DESCRIPTION": "피해를 !D! 만큼 X 회 줍니다. 이 카드는 힘 을 !Moonworks:SecondMagic! 배로 적용받습니다."
   },
   "Moonworks:ExtraordinarySpecs": {
-    "NAME": "Extraordinary Specs",
-    "DESCRIPTION": "Gain !M! temporary Strength and Dexterity. NL Draw !Moonworks:SecondMagic! card. NL Exhaust."
+    "NAME": "비범한 성능",
+    "DESCRIPTION": "임시 힘 과 민첩 을 !M! 얻습니다. NL 카드를 !Moonworks:SecondMagic! 장 뽑습니다. NL 소멸."
   },
   "Moonworks:FinalBattle": {
     "NAME": "파이널 배틀",
@@ -227,6 +230,10 @@
     "DESCRIPTION": "방어도 를 !B! 얻습니다. NL 무작위 *공격 카드를 뽑을 카드 더미에 섞어 넣습니다.",
     "EXTENDED_DESCRIPTION": ["카드를 섞는 대신 손에 가져옵니다."]
   },
+  "Moonworks:TrulyGoldenEgg": {
+    "NAME": "Truly Golden Egg",
+    "DESCRIPTION": "Gain !B! Block. NL Add 1 of 3 random Attack cards to your hand, it costs 0 this turn."
+  },
   "Moonworks:Heat300Percent": {
     "NAME": "히트 300%",
     "DESCRIPTION": "moonworks:오버히트 를 !M! 부여합니다. NL 소멸.",
@@ -234,9 +241,9 @@
   },
   "Moonworks:HolyNight": {
     "NAME": "거룩한 밤",
-    "DESCRIPTION": "턴 시작시, 카드를 !M! 장 추가로 뽑습니다.",
-    "UPGRADE_DESCRIPTION": "선천성. NL 턴 시작시, 카드를 !M! 장 추가로 뽑습니다.",
-    "EXTENDED_DESCRIPTION": ["가능하다면, 추가로 [E] 를 사용하며 효과를 두배로 강화합니다."]
+    "DESCRIPTION": "턴 마다 한 번, [E] 를 소모하여 카드를 2 장 뽑을 수 있습니다.",
+    "UPGRADE_DESCRIPTION": "선천성. NL 턴 마다 한 번, [E] 를 사용하여 카드를 2 장 뽑을 수 있습니다.",
+    "EXTENDED_DESCRIPTION": ["횟수 제한이 사라집니다."]
   },
   "Moonworks:ImmovableObject": {
     "NAME": "움직일 수 없는 물체",
@@ -262,16 +269,17 @@
     "UPGRADE_DESCRIPTION": "Autoplay. NL 무작위 적에게 피해를 !D! 줍니다. NL 이번 전투 동안 모든 *조나단 *러쉬 의 피해가 !M! 증가합니다."
   },
   "Moonworks:LeapThroughSpacetime": {
-    "NAME": "Leap Through Spacetime",
-    "DESCRIPTION": "Choose 1: NL Leap Through Space. NL Leap Through Time."
+    "NAME": "시공간도약",
+    "DESCRIPTION": "하나 선택: NL 다음 턴의 *에너지 를 빌려옵니다. NL 다음 턴의 *카드 를 빌려옵니다.",
+    "EXTENDED_DESCRIPTION": ["뛰어 넘는거야..."," 공간을!"," 시간을!"]
   },
   "Moonworks:LeapThroughSpace": {
-    "NAME": "Leap Through Space",
-    "DESCRIPTION": "You can see what cards you will draw next turn. You may freely add any to your hand, at the cost of 1 less draw next turn."
+    "NAME": "공간도약",
+    "DESCRIPTION": "다음 턴에 뽑을 카드를 볼 수 있습니다. 그 카드들을 원하는 만큼 손에 가져올 수 있지만, 그럴 때 마다 다음 턴에 뽑는 카드가 한 장씩 줄어듭니다."
   },
   "Moonworks:LeapThroughTime": {
-    "NAME": "Leap Through Time",
-    "DESCRIPTION": "You can see the next intents for ALL enemies."
+    "NAME": "시간도약",
+    "DESCRIPTION": "미래에서 [E] 를 빌려오지만, 다음 턴 시작시 [E] 를 1 적게 얻습니다."
   },
   "Moonworks:LongDistanceShot": {
     "NAME": "원거리 사격",
@@ -287,6 +295,10 @@
   "Moonworks:LulusLuckyEgg": {
     "NAME": "룰루의 럭키 에그",
     "DESCRIPTION": "방어도를 !B! 얻습니다. NL 다음 세 효과중 하나가 무작위로 발동합니다 NL 카드를 !M! 장 뽑습니다. NL 이제 방어도를 !M! 회 얻습니다. NL 임시 민첩 을 !M! 얻습니다."
+  },
+  "Moonworks:LulusLuckiestEgg": {
+    "NAME": "룰루의 초럭키 에그",
+    "DESCRIPTION": "방어도 를 !B! 얻습니다. NL 카드를 !M! 장 뽑습니다. NL 방어도 를 !M! 번 얻습니다. NL 임시 민첩 을 !M! 얻습니다."
   },
   "Moonworks:MagicalInferno": {
     "NAME": "매지컬 인페르노",
@@ -374,9 +386,9 @@
     "EXTENDED_DESCRIPTION": ["얻는 힘 이 2배가 됩니다."]
   },
   "Moonworks:RainbowColoredCircle": {
-    "NAME": "Rainbow-Colored Circle",
-    "DESCRIPTION": "Convert !M! Block into moonworks:Steady.",
-    "EXTENDED_DESCRIPTION": ["+4 Block Conversion and *Optimize.","Optimized","This card always converts at least #b5 #yBlock, but it will convert more, determined by your current #yBlock and the intent of your enemies."]
+    "NAME": "무지갯빛 원",
+    "DESCRIPTION": "방어도 를 !M! 만큼 moonworks:굳건함 으로 변환합니다.",
+    "EXTENDED_DESCRIPTION": ["변환하는 방어도 가 4 증가하고 *최적화 됩니다.","최적화됨","사용 시 적어도 5의 방어도 는 변환하지만, 현재 방어도 와 상대의 의도에 따라 변환하는 방어도 가 증가합니다."]
   },
   "Moonworks:RedAndBlue": {
     "NAME": "아카와 아오",
@@ -400,12 +412,13 @@
   "Moonworks:RocketCannon": {
     "NAME": "로켓포",
     "DESCRIPTION": "피해를 !D! 줍니다. NL *빅 *로켓포 !M! 장을 뽑을 카드 더미에 섞어넣습니다.",
+    "UPGRADE_DESCRIPTION": "피해를 !D! 줍니다. NL 강화된 *빅 *로켓포 !M! 장을 뽑을 카드 더미에 섞어 넣습니다.",
     "EXTENDED_DESCRIPTION": ["*빅 *로켓포 를 한 장 추가로 섞어넣습니다."]
   },
   "Moonworks:SakisCookie": {
     "NAME": "사키의 쿠키",
-    "DESCRIPTION": "다음 세 효과중 하나가 무작위로 발동합니다: NL 체력을 !M! 회복합니다. NL 활력 을 !Moonworks:ThirdMagic! 얻습니다. NL moonworks:굳건함 을 !Moonworks:ThirdMagic! 얻습니다.",
-    "EXTENDED_DESCRIPTION": ["효과가 *최적화 됩니다","최적화된 쿠키","잃은 체력이 있으면 항상 체력을 회복합니다. NL 적이 공격할 의도가 있고 손에 방어도 를 얻는 카드가 있다면 활력 대신 굳건함 을 얻습니다."]
+    "DESCRIPTION": "체력을 !M! 회복합니다. NL 소멸.",
+    "EXTENDED_DESCRIPTION": ["카드를 한 장 뽑습니다.."]
   },
   "Moonworks:ScrambledEve": {
     "NAME": "스크램블드 이브",
@@ -451,8 +464,8 @@
   },
   "Moonworks:StiffCrystal": {
     "NAME": "견고한 수정",
-    "DESCRIPTION": "인공물 을 !M! 얻습니다. NL 방어도 를 !B! 얻습니다. NL 소멸.",
-    "EXTENDED_DESCRIPTION": ["방어도 가 4 증가합니다."]
+    "DESCRIPTION": "!M! moonworks:수정화 를 !M! 얻습니다. NL 방어도 를 !B! 얻습니다. NL 소멸.",
+    "EXTENDED_DESCRIPTION": ["얻는 방어도 가 4 증가합니다."]
   },
   "Moonworks:Strike": {
     "NAME": "타격",
@@ -465,7 +478,7 @@
   },
   "Moonworks:SweetBattle": {
     "NAME": "스위트 배틀!",
-    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 이 카드를 뽑거나 보존 시, 뽑을 카드 더미에 *사키의 *쿠키 1 장을 섞어넣습니다. NL *사키의 *쿠키 의 효과가 2 증가하고, moonworks:자동소모 됩니다. NL 사용 시 이 카드를 버립니다.",
+    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 이 카드를 뽑거나 보존할 시, 체력을 !M! 회복합니다.. NL 사용 시 이 카드를 버립니다.",
     "EXTENDED_DESCRIPTION": ["당이 떨어졌습니다."]
   },
   "Moonworks:TacticalRetreat": {
@@ -475,8 +488,8 @@
   },
   "Moonworks:TreasureThief": {
     "NAME": "보물 도둑",
-    "DESCRIPTION": "턴 마다 한 번, 대상에게 피해를 줄 때 마다 카드를 !M! 장 뽑습니다. NL 소멸.",
-    "EXTENDED_DESCRIPTION": ["턴 마다 한 번, 대상에게 피해를 줄 때 마다 50% 확률로 카드를 한 장 더 뽑습니다."]
+    "DESCRIPTION": "턴 마다 한 번, 대상에게 피해를 줄 때 마다 카드를 1 장 뽑습니다. NL 소멸.",
+    "EXTENDED_DESCRIPTION": ["효과가 턴마다 두 번 발동합니다."]
   },
   "Moonworks:Ubiquitous": {
     "NAME": "신출귀몰",

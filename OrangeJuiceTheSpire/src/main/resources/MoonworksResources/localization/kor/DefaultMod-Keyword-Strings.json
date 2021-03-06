@@ -292,6 +292,13 @@
       "라이벌",
       "rival"
     ],
-    "DESCRIPTION": "Attacks against your Rival deal #b10% additional damage. Increases by #b10% if your Rival attacked you last turn."
+    "DESCRIPTION": "공격이 라이벌 상대로 10%의 추가 피해를 줍니다. 이전 턴에 라이벌에게 공격받았을 경우, 효과가 10% 증가합니다."
+  },
+  {
+    "NAMES": [
+      "수정화",
+      "crystallize"
+    ],
+    "DESCRIPTION": "해로운 효과를 한 번 무효화합니다. 이 효과가 발동되면 다음 턴 시작 시 방어도가 사라지지 않습니다."
   }
 ]

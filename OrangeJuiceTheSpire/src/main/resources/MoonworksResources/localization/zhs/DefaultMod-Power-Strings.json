@@ -5,7 +5,7 @@
         },
         "Moonworks:Heat300PercentPower": {
                 "NAME": "热度300%",
-                "DESCRIPTIONS": ["移除所有的格挡在下 #b", " 次获得格挡时.", " 次获得格挡时."]
+                "DESCRIPTIONS": ["下 #b", " 个回合..."," 个回合..."," NL 攻击该目标将 #y穿透 . NL 如果目标没有 #b格挡 , 攻击造成额外 #b","% 伤害."]
         },
         "Moonworks:FreeCardPower": {
                 "NAME": "回馈卡牌",
@@ -60,7 +60,7 @@
         },
         "Moonworks:BigBangBellPower": {
                 "NAME": "大爆炸铃",
-                "DESCRIPTIONS": ["在下次目标意图不是攻击时, 造成 #b", " 点伤害. 该伤害每回合增加直到被触发."]
+                "DESCRIPTIONS": ["在目标下次造成未被格挡的伤害时, 受到 #b", " 点伤害. 伤害数值每回合增加直到被触发."]
         },
         "Moonworks:WantedPower": {
                 "NAME": "被通缉",
@@ -68,11 +68,12 @@
         },
         "Moonworks:BlazingPower": {
                 "NAME": "爆燃!",
-                "DESCRIPTIONS": ["在你的回合开始时, 获得 #b"," 点 力量 并失去 #b"," 点 敏捷."]
+                "DESCRIPTIONS": ["在你的回合开始时, 给予 #b"," #y烧毁星球之光 对所有敌人并提高数值 #b","."]
         },
         "Moonworks:NormaPower": {
                 "NAME": "Norma",
-                "DESCRIPTIONS": ["Norma 等级使某些卡拥有额外效果，最高可达到 Norma 5.", "...你做了什么?"]
+                "DESCRIPTIONS": ["Norma等级会给予一些卡牌额外效果，最高可以升到5级.", "...你做了什么?",
+                        " NL 获得 #b1 Norma 在打出 #b"," 张技能."," 张技能."," 牌."," 牌."]
         },
         "Moonworks:SteadyPower": {
                 "NAME": "稳固",
@@ -109,5 +110,59 @@
         "Moonworks:ProtagonistsPrivilegePower": {
                 "NAME": "主角的特权",
                 "DESCRIPTIONS": ["在你的回合开始时, 造成 #b"," 点伤害并且抽 #b"," 张卡. 如果两张牌是同类型的牌, 在下回合重复本张牌的 #效果 ."]
+        },
+        "Moonworks:NormaGainPower": {
+                "NAME": "获得Norma",
+                "DESCRIPTIONS": ["在你的回合开始时, 获得 #b1 层Norma."]
+        },
+        "Moonworks:MeltingMemoriesPower": {
+                "NAME": "Magical Quill",
+                "DESCRIPTIONS": ["The first card you play each turn is converted into a #yMemory.",
+                        "The first #b", " cards you play each turn are converted into #yMemories.",
+                        "The converted cards will be #yupgraded."]
+        },
+        "Moonworks:BookOfMemoriesPower": {
+                "NAME": "Book of Memories",
+                "DESCRIPTIONS": ["Play the #yeffect of an active #yMemory when you play a card of the same type.",
+                        " NL There are no #yMemories in play. ",
+                        " NL  NL Click to view a list of all #yMemories.",
+                        ": Ready",
+                        ": Exhausted",
+                        ": Cooldown: ",
+                        ", Uses: ",
+                        "Memory of ", "An active moonworks:Memory. NL ","A forgotten moonworks:Memory. NL ",
+                        "moonworks:Memory Cooldown: ",". NL ",
+                        "Viewing Memory List."]
+        },
+        "Moonworks:ImmobilePower": {
+                "NAME": "Immobile",
+                "DESCRIPTIONS": ["Block is not removed at the start of your turn, but you may only play #yAttack cards if they are #yRanged.", "I can only play Ranged attacks!"]
+        },
+        "Moonworks:RivalPower": {
+                "NAME": "Rival",
+                "DESCRIPTIONS": [" is your #yRival. NL Attacks against your #yRival deal #b", "% additional damage. This amount increases by #b","% if your Rival attacked you last turn."]
+        },
+        "Moonworks:WhimsicalWindmillPower": {
+                "NAME": "Whimsical Windmill",
+                "DESCRIPTIONS": ["At the beginning of your turn, gain #b"," energy for each enemy who attacked you last turn.",
+                        " NL You will currently gain #b"," energy next turn."]
+        },
+        "Moonworks:LeapThroughSpacePower": {
+                "NAME": "Leap Through Space",
+                "DESCRIPTIONS": ["Click to view what cards you will draw next turn. NL  NL You may add any to your current hand at the cost of #b1 less draw next turn per card added this way.",
+                        "Viewing cards that will be drawn next turn. You may select any to add to your hand.",
+                        " NL You will draw #b"," less card next turn."," less cards next turn."]
+        },
+        "Moonworks:LeapThroughTimePower": {
+                "NAME": "Leap Through Time",
+                "DESCRIPTIONS": ["Click to borrow energy from your next turn."," NL  NL You will start next turn with #b"," less energy."]
+        },
+        "Moonworks:HolyNightPower": {
+                "NAME": "Holy Night",
+                "DESCRIPTIONS": ["Click to spend #b1 energy and draw #b2 cards. NL  NL Uses remaining this turn: #b",".","unlimited."]
+        },
+        "Moonworks:CrystallizePower": {
+                "NAME": "结晶",
+                "DESCRIPTIONS": ["去除 #b"," 个debuff."," 个debuff."," 每去除一个debuff下一个回合开始时格挡不会消失."]
         }
 }

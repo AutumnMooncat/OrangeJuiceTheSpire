@@ -42,16 +42,14 @@
     "NAME": "坏掉的炸弹",
     "FLAVOR": "这个看起来很危险。",
     "DESCRIPTIONS": [
-      "每打出 #b10 张 #y技能牌 ，提高你的 #ymoonworks:Norma 等级 #b1 级并且将 #b1张 #y烧毁星球之光 加入你的手牌。",
-      "是时候说再见了。"
+      "加入 #b1 张 #y烧毁星球之光 到你的手牌每当 #ymoonworks:Norma 等级提升. NL 提示: 默认情况下, 每打出 #b10 张 #y技能牌 提升 #yNorma  #b1 级."
     ]
   },
   "Moonworks:SBBomb": {
     "NAME": "星破炸弹",
     "FLAVOR": "不要乱丢它。",
     "DESCRIPTIONS": [
-      "每打出 #b12 张卡牌，提高 #ymoonworks:Norma 等级 #b1 级并且将 #b1 #y烧毁星球之光 加入你的手牌。",
-      "是时候说再见了。"
+      "加入 #b1 张 #y烧毁星球之光 到你的手牌每当 #ymoonworks:Norma 等级提升. NL 每打出 #b12 张 #y卡牌 提升 #yNorma 等级 #b1 级."
     ]
   },
 
@@ -69,39 +67,105 @@
     "DESCRIPTIONS": [
       "每场战斗开始时拥有 #yNorma #b",". 在战斗外右击它可以花费 #b"," #y金币永久提高一级效果，最高可以到 #b5 级。"
     ]
-  },"Moonworks:HealPanel": {
-  "NAME": "Heal Panel",
-  "FLAVOR": "Recommended by 0 out of 1 doctors wearing lab coats. NL Part 1 of a series, can you collect them all?",
-  "DESCRIPTIONS": [
-    "Whenever you gain a #ymoonworks:Norma level, heal #b1 HP."
-  ]
-},
-  "Moonworks:BonusPanel": {
-    "NAME": "Panel Panel",
-    "FLAVOR": "Tiny, but stars are stars. NL Part 2 of a series, can you collect them all?",
+  },
+  "Moonworks:HealPanel": {
+    "NAME": "治疗格",
+    "FLAVOR": "由1位中的0位穿白大褂的医生推荐. 套装的第一部分, 你能集齐它们吗?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, gain #b1 energy."
+      "当你提升 #ymoonworks:Norma 等级时, 回复 #b1 点生命."
+    ]
+  },
+  "Moonworks:BonusPanel": {
+    "NAME": "奖励格",
+    "FLAVOR": "很少, 但能多一点星是一点. 套装的第二部分, 你能集齐它们吗?",
+    "DESCRIPTIONS": [
+      "当你提升 #ymoonworks:Norma 等级时, 获得 #b1 点能量."
     ]
   },
   "Moonworks:DrawPanel": {
-    "NAME": "Draw Panel",
-    "FLAVOR": "Imagine only being able to hold 3 cards in your hand... NL Part 3 of a series, can you collect them all?",
+    "NAME": "抽卡格",
+    "FLAVOR": "想像一下你的手牌最多只能有3张牌... 套装的第三部分, 你能集齐它们吗?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, draw #b1 card."
+      "当你提升 #ymoonworks:Norma 等级时, 抽 #b1 张牌."
     ]
   },
   "Moonworks:DamagePanel": {
-    "NAME": "Damage Panel",
-    "FLAVOR": "Ouch! What did I just step on? NL Part 4 of a series, can you collect them all?",
+    "NAME": "伤害格",
+    "FLAVOR": "好痛! 为什么我正好停在这? 套装的第四部分, 你能集齐它们吗?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, deal #b7 damage to ALL enemies."
+      "当你提升 #ymoonworks:Norma 等级, 造成 #b7 点伤害对所有敌人."
     ]
   },
   "Moonworks:HomePanel": {
-    "NAME": "Home Panel",
-    "FLAVOR": "If you get homesick, just step on it. NL The final panel, at last!",
+    "NAME": "自家格",
+    "FLAVOR": "当你想家时,就停在它上面. 套装的第五部分, 你能集齐它们吗?",
     "DESCRIPTIONS": [
-      "Doubles the effectiveness of all other Panels."
+      " #ymoonworks:Norma 等级提升需求减少 #b2 张牌."
+    ]
+  },
+  "Moonworks:NeutralPanel": {
+    "NAME": "空地",
+    "FLAVOR": "它一无所有, 只是单纯地充满潜力.",
+    "DESCRIPTIONS": [
+      "复制一个你拥有的格子遗物的效果. 右击改变效果."," 当前复制的效果是 ","."
+    ]
+  },
+  "Moonworks:OverturnedCard": {
+    "NAME": "撤回卡",
+    "FLAVOR": "会是张什么牌呢?",
+    "DESCRIPTIONS": [
+      "获得该遗物时, 从你的牌库中移除一张牌. 当你提升 #yNorma 等级时, 将这张卡的复制加入手牌."
+    ]
+  },
+  "Moonworks:BottledOrange": {
+    "NAME": "瓶装橙汁",
+    "FLAVOR": "100%鲜橙汁. 榨汁机单独售卖.",
+    "DESCRIPTIONS": [
+      "获得该遗物时, 选择一张牌. 每当你提高 #ymoonworks:Norma , 将这张牌放入手牌.",
+      "选择一张牌 ",
+      "每当你提高 #ymoonworks:Norma , 将 "," 放入手牌,"
+    ]
+  },
+  "Moonworks:FleetingButterfly": {
+    "NAME": "稍纵即逝的蝴蝶",
+    "FLAVOR": "照一张相, 让此刻成为永恒.",
+    "DESCRIPTIONS": [
+      "将每场战斗中打出的第一张牌转变为 #ymoonworks:记忆 ."
+    ]
+  },
+  "Moonworks:Searchlight": {
+    "NAME": "探照灯",
+    "FLAVOR": "它能照亮一切.",
+    "DESCRIPTIONS": [
+      "在每场战斗开始时, 给予 #b2 层 #ymoonworks:过热 给生命值最高的敌人."
+    ]
+  },
+  "Moonworks:SpareBit": {
+    "NAME": "闲置(Spare)阵型",
+    "FLAVOR": "不要错认成正弦(Sign)阵型.",
+    "DESCRIPTIONS": [
+      "获得该遗物时, 获得 #b2 张 #y浮游炮展开 . 每打出一张 #y浮游炮展开 会提高 #b2 点数值在一场战斗中."
+    ]
+  },
+  "Moonworks:StrangePresent": {
+    "NAME": "奇怪的礼物",
+    "FLAVOR": "\"我想知道里面有啥?\"",
+    "DESCRIPTIONS": [
+      "在第 #b5 回合结束时, 给予 #b4 层 #y易伤 和 #y虚弱 给所有敌人."
+    ]
+  },
+  "Moonworks:ScorchingSun": {
+    "NAME": "炽热的太阳",
+    "FLAVOR": "警告: 高温 .",
+    "DESCRIPTIONS": [
+      "当攻击牌造成未被格挡的伤害时, 给予 #b1 层 #ymoonworks:烧毁星球之光 ."
+    ]
+  },
+  "Moonworks:TrulyGoldenEgg": {
+    "NAME": "一个真正的金蛋",
+    "FLAVOR": "它万里挑一.",
+    "DESCRIPTIONS": [
+      "获得该遗物时, 得到两张拥有更强大效果的独特卡牌 #y露露的超幸运蛋 和 #y金蛋 ."
     ]
   }
 }

@@ -42,16 +42,14 @@
     "NAME": "망가진 폭탄",
     "FLAVOR": "위험해보여요.",
     "DESCRIPTIONS": [
-      "#b10 번 째로 사용하는 #y스킬카드 가 #y노르마 를 #b1 증가시키고 #y별을 #y불태우는 #y빛 을 손에 #b1 장 가져옵니다.",
-      "작별이야."
+      "#ymoonworks:노르마 레벨이 오를 때 마다 #y별을 #y불태우는 #y빛 #b1 장을 손에 가져옵니다. NL 참고: 기본적으로, #y스킬 카드를 #b10 #b장 사용할 때 마다 #y노르마 가 #b1 레벨 오릅니다."
     ]
   },
   "Moonworks:SBBomb": {
     "NAME": "스타부 폭탄",
     "FLAVOR": "떨어트리지 마세요.",
     "DESCRIPTIONS": [
-      "#b12번째 로 사용하는 카드가 #y노르마 를 #b1 증가시키고 #y별을 #y불태우는 #y빛 #b1 장을 손에 가져옵니다.",
-      "작별이야."
+      "#ymoonworks:노르마 레벨이 오를 때 마다 #y별을 #y불태우는 #y빛 #b1 장을 손에 가져옵니다. NL 이제 아무 #y카드 를 #b12 #b장 사용할 때 마다 #y노르마 가 #b1 레벨 오릅니다."
     ]
   },
   "Moonworks:GoldenDie": {
@@ -67,39 +65,103 @@
     "DESCRIPTIONS": [
       "#y노르마 #b"," 레벨로 전투를 시작합니다. 전투 중이 아닐때 우클릭 하여 #b"," #y골드를 소모하고 영구적으로 레벨을 #b1 증가시켜, 최대 #b5 까지 증가시킵니다."
     ]
-  },"Moonworks:HealPanel": {
-  "NAME": "Heal Panel",
-  "FLAVOR": "Recommended by 0 out of 1 doctors wearing lab coats. NL Part 1 of a series, can you collect them all?",
-  "DESCRIPTIONS": [
-    "Whenever you gain a #ymoonworks:Norma level, heal #b1 HP."
+  },
+  "Moonworks:HealPanel": {
+    "NAME": "힐 패널",
+    "FLAVOR": "실험 가운을 입은 의사 한 명만 빼고, 누구에게나 추천되는 패널입니다. 시리즈의 첫 번 째입니다, 모두 모을 수 있을까요?",
+    "DESCRIPTIONS": [
+      "#ymoonworks:노르마 레벨이 오를 때 마다 체력을 #b1 회복합니다."
   ]
 },
   "Moonworks:BonusPanel": {
-    "NAME": "Panel Panel",
-    "FLAVOR": "Tiny, but stars are stars. NL Part 2 of a series, can you collect them all?",
+    "NAME": "보너스 패널",
+    "FLAVOR": "적긴 하지만, 스타는 스타니까요. 시리즈의 두 번 째입니다, 모두 모을 수 있을까요?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, gain #b1 energy."
+      "#ymoonworks:노르마 레벨이 오를 때 마다 에너지를 #b1 얻습니다."
     ]
   },
   "Moonworks:DrawPanel": {
-    "NAME": "Draw Panel",
-    "FLAVOR": "Imagine only being able to hold 3 cards in your hand... NL Part 3 of a series, can you collect them all?",
+    "NAME": "드로우 패널",
+    "FLAVOR": "손에 카드를 3 장 까지만 들 수 있었다면 어땠을지 생각해보세요... 시리즈의 세 번 째입니다, 모두 모을 수 있을까요?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, draw #b1 card."
+      "#ymoonworks:노르마 레벨이 오를 때 마다 카드를 #b1 장 뽑습니다."
     ]
   },
   "Moonworks:DamagePanel": {
-    "NAME": "Damage Panel",
-    "FLAVOR": "Ouch! What did I just step on? NL Part 4 of a series, can you collect them all?",
+    "NAME": "데미지 패널",
+    "FLAVOR": "아야! 제가 뭘 밟은거죠? 시리즈의 네 번 째입니다, 모두 모을 수 있을까요?",
     "DESCRIPTIONS": [
-      "Whenever you gain a #ymoonworks:Norma level, deal #b7 damage to ALL enemies."
+      "#ymoonworks:노르마 레벨이 오를 때 마다 적 전체에게 피해를 #b7 줍니다."
     ]
   },
   "Moonworks:HomePanel": {
-    "NAME": "Home Panel",
-    "FLAVOR": "If you get homesick, just step on it. NL The final panel, at last!",
+    "NAME": "홈 패널",
+    "FLAVOR": "집에 가고싶어지면, 이걸 밟으세요. 시리즈의 다섯 번 째입니다, 모두 모을 수 있을까요?",
     "DESCRIPTIONS": [
-      "Doubles the effectiveness of all other Panels."
+      "#ymoonworks:노르마 레벨을 올리기 위해 사용해야 하는 카드가 #b2 장 줄어듭니다."
+    ]
+  },
+  "Moonworks:NeutralPanel": {
+    "NAME": "성무선악판",
+    "FLAVOR": "공허하면서도 잠재력이 가득합니다.",
+    "DESCRIPTIONS": [
+      "갖고 있는 패널 유물의 효과를 복사합니다. 우클릭 하여 효과를 전환할 수 있습니다.","다음 유물의 효과를 복사 중입니다. ","."
+    ]
+  },
+  "Moonworks:OverturnedCard": {
+    "NAME": "반전된 카드",
+    "FLAVOR": "무슨 카드일까요?",
+    "DESCRIPTIONS": [
+      "획득 시 덱에서 카드를 한 장 제거합니다. #y노르마 레벨이 오를 때 마다, 그 카드를 한 장 임시로 복사하여 손에 가져옵니다."
+    ]
+  },
+  "Moonworks:BottledOrange": {
+    "NAME": "병 속의 카드",
+    "FLAVOR": "어떻게 이리 편리할 수가 있죠?",
+    "DESCRIPTIONS": [
+      "획득 시 카드를 한 장 선택합니다. #y노르마 레벨이 오를 때 마다, 그 카드를 손에 가져옵니다."
+    ]
+  },
+  "Moonworks:FleetingButterfly": {
+    "NAME": "날아갈 듯한 나비",
+    "FLAVOR": "사진을 찍어두면 더 오래 남아있을 거에요.",
+    "DESCRIPTIONS": [
+      "매 전투에서 처음으로 사용하는 카드가 #ymoonworksL기억 으로 변환됩나다."
+    ]
+  },
+  "Moonworks:Searchlight": {
+    "NAME": "서치라이트",
+    "FLAVOR": "모든 것을 지켜봅니다.",
+    "DESCRIPTIONS": [
+      "전투 시작 시 가장 체력이 많은 적에게 #ymoonworks:오버히트 를 #b2 부여합니다."
+    ]
+  },
+  "Moonworks:SpareBit": {
+    "NAME": "보조 비트",
+    "FLAVOR": "부호 비트와 헷갈리지 마세요.",
+    "DESCRIPTIONS": [
+      "획득 시, #y비트 #y전개 를 #b2 장 얻습니다. 모든 #y비트 #y전개 카드의 비트가 #b3개 증가합니다."
+    ]
+  },
+  "Moonworks:StrangePresent": {
+    "NAME": "이상한 선물",
+    "FLAVOR": "\"안에 뭐가 들어있을까요?\"",
+    "DESCRIPTIONS": [
+      "#b5 번쨰 턴 종료시 모든 적에게 #y취약 과 #y약화 를 #b4 부여합니다."
+    ]
+  },
+  "Moonworks:ScorchingSun": {
+    "NAME": "태양",
+    "FLAVOR": "조심하세요: 뜨거워요.",
+    "DESCRIPTIONS": [
+      "막히지 않은 피해를 줄 때 마다 #ymoonworks:불태우는빛 을 #y1 부여합니다."
+    ]
+  },
+  "Moonworks:TrulyGoldenEgg": {
+    "NAME": "진짜 황금알",
+    "FLAVOR": "굉장히 희귀합니다.",
+    "DESCRIPTIONS": [
+      "획득 시 #y룰루의 #y초럭키 #y에그 를 얻습니다. 사용시 무작위 효과 대신 모든 효과를 받습니다."
     ]
   }
 }

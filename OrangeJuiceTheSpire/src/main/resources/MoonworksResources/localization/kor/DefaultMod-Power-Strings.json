@@ -71,7 +71,8 @@
         },
         "Moonworks:NormaPower": {
                 "NAME": "노르마",
-                "DESCRIPTIONS": ["노르마 레벨은 다양한 카드의 효과를 증가시키며 최대 5까지 달성할 수 있습니다.", "...대체 무슨 짓을 하신거죠?"]
+                "DESCRIPTIONS": ["노르마 레벨은 다양한 카드의 효과를 증가시키며 최대 5까지 달성할 수 있습니다", "...대체 무슨 짓을 하신거죠?",
+                        " NL 노르마 레벨이 #b1 오르기 까지 #b"," 장의 스킬카드가 남았습니다."," 장의 스킬카드가 남았습니다."," 장의 카드가 남았습니다."," 장의 카드가 남았습니다."]
         },
         "Moonworks:SteadyPower": {
                 "NAME": "굳건함",
@@ -144,5 +145,28 @@
                 "NAME": "Whimsical Windmill",
                 "DESCRIPTIONS": ["At the beginning of your turn, gain #b"," energy for each enemy who attacked you last turn.",
                         " NL You will currently gain #b"," energy next turn."]
+        },
+        "Moonworks:LeapThroughSpacePower": {
+                "NAME": "Leap Through Space",
+                "DESCRIPTIONS": ["Click to view what cards you will draw next turn. NL  NL You may add any to your current hand at the cost of #b1 less draw next turn per card added this way.",
+                        "Viewing cards that will be drawn next turn. You may select any to add to your hand.",
+                        " NL You will draw #b"," less card next turn."," less cards next turn."]
+        },
+        "Moonworks:LeapThroughTimePower": {
+                "NAME": "Leap Through Time",
+                "DESCRIPTIONS": ["Click to borrow energy from your next turn."," NL  NL You will start next turn with #b"," less energy."]
+        },
+        "Moonworks:HolyNightPower": {
+                "NAME": "Holy Night",
+                "DESCRIPTIONS": ["Click to spend #b1 energy and draw #b2 cards. NL  NL Uses remaining this turn: #b",".","unlimited."]
+        },
+        "Moonworks:CrystallizePower": {
+                "NAME": "수정화",
+                "DESCRIPTIONS": [
+                        "해로운 효과를 #b",
+                        " 번 무효화합니다.",
+                        " 번 무효화합니다.",
+                        " 이 효과가 발동되면 다음 턴 시작 시 방어도가 사라지지 않습니다."
+                ]
         }
 }

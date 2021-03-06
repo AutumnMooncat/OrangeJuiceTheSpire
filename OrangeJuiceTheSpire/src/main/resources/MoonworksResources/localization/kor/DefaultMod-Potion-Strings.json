@@ -1,7 +1,47 @@
 {
-"Moonworks:OneHundredPercentOrangeJuicePotion": {
-        "NAME": "100% 오렌지 주스",
-        "DESCRIPTIONS": ["노르마 레벨 #r6 을 달성합니다. #r통제할 #r수 #r없는 #g어마어마한 #g힘을 얻습니다.",
-                         "노르마 레벨 #r6 을 달성합니다. #r통제할 #r수 #r없는 #g어마어마한 #g힘을 얻습니다."]
-}
+  "Moonworks:TwoHundredPercentOrangeJuicePotion": {
+    "NAME": "200% 오렌지 주스",
+    "DESCRIPTIONS": ["노르마 레벨 #r","에 도달합니다. #r통제할 #r수 #r없는 #g어마어마한 #g힘을 얻습니다",
+      "에 도달합니다. #r통제할 #r수 #r없는 #g어마어마한 #g힘을 얻습니다"]
+  },
+  "Moonworks:VigorPotion": {
+    "NAME": "활력 포션",
+    "DESCRIPTIONS": ["#y활력 을 #b"," 얻습니다."]
+  },
+  "Moonworks:SteadyPotion": {
+    "NAME": "굳건함 포션",
+    "DESCRIPTIONS": ["#y굳건함 을 #b"," 얻습니다."]
+  },
+  "Moonworks:LiquidChainsPotion": {
+    "NAME": "액화된 사슬",
+    "DESCRIPTIONS": ["대상이 임시 #y힘 을 #b"," 잃습니다."]
+  },
+  "Moonworks:NormaPotion": {
+    "NAME": "노르마 포션",
+    "DESCRIPTIONS": ["#b1 노르마를 다음 #b"," 턴 동안 얻습니다."]
+  },
+  "Moonworks:LubricantPotion": {
+    "NAME": "윤활유",
+    "DESCRIPTIONS": ["#y취약 을 #b"," 부여합니다. #y확산."]
+  },
+  "Moonworks:CrystalPotion": {
+    "NAME": "수정 포션",
+    "DESCRIPTIONS": ["#y수정화 를 #b"," 얻습니다."]
+  },
+  "Moonworks:OneHundredPercentOrangeJuicePotion": {
+    "NAME": "100% 오렌지 주스",
+    "DESCRIPTIONS": ["노르마 #b5 를 달성합니다. 체력을 #b"," 회복합니다."]
+  },
+  "Moonworks:BlastingPotion": {
+    "NAME": "불태우는 포션",
+    "DESCRIPTIONS": ["#y불태우는 #y빛 을 #b"," 부여합니다. #y확산."]
+  },
+  "Moonworks:RefundPotion": {
+    "NAME": "환급 포션",
+    "DESCRIPTIONS": ["다음에 사용하는 #b"," 장의 카드의 비용을 환급받습니다."]
+  },
+  "Moonworks:OverloadPotion": {
+    "NAME": "과부하",
+    "DESCRIPTIONS": ["갖고 있는 모든 파워의 효과를 #b","배로 늘립니다."]
+  }
 }

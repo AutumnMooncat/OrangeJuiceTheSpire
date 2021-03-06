@@ -1,7 +1,47 @@
 {
-"Moonworks:OneHundredPercentOrangeJuicePotion": {
-        "NAME": "100%鲜橙汁",
-        "DESCRIPTIONS": ["达到 Norma #r6. 获得 #g不可思议而又难以保全的力量.",
-                         "达到 Norma #r6 #r永恒地. 获得 #g不可思议而又难以保全的力量."]
-}
+  "Moonworks:TwoHundredPercentOrangeJuicePotion": {
+    "NAME": "200% 鲜橙汁",
+    "DESCRIPTIONS": ["达到 Norma #r",". 获得 #g强大到难以置信的力量 以至于 #r你无法安全地驾驭它 .",
+      ". 获得 #g强大到难以置信的力量 以至于 #r你能勉强安全地驾驭它 ."]
+  },
+  "Moonworks:VigorPotion": {
+    "NAME": "活力药水",
+    "DESCRIPTIONS": ["获得 #b "," #y活力 ."]
+  },
+  "Moonworks:SteadyPotion": {
+    "NAME": "稳固药水",
+    "DESCRIPTIONS": ["获得 #b "," #y稳固 ."]
+  },
+  "Moonworks:LiquidChainsPotion": {
+    "NAME": "液态锁链",
+    "DESCRIPTIONS": ["目标失去 #b"," 点临时 #y力量 ."]
+  },
+  "Moonworks:NormaPotion": {
+    "NAME": "Norma 药水",
+    "DESCRIPTIONS": ["获得 #b1 Norma 在下 #b"," 个回合."]
+  },
+  "Moonworks:LubricantPotion": {
+    "NAME": "润滑油",
+    "DESCRIPTIONS": ["给予 #b"," #y易伤 . #y溅射 ."]
+  },
+  "Moonworks:CrystalPotion": {
+    "NAME": "结晶药水",
+    "DESCRIPTIONS": ["获得 #b "," #y结晶 ."]
+  },
+  "Moonworks:OneHundredPercentOrangeJuicePotion": {
+    "NAME": "100%鲜橙汁",
+    "DESCRIPTIONS": ["达到 Norma #b5. 回复 #b "," 点生命."]
+  },
+  "Moonworks:BlastingPotion": {
+    "NAME": "焚烧药水",
+    "DESCRIPTIONS": ["给予 #b "," #y烧毁星球之光 ."]
+  },
+  "Moonworks:RefundPotion": {
+    "NAME": "回馈药水",
+    "DESCRIPTIONS": ["你打出的下 #b "," 张牌将返还费用."]
+  },
+  "Moonworks:OverloadPotion": {
+    "NAME": "过载药水",
+    "DESCRIPTIONS": ["你所有的状态层数增加 #b ","."]
+  }
 }

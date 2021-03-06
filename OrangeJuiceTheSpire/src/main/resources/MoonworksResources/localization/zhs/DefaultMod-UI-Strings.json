@@ -5,6 +5,12 @@
   "Moonworks:FetchFromAnywhere": {
     "TEXT": ["选择一张牌加入到手牌.所有的牌按照抽牌堆,弃牌堆,消耗堆的顺序展示"]
   },
+  "Moonworks:ChooseMagic": {
+    "TEXT": ["从3种魔法卡中选择1张加入弃牌堆."]
+  },
+  "Moonworks:ChooseMemory": {
+    "TEXT": ["选择 "," 卡牌转变为记忆."]
+  },
   "Moonworks:ModConfigSeagulls": {
     "TEXT": ["大群的海鸥在升级之后仍然可能打到自己. 默认: 否."]
   },
@@ -22,11 +28,5 @@
   },
   "Moonworks:ModConfigGullVFXButton": {
     "TEXT": ["启用海鸥遗物的演出效果. 默认: 是."]
-  },
-  "Moonworks:ChooseMagic": {
-    "TEXT": ["Choose 1 of 3 Magical Memories to add to your Discard Pile."]
-  },
-  "Moonworks:ChooseMemory": {
-    "TEXT": ["Choose up to "," card(s) to turn into Memories."]
   }
 }

@@ -1,7 +1,9 @@
 package Moonworks.cards.abstractCards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.cards.uniqueCards.UniqueCard;
 import Moonworks.patches.TypeOverridePatch;
+import Moonworks.util.NormaHelper;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.badlogic.gdx.graphics.Color;
@@ -9,13 +11,14 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.ExhaustiveF
 import com.evacipated.cardcrawl.mod.stslib.variables.ExhaustiveVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractMagicalCard extends AbstractNormaAttentiveCard {
+public abstract class AbstractMagicalCard extends AbstractNormaAttentiveCard implements UniqueCard {
 
     private static ArrayList<TooltipInfo> MagicalTooltip;
     private static final int MAGICAL_COST = 0; //Always 0 cost
@@ -44,17 +47,9 @@ public abstract class AbstractMagicalCard extends AbstractNormaAttentiveCard {
         initializeDescription();
     }
 
-    /*
-    public List<String> getCardDescriptors() {
-        List<String> tags = new ArrayList<>();
-        tags.add(BaseMod.getKeywordTitle("moonworks:magical"));
-        tags.addAll(super.getCardDescriptors());
-        return tags;
-    }*/
-
-    /*public String getBaseDescriptor() {
-        return BaseMod.getKeywordTitle("moonworks:magical");
-    }*/
+    protected void restoreNorma() {
+        NormaHelper.applyNormaPower(AbstractDungeon.player);
+    }
 
     @Override
     public List<TooltipInfo> getCustomTooltipsTop() {

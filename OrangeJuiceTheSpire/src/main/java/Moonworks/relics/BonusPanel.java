@@ -21,7 +21,7 @@ public class BonusPanel extends CustomRelic implements NormaAttentiveObject {
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("BonusPanel.png"));
 
     public BonusPanel() {
-        super(ID, IMG, OUTLINE, RelicTier.UNCOMMON, LandingSound.HEAVY);
+        super(ID, IMG, OUTLINE, RelicTier.COMMON, LandingSound.HEAVY);
     }
 
     // All functionality is handled in LeapThroughSpaceMarking
@@ -33,11 +33,11 @@ public class BonusPanel extends CustomRelic implements NormaAttentiveObject {
     }
 
     @Override
-    public void onGainNorma(int current, int increasedBy) {
+    public void onGainNorma(int normaLevel, int increasedBy) {
         this.addToBot(new GainEnergyAction(ENERGY));
         flash();
     }
 
     @Override
-    public void onGainNormaCharge(int current, int increasedBy) {}
+    public void onGainNormaCharge(int numerator, int increasedBy) {}
 }

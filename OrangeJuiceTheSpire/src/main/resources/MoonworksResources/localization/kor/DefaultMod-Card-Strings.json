@@ -4,7 +4,7 @@
     "DESCRIPTION": "*액셀러레이터 를 !M! 얻습니다.",
     "EXTENDED_DESCRIPTION": ["액셀러레이터", "전투 중에 카드를 생성할 때 마다, 그 카드를 한 장 복사합니다. NL #y상태이상, #y저주, 혹은 #y매지컬 카드에는 적용되지 않습니다.",
       "선택사항: [E] 를 소모하여 복사한 모든 카드를 강화할 수 있습니다.",
-      "Gain !M! *액셀러레이터."," [E] 를 소모합니다. NL *액셀러레이터 를 !M! 얻습니다. NL 전투 중에 카드를 생성할 때 마다, 그 카드를 강화합니다."]
+      "*액셀러레이터 를 !M! 얻습니다."," [E] 를 소모합니다. NL *액셀러레이터 를 !M! 얻습니다. NL 전투 중에 카드를 생성할 때 마다, 그 카드를 강화합니다."]
   },
   "Moonworks:AccelHyper": {
     "NAME": "액셀 하이퍼",
@@ -57,27 +57,27 @@
   },
   "Moonworks:BigBangBell": {
     "NAME": "빅뱅 벨",
-    "DESCRIPTION": "적에게 공격할 의도가 없을 때, 피해를 !M! 줍니다. NL 이 피해는 매 턴 마다 증가합니다.",
-    "EXTENDED_DESCRIPTION": ["기본 피해가 5 증가합니다."]
+    "DESCRIPTION": "*빅뱅 *벨 을 !M! 부여합니다. NL *노르마 를 생성할 때 마다 이 카드를 뽑습니다. NL 소멸.",
+    "EXTENDED_DESCRIPTION": ["부여하는 수치가 5 증가합니다.","대상이 막히지 않은 피해를 줄 때 피해를 줍니다. NL 이 수치는 매 턴 마다 기하 급수적으로 증가합니다."]
   },
   "Moonworks:BigMagnum": {
     "NAME": "빅 매그넘",
-    "DESCRIPTION": "체력을 !Moonworks:InvertedNumber! 잃습니다. NL 활력 을 !M! 얻습니다. NL 힘 을 !Moonworks:SecondMagic! 얻습니다. NL 소멸.",
-    "EXTENDED_DESCRIPTION": ["얻는 힘과 잃는 체력이 X 증가합니다.","비빅 매그넘","비비빅 매그넘"]
+    "DESCRIPTION": "카드를 한 장 소멸 시킵니다. NL 활력 을 !M! 얻습니다. NL 이번 전투 동안 이 카드로 얻는 활력 이 !Moonworks:SecondMagic! 증가합니다. NL 최대 5번 강화할 수 있습니다.",
+    "EXTENDED_DESCRIPTION": ["*공격 카드를 소멸시키면 얻는 활력 이 4 증가합니다.","빅 매그넘+","빅 매그넘+2","빅 매그넘+3","빅 매그넘+4","빅 매그넘+5","Select a card to exhaust."]
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "빅 로켓포",
-    "DESCRIPTION": "moonworks:확산 *피해 를 !D! 줍니다. NL *공중 *폭격 한 장을 [#FFF6E2]뽑을 카드 더미에 섞어 넣습니다. NL Purge.",
-    "UPGRADE_DESCRIPTION": "moonworks:확산 *피해 를 !D! 줍니다. NL 강화된 *공중 *폭격 한 장을 뽑을 드 더미에 섞어 넣습니다. NL Purge."
+    "DESCRIPTION": "모든 적에게 피해를 !D! 줍니다. NL *공중 *폭격 한 장을 뽑을 카드 더미에 섞어 넣습니다. NL Purge.",
+    "UPGRADE_DESCRIPTION": "모든 적에게 피해를 !D! 줍니다. NL 강화된 *공중 *폭격 한 장을 뽑을 드 더미에 섞어 넣습니다. NL Purge."
   },
   "Moonworks:BindingChains": {
     "NAME": "속박의 사슬",
-    "DESCRIPTION": "적의 힘 을 이번 턴 동안 !M! 낮춥니다. moonworks:확산. NL 이번 전투 동안 효과가 4 감소합니다.",
+    "DESCRIPTION": "이번 턴 동안 대상의 힘 을 !M! 감소시키고 취약 을 !Moonworks:SecondMagic! 부여합니다. moonworks:확산. NL 소멸.",
     "EXTENDED_DESCRIPTION": ["부식된 사슬","사슬이 거의 완전히 바스라져 버렸습니다.","I can't play this card."]
   },
   "Moonworks:Blazing": {
     "NAME": "블레이징!",
-    "DESCRIPTION": "턴 시작시, 힘 을 !M! 얻고 민첩 이 !Moonworks:SecondMagic! 됩니다."
+    "DESCRIPTION": "턴 시작시, 모든 적에게 moonworks:불태우는빛 을 !M! 부여하고 부여하는 수치를 !Moonworks:SecondMagic! 증가시킵니다"
   },
   "Moonworks:BlueCrowTheSecond": {
     "NAME": "블루 크로우",
@@ -87,7 +87,7 @@
   },
   "Moonworks:Bloodlust": {
     "NAME": "피의 욕망",
-    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 턴 시작 시 피해를 4 받습니다. 공격 카드를 사용할 때 마다 체력을 !M! 회복합니다. NL 사용시 이 카드를 버립니다.",
+    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 이 카드를 뽑거나 보존할 시, 자신을 공격할 의도가 있는 적 하나당 임시 힘 을 !M! 얻습니다.",
     "EXTENDED_DESCRIPTION": ["당신의 욕망이 가라앉았습니다."]
   },
   "Moonworks:CastOff": {
@@ -95,11 +95,16 @@
     "DESCRIPTION": "방어도 를 전부 잃습니다. NL 잃은 방어도 만큼 활력 을 얻습니다. NL 소멸.",
     "EXTENDED_DESCRIPTION": ["굳건함 을 5 얻습니다."]
   },
+  "Moonworks:ChefSomeHelp": {
+    "NAME": "주방장님, 도와주세요!",
+    "DESCRIPTION": "moonworksL복수 *피해 를 !D! 줍니다. NL 이 전투에서 체력을 !Moonworks:SecondMagic! 번 잃었을 때 마다 두 배의 피해를 줍니다.",
+    "EXTENDED_DESCRIPTION": ["점장님, 도와주세요!","moonworksL복수 *피해 를 !D! 줍니다. NL moonworks:초기화."]
+  },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "갈매기 떼",
-    "DESCRIPTION": "무작위 대상에게 !D! 의 moonworks:고정 피해를 !Moonworks:SecondMagic! 번 줍니다. NL 뽑을 카드 더미에 *조나단 *러쉬 를 !M! 장 섞어 넣습니다.",
-    "UPGRADE_DESCRIPTION": "무작위 적에게 !D! 의 moonworks:고정 피해를 !Moonworks:SecondMagic! 번 줍니다. NL 뽑을 카드 더미에 *조나단 *러쉬 를 !M! 장 섞어 넣습니다",
-    "EXTENDED_DESCRIPTION": ["카드를 한 장 뽑습니다.","무작위 대상에게 !D! 피해를 줍니다. NL 뽑을 카드 더미에 *조나단 *러쉬 를 !M! 장 섞어 넣습니다"]
+    "DESCRIPTION": "무작위 대상에게 moonworks:고정 *피해 를 !Moonworks:ThirdMagic! 만큼 !Moonworks:SecondMagic! 번 줍니다. NL *조나단 *러시 !M! 장을 받습니다.",
+    "UPGRADE_DESCRIPTION": "무작위 적에게 moonworks:고정 *피해 를 !Moonworks:ThirdMagic! 만큼 !Moonworks:SecondMagic! 번 줍니다. NL 강화된 *조나단 *러시 !M! 장을 받습니다.",
+    "EXTENDED_DESCRIPTION": ["카드를 한 장 뽑습니다.","무작위 적에게 moonworks:고정 피해를 !Moonworks:ThirdMagic! 줍니다. NL 강화된 *조나단 *러시 !M! 장을 받습니다."]
   },
   "Moonworks:CompletionReward": {
     "NAME": "성공 보수",
@@ -319,7 +324,7 @@
     "NAME": "녹아가는 기억",
     "DESCRIPTION": "*노르마 를 전부 잃습니다. NL 매 턴 처음 사용하는 카드가 moonworks:기억 으로 *전환 됩니다. NL 매 턴 마다 *노르마 를 0 씩 복구합니다",
     "UPGRADE_DESCRIPTION": "*노르마 를 전부 잃습니다. NL 매 턴 처음 사용하는 카드가 moonworks:기억 으로 *전환 된 뒤 강화됩니다. NL 매 턴 마다 *노르마 를 0 씩 복구합니다",
-    "EXTENDED_DESCRIPTION": ["기억 전환","비용이 1 이상인 #y공격 또는 #y스킬 카드만 전환할 수 있습니다. 전환 가능한 카드가 아닐 경우 전환은 실패합니다."]
+    "EXTENDED_DESCRIPTION": ["기억 전환","비용이 0 이상인 #y공격 또는 #y스킬 카드만 전환할 수 있습니다. 전환 가능한 카드가 아닐 경우 전환은 실패합니다."]
   },
   "Moonworks:Mimic": {
     "NAME": "흉내내기",
@@ -328,8 +333,8 @@
   },
   "Moonworks:MetallicMonocoque": {
     "NAME": "통짜 금속",
-    "DESCRIPTION": "받는 *직접피해 를 !M! 줄입니다. NL 받는 *간접피해 를 !Moonworks:SecondMagic! 줄입니다.",
-    "EXTENDED_DESCRIPTION": ["직접피해와 간접피해", "일반적으로, NL 상대의 공격으로 받은 피해는 #y직접피해 로 간주됩니다. NL 가시 혹은 카드로 받은 피해는 #y간접피해 로 간주됩니다."]
+    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 체력을 잃을 때 마다, 그 턴 동안 공격 받았을때 체력을 !M! 덜 잃습니다.",
+    "EXTENDED_DESCRIPTION": ["금속이 너덜너덜해졌습니다."]
   },
   "Moonworks:MiracleRedBeanIceCream": {
     "NAME": "미라클 팦바",
@@ -369,6 +374,26 @@
     "NAME": "휴대용 푸딩",
     "DESCRIPTION": "턴 종료시 마다 체력을 !M! 회복합니다."
   },
+  "Moonworks:PresentForYou": {
+    "NAME": "프레젠트 포 유",
+    "DESCRIPTION": "하나 선택 : NL moonworks:기프트 카드 !M! 장을 뽑을 카드 더미에 섞어넣거나, NL moonworks:트랩 카드 !M! 장을 뽑을 카드 더미에 섞어넣습니다. NL 소멸.",
+    "UPGRADE_DESCRIPTION": "하나 선택 : NL moonworks:기프트 카드 !M! 장을 뽑을 카드 더미에 섞어넣거나, NL moonworks:트랩 카드 !M! 장을 뽑을 카드 더미에 섞어넣습니다. NL 소멸."
+  },
+  "Moonworks:NiceList": {
+    "NAME": "착한 아이 명단",
+    "DESCRIPTION": "moonworks:기프트 카드 !M! 장을 뽑을 카드 더미에 섞어넣습니다.",
+    "UPGRADE_DESCRIPTION": "moonworks:기프트 카드 !M! 장을 뽑을 카드 더미에 섞어넣습니다."
+  },
+  "Moonworks:NaughtyList": {
+    "NAME": "나쁜 아이 명단",
+    "DESCRIPTION": "moonworks:트랩 카드 !M! 장을 뽑을 카드 더미에 섞어넣습니다.",
+    "UPGRADE_DESCRIPTION": "moonworks:트랩 카드 !M! 장을 뽑을 카드 더미에 섞어넣습니다."
+  },
+  "Moonworks:PoppoTheSnatcher": {
+    "NAME": "소매치기 폿포",
+    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 적이 이로운 효과를 얻으려 할 때, 그 효과를 자신이 얻습니다.",
+    "EXTENDED_DESCRIPTION": ["폿포가 장난을 칠 힘이 다 떨어졌습니다."]
+  },
   "Moonworks:ProtagonistsPrivilege": {
     "NAME": "주인공의 특권",
     "DESCRIPTION": "피해를 !D! 줍니다. NL 카드를 !M! 장 뽑습니다. NL 뽑은 두 카드의 종류가 같으면, 이 *효과 를 다음 턴에도 발동시킵니다.",
@@ -389,6 +414,10 @@
     "NAME": "무지갯빛 원",
     "DESCRIPTION": "방어도 를 !M! 만큼 moonworks:굳건함 으로 변환합니다.",
     "EXTENDED_DESCRIPTION": ["변환하는 방어도 가 4 증가하고 *최적화 됩니다.","최적화됨","사용 시 적어도 5의 방어도 는 변환하지만, 현재 방어도 와 상대의 의도에 따라 변환하는 방어도 가 증가합니다."]
+  },
+  "Moonworks:Rbits": {
+    "NAME": "우사비트",
+    "DESCRIPTION": "방어도 를 !B! 얻습니다. NL moonworksL굳건함 을 !M! 얻습니다."
   },
   "Moonworks:RedAndBlue": {
     "NAME": "아카와 아오",
@@ -430,7 +459,7 @@
     "NAME": "기억 봉인",
     "DESCRIPTION": "손에 있는 카드를 1 장 까지 선택해 *전환 합니다. NL 이번 턴 동안 손패를 보존합니다.",
     "UPGRADE_DESCRIPTION": "보존. NL 손에 있는 카드를 1 장 까지 선택해 *전환 합니다. NL 이번 턴 동안 손패를 보존합니다.",
-    "EXTENDED_DESCRIPTION": ["기억 전환","비용이 1 이상인 #y공격 또는 #y스킬 카드만 전환할 수 있습니다."]
+    "EXTENDED_DESCRIPTION": ["기억 전환","비용이 0 이상인 #y공격 또는 #y스킬 카드만 전환할 수 있습니다."]
   },
   "Moonworks:SelfDestruct": {
     "NAME": "자폭",
@@ -449,7 +478,7 @@
   },
   "Moonworks:SinkOrSwim": {
     "NAME": "가라앉거나 헤엄치거나",
-    "DESCRIPTION": "턴 시작시 [E] [E] 를 얻습니다. NL 다음 !Moonworks:SecondMagic! 턴 동안 취약, 약화, 손상 을 1 씩 받습니다."
+    "DESCRIPTION": "매 턴 시작시 [E] [E] 를 얻습니다. NL 약화 와 손상 을 !Moonworks:SecondMagic! 받습니다."
   },
   "Moonworks:StarBlastingFuse": {
     "NAME": "별의 도화선",
@@ -495,9 +524,14 @@
     "NAME": "신출귀몰",
     "DESCRIPTION": "잠깐! 이 카드를 어떻게 얻은거죠? NL 이 카드를 써서 좋을 건 없을겁니다, 확실히요..."
   },
+  "Moonworks:UnforgivingAvenger": {
+    "NAME": "피도 눈물도 없는 복수자",
+    "DESCRIPTION": "moonworksL복수 *피해 를 !D! 줍니다.. NL 약화 를 !M! 부여합니다.",
+    "EXTENDED_DESCRIPTION": ["피해가 2 증가합니다."]
+  },
   "Moonworks:UnluckyCharm": {
     "NAME": "불행의 부적",
-    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 모든 대상이 임시 민첩 을 !Moonworks:InvertedNumber! 잃습니다. NL 소멸 시, 민첩 을 !M! 얻습니다. NL 이 카드는 사용하여 버릴 수 없습니다.",
+    "DESCRIPTION": "moonworks:사용횟수 !Moonworks:SecondMagic!. NL 해로운 효과를 받을 때 마다 이를 모든 적에게도 부여합니다.",
     "EXTENDED_DESCRIPTION": ["부적이 사라지자 운이 조금 좋아진 기분이 듭니다."]
   },
   "Moonworks:UnpaidWork": {

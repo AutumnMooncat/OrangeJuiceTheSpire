@@ -62,8 +62,8 @@
   },
   "Moonworks:BigMagnum": {
     "NAME": "大麦格农炮",
-    "DESCRIPTION": "失去 !Moonworks:InvertedNumber! 点生命. NL 获得 !M! 点 活力 . NL 获得 !Moonworks:SecondMagic! 点 力量 . NL 消耗 .",
-    "EXTENDED_DESCRIPTION": ["+X 力量 但失去 +X 点生命.","更大麦格农炮","最大麦格农炮"]
+    "DESCRIPTION": "消耗 1 张牌. NL 获得 !M! 活力. NL 提高这张牌获得的活力 !Moonworks:SecondMagic! 点在这场战斗中. NL 可以升级 5 次.",
+    "EXTENDED_DESCRIPTION": ["+4 活力如果消耗一张 *攻击牌 .","更大麦格农炮","最大麦格农炮","更最大麦格农炮","最最大麦格农炮","最大麦格农炮完","选择一张牌消耗."]
   },
   "Moonworks:BigRocketCannon": {
     "NAME": "大火箭炮",
@@ -209,8 +209,7 @@
   "Moonworks:Flamethrower": {
     "NAME": "喷射火焰",
     "DESCRIPTION": " moonworks:礼物卡余额 ： !Moonworks:SecondMagic! . NL 在手牌中: 每打出1张牌, 对一名敌人造成 !M! 点 moonworks:固定 伤害. NL 打出: 弃置.",
-    "UPGRADE_DESCRIPTION": "喷火器燃料耗尽.",
-    "EXTENDED_DESCRIPTION": [":我无法打出这张牌."]
+    "EXTENDED_DESCRIPTION": ["喷火器燃料耗尽."]
   },
   "Moonworks:ForcedRevival": {
     "NAME": "强制复活",
@@ -298,8 +297,7 @@
   "Moonworks:LuckyCharm": {
     "NAME": "幸运护符",
     "DESCRIPTION": " moonworks:礼物卡余额 ：  !Moonworks:SecondMagic! . NL 在手牌中: 在你的回合开始时获得 [E] . NL 打出: 弃置,并用最多3点 [E] 补充 moonworks:礼物卡余额 ： .",
-    "UPGRADE_DESCRIPTION": "你的幸运护符的运气已耗尽.",
-    "EXTENDED_DESCRIPTION": [":我无法打出这张牌."]
+    "EXTENDED_DESCRIPTION": ["你的幸运护符的运气已耗尽."]
   },
   "Moonworks:LulusLuckyEgg": {
     "NAME": "露露的幸运蛋",
@@ -343,8 +341,7 @@
   "Moonworks:MiracleRedBeanIceCream": {
     "NAME": "奇迹红豆冰淇淋",
     "DESCRIPTION": " moonworks:礼物卡余额 ：  !Moonworks:SecondMagic! . NL 在手牌中: 获得 !M! 点临时 力量 . NL 打出: 消耗 . NL 消耗 : 回复 5 点生命.",
-    "UPGRADE_DESCRIPTION": "你已经吃掉了奇迹红豆冰淇淋.",
-    "EXTENDED_DESCRIPTION": [":我无法打出这张牌."]
+    "EXTENDED_DESCRIPTION": ["你已经吃掉了奇迹红豆冰淇淋."]
   },
   "Moonworks:MiracleWalker": {
     "NAME": "奇迹漫步",

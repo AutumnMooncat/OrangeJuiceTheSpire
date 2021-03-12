@@ -42,14 +42,16 @@
     "NAME": "坏掉的炸弹",
     "FLAVOR": "这个看起来很危险。",
     "DESCRIPTIONS": [
-      "加入 #b1 张 #y烧毁星球之光 到你的手牌每当 #ymoonworks:Norma 等级提升. NL 提示: 默认情况下, 每打出 #b10 张 #y技能牌 提升 #yNorma  #b1 级."
+      "加入 #b1 张 #y烧毁星球之光 到你的手牌每当 #ymoonworks:Norma 等级提升. NL 提示: 默认情况下, 每打出 #b10 张 #y技能牌 提升 #yNorma  #b1 级.",
+      "是时候说再见了。"
     ]
   },
   "Moonworks:SBBomb": {
     "NAME": "星破炸弹",
     "FLAVOR": "不要乱丢它。",
     "DESCRIPTIONS": [
-      "加入 #b1 张 #y烧毁星球之光 到你的手牌每当 #ymoonworks:Norma 等级提升. NL 每打出 #b12 张 #y卡牌 提升 #yNorma 等级 #b1 级."
+      "加入 #b1 张 #y烧毁星球之光 到你的手牌每当 #ymoonworks:Norma 等级提升. NL 每打出 #b12 张 #y卡牌 提升 #yNorma 等级 #b1 级.",
+      "是时候说再见了。"
     ]
   },
 

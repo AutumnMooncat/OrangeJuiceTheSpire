@@ -116,50 +116,50 @@
                 "DESCRIPTIONS": ["在你的回合开始时, 获得 #b1 层Norma."]
         },
         "Moonworks:MeltingMemoriesPower": {
-                "NAME": "Magical Quill",
-                "DESCRIPTIONS": ["The first card you play each turn is converted into a #yMemory.",
-                        "The first #b", " cards you play each turn are converted into #yMemories.",
-                        "The converted cards will be #yupgraded."]
+                "NAME": "魔法翎",
+                "DESCRIPTIONS": ["将你每回合打出的第一张牌转变为 #y记忆 .",
+                        "你每回合打出的前 #b", " 张牌转变为 #yMemories.",
+                        "被转变的牌会 #y升级 ."]
         },
         "Moonworks:BookOfMemoriesPower": {
-                "NAME": "Book of Memories",
-                "DESCRIPTIONS": ["Play the #yeffect of an active #yMemory when you play a card of the same type.",
-                        " NL There are no #yMemories in play. ",
-                        " NL  NL Click to view a list of all #yMemories.",
-                        ": Ready",
-                        ": Exhausted",
-                        ": Cooldown: ",
-                        ", Uses: ",
-                        "Memory of ", "An active moonworks:Memory. NL ","A forgotten moonworks:Memory. NL ",
-                        "moonworks:Memory Cooldown: ",". NL ",
-                        "Viewing Memory List."]
+                "NAME": "记忆之书",
+                "DESCRIPTIONS": ["施加一张被激活的 #y记忆 的 #y效果 当你打出与它同类型牌的时候.",
+                        " NL 手牌中没有 #y记忆 . ",
+                        " NL  NL 点击查看所有 #y记忆 列表.",
+                        ": 准备完毕",
+                        ": 消耗",
+                        ": 冷却: ",
+                        ", 剩余次数: ",
+                        "记忆中的 ", "一个被激活的 moonworks:记忆 . NL ","一个被遗忘的 moonworks:记忆 . NL ",
+                        " moonworks:记忆 冷却: ",". NL ",
+                        "查看记忆列表."]
         },
         "Moonworks:ImmobilePower": {
-                "NAME": "Immobile",
-                "DESCRIPTIONS": ["Block is not removed at the start of your turn, but you may only play #yAttack cards if they are #yRanged.", "I can only play Ranged attacks!"]
+                "NAME": "不动",
+                "DESCRIPTIONS": ["在你的回合开始时格挡不会移除, 但你只能打出有 #y远程 效果的 #y攻击 牌.", "我只能打出远程攻击!"]
         },
         "Moonworks:RivalPower": {
-                "NAME": "Rival",
-                "DESCRIPTIONS": [" is your #yRival. NL Attacks against your #yRival deal #b", "% additional damage. This amount increases by #b","% if your Rival attacked you last turn."]
+                "NAME": "劲敌",
+                "DESCRIPTIONS": [" 是你的 #y劲敌 . NL 攻击你的 #y劲敌 会造成 #b", "% 额外伤害. 该数值提升 #b","% 如果劲敌上回合攻击过你."]
         },
         "Moonworks:WhimsicalWindmillPower": {
-                "NAME": "Whimsical Windmill",
-                "DESCRIPTIONS": ["At the beginning of your turn, gain #b"," energy for each enemy who attacked you last turn.",
-                        " NL You will currently gain #b"," energy next turn."]
+                "NAME": "变化无常的风车",
+                "DESCRIPTIONS": ["在你的回合开始时, 上回合每有一个敌人攻击过你获得 #b"," 点能量.",
+                        " NL 你下回将获得 #b"," 点能量."]
         },
         "Moonworks:LeapThroughSpacePower": {
-                "NAME": "Leap Through Space",
-                "DESCRIPTIONS": ["Click to view what cards you will draw next turn. NL  NL You may add any to your current hand at the cost of #b1 less draw next turn per card added this way.",
-                        "Viewing cards that will be drawn next turn. You may select any to add to your hand.",
-                        " NL You will draw #b"," less card next turn."," less cards next turn."]
+                "NAME": "空间的跳跃",
+                "DESCRIPTIONS": ["点击查看你下回合将抽到的牌. NL  NL 你可以选择任意数量的牌放入手牌代价是每放入1张下回合少抽 #b1 张牌.",
+                        "查看你下回合将抽到的牌. 你可以选择任意数量的牌放入手牌.",
+                        " NL 你下回合将少抽 #b"," 张牌."," 张牌."]
         },
         "Moonworks:LeapThroughTimePower": {
-                "NAME": "Leap Through Time",
-                "DESCRIPTIONS": ["Click to borrow energy from your next turn."," NL  NL You will start next turn with #b"," less energy."]
+                "NAME": "时间的跳跃",
+                "DESCRIPTIONS": ["从你的下回合借取能量."," NL  NL 你下回合开始时失去 #b"," 点能量."]
         },
         "Moonworks:HolyNightPower": {
-                "NAME": "Holy Night",
-                "DESCRIPTIONS": ["Click to spend #b1 energy and draw #b2 cards. NL  NL Uses remaining this turn: #b",".","unlimited."]
+                "NAME": "神圣之夜",
+                "DESCRIPTIONS": ["点击花费 #b1 点能量抽 #b2 张牌. NL  NL 本回合剩余使用次数: #b",".","无限."]
         },
         "Moonworks:CrystallizePower": {
                 "NAME": "结晶",

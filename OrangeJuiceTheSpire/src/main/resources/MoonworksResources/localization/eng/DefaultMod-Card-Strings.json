@@ -77,8 +77,7 @@
   },
   "Moonworks:Blazing": {
     "NAME": "Blazing!",
-    "DESCRIPTION": "At the start of your turn, apply !M! moonworks:Blasting_Light to ALL enemies and increase this amount by !Moonworks:SecondMagic!.",
-    "EXTENDED_DESCRIPTION": [""]
+    "DESCRIPTION": "At the start of your turn, apply !M! moonworks:Blasting_Light to ALL enemies and increase this amount by !Moonworks:SecondMagic!."
   },
   "Moonworks:Bloodlust": {
     "NAME": "Bloodlust",
@@ -272,15 +271,6 @@
     "DESCRIPTION": "Autoplay. NL Deal !D! damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!.",
     "UPGRADE_DESCRIPTION": "Autoplay. NL Deal !D! damage to a random enemy. NL Increase the damage of ALL *Jonathan *Rush cards this combat by !M!."
   },
-  "Moonworks:LeapThroughSpaceOLD": {
-    "NAME": "Leap Through Space",
-    "DESCRIPTION": "Create a moonworks:Temporal_Anchor with a moonworks:Divergence of !M!. NL Add 1 *Leap *Through *Time to the bottom of your draw pile."
-  },
-  "Moonworks:LeapThroughTimeOLD": {
-    "NAME": "Leap Through Time",
-    "DESCRIPTION": "Rewind your personal timeline to when your moonworks:Temporal_Anchor was created. NL Each turn, moonworks:Divergence increases by !M! until this card is played.",
-    "EXTENDED_DESCRIPTION": ["Wherever I end up, I know what to do.", "Leaping!", "Where are you taking me to?"]
-  },
   "Moonworks:LeapThroughSpacetime": {
     "NAME": "Leap Through Spacetime",
     "DESCRIPTION": "Choose one effect: NL You can borrow *Energy from your next turn. NL You can borrow *Cards from your next turn.",
@@ -332,7 +322,7 @@
     "NAME": "Melting Memories",
     "DESCRIPTION": "Lose all *Norma. NL The first card you play each turn is *Converted into a moonworks:Memory. NL Regain 1 lost *Norma per turn.",
     "UPGRADE_DESCRIPTION": "Lose all *Norma. NL The first card you play each turn is *Converted into a moonworks:Memory then upgraded. NL Regain 1 lost *Norma per turn.",
-    "EXTENDED_DESCRIPTION": ["Memory Conversion","Viable cards for conversion are #yAttack and #ySkill cards that cost #b1 #bor #bmore energy. Conversion fails if a card is not viable."]
+    "EXTENDED_DESCRIPTION": ["Memory Conversion","Viable cards for conversion are #yAttack and #ySkill cards that cost #b0 #bor #bmore energy. Conversion fails if a card is not viable."]
   },
   "Moonworks:Mimic": {
     "NAME": "Mimic",
@@ -467,7 +457,7 @@
     "NAME": "Sealed Memories",
     "DESCRIPTION": "*Convert up to 1 card in your hand into a moonworks:Memory. NL Retain your hand this turn.",
     "UPGRADE_DESCRIPTION": "Retain. NL *Convert up to 1 card in your hand into a moonworks:Memory. NL Retain your hand this turn.",
-    "EXTENDED_DESCRIPTION": ["Memory Conversion","Viable cards for conversion are #yAttack and #ySkill cards that cost #b1 #bor #bmore energy."]
+    "EXTENDED_DESCRIPTION": ["Memory Conversion","Viable cards for conversion are #yAttack and #ySkill cards that cost #b0 #bor #bmore energy."]
   },
   "Moonworks:SelfDestruct": {
     "NAME": "Self Destruct",
@@ -516,7 +506,6 @@
   "Moonworks:SweetBattle": {
     "NAME": "Sweet Battle",
     "DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP.",
-    "UPGRADE_DESCRIPTION": "moonworks:Gift_Uses !Moonworks:SecondMagic!. NL On Draw/Retain: Heal !M! HP.",
     "EXTENDED_DESCRIPTION": ["Your sugar rush has faded."]
   },
   "Moonworks:TacticalRetreat": {

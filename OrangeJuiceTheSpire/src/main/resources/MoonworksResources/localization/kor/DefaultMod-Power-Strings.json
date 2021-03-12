@@ -59,7 +59,7 @@
         },
         "Moonworks:BigBangBellPower": {
                 "NAME": "빅뱅 벨",
-                "DESCRIPTIONS": ["대상이 공격할 의도가 없을 때, #b", " 피해를 줍니다. 이 피해는 매 턴 마다 증가합니다."]
+                "DESCRIPTIONS": ["대상이 막히지 않은 피해를 줄 경우 #b", " 피해를 받습니다. 효과 발동 전 까지 피해가 계속해서 증가합니다."]
         },
         "Moonworks:WantedPower": {
                 "NAME": "현상수배",
@@ -67,7 +67,7 @@
         },
         "Moonworks:BlazingPower": {
                 "NAME": "블레이징!",
-                "DESCRIPTIONS": ["턴 시작시, 힘을 #b"," 얻고 민첩을 #b"," 잃습니다"]
+                "DESCRIPTIONS": ["턴 시작시, 모든 적에게 #y불태우는 #y빛 을 #b"," 부여하고 부여하는 수치를 #b","증가시킵니다."]
         },
         "Moonworks:NormaPower": {
                 "NAME": "노르마",
@@ -115,50 +115,50 @@
                 "DESCRIPTIONS": ["턴 시작시, 노르마가 #b1 오릅니다."]
         },
         "Moonworks:MeltingMemoriesPower": {
-                "NAME": "Magical Quill",
-                "DESCRIPTIONS": ["The first card you play each turn is converted into a #yMemory.",
-                        "The first #b", " cards you play each turn are converted into #yMemories.",
-                        "The converted cards will be #yupgraded."]
+                "NAME": "마법의 깃펜",
+                "DESCRIPTIONS": ["매 턴 처음으로 사용하는 카드가 #y기억 으로 전환됩니다.",
+                        "다음에 사용하는 카드 #b", " 장이 #y기억 으로 전환됩니다.",
+                        "전환된 카드는 #y강화 됩니다."]
         },
         "Moonworks:BookOfMemoriesPower": {
-                "NAME": "Book of Memories",
-                "DESCRIPTIONS": ["Play the #yeffect of an active #yMemory when you play a card of the same type.",
-                        " NL There are no #yMemories in play. ",
-                        " NL  NL Click to view a list of all #yMemories.",
-                        ": Ready",
-                        ": Exhausted",
-                        ": Cooldown: ",
-                        ", Uses: ",
-                        "Memory of ", "An active moonworks:Memory. NL ","A forgotten moonworks:Memory. NL ",
-                        "moonworks:Memory Cooldown: ",". NL ",
-                        "Viewing Memory List."]
+                "NAME": "기억의 서",
+                "DESCRIPTIONS": ["같은 종류의 카드를 사용하면 활성화된 #y기억 의 #y효과 를 발동합니다.",
+                        " NL 사용 가능한 #y기억 이 없습니다. ",
+                        " NL  NL 클릭하여 사용 가능한 모든 #y기억 을 확인합니다.",
+                        ": 사용가능",
+                        ": 소멸됨",
+                        ": 대기시간: ",
+                        ", 사용횟수: ",
+                        "기억 속 ", "활성화된 moonworks:기억. NL ","잊혀진 moonworks:기억. NL ",
+                        "moonworks:기억 대기시간: ",". NL ",
+                        "기억한 카드를 확인중."]
         },
         "Moonworks:ImmobilePower": {
-                "NAME": "Immobile",
-                "DESCRIPTIONS": ["Block is not removed at the start of your turn, but you may only play #yAttack cards if they are #yRanged.", "I can only play Ranged attacks!"]
+                "NAME": "움직일수없음",
+                "DESCRIPTIONS": ["턴 시작시 방어도 가 사라지지 않지만,  #y원거리 인 #y공격 카드만 사용할 수 있습니다.", "원거리 공격만 사용할 수 있어!"]
         },
         "Moonworks:RivalPower": {
-                "NAME": "Rival",
-                "DESCRIPTIONS": [" is your #yRival. NL Attacks against your #yRival deal #b", "% additional damage. This amount increases by #b","% if your Rival attacked you last turn."]
+                "NAME": "라이벌",
+                "DESCRIPTIONS": [" 이 당신의 #y라이벌 입니다. NL #y라이벌 을 상대로 한 공격이 #b", "% 의 피해를 더 줍니다. 이 효과는 당신의 라이벌 에게 공격받았을 경우 #b","% 만큼 증가합니다."]
         },
         "Moonworks:WhimsicalWindmillPower": {
-                "NAME": "Whimsical Windmill",
-                "DESCRIPTIONS": ["At the beginning of your turn, gain #b"," energy for each enemy who attacked you last turn.",
-                        " NL You will currently gain #b"," energy next turn."]
+                "NAME": "변덕쟁이 풍차",
+                "DESCRIPTIONS": ["턴 시작시, 이전 턴에 당신을 공격한 적 하나당 #b"," 에너지를 얻습니다.",
+                        " NL 다음 턴에 #b"," 에너지를 얻을 수 있습니다."]
         },
         "Moonworks:LeapThroughSpacePower": {
-                "NAME": "Leap Through Space",
-                "DESCRIPTIONS": ["Click to view what cards you will draw next turn. NL  NL You may add any to your current hand at the cost of #b1 less draw next turn per card added this way.",
-                        "Viewing cards that will be drawn next turn. You may select any to add to your hand.",
-                        " NL You will draw #b"," less card next turn."," less cards next turn."]
+                "NAME": "공간 도약",
+                "DESCRIPTIONS": ["클릭하여 다음 턴에 뽑을 카드들을 볼 수 있습니다. NL  NL 이 카드들을 선택하여 자유롭게 손에 가져 올 수 있지만, 가져온 카드 한 장 당 다음 턴에 카드를 #b1 장 덜 뽑습니다.",
+                        "다음 턴에 뽑을 카드를 보는 중입니다. 원하는 만큼 선택하여 손으로 가져올 수 있습니다.",
+                        " NL 다음 턴에 카드를 #b"," 장 적게 뽑습니다."," 장 적게 뽑습니다."]
         },
         "Moonworks:LeapThroughTimePower": {
-                "NAME": "Leap Through Time",
-                "DESCRIPTIONS": ["Click to borrow energy from your next turn."," NL  NL You will start next turn with #b"," less energy."]
+                "NAME": "시간 도약",
+                "DESCRIPTIONS": ["클릭하여 다음 턴의 자신에게서 에너지를 빌려옵니다."," NL  NL 다음 턴에 에너지를 #b"," 덜 얻습니다."]
         },
         "Moonworks:HolyNightPower": {
-                "NAME": "Holy Night",
-                "DESCRIPTIONS": ["Click to spend #b1 energy and draw #b2 cards. NL  NL Uses remaining this turn: #b",".","unlimited."]
+                "NAME": "거룩한 밤",
+                "DESCRIPTIONS": ["클릭하여 에너지를 #b1 소모하고 카드를 #b2 장 뽑습니다. NL  NL 남은 사용 횟수: #b",".","제한없음."]
         },
         "Moonworks:CrystallizePower": {
                 "NAME": "수정화",

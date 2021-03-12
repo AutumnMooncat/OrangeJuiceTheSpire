@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
@@ -49,10 +51,13 @@ public class VigorPotion extends CustomPotion {
         description = potionStrings.DESCRIPTIONS[0] + potency + potionStrings.DESCRIPTIONS[1];
         tips.clear();
         tips.add(new PowerTip(name, description));
-        tips.add(new PowerTip(
+        /*tips.add(new PowerTip(
                 BaseMod.getKeywordTitle("vigor"),
                 BaseMod.getKeywordDescription("vigor")
-        ));
+        ));*/
+        tips.add(new PowerTip(
+                TipHelper.capitalize(GameDictionary.VIGOR.NAMES[0]),
+                GameDictionary.keywords.get(GameDictionary.VIGOR.NAMES[0])));
     }
 
     @Override

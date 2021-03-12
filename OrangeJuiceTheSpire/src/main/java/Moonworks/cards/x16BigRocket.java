@@ -39,10 +39,10 @@ public class x16BigRocket extends AbstractDynamicCard {
     public static final CardColor COLOR = TheStarBreaker.Enums.COLOR_WHITE_ICE;
 
     private static final int COST = 2;
-    private static final int DAMAGE = 10;
+    private static final int DAMAGE = 12;
     private static final int DAMAGE_SCALE = 6;
-    private static final int UPGRADE_PLUS_DAMAGE = 2;
-    private static final int UPGRADE_PLUS_DAMAGE_SCALE = 2;
+    private static final int UPGRADE_PLUS_DAMAGE = 3;
+    private static final int UPGRADE_PLUS_DAMAGE_SCALE = 3;
 
     // /STAT DECLARATION/
     public x16BigRocket() {this(0);} //ignore
@@ -53,10 +53,7 @@ public class x16BigRocket extends AbstractDynamicCard {
         magicNumber = baseMagicNumber = DAMAGE_SCALE;
         //isMultiDamage = true; //Uses for each loop.
         while(timesUpgraded < upgrades) {
-            upgradeDamage(UPGRADE_PLUS_DAMAGE);
-            upgradeMagicNumber(UPGRADE_PLUS_DAMAGE_SCALE);
-            this.timesUpgraded++;
-            this.upgraded = true;
+            upgrade();
         }
         this.name = "x" + (timesUpgraded+1) + " " + languagePack.getCardStrings(ID).NAME;
         initializeTitle();

@@ -48,8 +48,11 @@ public class WhimsicalWindmillPower extends AbstractPower implements CloneablePo
     //Regain energy equal to the number of creates in our set then clear it.
     @Override
     public void onEnergyRecharge() {
-        AbstractDungeon.player.gainEnergy(attackedSet.size());
-        attackedSet.clear();
+        if (attackedSet.size() > 0) {
+            flash();
+            AbstractDungeon.player.gainEnergy(amount * attackedSet.size());
+            attackedSet.clear();
+        }
         super.onEnergyRecharge();
         updateDescription();
     }

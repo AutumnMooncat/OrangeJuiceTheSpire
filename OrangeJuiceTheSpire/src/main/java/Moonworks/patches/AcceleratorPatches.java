@@ -45,7 +45,15 @@ public class AcceleratorPatches {
     {
         public static void Prefix(AbstractGameEffect __instance)
         {
-            if (__instance.duration == (float)ReflectionHacks.getPrivateStatic(__instance.getClass(), "EFFECT_DUR"))
+            //If we extend one of those 3, we cant use ReflectionHacks as the value is part of the super class, so just do our best and throw in the original value for it
+            float compVal = 1.5F;
+            //If we can expressly grab EFFECT_DUR, do so, in case some other mod mucks with this value even though it's final and shouldn't be messed with
+            if (__instance.getClass() == ShowCardAndAddToDiscardEffect.class ||
+                    __instance.getClass() == ShowCardAndAddToHandEffect.class ||
+                    __instance.getClass() == ShowCardAndAddToDrawPileEffect.class) {
+                compVal = ReflectionHacks.getPrivateStatic(__instance.getClass(), "EFFECT_DUR");
+            }
+            if (__instance.duration == compVal)
             {
                 if(AbstractDungeon.player.hasPower(AcceleratorPower.POWER_ID)) {
                     AcceleratorPower p = (AcceleratorPower) AbstractDungeon.player.getPower(AcceleratorPower.POWER_ID);

@@ -81,12 +81,13 @@ public class ApplyPowerPrefixPatch
                         if (c instanceof OnEnemyBuffCard) {
                             ((OnEnemyBuffCard) c).powerApplied(__instance, target[0], source[0], powerToApply[0], stackAmount, effect);
                         }
-                        if (c instanceof PoppoTheSnatcher) {
+                        if (c instanceof PoppoTheSnatcher && target[0] != AbstractDungeon.player) {
                             target[0] = AbstractDungeon.player;
                             powerToApply[0].owner = AbstractDungeon.player;
+                            //We should only enter this code once even if we have multiple copies of the card due to the target check
+                            ((PoppoTheSnatcher)c).applyEffect();
                             if (powerToApply[0] instanceof RitualPower) {
                                 ReflectionHacks.setPrivate(powerToApply[0], RitualPower.class, "onPlayer", true);
-                                //ReflectionHacks.setPrivate(powerToApply[0], RitualPower.class, "skipFirst", false);
                             }
                             if (powerToApply[0] instanceof SharpHidePower) {
                                 powerToApply[0] = new ThornsPower(target[0], powerToApply[0].amount);

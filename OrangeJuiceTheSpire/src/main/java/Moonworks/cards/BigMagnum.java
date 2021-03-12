@@ -53,22 +53,23 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
     private static final int VIGOR_SCALE = 4;
     private static final int UPGRADE_PLUS_VIGOR_SCALE = 2;
 
-    private static final Integer[] NORMA_LEVELS = {3};
+    //private static final Integer[] NORMA_LEVELS = {3};
 
     // /STAT DECLARATION/
 
     public BigMagnum() {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET/*, NORMA_LEVELS*/);
         magicNumber = baseMagicNumber = VIGOR;
         secondMagicNumber = baseSecondMagicNumber = VIGOR_SCALE;
-        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
+        //CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 1, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[0]));
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        boolean normaCheck = getNormaLevel() >= NORMA_LEVELS[0];
-        this.addToBot(new BigMagnumAction(this, normaCheck, EXTENDED_DESCRIPTION[6]));
+        //boolean normaCheck = getNormaLevel() >= NORMA_LEVELS[0];
+        //this.addToBot(new BigMagnumAction(this, normaCheck, EXTENDED_DESCRIPTION[6]));
+        this.addToBot(new BigMagnumAction(this, false, EXTENDED_DESCRIPTION[6]));
     }
 
     @Override
@@ -107,8 +108,9 @@ public class BigMagnum extends AbstractNormaAttentiveCard {
     @Override
     public void upgrade() {
         if (canUpgrade()) {
+            //Reverse order so the first upgrade is 2+0, then 2+1, etc.
+            this.upgradeSecondMagicNumber(UPGRADE_PLUS_VIGOR_SCALE + this.timesUpgraded);
             this.upgradeName();
-            this.upgradeSecondMagicNumber(UPGRADE_PLUS_VIGOR_SCALE);
             this.initializeDescription();
         }
     }

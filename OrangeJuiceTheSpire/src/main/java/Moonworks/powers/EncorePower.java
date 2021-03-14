@@ -1,7 +1,7 @@
 package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
-import Moonworks.patches.FreeCardPrefixPatch;
+import Moonworks.patches.FreeCardPatches;
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -13,10 +13,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class EncorePower extends AbstractPower implements CloneablePowerInterface {
     public AbstractCreature source;
@@ -67,7 +63,7 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
         this.addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                FreeCardPrefixPatch.FreeCardField.free.set(AbstractDungeon.player, true);
+                FreeCardPatches.setFreeField(AbstractDungeon.player, true);
                 this.isDone = true;
             }
         });
@@ -133,7 +129,7 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
                 this.addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        FreeCardPrefixPatch.FreeCardField.free.set(AbstractDungeon.player, false);
+                        FreeCardPatches.setFreeField(AbstractDungeon.player, false);
                         this.isDone = true;
                     }
                 });
@@ -159,6 +155,12 @@ public class EncorePower extends AbstractPower implements CloneablePowerInterfac
         }
         //Update
         updateDescription();
+    }
+
+    @Override
+    public void onRemove() {
+        super.onRemove();
+        FreeCardPatches.setFreeField(AbstractDungeon.player, false);
     }
 
     private String getNameStrings() {

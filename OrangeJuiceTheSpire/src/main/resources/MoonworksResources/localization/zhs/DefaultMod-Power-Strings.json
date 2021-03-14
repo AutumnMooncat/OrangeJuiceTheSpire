@@ -118,7 +118,7 @@
         "Moonworks:MeltingMemoriesPower": {
                 "NAME": "魔法翎",
                 "DESCRIPTIONS": ["将你每回合打出的第一张牌转变为 #y记忆 .",
-                        "你每回合打出的前 #b", " 张牌转变为 #yMemories.",
+                        "你每回合打出的前 #b", " 张牌转变为 #y记忆 .",
                         "被转变的牌会 #y升级 ."]
         },
         "Moonworks:BookOfMemoriesPower": {

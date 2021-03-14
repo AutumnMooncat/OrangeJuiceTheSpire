@@ -3,7 +3,7 @@
     "NAME": "极速装置",
     "DESCRIPTION": "获得 !M! 点 *极速装置 .",
     "EXTENDED_DESCRIPTION": ["极速装置", "每当在战斗中生成一张牌, 额外生成一张它的复制. NL 不会对 #y状态牌 , #y诅咒牌 , 或 #y魔法卡 生效.",
-      "Optional: 花费 [E] 升级所有额外生成的牌.",
+      "可选: 花费 [E] 升级所有额外生成的牌.",
       "获得 !M! 点 *极速装置 .","花费 [E] . NL 获得 !M! 点 *极速装置 . NL 在战斗中生成的所有牌, 升级."]
   },
   "Moonworks:AccelHyper": {
@@ -18,7 +18,7 @@
   "Moonworks:Ambush": {
     "NAME": "偷袭",
     "DESCRIPTION": "给予 !M! 层 易伤 . NL 然后造成 !D! 点伤害.",
-    "EXTENDED_DESCRIPTION": ["本次攻击将 moonworks:穿透."]
+    "EXTENDED_DESCRIPTION": ["本次攻击将 moonworks:穿透 ."]
   },
   "Moonworks:AngelHand": {
     "NAME": "天使之手",
@@ -42,8 +42,8 @@
   },
   "Moonworks:BackdoorTrade": {
     "NAME": "幕后交易",
-    "DESCRIPTION": "提高你的 *Norma 等级 !Moonworks:SecondMagic! 级. NL 消耗 .",
-    "EXTENDED_DESCRIPTION": [":不再 消耗 ,抽 !M! 张牌.","抽 !M! 张牌."]
+    "DESCRIPTION": "获得 !Moonworks:SecondMagic! 层 moonworks:Norma . NL 消耗 .",
+    "EXTENDED_DESCRIPTION": ["不再 消耗 , 抽 !M! 张牌.","获得 !Moonworks:SecondMagic! moonworks:Norma ."]
   },
   "Moonworks:BeastWitch": {
     "NAME": "兽之魔女",
@@ -77,7 +77,7 @@
   },
   "Moonworks:Blazing": {
     "NAME": "爆燃!",
-    "DESCRIPTION": "在你的回合开始时, 给予 !M! 层 moonworks:烧毁星球之光 给所有敌人 然后提高该数值 !Moonworks:SecondMagic! 点."
+    "DESCRIPTION": "在你的回合开始时, 给予 !M! moonworks:烧毁星球之光 给所有敌人然后提高该数值 !Moonworks:SecondMagic! 点."
   },
   "Moonworks:Bloodlust": {
     "NAME": "鲜血渴望",
@@ -192,7 +192,7 @@
   },
   "Moonworks:ExtendedPhotonRifle": {
     "NAME": "扩散光子来复枪",
-    "DESCRIPTION": "造成 !D! 点伤害X次. 力量 在这张牌上发挥 !Moonworks:SecondMagic! 倍效果."
+    "DESCRIPTION": "造成 !D! 点伤害 X 次. NL 力量 发挥 !Moonworks:SecondMagic! 倍效果在这张牌上 ."
   },
   "Moonworks:ExtraordinarySpecs": {
     "NAME": "荒唐的性能",
@@ -254,7 +254,7 @@
   },
   "Moonworks:ImmovableObject": {
     "NAME": "不动之物体",
-    "DESCRIPTION": "获得 !B! 点格挡. NL ,在下 !M! 个回合,格挡不会移除, 但你不能打出攻击牌. NL 消耗 ."
+    "DESCRIPTION": "获得 !B! 点格挡. NL 获得 !M! 层 moonworks:不动 . NL 消耗 ."
   },
   "Moonworks:ImOnFire": {
     "NAME": "燃起来吧!",
@@ -335,7 +335,7 @@
   },
   "Moonworks:MetallicMonocoque": {
     "NAME": "全金属单体结构",
-    "DESCRIPTION": " moonworks:礼物卡余额 !Moonworks:SecondMagic! . NL 在手牌中: 每当你失去生命, 少失去 !M! 点攻击伤害在当前回合.",
+    "DESCRIPTION": " moonworks:礼物卡余额 !Moonworks:SecondMagic! . NL 在手牌中: 当你失去过生命后, 受到攻击伤害时少失去 !M! 点生命.",
     "EXTENDED_DESCRIPTION": ["你的单体壳损伤过于严重已无法使用."]
   },
   "Moonworks:MiracleRedBeanIceCream": {
@@ -442,7 +442,7 @@
   },
   "Moonworks:Rival": {
     "NAME": "劲敌",
-    "DESCRIPTION": "将生命值百分比最高的敌人视为 moonworks:劲敌."
+    "DESCRIPTION": "将生命值百分比最高的敌人视为 moonworks:劲敌 ."
   },
   "Moonworks:RocketCannon": {
     "NAME": "火箭炮",

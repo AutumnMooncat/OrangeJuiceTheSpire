@@ -97,8 +97,8 @@
   },
   "Moonworks:ChefSomeHelp": {
     "NAME": "주방장님, 도와주세요!",
-    "DESCRIPTION": "moonworksL복수 *피해 를 !D! 줍니다. NL 이 전투에서 체력을 !Moonworks:SecondMagic! 번 잃었을 때 마다 두 배의 피해를 줍니다.",
-    "EXTENDED_DESCRIPTION": ["점장님, 도와주세요!","moonworksL복수 *피해 를 !D! 줍니다. NL moonworks:초기화."]
+    "DESCRIPTION": "moonworks:복수 *피해 를 !D! 줍니다. NL 이 전투에서 체력을 !Moonworks:SecondMagic! 번 잃었을 때 마다 두 배의 피해를 줍니다.",
+    "EXTENDED_DESCRIPTION": ["점장님, 도와주세요!","moonworks:복수 *피해 를 !D! 줍니다. NL moonworks:초기화."]
   },
   "Moonworks:CloudOfSeagulls": {
     "NAME": "갈매기 떼",
@@ -161,9 +161,9 @@
     "EXTENDED_DESCRIPTION": ["부여한 재생 만큼 방어도 를 얻습니다."]
   },
   "Moonworks:Encore": {
-    "NAME": "Encore",
-    "DESCRIPTION": "The last card you play each turn has it's *effect used at the start of your turn.",
-    "EXTENDED_DESCRIPTION": ["Gain Block equal to the amount of Regen applied."]
+    "NAME": "앙코르",
+    "DESCRIPTION": "매 턴 시작시 이전 턴에 마지막으로 사용한 카드의 *효과 가 발동됩니다.",
+    "EXTENDED_DESCRIPTION": [""]
   },
   "Moonworks:EvilMastermind": {
     "NAME": "악의 두목",
@@ -417,7 +417,7 @@
   },
   "Moonworks:Rbits": {
     "NAME": "우사비트",
-    "DESCRIPTION": "방어도 를 !B! 얻습니다. NL moonworksL굳건함 을 !M! 얻습니다."
+    "DESCRIPTION": "방어도 를 !B! 얻습니다. NL moonworks:굳건함 을 !M! 얻습니다."
   },
   "Moonworks:RedAndBlue": {
     "NAME": "아카와 아오",
@@ -526,7 +526,7 @@
   },
   "Moonworks:UnforgivingAvenger": {
     "NAME": "피도 눈물도 없는 복수자",
-    "DESCRIPTION": "moonworksL복수 *피해 를 !D! 줍니다.. NL 약화 를 !M! 부여합니다.",
+    "DESCRIPTION": "moonworks:복수 *피해 를 !D! 줍니다.. NL 약화 를 !M! 부여합니다.",
     "EXTENDED_DESCRIPTION": ["피해가 2 증가합니다."]
   },
   "Moonworks:UnluckyCharm": {

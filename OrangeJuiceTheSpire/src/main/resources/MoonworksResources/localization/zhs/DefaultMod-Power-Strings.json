@@ -103,7 +103,7 @@
                 "NAME": "出动!",
                 "DESCRIPTIONS": ["下回合, 目标受到 #b"," 伤害并且失去本效果. 如果目标在效果触发前死亡, 将两倍效果转移到另一名随机敌人身上."]
         },
-        "Moonworks:Encore": {
+        "Moonworks:EncorePower": {
                 "NAME": "安可",
                 "DESCRIPTIONS": ["在你的回合开始时重复你打出的最后一张卡效果."," NL 当前, 将会重复这张牌的效果 ", "."]
         },

@@ -47,9 +47,9 @@ public class ApplyPowerPrefixPatch
                 /*if(AbstractDungeon.actionManager.currentAction.target != null){
                     AbstractDungeon.actionManager.currentAction.target = target[0]; //set action target
                 }*/
-                if (powerToApply[0] instanceof HexPower) { //Check for Hex
+                /*if (powerToApply[0] instanceof HexPower) { //Check for Hex
                     AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target[0], target[0], powerToApply[0].ID)); //Remove it, Hex has no use on a monster
-                }
+                }*/
             }
             //Unlucky Charm Logic
             if (target[0] == AbstractDungeon.player) {

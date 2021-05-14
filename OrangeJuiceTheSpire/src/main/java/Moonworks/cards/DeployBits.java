@@ -6,6 +6,7 @@ import Moonworks.powers.ShieldCounterPower;
 import Moonworks.relics.SpareBit;
 import basemod.ReflectionHacks;
 import basemod.helpers.CardModifierManager;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -69,7 +70,7 @@ public class DeployBits extends AbstractNormaAttentiveCard {
             //bits -= 3;
             int dmgSum = 0, dmg;
             for (AbstractMonster aM : AbstractDungeon.getMonsters().monsters) {
-                if (!aM.isDeadOrEscaped() && isAttacking(aM)) {
+                if (!aM.isDeadOrEscaped() && isAttacking(aM) && !aM.hasPower(StunMonsterPower.POWER_ID)) {
                     dmg = (int) ReflectionHacks.getPrivate(aM, AbstractMonster.class, "intentDmg");
                     if ((boolean)ReflectionHacks.getPrivate(aM, AbstractMonster.class, "isMultiDmg"))
                     {

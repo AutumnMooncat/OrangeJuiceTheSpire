@@ -1,0 +1,48 @@
+{
+  "Moonworks:TwoHundredPercentOrangeJuicePotion": {
+    "NAME": "200% Апельсиновый сок",
+    "DESCRIPTIONS": ["Повышает #yНорму до #r",". Получите #gневероятную #gсилу, которую вы #rне #rможете #rбезопасно #rсдерживать.",
+      ". Получите #gневероятную #gсилу, которую вы #rпочти #rможете #rбезопасно #rсдерживать."]
+  },
+  "Moonworks:VigorPotion": {
+    "NAME": "Зелье бодрости",
+    "DESCRIPTIONS": ["Даёт #b"," #yБодрости."]
+  },
+  "Moonworks:SteadyPotion": {
+    "NAME": "Зелье стойкости",
+    "DESCRIPTIONS": ["Даёт #b"," #yСтойкости."]
+  },
+  "Moonworks:LiquidChainsPotion": {
+    "NAME": "Жидкие оковы",
+    "DESCRIPTIONS": ["Цель теряет #b"," временной #yСилы."]
+  },
+  "Moonworks:NormaPotion": {
+    "NAME": "Зелье нормы",
+    "DESCRIPTIONS": ["Даёт #b1 #yНорму следующие #b"," хода."]
+  },
+  "Moonworks:LubricantPotion": {
+    "NAME": "Смазка",
+    "DESCRIPTIONS": ["Накладывает #b"," #yУязвимости. #yМассовая."]
+  },
+  "Moonworks:CrystalPotion": {
+    "NAME": "Кристальное зелье",
+    "DESCRIPTIONS": ["Даёт #b"," #yКристаллизации."]
+  },
+  "Moonworks:OneHundredPercentOrangeJuicePotion": {
+    "NAME": "100% Апельсиновый сок",
+    "DESCRIPTIONS": ["Повышает #yНорму до #b5. Восполняет #b"," ОЗ."]
+  },
+  "Moonworks:BlastingPotion": {
+    "NAME": "Взрывогненное зелье",
+    "DESCRIPTIONS": ["Накладывает #b"," #yВзырывного #yогня. #yМассовая."]
+  },
+  "Moonworks:RefundPotion": {
+    "NAME": "Зелье возврата",
+    "DESCRIPTIONS": ["Следующие #b"," карты возращают свою стоимость."]
+  },
+  "Moonworks:OverloadPotion": {
+    "NAME": "Перегрузка",
+    "DESCRIPTIONS": ["Умножает все ваши эффекты на #b","."]
+  }
+
+}

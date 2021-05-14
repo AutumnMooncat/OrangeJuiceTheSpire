@@ -2,7 +2,7 @@
   "modid": "${project.artifactId}",
   "name": "${project.name}",
   "author_list": ["MistressAlison"],
-  "credits": "Art Assets - Orange_Juice and Fruitbat Factory\nBaseMod, ModTheSpire, and StSLib - Bug Kiooeht\nStSDefaultModBase - Gremious\nBeta Testing - Spookalon, Skyson, Fenec250, reina\nCharacter Animation Assistance - Darkglade\nMisc. Coding Assistance - Gk, Jobby, Kio, Darkglade, Jedi, Alchyr, Vex, Teafling, and many more from #modding-technical in general\nSimplified Chinese Translation - Anonymous User\nKorean Translation - Tsurumaki Maki",
+  "credits": "Art Assets - Orange_Juice and Fruitbat Factory\nBaseMod, ModTheSpire, and StSLib - Bug Kiooeht\nStSDefaultModBase - Gremious\nBeta Testing - Spookalon, Skyson, Fenec250, reina\nCharacter Animation Assistance - Darkglade\nMisc. Coding Assistance - Gk, Jobby, Kio, Darkglade, Jedi, Alchyr, Vex, Teafling, and many more from #modding-technical in general\nSimplified Chinese Translation - Anonymous User\nKorean Translation - Tsurumaki Maki\nRussian Translation - Rucodeby",
   "description": "${project.description}",
   "version": "${project.version}",
   "sts_version": "${SlayTheSpire.version}",

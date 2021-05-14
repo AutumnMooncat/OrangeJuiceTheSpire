@@ -1,0 +1,642 @@
+{
+  "Moonworks:Accelerator": {
+    "NAME": "Ускоритель",
+    "DESCRIPTION": "Даёт !M! *Ускоритель.",
+    "EXTENDED_DESCRIPTION": ["Ускоритель", "Добавленные карты получают свою копию, кроме #yСтатусов, #yПроклятий и #yМагических карт.",
+    "Опционально, тратит [E] на автоматическое улучшение добавляемых карт.",
+    "Даёт !M! *Ускоритель.","Тратит [E] . NL Даёт !M! *Ускоритель. NL Добавленные карты автоматически *Улучшаются."]
+  },
+  "Moonworks:AccelHyper": {
+    "NAME": "Гипер-ускор",
+    "DESCRIPTION": "Следующий Навык и Атака разыгрывается дважды, в этом ходу. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Следующий Навык и Атака разыгрывается дважды, в этом ходу."
+  },
+  "Moonworks:AirStrike": {
+    "NAME": "Авиаудар",
+    "DESCRIPTION": "Наносит !D! moonworks:Массового_урона. NL Изгоняется."
+  },
+  "Moonworks:Ambush": {
+    "NAME": "Засада",
+    "DESCRIPTION": "Накладывает !M! Уязвимости. NL Наносит !D! урона.",
+    "EXTENDED_DESCRIPTION": ["Эта *Атака становится moonworks:Пронзающей."]
+  },
+  "Moonworks:AngelHand": {
+    "NAME": "Рука ангела",
+    "DESCRIPTION": "Оставляется. NL Даёт !B! Защиты. NL Меняется на *Руку *дьявола когда Оставляется."
+  },
+  "Moonworks:AnotherUltimateWeapon": {
+    "NAME": "Очередное супер оружие",
+    "DESCRIPTION": "Даёт X Силы и 5X Защиты.",
+    "UPGRADE_DESCRIPTION": "Даёт X+1 Силы и 5(X+1) Защиты.",
+    "EXTENDED_DESCRIPTION": ["+X Силы и +5X Защиты."]
+  },
+  "Moonworks:Assault": {
+    "NAME": "Штурм",
+    "DESCRIPTION": "Наносит !D! moonworks:Пронзающего_урона.",
+    "EXTENDED_DESCRIPTION": ["Эффект moonworks:Пронзания в 2 раза сильнее."]
+  },
+  "Moonworks:AwakeningOfTalent": {
+    "NAME": "Пробуждение таланта",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !B! Защиты. NL Вы берёте !M! карту. NL Даёт [E], если убивает врага.",
+    "EXTENDED_DESCRIPTION": ["Даёт [E]."]
+  },
+  "Moonworks:BackdoorTrade": {
+    "NAME": "Чёрная торговля",
+    "DESCRIPTION": "Даёт !Moonworks:SecondMagic! moonworks:Нормы. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Не Сжигается, вы берёте !M! карты.","Даёт !Moonworks:SecondMagic! moonworks:Нормы."]
+  },
+    "Moonworks:BeastWitch": {
+    "NAME": "Звероведьма",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !M! временной Силы.",
+    "EXTENDED_DESCRIPTION": ["+2 урона."]
+  },
+  "Moonworks:BeyondHell": {
+    "NAME": "За гранью ада",
+    "DESCRIPTION": "Даёт !M! moonworks:Бодрости за каждые !Moonworks:InvertedNumber! недостающего ОЗ. Сжигается",
+    "EXTENDED_DESCRIPTION": ["Даёт Бодрость за каждые 3 недостающего ОЗ."]
+  },
+  "Moonworks:BigBangBell": {
+    "NAME": "Грохот колокола",
+    "DESCRIPTION": "Накладывает !M! *Грохот *колокола. NL Вы берёте эту карту, когда получаете уровень moonworks:Нормы",
+    "EXTENDED_DESCRIPTION": ["+5 базового количества.","Наносит урон когда цель наносит урон по ОЗ. NL Урон этой карты экспоненциально растёт каждый ход."]
+  },
+  "Moonworks:BigMagnum": {
+    "NAME": "Большой магнум",
+    "DESCRIPTION": "Сжигает 1 карту. NL Даёт !M! moonworks:Бодрости. NL Увеличивает даваемую этой картой moonworks:Бодрость на !Moonworks:SecondMagic! до конца боя. NL Может быть улучшена 5 раз.",
+    "EXTENDED_DESCRIPTION": ["+4 moonworks:Бодрости если вы сжигаете *Атаку.","Огромный магнум","Огроменный магнум","Огромнейший магнум","Огромнейшеогромный магнум","Огромнейшеогромного магнум","Выберите карту, которую хотите сжечь."]
+  },
+  "Moonworks:BigRocketCannon": {
+    "NAME": "Большая ракетница",
+    "DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. NL Добавляет *Авиаудар в стопку добора. NL Изгоняется.",
+    "UPGRADE_DESCRIPTION": "Наносит !D! урона ВСЕМ врагам. NL Добавляет *Авиаудар+ в стопку добора. NL Изгоняется."
+  },
+  "Moonworks:BindingChains": {
+    "NAME": "Сковывающие цепи",
+    "DESCRIPTION": "Отнимает !M! Силы на этот ход и накладывает !Moonworks:SecondMagic! Уязвимости. moonworks:Массовая.",
+    "EXTENDED_DESCRIPTION": ["Разрушенные цепи","Цепи разрушились почти в пыль.","Я не могу разыграть эту карту."]
+  },
+  "Moonworks:Blazing": {
+    "NAME": "Пылать!",
+    "DESCRIPTION": "В начале каждого вашего хода, накладывает !M! moonworks:Взрывного_огня на ВСЕХ врагов и увеличивает это количество на !Moonworks:SecondMagic!."
+  },
+  "Moonworks:Bloodlust": {
+    "NAME": "Жажда крови",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке, вы получаете !M! временной Силы за КАЖДУЮ разыгранную Атаку в этом ходу", 
+    "EXTENDED_DESCRIPTION": ["Ваша жажда крови уталилась."]
+  },
+  "Moonworks:BlueCrowTheSecond": {
+    "NAME": "Синий ворон",
+    "DESCRIPTION": "Наносит !D! урона. NL Даёт !B! Защиты. NL Даёт доп. 2 Защиты за каждую Атаку в руке.",
+    "UPGRADE_DESCRIPTION": "Оставляется. NL Наносит !D! урона. NL Даёт !B! Защиты. NL Даёт доп. 2 Защиты за каждую Атаку в руке.",
+    "EXTENDED_DESCRIPTION": ["Второй синий ворон"]
+  },
+  "Moonworks:CastOff": {
+    "NAME": "Отбрасывание",
+    "DESCRIPTION": "Вы теряете всю Защиту. NL Даёт moonworks:Бодрость равную потерянной Защите. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Даёт 5 moonworks:Стойкости."]
+  },
+  "Moonworks:ChefSomeHelp": {
+    "NAME": "Шеф, помогите плиз!",
+    "DESCRIPTION": "Наносит !D! moonworks:Мстительного_урона. NL Наносит удвоенный урон каждые !Moonworks:SecondMagic! потери ОЗ в бою.",
+    "EXTENDED_DESCRIPTION": ["Менеджер, помогите плиз!","Наносит !D! moonworks:Мстительного_урона. NL moonworks:Сбрасывается."]
+  },
+  "Moonworks:CloudOfSeagulls": {
+    "NAME": "Облако чаек",
+    "DESCRIPTION": "Наносит !Moonworks:ThirdMagic! moonworks:Фиксированного урона случайной цели !Moonworks:SecondMagic! раза. NL Добавляет !M! *Рывок *тостера в стопку добора.",
+    "UPGRADE_DESCRIPTION": "Наносит !Moonworks:ThirdMagic! moonworks:Фиксированного урона случайному врагу !Moonworks:SecondMagic! раза. NL Добавляет !M! *Рывок *тостера+ в стопку добора.",
+    "EXTENDED_DESCRIPTION": ["Вы берёте 1 карту.","Наносит !Moonworks:ThirdMagic! moonworks:Фиксированного_урона случайной цели. NL Добавляет !M! *Рывок *тостера+ в стопку добора."]
+  },
+  "Moonworks:CompletionReward": {
+    "NAME": "Награда за работу",
+    "DESCRIPTION": "Наносит урон за каждую карту разыгранную в этом бою. NL (Наносит !D! урона.)",
+    "EXTENDED_DESCRIPTION": ["+6 урона."]
+  },
+  "Moonworks:CookingTime": {
+    "NAME": "Время готовить",
+    "DESCRIPTION": "Восполняет !M! ОЗ каждому. Наносит урон равный восполненым ОЗ. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["+3 Восполняемого ОЗ."]
+  },
+  "Moonworks:CrystalBarrier": {
+    "NAME": "Кристальный барьер",
+    "DESCRIPTION": "Защита больше не исчезает в начале хода. NL Даёт !M! *Панциря."
+  },
+    "Moonworks:DarkSideOfBusiness": {
+    "NAME": "Тёмная сторона бизнеса",
+    "DESCRIPTION": "Вы теряете всю moonworks:Норму. NL Выберите 1 из 3 moonworks:Магических_карт с зарядами равные потерянной *Норме. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Вы теряете всю moonworks:Норму. NL Выберите 1 из 3 улучшенных moonworks:Магических_карт с зарядами равные потерянной *Норме. NL Сжигается."
+  },
+  "Moonworks:Dash": {
+    "NAME": "Рывок!",
+    "DESCRIPTION": "Даёт [E]. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Даёт [E] [E]. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Даёт 5 Защиты."]
+  },
+  "Moonworks:Defend": {
+    "NAME": "Оборона",
+    "DESCRIPTION": "Даёт !B! Защиты.",
+    "EXTENDED_DESCRIPTION": ["+1 Защиты.", "+1 Защиты."]
+  },
+  "Moonworks:DeltaField": {
+    "NAME": "Дельта-поле",
+    "DESCRIPTION": "ВСЕ враги получают !M! Уязвимости и теряют !Moonworks:SecondMagic! временной Силы."
+  },
+  "Moonworks:DeployBits": {
+    "NAME": "Развернуть биты",
+    "DESCRIPTION": "Даёт !Moonworks:SecondMagic! чего-то случайно распределённого между Защитой и moonworks:Бодростью.",
+    "EXTENDED_DESCRIPTION": ["Распределение битов теперь moonworks:Оптимальное."]
+  },
+  "Moonworks:DesperateModification": {
+    "NAME": "Ужасающее улучшение",
+    "DESCRIPTION": "Наносит !D! урона. NL Если враг собирается атаковать вас, даёт !M! Защиты и Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Даёт !B! Защиты. NL Сжигается."]
+  },
+  "Moonworks:DevilHand": {
+    "NAME": "Рука дьявола",
+    "DESCRIPTION": "Оставляется. NL Наносит !D! урона. NL Меняется на *Руку *ангела когда Оставляется."
+  },
+  "Moonworks:Dinner": {
+    "NAME": "Обед",
+    "DESCRIPTION": "Накладывает !M! Регенерации на ВСЕХ. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Даёт Защиту равную количеству наложенной Регенерации."]
+  },
+  "Moonworks:Encore": {
+    "NAME": "На бис",
+    "DESCRIPTION": "В начале каждого вашего хода, повторяет *эффект последней разыгранной карты.",
+    "EXTENDED_DESCRIPTION": ["Даёт Защиту равную наложенной Регенерации."]
+  },
+  "Moonworks:EvilMastermind": {
+    "NAME": "Злой гений",
+    "DESCRIPTION": "Активирует *эффект ВСЕХ *Ловушек на случайных врагов, кроме других *Злых *Гениев.",
+    "UPGRADE_DESCRIPTION": "Начальная. NL Активирует *эффект ВСЕХ *Ловушек на случайных врагов, кроме других *Злых *Гениев.",
+    "EXTENDED_DESCRIPTION":
+    ["Начальная. NL ",
+      " NL Сжигается.",
+      "Активирует *эффект следующих *Ловушек на случайных врагов: ",
+      " NL И ещё *",
+      " других.",
+      " раз.",
+      " раза."]
+  },
+  "Moonworks:EvilSpyWorkExecution": {
+    "NAME": "Выполнение злой шпионской работы",
+    "DESCRIPTION": "Самовольная. NL Наносит !D! урона ВСЕМ врагам. NL Вы берёте !M! карту. NL Изгоняется."
+  },
+  "Moonworks:EvilSpyWorkPreparation": {
+    "NAME": "Подготовка злой шпионской работы",
+    "DESCRIPTION": "Добавляет !M! *Выполнение *злой *шпионской *работы в стопку добора."
+  },
+  "Moonworks:ExtendedPhotonRifle": {
+    "NAME": "Расширенная фотонаая винтовка",
+    "DESCRIPTION": "Наносит !D! урона X раз. Сила влияет на эту карту !Moonworks:SecondMagic! раза."
+  },
+  "Moonworks:ExtraordinarySpecs": {
+    "NAME": "Экстраординарные характеристики",
+    "DESCRIPTION": "Даёт !M! временной Силы и Ловкости. NL Вы берёте !Moonworks:SecondMagic! карту. NL Сжигается."
+  },
+  "Moonworks:FinalBattle": {
+    "NAME": "Последняя битва",
+    "DESCRIPTION": "Следующие !M! ходов, каждый наносит в 2 раза больше урона."
+  },
+  "Moonworks:FinalSurgery": {
+    "NAME": "Последняя операция",
+    "DESCRIPTION": "Наносит !D! урона. NL Наносит !D! урона снова, если у врага есть Уязвимость или moonworks:Перегрев."
+  },
+  "Moonworks:Flamethrower": {
+    "NAME": "Огнемёт",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке, при разыгрывании карты, наносит !D! moonworks:Фиксированного урона врагу.",
+    "EXTENDED_DESCRIPTION": ["В вашем огнемёте кончилось топливо."]
+  },
+  "Moonworks:ForcedRevival": {
+    "NAME": "Принудительная реанимация",
+    "DESCRIPTION": "Восполняет !M! ОЗ. NL Даёт [E]. NL Даёт !Moonworks:InvertedNumber! Слабости. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Восполняет !M! ОЗ. NL Даёт [E] [E]. NL Даёт !Moonworks:InvertedNumber! Слабости. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Даёт !Moonworks:InvertedNumber! Слабости и вдвое больше [E]."]
+  },
+  "Moonworks:FullSpeedAlicianrone": {
+    "NAME": "Бешеная Алисароне",
+    "DESCRIPTION": "Наносит !D! урона. NL Вы берёте на !M! карты больше в следующем ходу.",
+    "EXTENDED_DESCRIPTION": ["Наносит урон ВСЕМ врагам."]
+  },
+  "Moonworks:Gamble": {
+    "NAME": "Безумный азарт!",
+    "DESCRIPTION": "Убивает случайную цель.",
+    "UPGRADE_DESCRIPTION": "Оставляется. NL Убивает случайную цель."
+  },
+  "Moonworks:GoAway": {
+    "NAME": "Уйди от меня",
+    "DESCRIPTION": "Эфирная. NL moonworks:Оглушает цель на один ход. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "moonworks:Оглушает цель на один ход. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Сейчас удалено"]
+  },
+  "Moonworks:GoldenEgg": {
+    "NAME": "Золотое яйцо",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Добавляет случайную *Атаку в стопку добора.",
+    "EXTENDED_DESCRIPTION": ["Добавляет её в руку, а не стопку добора."]
+  },
+  "Moonworks:TrulyGoldenEgg": {
+    "NAME": "Поистине золотое яйцо",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Добавьте 1 из 3 случайных Атак в руку, она стоит 0 в этом ходу."
+  },
+  "Moonworks:Heat300Percent": {
+    "NAME": "300% жар",
+    "DESCRIPTION": "Накладывает !M! moonworks:Перегрева. NL Сжигается",
+    "EXTENDED_DESCRIPTION": ["*Перегрев накладывается с 50% бонусом."]
+  },
+  "Moonworks:HolyNight": {
+    "NAME": "Святая ночь",
+    "DESCRIPTION": "Один раз в ход вы можете потратить [E] на то чтобы взять 2 карты.",
+    "UPGRADE_DESCRIPTION": "Начальная. NL Один раз в ход вы можете потратить [E] на то чтобы взять 2 карты",
+    "EXTENDED_DESCRIPTION": ["Использования становятся безлимитными."]
+  },
+  "Moonworks:ImmovableObject": {
+    "NAME": "Неподвижный объект",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Даёт !M! moonworks:Неподвижности. NL Сжигается."
+  },
+  "Moonworks:ImOnFire": {
+    "NAME": "Я вся горю!",
+    "DESCRIPTION": "Даёт !M! moonworks:Бодрости и !Moonworks:SecondMagic! Уязвимости.",
+    "EXTENDED_DESCRIPTION": ["-10 moonworks:Бодрости, вы наносите вдвое больше урона в этом ходу."]
+  },
+  "Moonworks:IndiscriminateFireSupport": {
+    "NAME": "Беспорядочный огонь",
+    "DESCRIPTION": "Наносит !D! урона X раз. NL Добавляет !Moonworks:InvertedNumber! moonworks:Головокружения в стопку добора.",
+    "EXTENDED_DESCRIPTION": ["Добавляет на 1 moonworks:Головокружение меньше в стопку добора."]
+  },
+  "Moonworks:IntelligenceOfficer": {
+    "NAME": "Разведывательный офицер",
+    "DESCRIPTION": "Вы Предсказываете !M! карты и за каждую... NL Атаку, Даёт !Moonworks:SecondMagic! moonworks:Бодрости. NL Навык, Даёт !Moonworks:SecondMagic! moonworks:Стойкости. NL Другое, вы берёте 1 карту."
+  },
+  "Moonworks:JonathanRush": {
+    "NAME": "Рывок Тостера",
+    "DESCRIPTION": "Самовольная. NL Наносит !D! урона случайному врагу. NL Увеличивает урон ВСЕХ *Рывков *тостера на !M! до конца боя.",
+    "UPGRADE_DESCRIPTION": "Самовольная. NL Наносит !D! урона случайному врагу. NL Увеличивает урон ВСЕХ *Рывков *тостера на !M! до конца боя."
+  },
+  "Moonworks:LeapThroughSpacetime": {
+    "NAME": "Пространственно-временной прыжок",
+    "DESCRIPTION": "Выберите один эффект: NL Вы можете одолжить *Энергию из следующего хода. NL Вы можете одолжить *Карты из следующего хода.",
+    "EXTENDED_DESCRIPTION": ["Прыжок сквозь..."," Пространство!"," Время!"]
+  },
+  "Moonworks:LeapThroughSpace": {
+    "NAME": "Прыжок сквозь пространство",
+    "DESCRIPTION": "Вы можете посмотреть, какие карты возьмёте в следующем ходу. Вы можете одолжить любые карты, которые возьмёте в следующем ходу, стоимостью снижения добора на 1 за каждую."
+  },
+  "Moonworks:LeapThroughTime": {
+    "NAME": "Прыжок сквозь время",
+    "DESCRIPTION": "Вы можете одолжить [E] из будущего. NL В следующем ходу у вас не будет столько энергии, сколько вы одолжили."
+  },
+  "Moonworks:LongDistanceShot": {
+    "NAME": "Дальнобольный выстрел",
+    "DESCRIPTION": "Наносит !D! moonworks:Пронзающего_урона. NL Вы берёте эту карту, когда получаете moonworks:Норму.",
+    "EXTENDED_DESCRIPTION": ["Эфирная. NL Наносит !D! moonworks:Пронзающего_урона. NL Сжигается.",
+      "Вы берёте !M! карту пока есть использования. !Moonworks:SecondMagic! Использований."]
+  },
+  "Moonworks:LuckyCharm": {
+    "NAME": "Талисман удачи",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке, даёт [E] в начале хода. NL Тратит до 3 [E] для восполнения moonworks:Использований, при разыгрывании.",
+    "EXTENDED_DESCRIPTION": ["У вашего талисмана иссякла удача."]
+  },
+  "Moonworks:LulusLuckyEgg": {
+    "NAME": "Счастливое яйцо Лулу",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Активирует 1 из 3 эффектов NL Вы берёте !M! карты. NL Даёт Защиту !M! раза. NL Даёт !M! временной Ловкости."
+  },
+  "Moonworks:LulusLuckiestEgg": {
+    "NAME": "Счастливейшее яйцо Лулу",
+    "DESCRIPTION": "Даёт !B! Защиты !M! раза. NL Вы берёте !M! карты. NL Даёт !M! временной Ловкости."
+  },
+  "Moonworks:MagicalInferno": {
+    "NAME": "Магическое инферно",
+    "DESCRIPTION": "Наносит !D! moonworks:Массового_урона ВСЕМ врагам. NL Даёт !M! moonworks:Бодрости. NL Сгораемая !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["Поистине магическое инферно"]
+  },
+  "Moonworks:MagicalMassacre": {
+    "NAME": "Магическая резня",
+    "DESCRIPTION": "Отнимает у врага с наибольшим ОЗ !D! ОЗ и Макс ОЗ. NL Даёт !Moonworks:SecondMagic! moonworks:Стойкости. NL Сгораемая !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["Поистине магическая резня"]
+  },
+  "Moonworks:MagicalRevenge": {
+    "NAME": "Магическая месть",
+    "DESCRIPTION": "Наносит !D! % от ваших недостающих ОЗ в виде moonworks:Мстительного_урона с !M! % moonworks:Кражей_жизни. NL (Наносит !Moonworks:SecondMagic! урона.) NL Сгораемая !stslib:ex!.",
+    "EXTENDED_DESCRIPTION": ["Поистине магическая месть"]
+  },
+  "Moonworks:MeltingMemories": {
+    "NAME": "Тающие воспоминания",
+    "DESCRIPTION": "Вы теряете всю *Норму. NL В начале каждого вашего хода, первая карта *Преобразуется в moonworks:Воспоминание. NL Восполняет 1 потерянную *Норму каждый ход.",
+    "UPGRADE_DESCRIPTION": "Вы теряете всю *Норму. NL В начале каждого вашего хода, первая карта *Преобразуется в moonworks:Воспоминание и улучшается. NL Восполняет 1 потерянную *Норму каждый ход.",
+    "EXTENDED_DESCRIPTION": ["Преобразование в воспоминание","Подходящие карты для преобразования это #yАтаки и #yНавыки стоимостью #b0 #bили #bбольше. Преобразование провалится если карта не подходит."]
+  },
+  "Moonworks:Mimic": {
+    "NAME": "Мимик",
+    "DESCRIPTION": "Выберите карту в руке. NL Добавляет !M! копий выбранной карты в начале след. хода, вместо добора.",
+    "EXTENDED_DESCRIPTION": ["Добавляет +1 копию."]
+  },
+  "Moonworks:MetallicMonocoque": {
+    "NAME": "Металлический монокок",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке, снижает потерю ОЗ от атак на !M!.",
+    "EXTENDED_DESCRIPTION": ["Ваш монокок слишком повреждён для использования."]
+  },
+  "Moonworks:MiracleRedBeanIceCream": {
+    "NAME": "Мороженка с красными бобами",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке даёт !M! временной Силы. NL Сжигается при разыгрывании. NL Восполняет 5 ОЗ, когда Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Вы съели всю мороженку."]
+  },
+  "Moonworks:MiracleWalker": {
+    "NAME": "Чудесный ходок",
+    "DESCRIPTION": "Эта карта постоянно преобразуется и стоит 0 в этом ходу.",
+    "UPGRADE_DESCRIPTION": "Эта карта постоянно преобразуется и стоит 0 в этом ходу. NL Преобразуется в улучшенные карты.",
+    "EXTENDED_DESCRIPTION": ["Если карта в которую преобразовалась Сжигается, она не Сжигается."]
+  },
+  "Moonworks:MixPhenomenon": {
+    "NAME": "Феномен перемешки",
+    "DESCRIPTION": "Восполняет moonworks:Использования !M! случайного подарка и добавляет его в стопку добора. NL Вы берёте !Moonworks:SecondMagic! карту. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Восполняет moonworks:Использования !M! случайного подарка и добавляет его в стопку добора. NL Вы берёте !Moonworks:SecondMagic! карты. NL Сжигается."
+  },
+  "Moonworks:NicePresent": {
+    "NAME": "Хороший подарочек",
+    "DESCRIPTION": "Вы берёте !M! карты. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Карты которые вы взяли Оставляются в этом ходу."]
+  },
+  "Moonworks:OutOfAmmo": {
+    "NAME": "Нет патронов!",
+    "DESCRIPTION": "Вы берёте карту когда в руке нет карт или только moonworks:Подарки и #yНеиграбельные статусы."
+  },
+  "Moonworks:PlushieMaster": {
+    "NAME": "Плюшевый мастер",
+    "DESCRIPTION": "Накладывает !M! moonworks:Добавляющие_метки на случайных врагов.",
+    "EXTENDED_DESCRIPTION": ["+2 Метки."]
+  },
+  "Moonworks:PresentForYou": {
+    "NAME": "Подарок для тебя",
+    "DESCRIPTION": "Выберите 1 из 2 NL Добавляет !M! moonworks:Подарок в стопку добора. NL Добавляет !M! moonworks:Ловушку в стопку добора. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Выберите 1 из 2 NL Добавляет !M! moonworks:Подарка в стопку добора. NL Добавляет !M! moonworks:Ловушки в стопку добора. NL Сжигается.."
+  },
+  "Moonworks:NiceList": {
+    "NAME": "Список послушных",
+    "DESCRIPTION": "Добавляет !M! moonworks:Подарок в стопку добора.",
+    "UPGRADE_DESCRIPTION": "Добавляет !M! moonworks:Подарка в стопку добора."
+  },
+  "Moonworks:NaughtyList": {
+    "NAME": "Список непослушных",
+    "DESCRIPTION": "Добавляет !M! moonworks:Ловушку в стопку добора.",
+    "UPGRADE_DESCRIPTION": " Добавляет !M! moonworks:Ловушки в стопку добора."
+  },
+  "Moonworks:Poppoformation": {
+    "NAME": "Поппо-формация",
+    "DESCRIPTION": "Следующие !M! вражеских намерения, накладывает Слабость, Хрупкость или Уязвимость в зависимости от намерения."
+  },
+  "Moonworks:PoppoTheSnatcher": {
+    "NAME": "Воришка Поппо",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке, забирает пол. эффект врага, когда он получает пол. эффект.",
+    "EXTENDED_DESCRIPTION": ["Поппо устал для того, чтобы проворачивать уловки."]
+  },
+  "Moonworks:PortablePudding": {
+    "NAME": "Пудинг на вынос",
+    "DESCRIPTION": "Восполняет !M! ОЗ в конце каждого вашего хода."
+  },
+  "Moonworks:ProtagonistsPrivilege": {
+    "NAME": "Привилегия протагониста",
+    "DESCRIPTION": "Наносит !D! урона. NL Вы берёте !M! карты. NL Если карты одного типа, эффект срабатывает ещё раз на следующий ход.",
+    "EXTENDED_DESCRIPTION": ["Восполняет !Moonworks:SecondMagic! ОЗ, если эта карта нанесла урон по ОЗ."]
+  },
+  "Moonworks:QuickRestoration": {
+    "NAME": "Быстрое восстановление",
+    "DESCRIPTION": "Даёт !B! Защиты !M! раза.",
+    "EXTENDED_DESCRIPTION": ["-1 Защиты, но даёт *Защиту ещё 1 раз."]
+  },
+  "Moonworks:RagingMadness": {
+    "NAME": "Неистовое безумие",
+    "DESCRIPTION": "Даёт !M! Силы, когда вы теряете ОЗ от атак.",
+    "UPGRADE_DESCRIPTION": "Начальная. NL Даёт !M! Силы, когда вы теряете ОЗ от атак.",
+    "EXTENDED_DESCRIPTION": ["Даёт вдвое больше Силы."]
+  },
+  "Moonworks:RainbowColoredCircle": {
+    "NAME": "Радужная окружность",
+    "DESCRIPTION": "Конвертирует !M! Защиты в moonworks:Стойкость.",
+    "EXTENDED_DESCRIPTION": ["+4 к конвертированию и *Оптимальность.","Оптимальность","Эта карта всегда конвертирует не меньше #b5 #yЗащиты, но конвертирует больше, взависимости от текущей #yЗащиты и намерений врагов."]
+  },
+  "Moonworks:Rbits": {
+    "NAME": "Кробиты",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Даёт !M! moonworks:Стойкости."
+  },
+  "Moonworks:RedAndBlue": {
+    "NAME": "Красная и синий",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке даёт !M! moonworks:Бодрости и !M! moonworks:Стойкости в начале вашего хода. NL Сбрасывается при разыгрывании.",
+    "EXTENDED_DESCRIPTION": ["Красная и синий взяли перерыв."]
+  },
+  "Moonworks:ReflectiveShell": {
+    "NAME": "Отражающий панцирь",
+    "DESCRIPTION": "Предотвращает след. потерю ОЗ в бою. Даёт moonworks:Бодрость равную полученному в следующий раз урону по ОЗ."
+  },
+  "Moonworks:ReproductionOfRecords": {
+    "NAME": "Воспроизведение записей",
+    "DESCRIPTION": "Добавляет копии последних !M! карт в стопке сброса в руку. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Оставляется. NL Добавляет копии последних !M! карт в стопке сброса в руку. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Даёт [E]."]
+  },
+  "Moonworks:Rival": {
+    "NAME": "Соперник",
+    "DESCRIPTION": "Враг с наибольшим ОЗ становится moonworks:Соперником."
+  },
+  "Moonworks:RocketCannon": {
+    "NAME": "Ракетница",
+    "DESCRIPTION": "Наносит !D! урона. NL Добавляет !M! *Большую *ракетницу в стопку добора.",
+    "UPGRADE_DESCRIPTION": "Наносит !D! урона. NL Добавляет !M! *Большую *ракетницу+ в стопку добора",
+    "EXTENDED_DESCRIPTION": ["Добавляет доп. карту."]
+  },
+  "Moonworks:SakisCookie": {
+    "NAME": "Печенки Саки",
+    "DESCRIPTION": "Восполняет !M! ОЗ. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Вы берёте 1 карту."]
+  },
+  "Moonworks:ScrambledEve": {
+    "NAME": "Кинувшаяся Ева",
+    "DESCRIPTION": "Вы сбрасываете любое количество карт, затем берёте столько же плюс !M!.",
+    "UPGRADE_DESCRIPTION": "Кладёт все карты из стопки сброса в стопку добора. NL Вы сбрасываете любое количество карт, затем берёте столько же плюс !M!.",
+    "EXTENDED_DESCRIPTION": ["Вы берёте +1 карту.", "Вы берёте +1 карту"]
+  },
+  "Moonworks:SealedMemories": {
+    "NAME": "Закрытая память",
+    "DESCRIPTION": "Преобразует до 1 карты в руке в moonworks:Воспоминание. NL Оставляет все карты в руке на следующий ход.",
+    "UPGRADE_DESCRIPTION": "Оставляется. NL Преобразует до 1 карты в руке в moonworks:Воспоминание. NL Оставляет все карты в руке на следующий ход.",
+    "EXTENDED_DESCRIPTION": ["Преобразование в воспоминание","Подходящие карты для преобразования это #yАтаки и #yНавыки стоимостью #b0 #bили #bбольше. Преобразование провалится если карта не подходит."]
+  },
+  "Moonworks:SelfDestruct": {
+    "NAME": "Самоуничтожение",
+    "DESCRIPTION": "Наносит !Moonworks:InvertedNumber! moonworks:Фиксированного_урона вам. NL Наносит !D! урона ВСЕМ врагам. NL Защита в !Moonworks:SecondMagic! эффективней уменьшает самоурон. NL Может быть разыграна пока на вас *Путы.",
+    "EXTENDED_DESCRIPTION": ["-X урона по вам."]
+  },
+  "Moonworks:ShieldCounter": {
+    "NAME": "Отражение щитом",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Даёт 1 moonworks:Отражение_щитом. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["moonworks:Отражение_щитом теперь *переносится."]
+  },
+  "Moonworks:SeriousBattle": {
+    "NAME": "Серьёзная битва",
+    "DESCRIPTION": "Активирует эффект !M! случайного moonworks:Воспоминания на цель.",
+    "UPGRADE_DESCRIPTION": "Активирует эффект !M! случайных moonworks:Воспоминаний на цель."
+  },
+  "Moonworks:SinkOrSwim": {
+    "NAME": "Тонуть или плавать",
+    "DESCRIPTION": "Даёт [E] [E] в начале каждого хода. NL Даёт !Moonworks:SecondMagic! Слабости и Хрупкости."
+  },
+  "Moonworks:StarBlastingFuse": {
+    "NAME": "Звёздный детонатор",
+    "DESCRIPTION": "Накладывает moonworks:Невидимую_бомбу. NL Добавляет свою копию в стопку добора. NL Отнимает !M! ОЗ у ВСЕХ врагов с moonworks:Невидимой_бомбой, когда вы берёте эту карту.",
+    "EXTENDED_DESCRIPTION": ["Кабум!","Кикики, ты хочешь, чтобы я взорвала тебя?","Развлечёшь меня?"]
+  },
+  "Moonworks:StarBlastingLight": {
+    "NAME": "Звёздный взрывной огонь",
+    "DESCRIPTION": "Накладывает от !M! до !Moonworks:SecondMagic! moonworks:Взрывного_огня на ВСЕХ врагов. NL Изгоняется.",
+    "EXTENDED_DESCRIPTION": ["+X moonworks:Взрывного_огня.",
+      "Кики... АХАХАХА!","Пока не превратишься в пепел...","Гори прекрасно."]
+  },
+  "Moonworks:StiffCrystal": {
+    "NAME": "Крутой кристалл",
+    "DESCRIPTION": "Даёт !M! moonworks:Кристаллизации. NL Даёт !B! Защиты. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["+4 Защиты."]
+  },
+  "Moonworks:Strike": {
+    "NAME": "Удар",
+    "DESCRIPTION": "Наносит !D! урона.",
+    "EXTENDED_DESCRIPTION": ["+1 урона.", "+2 урона."]
+  },
+  "Moonworks:SubspaceTunnel": {
+    "NAME": "Подпространственный тунель",
+    "DESCRIPTION": "Выберите любую карту в колоде. NL Положите выбранную карту в руку, а эту карту на её место. NL Выбранная карта стоит 0 в этом ходу."
+  },
+  "Moonworks:SweetBattle": {
+    "NAME": "Сладкая битва",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Восполняет !M! ОЗ, когда вы берёте эту карту или когда она Оставляется.",
+    "EXTENDED_DESCRIPTION": ["Ваша сахарная лихорадка прошла."]
+  },
+  "Moonworks:TacticalRetreat": {
+    "NAME": "Тактическое отступление",
+    "DESCRIPTION": "Даёт !B! Защиты. NL Даёт [E] и !M! Защиты на следующий ход.",
+    "EXTENDED_DESCRIPTION": ["+2 Защиты."]
+  },
+  "Moonworks:TreasureThief": {
+    "NAME": "Вор сокровищ",
+    "DESCRIPTION": "Один раз за ход вы берёте 1 карту, когда наносите урон цели. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Эффект срабатывает дважды в ход."]
+  },
+  "Moonworks:Ubiquitous": {
+    "NAME": "Вездесушка",
+    "DESCRIPTION": "Эй! Как ты получил эту карту? NL Она точно не делает ничего хорошего, наверное..."
+  },
+  "Moonworks:UnforgivingAvenger": {
+    "NAME": "Злопамятный мститель",
+    "DESCRIPTION": "Наносит !D! moonworks:Мстительного_урона. NL Накладывает !M! Слабости.",
+    "EXTENDED_DESCRIPTION": ["+2 урона."]
+  },
+  "Moonworks:UnluckyCharm": {
+    "NAME": "Талисман несчастья",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Пока в руке, отриц. эффекты наложенные на вас, накладываются на ВСЕХ врагов.",
+    "EXTENDED_DESCRIPTION": ["Вы чуствуете себя немного удачливее без этого рядом."]
+  },
+  "Moonworks:UnpaidWork": {
+    "NAME": "Неоплаченная работа",
+    "DESCRIPTION": "Следующая карта не [#FFF6E2]Изгоняется и [#FFF6E2]возращает свою стоимость. NL Сжигается."
+  },
+  "Moonworks:WarudaMachine": {
+    "NAME": "Машина Варуды",
+    "DESCRIPTION": "Накладывает 1 moonworks:Бомбление. Если цель погибает перед активацией moonworks:Бомбления, оно накладывается на случайного врага и удваивается. NL Сжигается.",
+    "EXTENDED_DESCRIPTION": ["Вы берёте карты пока не возьмёте *Навык."]
+  },
+  "Moonworks:Wanted": {
+    "NAME": "Разыскивается",
+    "DESCRIPTION": "Накладывает !M! moonworks:Розыск. NL Сжигается.",
+    "UPGRADE_DESCRIPTION": "Оставляется. NL Накладывает !M! moonworks:Розыск. NL Сжигается."
+  },
+  "Moonworks:WeAreWaruda": {
+    "NAME": "Мы есть Варуда",
+    "DESCRIPTION": "Снимает все отриц. эффекты со ВСЕХ. NL Накладывает все эти эффекты на одну цель. NL Сжигается."
+  },
+  "Moonworks:WhiteChristsmasher": {
+    "NAME": "Белый рождествокрушитель",
+    "DESCRIPTION": "Наносит !D! урона дважды. NL Если в руке есть *Красная *и *синий, наносит урон ВСЕМ врагам.",
+    "EXTENDED_DESCRIPTION": ["Поистине белый рождествокрушитель","Наносит !D! урона ВСЕМ врагам дважды."]
+  },
+  "Moonworks:WhimsicalWindmill": {
+    "NAME": "Капризная мельница",
+    "DESCRIPTION": "В начале каждого вашего хода, даёт энергию за каждого атаковавшего врага.",
+    "UPGRADE_DESCRIPTION": "Начальная. NL В начале каждого вашего хода, даёт энергию за каждого атаковавшего врага."
+  },
+  "Moonworks:WindyEnchantment": {
+    "NAME": "Заклинание ветра",
+    "DESCRIPTION": "moonworks:Использований !Moonworks:SecondMagic!. NL Вы берёте 2 карты, когда берёте эту карту. NL Вы берёте !M! карту, когда эта карта Оставляется.",
+    "EXTENDED_DESCRIPTION": ["Ваш попутный ветер ослаб."]
+  },
+  "Moonworks:x16BigRocket": {
+    "NAME": "Большая ракета",
+    "DESCRIPTION": "Наносит !D! урона. Урон наносимый этой картой увеличивается на !M! в этом бою. NL Может быть Улучшена 16 раз."
+  },
+  "Moonworks:AttackTextContainer": {
+    "NAME": "Generic Attack Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when playing an attack.",
+    "EXTENDED_DESCRIPTION": ["Просто сгори.","Я обращу тебя в пепел.","Боньк!","Ахахахахахаха!"]
+  },
+  "Moonworks:SkillTextContainer": {
+    "NAME": "Generic Skill Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when playing a skill.",
+    "EXTENDED_DESCRIPTION": ["Кикикики.","Поехали!.","Как тебе такое?"]
+  },
+  "Moonworks:PowerTextContainer": {
+    "NAME": "Generic Power Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when playing a power.",
+    "EXTENDED_DESCRIPTION": ["Ладно, я использую это!","Посмотрим, что будет дальше.","Думаю, надо попровать это."]
+  },
+  "Moonworks:BattleStartTextContainer": {
+    "NAME": "Battle Start Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the beginning of combat.",
+    "EXTENDED_DESCRIPTION": ["Сможешь ли ты меня развлечь?","У меня как раз появилось время на тебя.","Кикики... Появилась некая добыча.","Ты хочешь сгореть от моей руки?"]
+  },
+  "Moonworks:LowHPBattleStartTextContainer": {
+    "NAME": "Low HP Battle Start Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the beginning of combat if you are badly injured.",
+    "EXTENDED_DESCRIPTION": ["Боже. Ненавижу это!","Прочь с дороги!","Это просто глупо.","Так раздражает."]
+  },
+  "Moonworks:BattleEndTextContainer": {
+    "NAME": "Battle End Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the end of combat.",
+    "EXTENDED_DESCRIPTION": ["Это было прекрасное пламя!","Посмотрите, как здесь чисто и опрятно.","АхахахаААХАХА!","Закончим на этом здесь.","Кикики, посмотрите как вы сгорели."]
+  },
+  "Moonworks:BossFightTextContainer": {
+    "NAME": "Boss Fight Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear at the beginning of a boss fight.",
+    "EXTENDED_DESCRIPTION": ["Вот оно! Могущество!","Ахаха! Это должно быть весело.","Я уверена, ты будешь хорошо гореть."]
+  },
+  "Moonworks:HealingTextContainer": {
+    "NAME": "Healing Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when healing.",
+    "EXTENDED_DESCRIPTION": ["Я могу продолжать...","Кики... Прекрасное чувство.","Я готова продолжать бой.","Я чувствую себя лучше.","Мне больше не больно! Ахаха!"]
+  },
+  "Moonworks:FieldDamageTextContainer": {
+    "NAME": "Field Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when taking thorns damage.",
+    "EXTENDED_DESCRIPTION": ["Кья!","Ай.","Ой.","Ты маленькая..."]
+  },
+  "Moonworks:LightDamageTextContainer": {
+    "NAME": "Light Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when taking light damage.",
+    "EXTENDED_DESCRIPTION": ["Чёрт побери.","Ау.","Ты...","Гх."]
+  },
+  "Moonworks:HeavyDamageTextContainer": {
+    "NAME": "Heavy Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when taking heavy damage.",
+    "EXTENDED_DESCRIPTION": ["Это нечестно.","Было больно... Было боооольно!","Это больно!","Это возмутительно.","Ууууу."]
+  },
+  "Moonworks:BlockedDamageTextContainer": {
+    "NAME": "Blocked Damage Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when blocking damage.",
+    "EXTENDED_DESCRIPTION": ["Аха!","Ты не можешь достичь меня.","Ты только что что-то сделал?"]
+  },
+  "Moonworks:HomemarkTextContainer": {
+    "NAME": "Homemark Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when spending gold with the Homemark.",
+    "EXTENDED_DESCRIPTION": ["Чёрт возьми, я хотела сжечь их.","Кикики, теперь все будут разбиты.","Мне не нужно так много этого.","Это золото лишь бремя.","*вздох* Я хочу войны, а не эти глупые вещички."]
+  },
+  "Moonworks:KOTextContainer": {
+    "NAME": "KO Text",
+    "DESCRIPTION": "Extended Description used to hold text that will occasionally appear when defeated in battle.",
+    "EXTENDED_DESCRIPTION": ["Нет... Это не случится.","Поражение делает мою жизнь бессмысленной...","Бесполезно... Почему я существую?","Я-я проиграла такому как ты...","Я должна была победить... Я всегда должна побеждать!"]
+  }
+}

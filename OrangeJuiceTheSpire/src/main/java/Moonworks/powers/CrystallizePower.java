@@ -2,16 +2,19 @@ package Moonworks.powers;
 
 import Moonworks.OrangeJuiceMod;
 import basemod.interfaces.CloneablePowerInterface;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.OnReceivePowerPower;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BlurPower;
 
-public class CrystallizePower extends AbstractPower implements CloneablePowerInterface {
+public class CrystallizePower extends AbstractPower implements CloneablePowerInterface, OnReceivePowerPower {
 
     public static final String POWER_ID = OrangeJuiceMod.makeID("CrystallizePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -44,16 +47,6 @@ public class CrystallizePower extends AbstractPower implements CloneablePowerInt
         updateDescription();
     }
 
-    public void onSpecificTrigger() {
-        if (this.amount <= 0) {
-            this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
-        } else {
-            this.addToTop(new ReducePowerAction(this.owner, this.owner, this, 1));
-        }
-        //this.addToBot(new GainBlockAction(this.owner, this.owner, BLOCK));
-        this.addToBot(new ApplyPowerAction(this.owner, this.owner, new BlurPower(this.owner, 1)));
-    }
-
     // Update the description when you apply this power. (i.e. add or remove an "s" in keyword(s))
     @Override
     public void updateDescription() {
@@ -67,5 +60,23 @@ public class CrystallizePower extends AbstractPower implements CloneablePowerInt
     @Override
     public AbstractPower makeCopy() {
         return new CrystallizePower(owner, amount);
+    }
+
+    @Override
+    public boolean onReceivePower(AbstractPower abstractPower, AbstractCreature abstractCreature, AbstractCreature abstractCreature1) {
+        if (abstractPower.type == PowerType.DEBUFF && abstractCreature == owner) {
+            AbstractDungeon.actionManager.addToBottom(new TextAboveCreatureAction(owner, ApplyPowerAction.TEXT[0]));
+            CardCrawlGame.sound.play("NULLIFY_SFX");
+            flashWithoutSound();
+            if (this.amount == 1) {
+                this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+            } else {
+                this.addToTop(new ReducePowerAction(this.owner, this.owner, this, 1));
+            }
+            //this.addToBot(new GainBlockAction(this.owner, this.owner, BLOCK));
+            this.addToBot(new ApplyPowerAction(this.owner, this.owner, new BlurPower(this.owner, 1)));
+            return false;
+        }
+        return true;
     }
 }

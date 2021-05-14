@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class CrystallizePatch {
+/*public class CrystallizePatch {
 
     @SpirePatch(
             clz = ApplyPowerAction.class, //This is the class you're patching.
@@ -36,4 +36,4 @@ public class CrystallizePatch {
             return SpireReturn.Continue();
         }
     }
-}
+}*/

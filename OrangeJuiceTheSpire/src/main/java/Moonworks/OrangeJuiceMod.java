@@ -874,7 +874,7 @@ public class OrangeJuiceMod implements
 
     private String loadLocalizationIfAvailable(String fileName) {
         if (!Gdx.files.internal(getModID() + "Resources/localization/" + Settings.language.toString().toLowerCase()+ "/" + fileName).exists()) {
-            logger.info("Language: " + Settings.language.toString().toLowerCase() + ", not currently supported for" +fileName+".");
+            logger.info("Language: " + Settings.language.toString().toLowerCase() + ", not currently supported for " +fileName+".");
             return "eng" + "/" + fileName;
         } else {
             logger.info("Loaded Language: "+ Settings.language.toString().toLowerCase() + ", for "+fileName+".");

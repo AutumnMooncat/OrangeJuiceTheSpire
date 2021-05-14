@@ -113,7 +113,7 @@ public class DeployBits extends AbstractNormaAttentiveCard {
 
     //Hopefully this works. Custom Intents that do damage might not work though.
     private boolean isAttacking(AbstractMonster m) {
-        AbstractMonster.Intent i = m.intent;
+        //AbstractMonster.Intent i = m.intent;
         //Maybe this will work? This is how Spot Weakness does it
         return m.getIntentBaseDmg() >= 0;
         //return (i == AbstractMonster.Intent.ATTACK || i == AbstractMonster.Intent.ATTACK_BUFF || i == AbstractMonster.Intent.ATTACK_DEBUFF || i == AbstractMonster.Intent.ATTACK_DEFEND);

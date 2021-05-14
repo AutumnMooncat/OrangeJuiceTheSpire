@@ -1,12 +1,12 @@
 package Moonworks.cards;
 
 import Moonworks.OrangeJuiceMod;
+import Moonworks.actions.NormaCheckUnblockedDamageHealAction;
 import Moonworks.actions.ProtagonistsPrivilegeAction;
 import Moonworks.cardModifiers.NormaDynvarModifier;
 import Moonworks.cards.abstractCards.AbstractNormaAttentiveCard;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.powers.ProtagonistsPrivilegePower;
-import basemod.AutoAdd;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -42,6 +42,7 @@ public class ProtagonistsPrivilege extends AbstractNormaAttentiveCard {
     private static final int UPGRADE_PLUS_CARDS = 1;
 
     private static final int HEAL = 3;
+    private static final int UPGRADE_PLUS_HEAL = 1;
 
     private static final Integer[] NORMA_LEVELS = {2};
 
@@ -66,22 +67,20 @@ public class ProtagonistsPrivilege extends AbstractNormaAttentiveCard {
 
         //Grab our power if it exists
         ProtagonistsPrivilegePower pow = (ProtagonistsPrivilegePower) p.getPower(ProtagonistsPrivilegePower.POWER_ID);
-        OrangeJuiceMod.logger.info("Playing Protog. Do we have the power: "+ (pow!=null));
+        //OrangeJuiceMod.logger.info("Playing Protog. Do we have the power: " + (pow!=null));
 
         //Define the damage action, we will add a copy of it if we pass the draw check
         DamageAction dA = new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY);
         this.addToBot(dA);
 
-        //Heal if we pass the check
-        if (getNormaLevel() >= NORMA_LEVELS[0]) {
-            this.addToBot(new HealAction(p, p, this.magicNumber));
-        }
+        NormaCheckUnblockedDamageHealAction healCheck = new NormaCheckUnblockedDamageHealAction(m, p, NORMA_LEVELS[0], secondMagicNumber);
+        this.addToBot(healCheck);
 
         //Define the update action for if we already have the power
         AbstractGameAction addNewInfo = new AbstractGameAction() {
             public void update() {
                 if (pow != null) {
-                    pow.addInfoPair(dA, magicNumber);
+                    pow.addInfo(dA, magicNumber, healCheck);
                 }
                 this.isDone = true;
             }};
@@ -90,7 +89,7 @@ public class ProtagonistsPrivilege extends AbstractNormaAttentiveCard {
         if (pow != null) {
             this.addToBot(new ProtagonistsPrivilegeAction(magicNumber, addNewInfo));
         } else {
-            this.addToBot(new ProtagonistsPrivilegeAction(magicNumber, new ApplyPowerAction(p, p, new ProtagonistsPrivilegePower(p, dA, magicNumber))));
+            this.addToBot(new ProtagonistsPrivilegeAction(magicNumber, new ApplyPowerAction(p, p, new ProtagonistsPrivilegePower(p, dA, magicNumber, healCheck))));
         }
     }
 
@@ -100,6 +99,7 @@ public class ProtagonistsPrivilege extends AbstractNormaAttentiveCard {
         if (!this.upgraded) {
             this.upgradeName();
             this.upgradeDamage(UPGRADE_PLUS_DMG);
+            this.upgradeSecondMagicNumber(UPGRADE_PLUS_HEAL);
             //this.upgradeMagicNumber(UPGRADE_PLUS_CARDS);
             this.initializeDescription();
         }

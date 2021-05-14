@@ -40,9 +40,17 @@ public class ProtagonistsPrivilegeAction extends AbstractGameAction {
         if (AbstractDungeon.player.hasPower("No Draw")) {
             AbstractDungeon.player.getPower("No Draw").flash();
             this.isDone = true;
+            if (failAction != null) {
+                OrangeJuiceMod.logger.info("Failed check, applying action: "+failAction);
+                this.addToTop(failAction);
+            }
             return;
         } else if (amount <= 0) {
             this.isDone = true;
+            if (failAction != null) {
+                OrangeJuiceMod.logger.info("Failed check, applying action: "+failAction);
+                this.addToTop(failAction);
+            }
             return;
         }
 

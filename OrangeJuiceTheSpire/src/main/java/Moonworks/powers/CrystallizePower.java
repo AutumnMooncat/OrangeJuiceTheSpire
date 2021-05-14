@@ -65,7 +65,7 @@ public class CrystallizePower extends AbstractPower implements CloneablePowerInt
     @Override
     public boolean onReceivePower(AbstractPower abstractPower, AbstractCreature abstractCreature, AbstractCreature abstractCreature1) {
         if (abstractPower.type == PowerType.DEBUFF && abstractCreature == owner) {
-            AbstractDungeon.actionManager.addToBottom(new TextAboveCreatureAction(owner, ApplyPowerAction.TEXT[0]));
+            this.addToBot(new TextAboveCreatureAction(owner, ApplyPowerAction.TEXT[0]));
             CardCrawlGame.sound.play("NULLIFY_SFX");
             flashWithoutSound();
             if (this.amount == 1) {

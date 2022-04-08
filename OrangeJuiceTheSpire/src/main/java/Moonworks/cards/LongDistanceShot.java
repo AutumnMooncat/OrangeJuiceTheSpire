@@ -61,31 +61,16 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard implements Rang
 
     private static final Integer[] NORMA_LEVELS = {3};
 
-    public boolean copy;
-    //public boolean normaAutoPlay;
-    //public boolean oldAutoPlayState;
-
     // /STAT DECLARATION/
 
 
     public LongDistanceShot() {
-        this(false);
-    }
-
-    public LongDistanceShot(boolean copy) {
-        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, copy ? null : NORMA_LEVELS);
+        super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET, NORMA_LEVELS);
         baseDamage = DAMAGE;
         magicNumber = baseMagicNumber = DRAW;
         secondMagicNumber = baseSecondMagicNumber = DRAWS;
-        this.copy = copy;
-        if(copy) {
-            this.isEthereal = true;
-            this.exhaust = true;
-            this.rawDescription = COPY_DESCRIPTION;
-            initializeDescription();
-        } else {
-            CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 0, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[1]));
-        }
+        CardModifierManager.addModifier(this, new NormaDynvarModifier(NormaDynvarModifier.DYNVARMODS.INFOMOD, 0, NORMA_LEVELS[0], EXTENDED_DESCRIPTION[1]));
+
     }
 
     // Actions the card should do.
@@ -97,7 +82,6 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard implements Rang
         RangedPatches.RangedField.ranged.set(rangedDamage, true);
         this.addToBot(new DamageAction(m, rangedDamage, AbstractGameAction.AttackEffect.BLUNT_LIGHT, true));
         if (piercing > 0) {
-            //this.addToBot(new LoseHPAction(m, p, piercing));
             DamageInfo pierceDamage = new DamageInfo(p, damage, DamageInfo.DamageType.HP_LOSS);
             PiercingPatches.PiercingField.piercing.set(pierceDamage, true);
             this.addToBot(new DamageAction(m, pierceDamage, AbstractGameAction.AttackEffect.NONE, true));
@@ -107,19 +91,15 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard implements Rang
             secondMagicNumber = Math.max(0, secondMagicNumber - 1);
             this.isSecondMagicNumberModified = secondMagicNumber != baseSecondMagicNumber;
         }
-        /*if (normaAutoPlay) {
-            AutoplayField.autoplay.set(this, oldAutoPlayState);
-            normaAutoPlay = false;
-        }*/
-        /*if (getNormaLevel() >= NORMA_LEVELS[0] && p.hand.size() < BaseMod.MAX_HAND_SIZE && !isEthereal) {
-            AbstractCard lds = new LongDistanceShot(true);
-            if (upgraded) {
-                lds.upgrade();
-            }
-            //this.addToBot(new MakeTempCardInHandAction(lds));
-            //lds.current_x = -1000.0F * Settings.scale;
-            AbstractDungeon.effectList.add(new ShowCardAndAddToHandEffect(lds));
-        }*/
+
+    }
+
+    @Override
+    public void resetAttributes() {
+        int uses = secondMagicNumber;
+        super.resetAttributes();
+        secondMagicNumber = uses;
+        isSecondMagicNumberModified = secondMagicNumber != baseSecondMagicNumber;
     }
 
     //Upgraded stats.
@@ -131,11 +111,6 @@ public class LongDistanceShot extends AbstractNormaAttentiveCard implements Rang
             upgradeSecondMagicNumber(UPGRADE_PLUS_DRAWS);
             initializeDescription();
         }
-    }
-
-    @Override
-    public AbstractCard makeCopy() {
-        return new LongDistanceShot(copy);
     }
 
     @Override

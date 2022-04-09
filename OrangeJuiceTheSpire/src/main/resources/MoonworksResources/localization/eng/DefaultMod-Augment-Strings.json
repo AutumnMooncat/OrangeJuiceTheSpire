@@ -8,6 +8,9 @@
   "Moonworks:EvilPrepMod": {
     "TEXT": ["Evil ", " Preparation", " NL Shuffle %d *Evil *Spy *Work *Execution into your draw pile."]
   },
+  "Moonworks:HeatedMod": {
+    "TEXT": ["Heated ", "", " NL Apply %d moonworks:Overheat."]
+  },
   "Moonworks:JonathanMod": {
     "TEXT": ["Jonathan's ", "", " NL Add %d *Jonathan *Rush into your hand."]
   },

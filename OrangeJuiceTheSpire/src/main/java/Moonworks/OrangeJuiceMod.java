@@ -1,5 +1,6 @@
 package Moonworks;
 
+import Moonworks.augments.AugmentHelper;
 import Moonworks.potions.*;
 import Moonworks.relics.*;
 import Moonworks.variables.DefaultInvertedNumber;
@@ -32,6 +33,7 @@ import Moonworks.util.TextureLoader;
 import Moonworks.variables.DefaultCustomVariable;
 import Moonworks.variables.SecondMagicNumber;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -80,8 +82,11 @@ public class OrangeJuiceMod implements
     private static String modID;
 
     // Mod-settings settings. This is if you want an on/off savable button
-    public static Properties theStarBreakerDefaultSettings = new Properties();
+    public static SpireConfig theStarBreakerConfig;
     public static Properties normaBackupVars = new Properties();
+
+    public static final String ENABLE_CHIMERA_CROSSOVER = "enableChimeraCrossover";
+    public static boolean enableChimeraCrossover = true;
 
     public static final String ENABLE_SELFDAMAGE_SETTING = "enableSelfDamage";
     public static boolean enableSelfDamage = false; // The boolean we'll be setting on/off (true/false)
@@ -120,6 +125,9 @@ public class OrangeJuiceMod implements
 
 
     //This is for the in-game mod settings panel.
+    public static UIStrings uiStrings;
+    public static String[] TEXT;
+    public static String[] EXTRA_TEXT;
     private static final String MODNAME = "The Star Breaker";
     private static final String AUTHOR = "Mistress Alison";
     private static final String DESCRIPTION = "Adds Star Breaker (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!";
@@ -317,95 +325,31 @@ public class OrangeJuiceMod implements
         logger.info("Adding mod settings");
         // This loads the mod settings.
         // The actual mod Button is added below in receivePostInitialize()
-        theStarBreakerDefaultSettings.setProperty(ENABLE_SELFDAMAGE_SETTING, "FALSE"); // This is the default setting. It's actually set...
-        //theStarBreakerDefaultSettings.setProperty(FIVE_STAR_WANTED_SETTING, "FALSE");
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings); // ...right here
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            enableSelfDamage = config.getBool(ENABLE_SELFDAMAGE_SETTING);
-            //enableStrongerWantedEffect = config.getBool(FIVE_STAR_WANTED_SETTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        Properties theStarBreakerDefaultSettings = new Properties();
+        theStarBreakerDefaultSettings.setProperty(ENABLE_CHIMERA_CROSSOVER, "TRUE");
+        theStarBreakerDefaultSettings.setProperty(ENABLE_SELFDAMAGE_SETTING, "FALSE");
         theStarBreakerDefaultSettings.setProperty(FIVE_STAR_WANTED_SETTING, "FALSE");
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            enableStrongerWantedEffect = config.getBool(FIVE_STAR_WANTED_SETTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         theStarBreakerDefaultSettings.setProperty(DISABLE_GULL_VFX, "FALSE");
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            disableGullVfx = config.getBool(DISABLE_GULL_VFX);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         theStarBreakerDefaultSettings.setProperty(CARD_BATTLE_TALK_SETTING, "TRUE");
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            enableCardBattleTalkEffect = config.getBool(CARD_BATTLE_TALK_SETTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         theStarBreakerDefaultSettings.setProperty(CARD_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(BASE_CARD_TALK_PROBABILITY));
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            cardTalkProbability = config.getInt(CARD_BATTLE_TALK_PROBABILITY_SETTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         theStarBreakerDefaultSettings.setProperty(DAMAGED_BATTLE_TALK_SETTING, "TRUE");
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            enableDamagedBattleTalkEffect = config.getBool(DAMAGED_BATTLE_TALK_SETTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         theStarBreakerDefaultSettings.setProperty(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(BASE_DAMAGED_TALK_PROBABILITY));
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            damagedTalkProbability = config.getInt(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_SETTING, "TRUE");
-        try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            enablePreBattleTalkEffect = config.getBool(PRE_BATTLE_TALK_SETTING);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(BASE_PRE_TALK_PROBABILITY));
         try {
-            SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
-            config.load(); // Load the setting and set the boolean to equal it
-            preTalkProbability = config.getInt(PRE_BATTLE_TALK_PROBABILITY_SETTING);
-        } catch (Exception e) {
+            theStarBreakerConfig = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
+            enableChimeraCrossover = theStarBreakerConfig.getBool(ENABLE_CHIMERA_CROSSOVER);
+            enableSelfDamage = theStarBreakerConfig.getBool(ENABLE_SELFDAMAGE_SETTING);
+            enableStrongerWantedEffect = theStarBreakerConfig.getBool(FIVE_STAR_WANTED_SETTING);
+            disableGullVfx = theStarBreakerConfig.getBool(DISABLE_GULL_VFX);
+            enableCardBattleTalkEffect = theStarBreakerConfig.getBool(CARD_BATTLE_TALK_SETTING);
+            cardTalkProbability = theStarBreakerConfig.getInt(CARD_BATTLE_TALK_PROBABILITY_SETTING);
+            enableDamagedBattleTalkEffect = theStarBreakerConfig.getBool(DAMAGED_BATTLE_TALK_SETTING);
+            damagedTalkProbability = theStarBreakerConfig.getInt(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING);
+            enablePreBattleTalkEffect = theStarBreakerConfig.getBool(PRE_BATTLE_TALK_SETTING);
+            preTalkProbability = theStarBreakerConfig.getInt(PRE_BATTLE_TALK_PROBABILITY_SETTING);
+        } catch (IOException e) {
+            logger.error("Star Breaker Spireconfig initialized failed:");
             e.printStackTrace();
         }
 
@@ -515,6 +459,10 @@ public class OrangeJuiceMod implements
             //WidePotionsMod.whitelistComplexPotion(MyOtherPotion.POTION_ID, new WideMyOtherPotion());
         }
 
+        if (Loader.isModLoaded("CardAugments")) {
+            AugmentHelper.register();
+        }
+
         logger.info("Loading badge image and mod options");
         
         // Load the Mod Badge
@@ -523,179 +471,111 @@ public class OrangeJuiceMod implements
         // Create the Mod Menu
         ModPanel settingsPanel = new ModPanel();
 
+        //Grab the strings
+        uiStrings = CardCrawlGame.languagePack.getUIString(makeID("ModConfigs"));
+        EXTRA_TEXT = uiStrings.EXTRA_TEXT;
+        TEXT = uiStrings.TEXT;
+
         //Get the longest slider text for positioning
         ArrayList<String> labelStrings = new ArrayList<>();
-        labelStrings.add(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigBattleTalkButton")).TEXT[0]);
-        labelStrings.add(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigDamagedTalkButton")).TEXT[0]);
-        labelStrings.add(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigPreBattleTalkButton")).TEXT[0]);
+        labelStrings.add(TEXT[2]);
+        labelStrings.add(TEXT[3]);
+        labelStrings.add(TEXT[4]);
         float sliderOffset = getSliderPosition(labelStrings);
         labelStrings.clear();
         float currentYposition = 740f;
         float spacingY = 55f;
-        
-        // Create the on/off button:
-        ModLabeledToggleButton enableSelfDamageButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigSeagulls")).TEXT[0],
-                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                enableSelfDamage, // Boolean it uses
-                settingsPanel, // The mod panel in which this button will be in
-                (label) -> {}, // thing??????? idk
-                (button) -> { // The actual button:
-            
-            enableSelfDamage = button.enabled; // The boolean true/false will be whether the button is enabled or not
-            try {
-                // And based on that boolean, set the settings and save them
-                SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                config.setBool(ENABLE_SELFDAMAGE_SETTING, enableSelfDamage);
-                config.save();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+        // Crossover setting
+        ModLabeledToggleButton enableChimeraCrossoverButton = new ModLabeledToggleButton(TEXT[6],350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                theStarBreakerConfig.getBool(ENABLE_CHIMERA_CROSSOVER), settingsPanel, (label) -> {}, (button) -> {
+            theStarBreakerConfig.setBool(ENABLE_CHIMERA_CROSSOVER, button.enabled);
+            enableChimeraCrossover = button.enabled;
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
         });
         currentYposition -= spacingY;
-        ModLabeledToggleButton enableStrongerWantedButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigWanted")).TEXT[0],
-                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                enableStrongerWantedEffect, // Boolean it uses
-                settingsPanel, // The mod panel in which this button will be in
-                (label) -> {}, // thing??????? idk
-                (button) -> { // The actual button:
-
-                    enableStrongerWantedEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setBool(FIVE_STAR_WANTED_SETTING, enableStrongerWantedEffect);
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+        
+        // Self damage setting
+        ModLabeledToggleButton enableSelfDamageButton = new ModLabeledToggleButton(TEXT[0], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                theStarBreakerConfig.getBool(ENABLE_SELFDAMAGE_SETTING), settingsPanel, (label) -> {}, (button) -> {
+            theStarBreakerConfig.setBool(ENABLE_SELFDAMAGE_SETTING, button.enabled);
+            enableSelfDamage = button.enabled;
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         currentYposition -= spacingY;
-        ModLabeledToggleButton disableGullVFXButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigGullVFXButton")).TEXT[0],
-                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                disableGullVfx, // Boolean it uses
-                settingsPanel, // The mod panel in which this button will be in
-                (label) -> {}, // thing??????? idk
-                (button) -> { // The actual button:
 
-                    disableGullVfx = button.enabled; // The boolean true/false will be whether the button is enabled or not
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setBool(DISABLE_GULL_VFX, disableGullVfx);
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+        //Stronger Wanted
+        ModLabeledToggleButton enableStrongerWantedButton = new ModLabeledToggleButton(TEXT[1], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                theStarBreakerConfig.getBool(FIVE_STAR_WANTED_SETTING), settingsPanel, (label) -> {}, (button) -> {
+            theStarBreakerConfig.setBool(FIVE_STAR_WANTED_SETTING, button.enabled);
+            enableStrongerWantedEffect = button.enabled;
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         currentYposition -= spacingY;
+
+        //Disable Gull VFX
+        ModLabeledToggleButton disableGullVFXButton = new ModLabeledToggleButton(TEXT[5], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                theStarBreakerConfig.getBool(DISABLE_GULL_VFX), settingsPanel, (label) -> {}, (button) -> {
+            theStarBreakerConfig.setBool(DISABLE_GULL_VFX, button.enabled);
+            disableGullVfx = button.enabled;
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
+        currentYposition -= spacingY;
+
         //Used for randomly talking when playing cards
-        ModLabeledToggleButton enableCardBattleTalkButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigBattleTalkButton")).TEXT[0],
-                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                enableCardBattleTalkEffect, // Boolean it uses
-                settingsPanel, // The mod panel in which this button will be in
-                (label) -> {}, // thing??????? idk
-                (button) -> { // The actual button:
-
-                    enableCardBattleTalkEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setBool(CARD_BATTLE_TALK_SETTING, enableCardBattleTalkEffect);
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+        ModLabeledToggleButton enableCardBattleTalkButton = new ModLabeledToggleButton(TEXT[2], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                theStarBreakerConfig.getBool(CARD_BATTLE_TALK_SETTING), settingsPanel, (label) -> {}, (button) -> {
+            theStarBreakerConfig.setBool(CARD_BATTLE_TALK_SETTING, button.enabled);
+            enableCardBattleTalkEffect = button.enabled;
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         ModMinMaxSlider cardBattleTalkSlider = new ModMinMaxSlider("",
                 enableCardBattleTalkButton.getX() + sliderOffset,
                 enableCardBattleTalkButton.getY() + 20f,
-                0, 100, cardTalkProbability, "%.0f",
-                settingsPanel,
-                slider -> {
-                    cardTalkProbability = (int)slider.getValue();
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setInt(CARD_BATTLE_TALK_PROBABILITY_SETTING, (int) slider.getValue());
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+                0, 100, theStarBreakerConfig.getInt(CARD_BATTLE_TALK_PROBABILITY_SETTING), "%.0f", settingsPanel, slider -> {
+            theStarBreakerConfig.setInt(CARD_BATTLE_TALK_PROBABILITY_SETTING, (int)slider.getValue());
+            cardTalkProbability = (int)slider.getValue();
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         currentYposition -= spacingY;
-        //Used for randomly talking when taking damage
-        ModLabeledToggleButton enableDamagedBattleTalkButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigDamagedTalkButton")).TEXT[0],
-                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                enableDamagedBattleTalkEffect, // Boolean it uses
-                settingsPanel, // The mod panel in which this button will be in
-                (label) -> {}, // thing??????? idk
-                (button) -> { // The actual button:
 
-                    enableDamagedBattleTalkEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setBool(DAMAGED_BATTLE_TALK_SETTING, enableDamagedBattleTalkEffect);
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+        //Used for randomly talking when taking damage
+        ModLabeledToggleButton enableDamagedBattleTalkButton = new ModLabeledToggleButton(TEXT[3], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                theStarBreakerConfig.getBool(DAMAGED_BATTLE_TALK_SETTING), settingsPanel, (label) -> {}, (button) -> {
+            theStarBreakerConfig.setBool(DAMAGED_BATTLE_TALK_SETTING, button.enabled);
+            enableDamagedBattleTalkEffect = button.enabled;
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         ModMinMaxSlider damagedBattleTalkSlider = new ModMinMaxSlider("",
                 enableDamagedBattleTalkButton.getX() + sliderOffset,
                 enableDamagedBattleTalkButton.getY() + 20f,
-                0, 100, damagedTalkProbability, "%.0f",
-                settingsPanel,
-                slider -> {
-                    damagedTalkProbability = (int)slider.getValue();
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setInt(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING, (int) slider.getValue());
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+                0, 100, theStarBreakerConfig.getInt(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING), "%.0f", settingsPanel, slider -> {
+            theStarBreakerConfig.setInt(DAMAGED_BATTLE_TALK_PROBABILITY_SETTING, (int)slider.getValue());
+            damagedTalkProbability = (int)slider.getValue();
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         currentYposition -= spacingY;
-        //Used for randomly talking when combat starts and ends
-        ModLabeledToggleButton enablePreBattleTalkButton = new ModLabeledToggleButton(CardCrawlGame.languagePack.getUIString(OrangeJuiceMod.makeID("ModConfigPreBattleTalkButton")).TEXT[0],
-                350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-                enablePreBattleTalkEffect, // Boolean it uses
-                settingsPanel, // The mod panel in which this button will be in
-                (label) -> {}, // thing??????? idk
-                (button) -> { // The actual button:
 
-                    enablePreBattleTalkEffect = button.enabled; // The boolean true/false will be whether the button is enabled or not
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setBool(PRE_BATTLE_TALK_SETTING, enablePreBattleTalkEffect);
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+        //Used for randomly talking when combat starts and ends
+        ModLabeledToggleButton enablePreBattleTalkButton = new ModLabeledToggleButton(TEXT[4], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                theStarBreakerConfig.getBool(PRE_BATTLE_TALK_SETTING), settingsPanel, (label) -> {}, (button) -> {
+            theStarBreakerConfig.setBool(PRE_BATTLE_TALK_SETTING, button.enabled);
+            enablePreBattleTalkEffect = button.enabled;
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         ModMinMaxSlider preBattleTalkSlider = new ModMinMaxSlider("",
                 enablePreBattleTalkButton.getX() + sliderOffset,
                 enablePreBattleTalkButton.getY() + 20f,
-                0, 100, preTalkProbability, "%.0f",
-                settingsPanel,
-                slider -> {
-                    preTalkProbability = (int)slider.getValue();
-                    try {
-                        // And based on that boolean, set the settings and save them
-                        SpireConfig config = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-                        config.setInt(PRE_BATTLE_TALK_PROBABILITY_SETTING, (int) slider.getValue());
-                        config.save();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
+                0, 100, theStarBreakerConfig.getInt(PRE_BATTLE_TALK_PROBABILITY_SETTING), "%.0f", settingsPanel, slider -> {
+            theStarBreakerConfig.setInt(PRE_BATTLE_TALK_PROBABILITY_SETTING, (int)slider.getValue());
+            preTalkProbability = (int)slider.getValue();
+            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+        });
         //currentYposition -= spacingY;
 
-        settingsPanel.addUIElement(enableSelfDamageButton); // Add the button to the settings panel. Button is a go.
-        settingsPanel.addUIElement(enableStrongerWantedButton); // Add the button to the settings panel. Button is a go.
+        settingsPanel.addUIElement(enableChimeraCrossoverButton);
+        settingsPanel.addUIElement(enableSelfDamageButton);
+        settingsPanel.addUIElement(enableStrongerWantedButton);
         settingsPanel.addUIElement(disableGullVFXButton);
         settingsPanel.addUIElement(enableCardBattleTalkButton);
         settingsPanel.addUIElement(cardBattleTalkSlider);
@@ -921,6 +801,10 @@ public class OrangeJuiceMod implements
         // UIStrings
         BaseMod.loadCustomStringsFile(UIStrings.class,
                 getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-UI-Strings.json"));
+
+        // Augment Strings
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Augment-Strings.json"));
         
         logger.info("Done editing strings");
     }

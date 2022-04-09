@@ -11,22 +11,13 @@
   "Moonworks:ChooseMemory": {
     "TEXT": ["选择 "," 卡牌转变为记忆."]
   },
-  "Moonworks:ModConfigSeagulls": {
-    "TEXT": ["大群的海鸥在升级之后仍然可能打到自己. 默认: 否."]
-  },
-  "Moonworks:ModConfigWanted": {
-    "TEXT": ["被通缉的敌人会伤害自己. 默认: 否."]
-  },
-  "Moonworks:ModConfigBattleTalkButton": {
-    "TEXT": ["允许打牌时主角随机说话. 默认: 是, 25% 概率."]
-  },
-  "Moonworks:ModConfigDamagedTalkButton": {
-    "TEXT": ["允许攻击时主角随机说话. 默认: 是, 50% 概率."]
-  },
-  "Moonworks:ModConfigPreBattleTalkButton": {
-    "TEXT": ["允许战斗前/后主角随机说话. 默认: 是, 75% 概率."]
-  },
-  "Moonworks:ModConfigGullVFXButton": {
-    "TEXT": ["启用海鸥遗物的演出效果. 默认: 是."]
+  "Moonworks:ModConfigs": {
+    "TEXT": ["大群的海鸥在升级之后仍然可能打到自己. 默认: 否.",
+      "被通缉的敌人会伤害自己. 默认: 否.",
+      "允许打牌时主角随机说话. 默认: 是, 25% 概率.",
+      "允许攻击时主角随机说话. 默认: 是, 50% 概率.",
+      "允许战斗前/后主角随机说话. 默认: 是, 75% 概率.",
+      "启用海鸥遗物的演出效果. 默认: 是.",
+      "Enable Chimera Cards crossover content"]
   }
 }

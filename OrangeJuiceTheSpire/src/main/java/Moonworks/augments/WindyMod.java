@@ -18,7 +18,7 @@ public class WindyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && !card.isEthereal;
+        return OrangeJuiceMod.enableChimeraCrossover && cardCheck(card, c -> notEthereal(c));
     }
 
     @Override

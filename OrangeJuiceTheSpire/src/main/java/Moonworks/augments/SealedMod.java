@@ -18,7 +18,7 @@ public class SealedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && BookOfMemoriesPower.getViability(card) && !doesntExhaust(card);
+        return OrangeJuiceMod.enableChimeraCrossover && BookOfMemoriesPower.getViability(card) && cardCheck(card, c -> notExhaust(c));
     }
 
     @Override

@@ -24,9 +24,11 @@ public class EvilPrepMod extends AbstractAugment {
         card.costForTurn = card.cost;
     }
 
+    //TODO rework
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && card.cost >= 0 && card.type != AbstractCard.CardType.POWER && cardCheck(card, c -> doesntUpgradeCost());
+        return false;
+        //return OrangeJuiceMod.enableChimeraCrossover && card.cost >= 0 && card.type != AbstractCard.CardType.POWER && cardCheck(card, c -> doesntUpgradeCost());
     }
 
     @Override

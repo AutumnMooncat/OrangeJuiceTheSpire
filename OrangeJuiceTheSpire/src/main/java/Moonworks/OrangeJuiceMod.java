@@ -1,12 +1,16 @@
 package Moonworks;
 
-import Moonworks.augments.AugmentHelper;
+//import Moonworks.augments.AugmentHelper;
+import Moonworks.characters.TheStarBreaker;
 import Moonworks.potions.*;
 import Moonworks.relics.*;
+import Moonworks.util.IDCheckDontTouchPls;
+import Moonworks.util.TextureLoader;
+import Moonworks.variables.DefaultCustomVariable;
 import Moonworks.variables.DefaultInvertedNumber;
+import Moonworks.variables.SecondMagicNumber;
 import Moonworks.variables.ThirdMagicNumber;
 import basemod.*;
-import basemod.abstracts.CustomSavable;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -18,7 +22,6 @@ import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
@@ -27,11 +30,6 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import Moonworks.characters.TheStarBreaker;
-import Moonworks.util.IDCheckDontTouchPls;
-import Moonworks.util.TextureLoader;
-import Moonworks.variables.DefaultCustomVariable;
-import Moonworks.variables.SecondMagicNumber;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -459,9 +457,9 @@ public class OrangeJuiceMod implements
             //WidePotionsMod.whitelistComplexPotion(MyOtherPotion.POTION_ID, new WideMyOtherPotion());
         }
 
-        if (Loader.isModLoaded("CardAugments")) {
+        /*if (Loader.isModLoaded("CardAugments")) {
             AugmentHelper.register();
-        }
+        }*/
 
         logger.info("Loading badge image and mod options");
         
@@ -487,13 +485,13 @@ public class OrangeJuiceMod implements
         float spacingY = 55f;
 
         // Crossover setting
-        ModLabeledToggleButton enableChimeraCrossoverButton = new ModLabeledToggleButton(TEXT[6],350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        /*ModLabeledToggleButton enableChimeraCrossoverButton = new ModLabeledToggleButton(TEXT[6],350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 theStarBreakerConfig.getBool(ENABLE_CHIMERA_CROSSOVER), settingsPanel, (label) -> {}, (button) -> {
             theStarBreakerConfig.setBool(ENABLE_CHIMERA_CROSSOVER, button.enabled);
             enableChimeraCrossover = button.enabled;
             try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
         });
-        currentYposition -= spacingY;
+        currentYposition -= spacingY;*/
         
         // Self damage setting
         ModLabeledToggleButton enableSelfDamageButton = new ModLabeledToggleButton(TEXT[0], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
@@ -573,7 +571,7 @@ public class OrangeJuiceMod implements
         });
         //currentYposition -= spacingY;
 
-        settingsPanel.addUIElement(enableChimeraCrossoverButton);
+        //settingsPanel.addUIElement(enableChimeraCrossoverButton);
         settingsPanel.addUIElement(enableSelfDamageButton);
         settingsPanel.addUIElement(enableStrongerWantedButton);
         settingsPanel.addUIElement(disableGullVFXButton);
@@ -803,8 +801,8 @@ public class OrangeJuiceMod implements
                 getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-UI-Strings.json"));
 
         // Augment Strings
-        BaseMod.loadCustomStringsFile(UIStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Augment-Strings.json"));
+        /*BaseMod.loadCustomStringsFile(UIStrings.class,
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Augment-Strings.json"));*/
         
         logger.info("Done editing strings");
     }

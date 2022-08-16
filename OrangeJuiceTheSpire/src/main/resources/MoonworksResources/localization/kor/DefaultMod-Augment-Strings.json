@@ -1,0 +1,26 @@
+{
+  "Moonworks:Example": {
+    "TEXT": ["Prefix", "Suffix", "Description stuff"]
+  },
+  "Moonworks:BlastingMod": {
+    "TEXT": ["Blasting ", "", " NL Apply %d moonworks:Blasting_Light."]
+  },
+  "Moonworks:EvilPrepMod": {
+    "TEXT": ["Evil ", " Preparation", " NL Shuffle %d *Evil *Spy *Work *Execution into your draw pile."]
+  },
+  "Moonworks:HeatedMod": {
+    "TEXT": ["Heated ", "", " NL Apply %d moonworks:Overheat."]
+  },
+  "Moonworks:JonathanMod": {
+    "TEXT": ["Jonathan's ", "", " NL Add %d *Jonathan *Rush into your hand."]
+  },
+  "Moonworks:SealedMod": {
+    "TEXT": ["Sealed ", "", " NL Convert this card into a moonworks:Memory."]
+  },
+  "Moonworks:SteadyMod": {
+    "TEXT": ["Steady ", "", " NL Gain %d moonworks:Steady."]
+  },
+  "Moonworks:WindyMod": {
+    "TEXT": ["Windy ", "", "Ethereal. NL "," NL When you draw this card, draw a card."]
+  }
+}

@@ -10,13 +10,17 @@ import basemod.helpers.ModalChoice;
 import basemod.helpers.ModalChoiceBuilder;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
 
 import static Moonworks.OrangeJuiceMod.makeCardPath;
 
-public class LeapThroughSpacetime extends AbstractNormaAttentiveCard implements ModalChoice.Callback{
+public class LeapThroughSpacetime extends AbstractNormaAttentiveCard {
 
     /*
      * Wiki-page: https://github.com/daviscook477/BaseMod/wiki/Custom-Cards
@@ -48,30 +52,20 @@ public class LeapThroughSpacetime extends AbstractNormaAttentiveCard implements 
 
     private static final int TEMP_COST = -2;
 
-    private ModalChoice modal;
-
-    private AbstractCard LTS = new LeapThroughSpace(EXTENDED_DESCRIPTION[1]);
-
-    private AbstractCard LTT = new LeapThroughTime(EXTENDED_DESCRIPTION[2]);
-
     // /STAT DECLARATION/
-
 
     public LeapThroughSpacetime() {
         super(ID, IMG, COST, TYPE, COLOR, RARITY, TARGET);
-
-        modal = new ModalChoiceBuilder()
-                .setCallback(this)
-                .addOption(LTS)
-                .addOption(LTT)
-                .create();
     }
 
     // Actions the card should do.
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         this.addToBot(new TalkAction(true, EXTENDED_DESCRIPTION[0], 0.2f, 2.0f));
-        modal.open();
+        ArrayList<AbstractCard> cards = new ArrayList<>();
+        cards.add(new LeapThroughSpace(EXTENDED_DESCRIPTION[1]));
+        cards.add(new LeapThroughTime(EXTENDED_DESCRIPTION[2]));
+        this.addToBot(new ChooseOneAction(cards));// 52
     }
 
     //Upgraded stats.
@@ -86,17 +80,12 @@ public class LeapThroughSpacetime extends AbstractNormaAttentiveCard implements 
     }
 
     @Override
-    public void optionSelected(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster, int i) {
-
-    }
-
-    @Override
     public float getTitleFontSize() {
         return 20F;
     }
 
     @AutoAdd.Ignore
-    public class LeapThroughSpace extends AbstractNormaAttentiveCard {
+    public static class LeapThroughSpace extends AbstractNormaAttentiveCard {
 
         private final String useText;
 
@@ -106,9 +95,7 @@ public class LeapThroughSpacetime extends AbstractNormaAttentiveCard implements 
         }
 
         @Override
-        public void upgrade() {
-
-        }
+        public void upgrade() {}
 
         @Override
         public void use(AbstractPlayer p, AbstractMonster m) {
@@ -117,12 +104,17 @@ public class LeapThroughSpacetime extends AbstractNormaAttentiveCard implements 
         }
 
         @Override
+        public void onChoseThisOption() {
+            use(AbstractDungeon.player, null);
+        }
+
+        @Override
         public AbstractCard makeCopy() {
             return new LeapThroughSpace(useText);
         }
     }
     @AutoAdd.Ignore
-    public class LeapThroughTime extends AbstractNormaAttentiveCard {
+    public static class LeapThroughTime extends AbstractNormaAttentiveCard {
 
         private final String useText;
 
@@ -132,14 +124,17 @@ public class LeapThroughSpacetime extends AbstractNormaAttentiveCard implements 
         }
 
         @Override
-        public void upgrade() {
-
-        }
+        public void upgrade() {}
 
         @Override
         public void use(AbstractPlayer p, AbstractMonster m) {
             this.addToBot(new TalkAction(true, useText, 0.4f, 2.0f));
             this.addToBot(new ApplyPowerAction(p, p, new LeapThroughTimePower(p)));
+        }
+
+        @Override
+        public void onChoseThisOption() {
+            use(AbstractDungeon.player, null);
         }
 
         @Override

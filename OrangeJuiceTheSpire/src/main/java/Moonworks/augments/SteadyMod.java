@@ -21,14 +21,23 @@ public class SteadyMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        amount += card.baseBlock;
-        modifyBaseStat(card, BuffType.BLOCK, BuffScale.MINOR_DEBUFF);
-        amount -= card.baseBlock;
         if (card instanceof Rbits) {
-            card.baseMagicNumber += amount;
-            card.magicNumber += amount;
             setBaseVar = true;
         }
+    }
+
+    @Override
+    public float modifyBaseBlock(float block, AbstractCard card) {
+        amount = (int) Math.ceil(block * (1 - MINOR_DEBUFF));
+        return block * MINOR_DEBUFF;
+    }
+
+    @Override
+    public float modifyBaseMagic(float magic, AbstractCard card) {
+        if (card instanceof Rbits) {
+            return magic + amount;
+        }
+        return magic;
     }
 
     @Override

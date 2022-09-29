@@ -125,7 +125,6 @@ public class OrangeJuiceMod implements
     //This is for the in-game mod settings panel.
     public static UIStrings uiStrings;
     public static String[] TEXT;
-    public static String[] EXTRA_TEXT;
     private static final String MODNAME = "The Star Breaker";
     private static final String AUTHOR = "Mistress Alison";
     private static final String DESCRIPTION = "Adds Star Breaker (and cards) from 100% Orange Juice! NL See the Mod Options if you would like to change any configurations!";
@@ -471,7 +470,6 @@ public class OrangeJuiceMod implements
 
         //Grab the strings
         uiStrings = CardCrawlGame.languagePack.getUIString(makeID("ModConfigs"));
-        EXTRA_TEXT = uiStrings.EXTRA_TEXT;
         TEXT = uiStrings.TEXT;
 
         //Get the longest slider text for positioning

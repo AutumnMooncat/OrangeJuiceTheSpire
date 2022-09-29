@@ -1,3 +1,4 @@
+/*
 package Moonworks.augments;
 
 import CardAugments.cardmods.AbstractAugment;
@@ -62,3 +63,4 @@ public class EvilPrepMod extends AbstractAugment {
         return ID;
     }
 }
+*/

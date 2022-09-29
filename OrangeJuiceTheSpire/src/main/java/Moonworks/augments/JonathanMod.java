@@ -9,8 +9,10 @@ import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class JonathanMod extends AbstractAugment {
     public static final String ID = OrangeJuiceMod.makeID("JonathanMod");
@@ -25,8 +27,12 @@ public class JonathanMod extends AbstractAugment {
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        modifyBaseStat(card, BuffType.DAMAGE, BuffScale.MODERATE_DEBUFF);
         MultiPreviewFieldPatches.addPreview(card, new JonathanRush());
+    }
+
+    @Override
+    public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
+        return damage * MODERATE_DEBUFF;
     }
 
     @Override

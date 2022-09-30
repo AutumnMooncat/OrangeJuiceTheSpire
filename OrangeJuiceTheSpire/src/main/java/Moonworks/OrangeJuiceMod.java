@@ -1,6 +1,6 @@
 package Moonworks;
 
-//import Moonworks.augments.AugmentHelper;
+import Moonworks.augments.AugmentHelper;
 import Moonworks.characters.TheStarBreaker;
 import Moonworks.potions.*;
 import Moonworks.relics.*;
@@ -456,10 +456,6 @@ public class OrangeJuiceMod implements
             //WidePotionsMod.whitelistComplexPotion(MyOtherPotion.POTION_ID, new WideMyOtherPotion());
         }
 
-        /*if (Loader.isModLoaded("CardAugments")) {
-            AugmentHelper.register();
-        }*/
-
         logger.info("Loading badge image and mod options");
         
         // Load the Mod Badge
@@ -482,14 +478,20 @@ public class OrangeJuiceMod implements
         float currentYposition = 740f;
         float spacingY = 55f;
 
-        // Crossover setting
-        /*ModLabeledToggleButton enableChimeraCrossoverButton = new ModLabeledToggleButton(TEXT[6],350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
-                theStarBreakerConfig.getBool(ENABLE_CHIMERA_CROSSOVER), settingsPanel, (label) -> {}, (button) -> {
-            theStarBreakerConfig.setBool(ENABLE_CHIMERA_CROSSOVER, button.enabled);
-            enableChimeraCrossover = button.enabled;
-            try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
-        });
-        currentYposition -= spacingY;*/
+        if (Loader.isModLoaded("CardAugments")) {
+            // Load augments
+            AugmentHelper.register();
+
+            // Crossover setting
+            ModLabeledToggleButton enableChimeraCrossoverButton = new ModLabeledToggleButton(TEXT[6],350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                    theStarBreakerConfig.getBool(ENABLE_CHIMERA_CROSSOVER), settingsPanel, (label) -> {}, (button) -> {
+                theStarBreakerConfig.setBool(ENABLE_CHIMERA_CROSSOVER, button.enabled);
+                enableChimeraCrossover = button.enabled;
+                try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
+            });
+            currentYposition -= spacingY;
+            settingsPanel.addUIElement(enableChimeraCrossoverButton);
+        }
         
         // Self damage setting
         ModLabeledToggleButton enableSelfDamageButton = new ModLabeledToggleButton(TEXT[0], 350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
@@ -569,7 +571,6 @@ public class OrangeJuiceMod implements
         });
         //currentYposition -= spacingY;
 
-        //settingsPanel.addUIElement(enableChimeraCrossoverButton);
         settingsPanel.addUIElement(enableSelfDamageButton);
         settingsPanel.addUIElement(enableStrongerWantedButton);
         settingsPanel.addUIElement(disableGullVFXButton);
@@ -799,8 +800,8 @@ public class OrangeJuiceMod implements
                 getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-UI-Strings.json"));
 
         // Augment Strings
-        /*BaseMod.loadCustomStringsFile(UIStrings.class,
-                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Augment-Strings.json"));*/
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                getModID() + "Resources/localization/"+loadLocalizationIfAvailable("DefaultMod-Augment-Strings.json"));
         
         logger.info("Done editing strings");
     }

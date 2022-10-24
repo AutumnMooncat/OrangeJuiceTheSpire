@@ -3,10 +3,10 @@
     "TEXT": ["Prefix", "Suffix", "Description stuff"]
   },
   "Moonworks:BlastingMod": {
-    "TEXT": ["Blasting ", "", " NL Apply %d moonworks:Blasting_Light."]
+    "TEXT": ["Blasting ", "", " NL Apply %s moonworks:Blasting_Light."]
   },
   "Moonworks:EvilPrepMod": {
-    "TEXT": ["Evil ", " Preparation", " NL Shuffle %d *Evil *Spy *Work *Execution into your draw pile."]
+    "TEXT": ["Evil ", " Preparation", " NL Shuffle %s *Evil *Spy *Work *Execution into your draw pile."]
   },
   "Moonworks:HeatedMod": {
     "TEXT": ["Heated ", "", " NL Apply %d moonworks:Overheat."]
@@ -18,7 +18,7 @@
     "TEXT": ["Sealed ", "", " NL Convert this card into a moonworks:Memory."]
   },
   "Moonworks:SteadyMod": {
-    "TEXT": ["Steady ", "", " NL Gain %d moonworks:Steady."]
+    "TEXT": ["Steady ", "", " NL Gain %s moonworks:Steady."]
   },
   "Moonworks:WindyMod": {
     "TEXT": ["Windy ", "", "Ethereal. NL "," NL When you draw this card, draw a card."]

@@ -1,6 +1,7 @@
 package Moonworks.augments;
 
 import CardAugments.cardmods.AbstractAugment;
+import CardAugments.cardmods.DynvarCarrier;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.cards.Rbits;
 import Moonworks.powers.SteadyPower;
@@ -12,9 +13,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
-public class SteadyMod extends AbstractAugment {
+public class SteadyMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = OrangeJuiceMod.makeID("SteadyMod");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    private static final String KEY = "!" + ID + "!";
 
     private int amount = 0;
     private boolean setBaseVar;
@@ -55,7 +57,7 @@ public class SteadyMod extends AbstractAugment {
         if (setBaseVar) {
             return rawDescription;
         }
-        return rawDescription + String.format(TEXT[2], amount);
+        return rawDescription + String.format(TEXT[2], KEY);
     }
 
     @Override
@@ -78,5 +80,30 @@ public class SteadyMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public String key() {
+        return ID;
+    }
+
+    @Override
+    public int val(AbstractCard card) {
+        return amount;
+    }
+
+    @Override
+    public int baseVal(AbstractCard card) {
+        return amount;
+    }
+
+    @Override
+    public boolean modified(AbstractCard card) {
+        return false;
+    }
+
+    @Override
+    public boolean upgraded(AbstractCard card) {
+        return card.upgradedBlock;
     }
 }

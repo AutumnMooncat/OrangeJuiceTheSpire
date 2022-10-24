@@ -1,6 +1,7 @@
 package Moonworks.augments;
 
 import CardAugments.cardmods.AbstractAugment;
+import CardAugments.cardmods.DynvarCarrier;
 import Moonworks.OrangeJuiceMod;
 import Moonworks.powers.BlastingLightPower;
 import basemod.abstracts.AbstractCardModifier;
@@ -13,9 +14,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BlastingMod extends AbstractAugment {
+public class BlastingMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = OrangeJuiceMod.makeID("BlastingMod");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    private static final String KEY = "!" + ID + "!";
 
     private int amount = 0;
 
@@ -38,7 +40,7 @@ public class BlastingMod extends AbstractAugment {
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + String.format(TEXT[2], amount);
+        return rawDescription + String.format(TEXT[2], KEY);
     }
 
     @Override
@@ -61,5 +63,30 @@ public class BlastingMod extends AbstractAugment {
     @Override
     public String identifier(AbstractCard card) {
         return ID;
+    }
+
+    @Override
+    public String key() {
+        return ID;
+    }
+
+    @Override
+    public int val(AbstractCard abstractCard) {
+        return amount;
+    }
+
+    @Override
+    public int baseVal(AbstractCard abstractCard) {
+        return amount;
+    }
+
+    @Override
+    public boolean modified(AbstractCard abstractCard) {
+        return false;
+    }
+
+    @Override
+    public boolean upgraded(AbstractCard abstractCard) {
+        return abstractCard.upgradedDamage;
     }
 }

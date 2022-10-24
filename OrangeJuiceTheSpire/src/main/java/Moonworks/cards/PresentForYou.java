@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -110,10 +111,7 @@ public class PresentForYou extends AbstractDynamicCard implements ModalChoice.Ca
 
         @Override
         public void use(AbstractPlayer p, AbstractMonster m) {
-            ArrayList<AbstractCard> cards = new ArrayList<>();
-            cards.addAll(AbstractDungeon.srcCommonCardPool.group.stream().filter(c -> c instanceof AbstractGiftCard).collect(Collectors.toCollection(ArrayList::new)));
-            cards.addAll(AbstractDungeon.srcUncommonCardPool.group.stream().filter(c -> c instanceof AbstractGiftCard).collect(Collectors.toCollection(ArrayList::new)));
-            cards.addAll(AbstractDungeon.srcRareCardPool.group.stream().filter(c -> c instanceof AbstractGiftCard).collect(Collectors.toCollection(ArrayList::new)));
+            ArrayList<AbstractCard> cards = CardLibrary.getAllCards().stream().filter(c -> c instanceof AbstractGiftCard && (c.rarity == CardRarity.COMMON || c.rarity == CardRarity.UNCOMMON || c.rarity == CardRarity.RARE)).collect(Collectors.toCollection(ArrayList::new));
             for (int i = 0 ; i < magicNumber ; i++) {
                 AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
                 this.addToBot(new MakeTempCardInDrawPileAction(card, 1, true, true));
@@ -149,10 +147,7 @@ public class PresentForYou extends AbstractDynamicCard implements ModalChoice.Ca
 
         @Override
         public void use(AbstractPlayer p, AbstractMonster m) {
-            ArrayList<AbstractCard> cards = new ArrayList<>();
-            cards.addAll(AbstractDungeon.srcCommonCardPool.group.stream().filter(c -> c instanceof AbstractTrapCard).collect(Collectors.toCollection(ArrayList::new)));
-            cards.addAll(AbstractDungeon.srcUncommonCardPool.group.stream().filter(c -> c instanceof AbstractTrapCard).collect(Collectors.toCollection(ArrayList::new)));
-            cards.addAll(AbstractDungeon.srcRareCardPool.group.stream().filter(c -> c instanceof AbstractTrapCard).collect(Collectors.toCollection(ArrayList::new)));
+            ArrayList<AbstractCard> cards = CardLibrary.getAllCards().stream().filter(c -> c instanceof AbstractTrapCard && (c.rarity == CardRarity.COMMON || c.rarity == CardRarity.UNCOMMON || c.rarity == CardRarity.RARE)).collect(Collectors.toCollection(ArrayList::new));
             for (int i = 0 ; i < magicNumber ; i++) {
                 AbstractCard card = cards.get(AbstractDungeon.cardRandomRng.random(cards.size() - 1));
                 this.addToBot(new MakeTempCardInDrawPileAction(card, 1, true, true));

@@ -1,3 +1,4 @@
+/*
 package Moonworks.augments;
 
 import CardAugments.CardAugmentsMod;
@@ -66,3 +67,4 @@ public class JonathanMod extends AbstractAugment {
         return ID;
     }
 }
+*/

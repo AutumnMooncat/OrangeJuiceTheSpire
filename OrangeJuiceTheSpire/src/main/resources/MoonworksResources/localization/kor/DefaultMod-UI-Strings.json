@@ -12,7 +12,7 @@
       "무작위 피격시 대사를 활성화합니다. 기본: 활성화, 50% 확률.",
       "무작위 전투 전/후 대사를 활성화합니다. 기본 : 활성화, 75% 확률.",
       "갈매기들의 시각/음향 효과를 사용하지 않습니다. 기본: 비활성화.",
-      "Enable Chimera Cards crossover content"]
+      "Enable Spire Juice Crossover Content"]
   },
   "Moonworks:ChooseMagic": {
     "TEXT": ["버린 카드 더미에 넣을 매지컬 카드를 선택하십시오."]

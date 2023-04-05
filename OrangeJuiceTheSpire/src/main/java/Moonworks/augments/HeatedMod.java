@@ -21,7 +21,7 @@ public class HeatedMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && card.cost != -2 && card.baseDamage >= 8 && card.type == AbstractCard.CardType.ATTACK && cardCheck(card, c -> usesEnemyTargeting(c));
+        return OrangeJuiceMod.enableChimeraCrossover && card.cost != -2 && card.baseDamage >= 8 && card.type == AbstractCard.CardType.ATTACK && cardCheck(card, c -> usesEnemyTargeting());
     }
 
     @Override

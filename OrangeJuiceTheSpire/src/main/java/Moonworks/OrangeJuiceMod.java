@@ -482,7 +482,7 @@ public class OrangeJuiceMod implements
             // Load augments
             AugmentHelper.register();
 
-            // Crossover setting
+            /*// Crossover setting
             ModLabeledToggleButton enableChimeraCrossoverButton = new ModLabeledToggleButton(TEXT[6],350.0f, currentYposition, Settings.CREAM_COLOR, FontHelper.charDescFont,
                     theStarBreakerConfig.getBool(ENABLE_CHIMERA_CROSSOVER), settingsPanel, (label) -> {}, (button) -> {
                 theStarBreakerConfig.setBool(ENABLE_CHIMERA_CROSSOVER, button.enabled);
@@ -490,7 +490,7 @@ public class OrangeJuiceMod implements
                 try {theStarBreakerConfig.save();} catch (IOException e) {e.printStackTrace();}
             });
             currentYposition -= spacingY;
-            settingsPanel.addUIElement(enableChimeraCrossoverButton);
+            settingsPanel.addUIElement(enableChimeraCrossoverButton);*/
         }
         
         // Self damage setting

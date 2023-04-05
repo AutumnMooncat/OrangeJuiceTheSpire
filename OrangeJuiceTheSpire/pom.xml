@@ -6,7 +6,7 @@
     <groupId>moonworks</groupId>
     <artifactId>Moonworks</artifactId> <!--Keep a note of this one: this is the ID used in the "auto add cards" method-->
     <name>100% Spire Juice</name>
-    <version>0.9.5</version>
+    <version>0.9.6</version>
     <description>Adds Star Breaker from 100% Orange Juice. \n\nIncluding 80+ cards and 0% original art!</description>
 
     <properties>

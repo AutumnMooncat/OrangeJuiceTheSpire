@@ -11,6 +11,6 @@ public class AugmentHelper {
         new AutoAdd(OrangeJuiceMod.getModID())
                 .packageFilter("Moonworks.augments")
                 .any(AbstractAugment.class, (info, abstractAugment) -> {
-                    CardAugmentsMod.registerAugment(abstractAugment);});
+                    CardAugmentsMod.registerAugment(abstractAugment, OrangeJuiceMod.getModID());});
     }
 }

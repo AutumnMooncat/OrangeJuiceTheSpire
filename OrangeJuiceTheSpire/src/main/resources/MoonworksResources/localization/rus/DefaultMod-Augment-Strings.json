@@ -3,24 +3,24 @@
     "TEXT": ["Prefix", "Suffix", "Description stuff"]
   },
   "Moonworks:BlastingMod": {
-    "TEXT": ["Blasting ", "", " NL Apply %s moonworks:Blasting_Light."]
+    "TEXT": ["", " с взрывом", " NL Накладывает %s moonworks:Взрывного_огня."]
   },
   "Moonworks:EvilPrepMod": {
-    "TEXT": ["Evil ", " Preparation", " NL Shuffle %s *Evil *Spy *Work *Execution into your draw pile."]
+    "TEXT": ["Зло-", " на подготовке", " NL Добавляет %s *Выполнение *злой *шпионской *работы в стопку добора."]
   },
   "Moonworks:HeatedMod": {
-    "TEXT": ["Heated ", "", " NL Apply %d moonworks:Overheat."]
+    "TEXT": ["", " с перегревом", " NL Накладывает %d moonworks:Перегрева."]
   },
   "Moonworks:JonathanMod": {
-    "TEXT": ["Jonathan's ", "", " NL Add %d *Jonathan *Rush into your hand."]
+    "TEXT": ["", " Тостера", " NL Добавляет в руку %d *Рывок(ка) *Тостера."]
   },
   "Moonworks:SealedMod": {
-    "TEXT": ["Sealed ", "", " NL Convert this card into a moonworks:Memory."]
+    "TEXT": ["", " в печати", " NL Преобразуется в moonworks:Воспоминание."]
   },
   "Moonworks:SteadyMod": {
-    "TEXT": ["Steady ", "", " NL Gain %s moonworks:Steady."]
+    "TEXT": ["", " в стойке", " NL Даёт %s moonworks:Стойкости."]
   },
   "Moonworks:WindyMod": {
-    "TEXT": ["Windy ", "", "Ethereal. NL "," NL When you draw this card, draw a card."]
+    "TEXT": ["Ветро-", "", "Эфирная. NL "," NL Вы берёте карту, когда добираете эту карту."]
   }
 }

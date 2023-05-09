@@ -17,11 +17,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class EvilPrepMod extends AbstractAugment implements DynvarCarrier {
     public static final String ID = OrangeJuiceMod.makeID("EvilPrepMod");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    public static final String[] EXTRA_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
     private static final String KEY = "!" + ID + "!";
 
     private static final int CARDS = 2;
     int amount = 0;
     int base = -1;
+
+    @Override
+    public void onInitialApplication(AbstractCard card) {
+        MultiPreviewFieldPatches.addPreview(card, new EvilSpyWorkExecution());
+    }
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
@@ -34,18 +40,27 @@ public class EvilPrepMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && card.baseDamage > 1 && card.type != AbstractCard.CardType.POWER && cardCheck(card, c -> doesntUpgradeCost());
+        return card.baseDamage > 1 && card.type != AbstractCard.CardType.POWER && cardCheck(card, c -> doesntUpgradeCost());
     }
 
     @Override
-    public String modifyName(String cardName, AbstractCard card) {
-        String[] nameParts = removeUpgradeText(cardName);
-        return TEXT[0] + nameParts[0] + TEXT[1] + nameParts[1];
+    public String getPrefix() {
+        return TEXT[0];
+    }
+
+    @Override
+    public String getSuffix() {
+        return TEXT[1];
+    }
+
+    @Override
+    public String getAugmentDescription() {
+        return EXTRA_TEXT[0];
     }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + String.format(TEXT[2], KEY);
+        return insertAfterText(rawDescription , String.format(TEXT[2], KEY));
     }
 
     @Override

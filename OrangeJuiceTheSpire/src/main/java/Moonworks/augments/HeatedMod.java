@@ -16,12 +16,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class HeatedMod extends AbstractAugment {
     public static final String ID = OrangeJuiceMod.makeID("HeatedMod");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    public static final String[] EXTRA_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     private static final int AMOUNT = 1;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && card.cost != -2 && card.baseDamage >= 8 && card.type == AbstractCard.CardType.ATTACK && cardCheck(card, c -> usesEnemyTargeting());
+        return card.cost != -2 && card.baseDamage >= 8 && card.type == AbstractCard.CardType.ATTACK && cardCheck(card, c -> usesEnemyTargeting());
     }
 
     @Override
@@ -30,14 +31,23 @@ public class HeatedMod extends AbstractAugment {
     }
 
     @Override
-    public String modifyName(String cardName, AbstractCard card) {
-        String[] nameParts = removeUpgradeText(cardName);
-        return TEXT[0] + nameParts[0] + TEXT[1] + nameParts[1];
+    public String getPrefix() {
+        return TEXT[0];
+    }
+
+    @Override
+    public String getSuffix() {
+        return TEXT[1];
+    }
+
+    @Override
+    public String getAugmentDescription() {
+        return EXTRA_TEXT[0];
     }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + String.format(TEXT[2], AMOUNT);
+        return insertAfterText(rawDescription , String.format(TEXT[2], AMOUNT));
     }
 
     @Override

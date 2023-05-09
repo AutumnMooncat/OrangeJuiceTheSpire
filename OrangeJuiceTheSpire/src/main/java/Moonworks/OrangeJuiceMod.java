@@ -83,9 +83,6 @@ public class OrangeJuiceMod implements
     public static SpireConfig theStarBreakerConfig;
     public static Properties normaBackupVars = new Properties();
 
-    public static final String ENABLE_CHIMERA_CROSSOVER = "enableChimeraCrossover";
-    public static boolean enableChimeraCrossover = true;
-
     public static final String ENABLE_SELFDAMAGE_SETTING = "enableSelfDamage";
     public static boolean enableSelfDamage = false; // The boolean we'll be setting on/off (true/false)
 
@@ -323,7 +320,6 @@ public class OrangeJuiceMod implements
         // This loads the mod settings.
         // The actual mod Button is added below in receivePostInitialize()
         Properties theStarBreakerDefaultSettings = new Properties();
-        theStarBreakerDefaultSettings.setProperty(ENABLE_CHIMERA_CROSSOVER, "TRUE");
         theStarBreakerDefaultSettings.setProperty(ENABLE_SELFDAMAGE_SETTING, "FALSE");
         theStarBreakerDefaultSettings.setProperty(FIVE_STAR_WANTED_SETTING, "FALSE");
         theStarBreakerDefaultSettings.setProperty(DISABLE_GULL_VFX, "FALSE");
@@ -335,7 +331,6 @@ public class OrangeJuiceMod implements
         theStarBreakerDefaultSettings.setProperty(PRE_BATTLE_TALK_PROBABILITY_SETTING, String.valueOf(BASE_PRE_TALK_PROBABILITY));
         try {
             theStarBreakerConfig = new SpireConfig("starbreakerMod", "StarbreakerConfig", theStarBreakerDefaultSettings);
-            enableChimeraCrossover = theStarBreakerConfig.getBool(ENABLE_CHIMERA_CROSSOVER);
             enableSelfDamage = theStarBreakerConfig.getBool(ENABLE_SELFDAMAGE_SETTING);
             enableStrongerWantedEffect = theStarBreakerConfig.getBool(FIVE_STAR_WANTED_SETTING);
             disableGullVfx = theStarBreakerConfig.getBool(DISABLE_GULL_VFX);

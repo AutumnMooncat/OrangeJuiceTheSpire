@@ -3,24 +3,31 @@
     "TEXT": ["Prefix", "Suffix", "Description stuff"]
   },
   "Moonworks:BlastingMod": {
-    "TEXT": ["Blasting ", "", " NL Apply %s moonworks:Blasting_Light."]
+    "TEXT": ["Blasting ", "", " NL Apply %s moonworks:Blasting_Light."],
+    "EXTRA_TEXT": ["Reduces damage by #b33%. NL Applies #yBlasting #yLight equal to damage lost."]
   },
   "Moonworks:EvilPrepMod": {
-    "TEXT": ["Evil ", " Preparation", " NL Shuffle %s *Evil *Spy *Work *Execution into your draw pile."]
+    "TEXT": ["Evil ", " Preparation", " NL Shuffle %s *Evil *Spy *Work *Execution into your draw pile."],
+    "EXTRA_TEXT": ["Reduces damage by #b33%. NL Shuffles an amount of #yEvil #ySpy #yWork #yExecution into your draw pile proportional to damage lost."]
   },
   "Moonworks:HeatedMod": {
-    "TEXT": ["Heated ", "", " NL Apply %d moonworks:Overheat."]
+    "TEXT": ["Heated ", "", " NL Apply %d moonworks:Overheat."],
+    "EXTRA_TEXT": ["Reduces damage by #b25%. NL Applies #b1 #yOverheat."]
   },
   "Moonworks:JonathanMod": {
-    "TEXT": ["Jonathan's ", "", " NL Add %d *Jonathan *Rush into your hand."]
+    "TEXT": ["Jonathan's ", "", " NL Add %d *Jonathan *Rush into your hand."],
+    "EXTRA_TEXT": ["Reduces damage by #b25%. NL Adds a #yJonathan #yRush into your hand."]
   },
   "Moonworks:SealedMod": {
-    "TEXT": ["Sealed ", "", " NL Convert this card into a moonworks:Memory."]
+    "TEXT": ["Sealed ", "", " NL Convert this card into a moonworks:Memory."],
+    "EXTRA_TEXT": ["Converts the card into a #yMemory when played."]
   },
   "Moonworks:SteadyMod": {
-    "TEXT": ["Steady ", "", " NL Gain %s moonworks:Steady."]
+    "TEXT": ["Steady ", "", " NL Gain %s moonworks:Steady."],
+    "EXTRA_TEXT": ["Reduces #yBlock by #b20%. NL Gives #ySteady equal to #yBlock lost."]
   },
   "Moonworks:WindyMod": {
-    "TEXT": ["Windy ", "", "Ethereal. NL "," NL When you draw this card, draw a card."]
+    "TEXT": ["Windy ", "", "Ethereal. NL "," NL When you draw this card, draw a card."],
+    "EXTRA_TEXT": ["Draws a card when drawn. NL Adds #yEthereal."]
   }
 }

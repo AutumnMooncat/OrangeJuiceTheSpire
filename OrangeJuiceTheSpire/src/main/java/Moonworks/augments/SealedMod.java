@@ -15,20 +15,31 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 public class SealedMod extends AbstractAugment {
     public static final String ID = OrangeJuiceMod.makeID("SealedMod");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    public static final String[] EXTRA_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && BookOfMemoriesPower.getViability(card) && cardCheck(card, c -> notExhaust(c));
+        return BookOfMemoriesPower.getViability(card) && cardCheck(card, c -> notExhaust(c));
     }
 
     @Override
-    public String modifyName(String cardName, AbstractCard card) {
-        return TEXT[0] + cardName + TEXT[1];
+    public String getPrefix() {
+        return TEXT[0];
+    }
+
+    @Override
+    public String getSuffix() {
+        return TEXT[1];
+    }
+
+    @Override
+    public String getAugmentDescription() {
+        return EXTRA_TEXT[0];
     }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + TEXT[2];
+        return insertAfterText(rawDescription , TEXT[2]);
     }
 
     @Override
@@ -56,12 +67,8 @@ public class SealedMod extends AbstractAugment {
     }
 
     @Override
-    public void onDrawn(AbstractCard card) {
-    }
-
-    @Override
     public AbstractAugment.AugmentRarity getModRarity() {
-        return AugmentRarity.UNCOMMON;
+        return AugmentRarity.RARE;
     }
 
     @Override

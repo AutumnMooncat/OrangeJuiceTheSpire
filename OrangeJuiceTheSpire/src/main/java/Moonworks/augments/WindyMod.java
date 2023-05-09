@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 public class WindyMod extends AbstractAugment {
     public static final String ID = OrangeJuiceMod.makeID("WindyMod");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    public static final String[] EXTRA_TEXT = CardCrawlGame.languagePack.getUIString(ID).EXTRA_TEXT;
 
     @Override
     public void onInitialApplication(AbstractCard card) {
@@ -18,17 +19,27 @@ public class WindyMod extends AbstractAugment {
 
     @Override
     public boolean validCard(AbstractCard card) {
-        return OrangeJuiceMod.enableChimeraCrossover && cardCheck(card, c -> notEthereal(c));
+        return cardCheck(card, c -> notEthereal(c));
     }
 
     @Override
-    public String modifyName(String cardName, AbstractCard card) {
-        return TEXT[0] + cardName + TEXT[1];
+    public String getPrefix() {
+        return TEXT[0];
+    }
+
+    @Override
+    public String getSuffix() {
+        return TEXT[1];
+    }
+
+    @Override
+    public String getAugmentDescription() {
+        return EXTRA_TEXT[0];
     }
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return TEXT[2] + rawDescription + TEXT[3];
+        return TEXT[2] + insertAfterText(rawDescription , TEXT[3]);
     }
 
     @Override

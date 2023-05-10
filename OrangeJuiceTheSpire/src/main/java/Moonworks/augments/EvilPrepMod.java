@@ -31,7 +31,7 @@ public class EvilPrepMod extends AbstractAugment implements DynvarCarrier {
 
     @Override
     public float modifyBaseDamage(float damage, DamageInfo.DamageType type, AbstractCard card, AbstractMonster target) {
-        amount = (int) Math.ceil((damage * (1 - MAJOR_DEBUFF))/4f);
+        amount = Math.max(1, (int) Math.ceil((damage * (1 - MAJOR_DEBUFF))/4f));
         if (base == -1) {
             base = amount;
         }

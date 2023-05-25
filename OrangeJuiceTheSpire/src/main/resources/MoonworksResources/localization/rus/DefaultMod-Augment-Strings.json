@@ -4,7 +4,7 @@
   },
   "Moonworks:BlastingMod": {
     "TEXT": ["", " с взрывом", " NL Накладывает %s moonworks:Взрывного_огня."],
-    "EXTRA_TEXT": ["Reduces damage by #b33%. NL Applies #yBlasting #yLight equal to damage lost."]
+    "EXTRA_TEXT": ["Снижает урон на #b33%. NL Накладывает #yВзрывной #yогонь сниженному урону."]
   },
   "Moonworks:EvilPrepMod": {
     "TEXT": ["Зло-", " на подготовке", " NL Добавляет %s *Выполнение *злой *шпионской *работы в стопку добора."],

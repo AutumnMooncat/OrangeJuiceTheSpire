@@ -4,30 +4,30 @@
   },
   "Moonworks:BlastingMod": {
     "TEXT": ["", " с взрывом", " NL Накладывает %s moonworks:Взрывного_огня."],
-    "EXTRA_TEXT": ["Снижает урон на #b33%. NL Накладывает #yВзрывной #yогонь сниженному урону."]
+    "EXTRA_TEXT": ["Понижает урон на #b33%. NL Накладывает #yВзрывной #yогонь равный пониженному урону."]
   },
   "Moonworks:EvilPrepMod": {
     "TEXT": ["Зло-", " на подготовке", " NL Добавляет %s *Выполнение *злой *шпионской *работы в стопку добора."],
-    "EXTRA_TEXT": ["Reduces damage by #b33%. NL Shuffles an amount of #yEvil #ySpy #yWork #yExecution into your draw pile proportional to damage lost."]
+    "EXTRA_TEXT": ["Понижает урон на #b33%. NL Добавляет #yВыполнение #yзлой #yшпионской #yработы в стопку добора, равные пониженному урону."]
   },
   "Moonworks:HeatedMod": {
     "TEXT": ["", " с перегревом", " NL Накладывает %d moonworks:Перегрева."],
-    "EXTRA_TEXT": ["Reduces damage by #b25%. NL Applies #b1 #yOverheat."]
+    "EXTRA_TEXT": ["Понижает урон на #b25%. NL Накладывает #b1 #yПерегрева."]
   },
   "Moonworks:JonathanMod": {
     "TEXT": ["", " Тостера", " NL Добавляет в руку %d *Рывок(ка) *Тостера."],
-    "EXTRA_TEXT": ["Reduces damage by #b25%. NL Adds a #yJonathan #yRush into your hand."]
+    "EXTRA_TEXT": ["Понижает урон на #b25%. NL Добавляет в руку #yРывок #yТостера."]
   },
   "Moonworks:SealedMod": {
     "TEXT": ["", " в печати", " NL Преобразуется в moonworks:Воспоминание."],
-    "EXTRA_TEXT": ["Converts the card into a #yMemory when played."]
+    "EXTRA_TEXT": ["Преобразует эту карту в #yВоспоминание после разыгрывания."]
   },
   "Moonworks:SteadyMod": {
     "TEXT": ["", " в стойке", " NL Даёт %s moonworks:Стойкости."],
-    "EXTRA_TEXT": ["Reduces #yBlock by #b20%. NL Gives #ySteady equal to #yBlock lost."]
+    "EXTRA_TEXT": ["Понижает #yЗащиту на #b20%. NL Даёт #yСтойкость равную пониженной #yЗащите."]
   },
   "Moonworks:WindyMod": {
     "TEXT": ["Ветро-", "", "Эфирная. NL "," NL Вы берёте карту, когда добираете эту карту."],
-    "EXTRA_TEXT": ["Draws a card when drawn. NL Adds #yEthereal."]
+    "EXTRA_TEXT": ["Вы берёте карту, когда добираете эту карту. NL Добавляет #y«Эфирная»."]
   }
 }
